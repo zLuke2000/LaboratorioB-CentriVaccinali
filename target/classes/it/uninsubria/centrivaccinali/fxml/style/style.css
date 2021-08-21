@@ -1,0 +1,23 @@
+#B_accediCittadino {
+
+		-fx-background-color: #d6d6d6;
+
+}
+
+#B_accediCittadino: hover {
+
+		-fx-background-color: #b4b4b4;
+
+}
+
+#B_accediOperatori {
+
+		-fx-background-color: #d6d6d6;
+
+}
+
+#B_accediOperatori: hover {
+
+		-fx-background-color: #b4b4b4;
+
+}
