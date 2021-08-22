@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali;
+package it.uninsubria.centrivaccinali.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CentriVaccinali extends Application {
+public class ClientCV extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/Avvio.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientCV.class.getResource("fxml/Avvio.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Centri Vaccinali");
         stage.setScene(scene);

@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali;
+package it.uninsubria.centrivaccinali.client.centrivaccinali.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
