@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.client;
+package it.uninsubria.laboratoriob.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

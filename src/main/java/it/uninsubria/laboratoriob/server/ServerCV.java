@@ -1,6 +1,6 @@
-package it.uninsubria.centrivaccinali.server;
+package it.uninsubria.laboratoriob.server;
 
-import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.laboratoriob.database.Database;
 
 import java.io.BufferedReader;
 import java.io.IOException;
