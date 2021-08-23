@@ -24,7 +24,7 @@ public class ServerCV {
                 e.printStackTrace();
             }
             if (utente != null && utente.length() == 0) {
-                System.err.println("non puo' essere vuoto");
+                System.err.print("non puo' essere vuoto");
             } else {
                 break;
             }
