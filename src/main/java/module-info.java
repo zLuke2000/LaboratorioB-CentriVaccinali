@@ -1,4 +1,4 @@
-module it.uninsubria.centrivaccinali {
+module it.uninsubria.laboratoriob {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -9,8 +9,6 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.carbonicons;
     requires java.sql;
 
-    opens it.uninsubria.laboratoriob.client to javafx.fxml;
-    exports it.uninsubria.laboratoriob.client.centrivaccinali.controller;
-    opens it.uninsubria.laboratoriob.client.centrivaccinali.controller to javafx.fxml;
     exports it.uninsubria.laboratoriob.client;
+    opens it.uninsubria.laboratoriob.client to javafx.fxml;
 }

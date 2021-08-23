@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.uninsubria</groupId>
-    <artifactId>CentriVaccinali</artifactId>
+    <artifactId>laboratoriob</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>CentriVaccinali</name>
 
@@ -94,7 +94,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.uninsubria.centrivaccinali/it.uninsubria.laboratoriob.client.ClientCV
+                            <mainClass>it.uninsubria.laboratoriob/it.uninsubria.laboratoriob.client.ClientCV
                             </mainClass>
                         </configuration>
                     </execution>
