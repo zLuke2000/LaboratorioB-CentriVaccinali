@@ -8,35 +8,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.laboratoriob.client.AvvioController">
    <VBox HBox.hgrow="ALWAYS">
-      <Button id="B_accediCittadino" alignment="CENTER" maxHeight="150.0" maxWidth="150.0" minHeight="150.0"
-              minWidth="150.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
+      <Button fx:id="B_accediCittadino" id="B_accediCittadino" alignment="CENTER" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
          <graphic>
-            <FontIcon iconLiteral="bpmn-user" iconSize="150" wrappingWidth="141.0"/>
+            <FontIcon iconLiteral="bpmn-user" iconSize="150" wrappingWidth="141.0" />
          </graphic>
       </Button>
       <Label alignment="CENTER" contentDisplay="CENTER" text="Accedi come cittadino" underline="true">
          <VBox.margin>
-            <Insets left="20.0" top="10.0"/>
+            <Insets left="20.0" top="10.0" />
          </VBox.margin>
       </Label>
    </VBox>
    <VBox prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-      <Button id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-              mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
+      <Button fx:id="B_accediOperatori" id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#AccediOperatori" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
          <graphic>
             <FontIcon iconLiteral="ci-hospital" iconSize="110" text="" wrappingWidth="104.0">
             </FontIcon>
          </graphic>
          <styleClass>
-            <String fx:value="btn"/>
-            <String fx:value="btn-outline-info"/>
+            <String fx:value="btn" />
+            <String fx:value="btn-outline-info" />
          </styleClass>
       </Button>
       <Label text="Accedi come operatori" underline="true">
          <VBox.margin>
-            <Insets left="15.0" top="10.0"/>
+            <Insets left="15.0" top="10.0" />
          </VBox.margin>
       </Label>
    </VBox>
