@@ -15,9 +15,9 @@
             <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" wrappingWidth="141.0" />
          </graphic>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="19.0" prefWidth="141.0" text="Accedi come cittadino" underline="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Accedi come cittadino" underline="true">
          <VBox.margin>
-            <Insets left="10.0" right="4.0" top="10.0" />
+            <Insets left="5.0" right="7.0" top="10.0" />
          </VBox.margin>
          <font>
             <Font size="15.0" />
