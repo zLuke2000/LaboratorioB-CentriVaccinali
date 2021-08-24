@@ -43,4 +43,40 @@
 	-fx-font-family: "STSong";
 }
 
+#L_CV_operatore {
+
+	-fx-font-size: 15;
+}
+
+.text-field{
+	-fx-border-color: #000000;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+	-fx-border-width: 0.5;
+}
+
+.text-field:hover{
+	-fx-border-color: #b6e1fc;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+	-fx-border-width: 0.5;
+}
+
+#B_CV_login{
+
+	-fx-background-color: #e7f5fe;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5;
+	-fx-border-width: 0.5;
+	-fx-background-radius: 5;
+}
+
+#B_CV_login:hover{
+
+	-fx-background-color: #b6e1fc;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5;
+	-fx-border-width: 0.5;
+	-fx-background-radius: 5;
+}
 
