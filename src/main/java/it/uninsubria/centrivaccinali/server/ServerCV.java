@@ -1,13 +1,19 @@
-package it.uninsubria.laboratoriob.server;
+package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.laboratoriob.database.Database;
+import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 
-public class ServerCV {
+public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
+
+    protected ServerCV() throws RemoteException {
+    }
 
     public static void main(String[] args) throws SQLException {
         System.out.println("Inserire le credenziali di accesso");
@@ -47,5 +53,10 @@ public class ServerCV {
             System.out.print("password: ");
         }
         new Database(utente, password);
+    }
+
+    @Override
+    public void registraVaccinato(Vaccinato cittadinovaccinato) {
+
     }
 }

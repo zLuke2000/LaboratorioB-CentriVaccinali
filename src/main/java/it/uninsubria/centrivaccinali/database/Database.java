@@ -1,4 +1,4 @@
-package it.uninsubria.laboratoriob.database;
+package it.uninsubria.centrivaccinali.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;

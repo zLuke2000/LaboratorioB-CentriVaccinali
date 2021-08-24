@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.laboratoriob.client.AvvioController">
+<HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.AvvioController">
    <VBox HBox.hgrow="ALWAYS">
       <Button id="B_accediCittadino" fx:id="B_accediCittadino" alignment="CENTER" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
          <graphic>
