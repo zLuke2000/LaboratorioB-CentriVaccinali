@@ -7,6 +7,7 @@ module it.uninsubria.laboratoriob {
     requires org.kordamp.bootstrapfx.core;
     requires org.kordamp.ikonli.bpmn;
     requires org.kordamp.ikonli.carbonicons;
+    requires org.kordamp.ikonli.elusive;
     requires java.sql;
 
     exports it.uninsubria.laboratoriob.client;

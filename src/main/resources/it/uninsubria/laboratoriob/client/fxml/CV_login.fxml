@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.laboratoriob.client.centrivaccinali.controller.CVLoginController">
    <children>
-      <Label id="L_CV_welcome" layoutX="65.0" layoutY="14.0" prefHeight="60.0" prefWidth="261.0" text="BENVENUTO" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="14.0" />
-      <Label id="L_CV_operatore" layoutX="112.0" layoutY="89.0" prefHeight="19.0" prefWidth="166.0" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="89.0" />
-      <Label alignment="CENTER" layoutX="103.0" layoutY="140.0" prefHeight="17.0" prefWidth="185.0" text="Accedi con le credenziali fornite" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="103.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="150.0" />
+      <Label id="L_CV_welcome" alignment="CENTER" layoutX="65.0" layoutY="14.0" text="BENVENUTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+      <Label id="L_CV_operatore" alignment="CENTER" layoutX="112.0" layoutY="89.0" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0" />
+      <Label alignment="CENTER" layoutX="103.0" layoutY="140.0" prefHeight="17.0" prefWidth="185.0" text="Accedi con le credenziali fornite" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
       <Button id="B_CV_login" fx:id="B_CV_login" layoutX="136.0" layoutY="388.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="118.0" text="Accedi" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="388.0" />
       <TextField fx:id="L_CV_username" layoutX="91.0" layoutY="232.0" prefHeight="27.0" prefWidth="210.0" promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="235.0" />
       <PasswordField fx:id="L_CV_password" layoutX="94.0" layoutY="295.0" prefHeight="27.0" prefWidth="202.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="300.0" />
