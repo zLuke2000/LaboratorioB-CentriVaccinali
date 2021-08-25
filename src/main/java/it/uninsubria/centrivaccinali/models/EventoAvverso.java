@@ -12,6 +12,8 @@ import java.io.Serializable;
  * a seguito della vaccinazione
  */
 public class EventoAvverso implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     /**Descrive l'evento avverso avvenuto*/
     private String evento;
     /**Rappresenta il valore da 1 a 5 dell'intensit&agrave del valore avverso*/

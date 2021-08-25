@@ -7,56 +7,63 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.SQLException;
 
 public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
+
+    private static final long serialVersionUID = 1L;
+    private final String usernameOperatore = "123";
+    private final String passwordOperatore = "123";
+    private static Database db;
+    private static Registry reg;
+    private static ServerCV obj;
 
     protected ServerCV() throws RemoteException {
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         System.out.println("Inserire le credenziali di accesso");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        // Reading data using readLine
+        // Leggo nome utente
         String utente = null;
         System.out.print("utente: ");
-        while(true) {
-            try {
-                utente = reader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (utente != null && utente.length() == 0) {
-                System.err.print("non puo' essere vuoto");
-            } else {
-                break;
-            }
-            System.out.print("utente: ");
+        try {
+            utente = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+        // Leggo password
         String password = null;
         System.out.print("password: ");
-        while(true) {
-            try {
-                password = reader.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (password != null && password.length() == 0) {
-                System.err.println("non puo' essere vuoto");
-            } else {
-                break;
-            }
-            System.out.print("password: ");
+        try {
+            password = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        new Database(utente, password);
+
+        db = new Database();
+        if(db.connect(utente, password)) {
+            try {
+                obj = new ServerCV();
+                reg = LocateRegistry.createRegistry(1099);
+                reg.rebind("server", obj);
+                System.out.println("Server pronto");
+            } catch (RemoteException e) {
+                System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
     }
 
     @Override
-    public void registraVaccinato(Vaccinato cittadinovaccinato) {
-
+    public boolean autenticaOperatore(String username, String password) throws RemoteException {
+        System.out.println("[SERVER] richiesta di autenticazione da parte di: " + username);
+        return usernameOperatore.equals(username) && passwordOperatore.equals(password);
     }
 }

@@ -11,6 +11,8 @@ import java.io.Serializable;
  * Classe per salvare le informazioni del cittadino registrato
  */
 public class Cittadino implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     /**Rappresenta il nome del cittadino*/
     private String nome;
     /**Rappresenta il cognome del cittadino*/

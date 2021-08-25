@@ -13,11 +13,11 @@ public class AvvioController {
         @FXML
         void accediCittadino(ActionEvent event) {
                 System.out.println("Accesso cittadino");
-                CentriVaccinali.setRoot("CV_cittadino");
+                //CentriVaccinali.setRoot("CV_cittadino");
         }
 
         @FXML
-        void AccediOperatori(ActionEvent event) {
+        void accediOperatore(ActionEvent event) {
                 System.out.println("Accesso operatore");
                 CentriVaccinali.setRoot("CV_login");
         }

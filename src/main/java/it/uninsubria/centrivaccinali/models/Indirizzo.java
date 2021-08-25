@@ -11,9 +11,10 @@ import java.io.Serializable;
  */
 
 public class Indirizzo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     /**
      * Rappresenta il tipo enumerativo <code>Qualificatore</code>
-     *
      * @see Qualificatore
      */
     private Qualificatore qualificatore;
