@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 
 public class Vaccinato implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**Rappresenta il nome del centro presso cui &egrave stato somministrato il vaccino*/
     private String nomeCentro;

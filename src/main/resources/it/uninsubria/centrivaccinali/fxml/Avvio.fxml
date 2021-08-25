@@ -25,7 +25,7 @@
       </Label>
    </VBox>
    <VBox prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-      <Button id="B_accediOperatori" fx:id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#AccediOperatori" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
+      <Button id="B_accediOperatori" fx:id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#accediOperatore" prefHeight="150.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
          <graphic>
             <FontIcon iconColor="#1f4c9f" iconLiteral="ci-hospital" iconSize="110" text="" wrappingWidth="104.0">
             </FontIcon>
