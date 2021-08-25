@@ -80,8 +80,11 @@
 	-fx-background-radius: 5;
 }
 
-#B_CV_info{
+.field-error {
+	-fx-border-color: #ff0000;
+}
 
+#B_CV_info{
 	-fx-background-color: trasparent;
 }
 
