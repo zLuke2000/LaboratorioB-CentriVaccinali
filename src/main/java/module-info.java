@@ -15,4 +15,6 @@ module it.uninsubria.centrivaccinali {
     opens it.uninsubria.centrivaccinali to javafx.fxml;
     exports it.uninsubria.centrivaccinali.controller;
     opens it.uninsubria.centrivaccinali.controller to javafx.fxml;
+    exports it.uninsubria.centrivaccinali.client;
+    opens it.uninsubria.centrivaccinali.client to javafx.fxml;
 }
