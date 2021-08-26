@@ -3,10 +3,8 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 
@@ -14,6 +12,7 @@ public class CVLoginController {
 
     @FXML private TextField L_CV_username;
     @FXML private PasswordField L_CV_password;
+    @FXML private DialogPane DP_CV_info;
 
     private ClientCV client;
     private final Tooltip genericTooltip = new Tooltip("Inserire almeno un carattere");
@@ -70,4 +69,11 @@ public class CVLoginController {
         tic.getStyleClass().remove("field-error");
     }
 
+    public void ShowInfo(MouseEvent mouseEvent) {
+        if(DP_CV_info.isVisible()) {
+            DP_CV_info.setVisible(false);
+        } else {
+            DP_CV_info.setVisible(true);
+        }
+    }
 }
