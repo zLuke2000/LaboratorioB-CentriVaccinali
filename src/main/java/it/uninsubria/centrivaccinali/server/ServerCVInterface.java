@@ -10,5 +10,5 @@ public interface ServerCVInterface extends Remote{
     // void registraVaccinato(Vaccinato cittadinovaccinato) throws RemoteException;
     // void registraCentroVaccinale(CentroVaccinale) throws RemoteException;
 
-    boolean autenticaOperatore(String username, String password) throws RemoteException;
+    void authOperatore(ClientCVInterface clientCV, String username, String password) throws RemoteException;
 }

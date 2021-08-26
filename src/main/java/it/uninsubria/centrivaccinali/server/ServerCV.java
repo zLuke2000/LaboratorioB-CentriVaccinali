@@ -74,4 +74,20 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
 
         return usernameOperatore.equals(username) && passwordOperatore.equals(password);
     }
+    */
+
+    @Override
+    public void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                client.notifyStatus(usernameOperatore.equals(username) && passwordOperatore.equals(password));
+            } catch (RemoteException e){
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                System.err.println("[SERVER]: Sleep exception");
+                e.printStackTrace();
+            }
+        }).start();
+    }
 }
