@@ -4,13 +4,16 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+
 
 public class CVLoginController {
 
     @FXML private TextField L_CV_username;
     @FXML private PasswordField L_CV_password;
     @FXML private ProgressIndicator PI_CV_load;
+    @FXML private DialogPane DP_CV_info;
 
     private ClientCV client;
     private final Tooltip genericTooltip = new Tooltip("Inserire almeno un carattere");
@@ -70,4 +73,11 @@ public class CVLoginController {
         // TODO switch alla prossima schermata
     }
 
+    public void ShowInfo(MouseEvent mouseEvent) {
+        if(DP_CV_info.isVisible()) {
+            DP_CV_info.setVisible(false);
+        } else {
+            DP_CV_info.setVisible(true);
+        }
+    }
 }
