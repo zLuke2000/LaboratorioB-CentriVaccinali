@@ -1,6 +1,6 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.server.ServerCV;
+import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 
 import java.rmi.NotBoundException;
@@ -14,6 +14,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static final long serialVersionUID = 1L;
     private static Registry reg = null;
     private static ServerCVInterface server;
+    private CVLoginController sourceCVlogin;
 
     public ClientCV() throws RemoteException {
         // connessione a RMI
@@ -27,23 +28,37 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         // download riferimento server
         try {
             server = (ServerCVInterface) reg.lookup("server");
-            System.out.println("Connessione al server eseguita con successo");
+            printout("Connessione al server eseguita con successo");
         } catch (RemoteException | NotBoundException e) {
-            System.err.println("Non e' stato possibile trovare la chiave nel registro RMI");
+            printout("Non e' stato possibile trovare la chiave nel registro RMI");
             e.printStackTrace();
             System.exit(0);
         }
     }
 
-    public boolean autenticaOperatore(String username, String password) {
-        System.out.println("[CLIENT] richiesta di autenticazione da parte di: " + username);
+    public void autenticaOperatore(CVLoginController source, String username, String password) {
+        this.sourceCVlogin = source;
         try {
-            if(server.autenticaOperatore(username, password)) {
-                return true;
-            }
+            server.authOperatore(this, username, password);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return false;
+    }
+
+    @Override
+    public void notifyStatus(boolean ritorno) throws RuntimeException {
+        if (ritorno) {
+            printout("AUTH OK");
+        }
+        else {
+            printout("AUTH KO");
+        }
+        sourceCVlogin.authStatus(ritorno);
+
+    }
+
+
+    private void printout(String s) {
+        System.out.println("[CLIENT_CV] " + s);
     }
 }

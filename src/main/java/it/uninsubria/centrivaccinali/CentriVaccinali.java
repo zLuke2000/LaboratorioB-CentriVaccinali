@@ -1,8 +1,6 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.client.ClientCVThread;
-import it.uninsubria.centrivaccinali.controller.AvvioController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

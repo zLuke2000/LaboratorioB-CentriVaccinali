@@ -1,7 +1,8 @@
 package it.uninsubria.centrivaccinali.server;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,10 +61,17 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }
     }
-
+    /*
     @Override
     public boolean autenticaOperatore(String username, String password) throws RemoteException {
         System.out.println("[SERVER] richiesta di autenticazione da parte di: " + username);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return usernameOperatore.equals(username) && passwordOperatore.equals(password);
     }
 }

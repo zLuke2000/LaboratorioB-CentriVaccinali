@@ -1,7 +1,7 @@
 package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
