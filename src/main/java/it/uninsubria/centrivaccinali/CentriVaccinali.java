@@ -29,6 +29,7 @@ public class CentriVaccinali extends Application {
         scene = new Scene(Objects.requireNonNull(loadFXML("Avvio")));
         stage.setScene(scene);
         stage.setTitle("Progetto LaboratorioB");
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -39,11 +40,24 @@ public class CentriVaccinali extends Application {
                 stage.setTitle("Progetto LaboratorioB");
                 break;
             case "CV_login":
+                System.out.println("[CV_MAIN] selezionato: CV_login");
                 CVLoginController cvlc = fxmlLoader.getController();
                 cvlc.initParameter(client);
                 stage.setTitle("Login operatore");
                 width = w_cvlogin;
                 height = h_cvlogin;
+                break;
+            case "CV_change":
+                System.out.println("[CV_MAIN] selezionato: CV_change");
+                stage.setTitle("Seleziona azione");
+                width = w_cvlogin + 500.0;
+                height = h_cvlogin + 500.0;
+                break;
+            case "CV_registraCentroVaccinale":
+                System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
+                stage.setTitle("Registra nuovo centro vaccinale");
+                width = 800.0;
+                height = 350.0;
                 break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");

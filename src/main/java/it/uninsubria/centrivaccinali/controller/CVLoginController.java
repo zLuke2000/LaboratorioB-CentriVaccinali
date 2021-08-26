@@ -1,12 +1,12 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-
 
 public class CVLoginController {
 
@@ -69,15 +69,14 @@ public class CVLoginController {
 
     public void authStatus(Boolean status) {
         PI_CV_load.setVisible(false);
+        if(status) {
+            CentriVaccinali.setRoot("CV_change");
+        } else {
 
-        // TODO switch alla prossima schermata
+        }
     }
 
     public void ShowInfo(MouseEvent mouseEvent) {
-        if(DP_CV_info.isVisible()) {
-            DP_CV_info.setVisible(false);
-        } else {
-            DP_CV_info.setVisible(true);
-        }
+        DP_CV_info.setVisible(!DP_CV_info.isVisible());
     }
 }

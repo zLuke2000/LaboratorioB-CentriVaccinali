@@ -8,11 +8,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVChange">
    <children>
-      <Button id="B_CV_registracv" fx:id="B_CV_registracv" alignment="CENTER" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="115.0">
+      <Button id="B_CV_registracv" fx:id="B_CV_registracv" alignment="CENTER" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onAction="#registraNuovoVaccinato" prefHeight="150.0" prefWidth="150.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="115.0">
          <graphic>
             <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" />
          </graphic></Button>
-      <Button id="B_CV_registracittadino" fx:id="B_CV_registracittadino" alignment="CENTER" layoutX="120.0" layoutY="334.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
+      <Button id="B_CV_registracittadino" fx:id="B_CV_registracittadino" alignment="CENTER" layoutX="120.0" layoutY="334.0" mnemonicParsing="false" onAction="#registraNuovoCentro" prefHeight="150.0" prefWidth="150.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
          <graphic>
             <FontIcon iconColor="#1f4c9f" iconLiteral="ci-hospital" iconSize="110" />
          </graphic></Button>

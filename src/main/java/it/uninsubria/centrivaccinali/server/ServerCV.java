@@ -30,22 +30,28 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // Leggo nome utente
-        String utente = null;
+        // Da sistemare
+        String utente = "123abc";
+        /*
         System.out.print("utente: ");
         try {
             utente = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+         */
 
         // Leggo password
-        String password = null;
+        // Da sistemare
+        String password = "123abc";
+        /*
         System.out.print("password: ");
         try {
             password = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+         */
 
         db = new Database();
         if(db.connect(utente, password)) {
@@ -61,26 +67,13 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }
     }
-    /*
-    @Override
-    public boolean autenticaOperatore(String username, String password) throws RemoteException {
-        System.out.println("[SERVER] richiesta di autenticazione da parte di: " + username);
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return usernameOperatore.equals(username) && passwordOperatore.equals(password);
-    }
-    */
 
     @Override
     public void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
         new Thread(() -> {
             try {
-                Thread.sleep(3000);
+                // simulazione attesa
+                Thread.sleep(1000);
                 client.notifyStatus(usernameOperatore.equals(username) && passwordOperatore.equals(password));
             } catch (RemoteException e){
                 e.printStackTrace();
