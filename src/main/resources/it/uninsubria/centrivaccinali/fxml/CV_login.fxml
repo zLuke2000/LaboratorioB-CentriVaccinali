@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -35,7 +29,7 @@
             </InnerShadow>
          </effect>
       </ProgressIndicator>
-      <DialogPane fx:id="DP_CV_info" layoutX="1.0" layoutY="411.0" prefHeight="155.0" prefWidth="390.0" visible="false">
+      <DialogPane fx:id="DP_CV_info" layoutX="1.0" layoutY="411.0" prefHeight="155.0" prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <header>
             <Label alignment="CENTER" text="INFORMAZIONE">
                <font>
@@ -47,7 +41,7 @@
             <DropShadow />
          </effect>
          <content>
-            <ScrollPane prefHeight="19.0" prefWidth="371.0">
+            <ScrollPane>
                <content>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Le credenziali vengono fornite solo se la persona è un operatore sanitario e ha  il diritto di esercitare queste azioni: Registrare un hub vaccinale, o un cittadino che si è vaccinato nel proprio sito" underline="true" wrappingWidth="368.0">
                      <font>

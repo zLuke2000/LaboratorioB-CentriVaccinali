@@ -16,15 +16,16 @@
 	-fx-border-color: black;
 
 }
+
+.label {
+
+	-fx-font-size: 15;
+}
+
 #L_CV_welcome {
 
 	-fx-font-size: 40;
 	-fx-font-family: "STSong";
-}
-
-#L_CV_operatore {
-
-	-fx-font-size: 15;
 }
 
 .text-field{
@@ -81,4 +82,43 @@
 	-fx-background-color: white;
 	-fx-background-radius: 10;
 	-fx-text-fill: black;
+}
+
+#L_CV_RC_title {
+
+	-fx-font-size: 25;
+	-fx-font-family: "STSong";
+}
+
+#L_CV_targetData{
+
+	-fx-font-size: 12;
+}
+
+#L_CV_targetTipVaccino {
+
+	-fx-font-size: 12;
+}
+
+#L_CV_targetIDvaccino {
+
+	-fx-font-size: 12;
+}
+
+#B_CV_registraCittadino{
+
+	-fx-background-color: #e7f5fe;
+	-fx-border-color: black;
+	-fx-border-radius: 5;
+	-fx-border-width: 0.5;
+	-fx-background-radius: 5;
+}
+
+#B_CV_registraCittadino:hover{
+
+	-fx-background-color: #b6e1fc;
+	-fx-border-color: black;
+	-fx-border-radius: 5;
+	-fx-border-width: 0.5;
+	-fx-background-radius: 5;
 }
