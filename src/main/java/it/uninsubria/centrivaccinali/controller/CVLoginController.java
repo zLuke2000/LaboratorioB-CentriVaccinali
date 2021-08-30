@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,5 +76,10 @@ public class CVLoginController {
         } else {
             DP_CV_info.setVisible(true);
         }
+    }
+
+    public void BackTo(MouseEvent mouseEvent) {
+        System.out.println("Indietro");
+        CentriVaccinali.setRoot("Avvio");
     }
 }
