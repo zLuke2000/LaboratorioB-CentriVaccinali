@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+
+<AnchorPane prefHeight="565.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@style/style.css" fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazione">
+   <children>
+      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
+   </children>
+</AnchorPane>

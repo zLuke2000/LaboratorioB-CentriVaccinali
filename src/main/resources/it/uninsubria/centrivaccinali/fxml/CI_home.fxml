@@ -12,15 +12,18 @@
    <children>
       <Label alignment="CENTER" layoutX="180.0" layoutY="14.0" styleClass="labelWelcome" text="BENVENUTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="77.0" text="Accedi con le tue credenziali" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
-      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="15.0" layoutY="28.0" styleClass="buttonIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
+      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="15.0" layoutY="28.0" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="99.0" text="CITTADINO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
       <TextField fx:id="TF_CI_loginUsername" layoutX="115.0" layoutY="258.0" promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="270.0" />
       <PasswordField fx:id="TF_CI_loginPassword" layoutX="115.0" layoutY="323.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="335.0" />
+      <TextField fx:id="TF_CI_loginPasswordVisible" layoutX="115.0" layoutY="323.0" promptText="Password" visible="false" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="335.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="208.0" onMouseClicked="#ToFreeAccess" styleClass="labelFreeAccess" text="Accesso libero" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="205.0" />
       <FontIcon iconLiteral="eli-user" iconSize="22" layoutX="66.0" layoutY="287.0" styleClass="IconTarghet" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="273.0" />
       <FontIcon iconLiteral="eli-lock" layoutX="71.0" layoutY="353.0" styleClass="IconTarghet" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="338.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="374.0" onMouseClicked="#toRegistrazione" styleClass="labelButton" text="Nuovo utente? Registrati" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="425.0" />
       <Button layoutX="160.0" layoutY="386.0" mnemonicParsing="false" onAction="#AccediCittadino" styleClass="buttonSmall" text="Accedi" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="386.0" />
       <ProgressIndicator fx:id="PI_CI_AccediLoad" layoutX="179.0" layoutY="469.0" prefHeight="27.0" prefWidth="33.0" visible="false" />
+      <FontIcon fx:id="FI_CI_hidePassword" iconLiteral="eli-eye-close" iconSize="17" layoutX="312.0" layoutY="355.0" onMouseClicked="#hidePassword" visible="false" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="340.0" />
+      <FontIcon fx:id="FI_CI_showPassword" iconLiteral="eli-eye-open" iconSize="17" layoutX="312.0" layoutY="355.0" onMouseClicked="#showPassword" visible="true" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="340.0" />
    </children>
 </AnchorPane>
