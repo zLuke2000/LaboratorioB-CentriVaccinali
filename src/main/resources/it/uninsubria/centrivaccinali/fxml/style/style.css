@@ -1,24 +1,10 @@
-.button {
-
-	-fx-background-color: #e7f5fe;
-	-fx-border-width: 2;
-	-fx-border-radius: 20;
-	-fx-background-radius: 20;
-	-fx-border-color: #000000;
+/*
+.root {
+	-backblue: #e7f5fe;
+	-hoverbackblue: #b6e1fc;
 }
-
-.button:hover {
-
-	-fx-background-color:#b6e1fc;
-	-fx-border-width: 2;
-	-fx-background-radius: 20;
-	-fx-border-radius: 20;
-	-fx-border-color: black;
-
-}
-
-.label {
-
+*/
+.label{
 	-fx-font-size: 15;
 }
 
@@ -105,8 +91,25 @@
 	-fx-font-size: 12;
 }
 
-#B_CV_registraCittadino{
+/*Stile per bottoni grandi con icone*/
+.buttonIcon{
+		-fx-background-color: #e7f5fe;
+		-fx-border-width: 2;
+		-fx-border-radius: 20;
+		-fx-background-radius: 20;
+		-fx-border-color: black;
+}
 
+.buttonIcon:hover{
+	-fx-background-color:#b6e1fc;
+	-fx-border-width: 2;
+	-fx-background-radius: 20;
+	-fx-border-radius: 20;
+	-fx-border-color: black;
+}
+
+/*Stile per bottoni piccoli*/
+.buttonSmall{
 	-fx-background-color: #e7f5fe;
 	-fx-border-color: black;
 	-fx-border-radius: 5;
@@ -114,11 +117,57 @@
 	-fx-background-radius: 5;
 }
 
-#B_CV_registraCittadino:hover{
-
+.buttonSmall:hover{
 	-fx-background-color: #b6e1fc;
 	-fx-border-color: black;
 	-fx-border-radius: 5;
 	-fx-border-width: 0.5;
 	-fx-background-radius: 5;
+}
+
+/*Stile per scritta "Benvenuto"*/
+.labelWelcome{
+	-fx-font-size: 25;
+	-fx-font-family: "STSong";
+}
+
+/*Stile per icona "indietro"*/
+.backIcon{
+	-fx-icon-size: 22;
+	-fx-icon-color:black;
+}
+
+.IconTarghet {
+	-fx-icon-color: #1f4c9f;
+	-fx-icon-size: 22;
+}
+
+.backIcon:hover{
+	-fx-icon-size: 22;
+	-fx-icon-color: red;
+}
+
+.iconInfo{
+	-fx-icon-color: #1f4c9f;
+	-fx-icon-size: 25;
+}
+
+.labelFreeAccess{
+	-fx-font-size: 15;
+	-fx-text-fill: #4878d2;
+}
+
+.labelFreeAccess:hover{
+	-fx-font-size: 15;
+	-fx-text-fill: #1f4c9f;
+}
+
+.labelButton{
+	-fx-font-size: 13;
+	-fx-text-fill: #4878d2;
+}
+
+.labelButton:hover{
+	-fx-font-size: 13;
+	-fx-text-fill: #1f4c9f;
 }

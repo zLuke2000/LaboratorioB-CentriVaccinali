@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.input.MouseEvent;
 
 public class CVRegistraCittadinoController {
 
@@ -29,28 +31,9 @@ public class CVRegistraCittadinoController {
     //Button
     @FXML private Button  B_CV_registraCittadino;
 
+    public void BackTo(MouseEvent mouseEvent) {
+        System.out.println("Indietro");
+        CentriVaccinali.setRoot("CV_changed");
 
-    public void SetPfizer(ActionEvent actionEvent) {
-        RB_CV_astrazeneca.setSelected(false);
-        RB_CV_moderna.setSelected(false);
-        RB_CV_jj.setSelected(false);
-    }
-
-    public void SetAstrazeneca(ActionEvent actionEvent) {
-        RB_CV_pfizer.setSelected(false);
-        RB_CV_moderna.setSelected(false);
-        RB_CV_jj.setSelected(false);
-    }
-
-    public void setModerna(ActionEvent actionEvent) {
-        RB_CV_pfizer.setSelected(false);
-        RB_CV_astrazeneca.setSelected(false);
-        RB_CV_jj.setSelected(false);
-    }
-
-    public void setJJ(ActionEvent actionEvent) {
-        RB_CV_pfizer.setSelected(false);
-        RB_CV_astrazeneca.setSelected(false);
-        RB_CV_moderna.setSelected(false);
     }
 }
