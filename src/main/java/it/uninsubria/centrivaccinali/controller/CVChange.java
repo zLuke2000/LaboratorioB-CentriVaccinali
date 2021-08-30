@@ -25,6 +25,10 @@ public class CVChange {
     public void RegistraCentroVaccinale(ActionEvent actionEvent) {
     }
 
+    /**
+     * Metodo per tornare all'interfaccia precedente
+     * @param mouseEvent click sull'icona per tornare indietro
+     */
     public void BackTo(MouseEvent mouseEvent) {
         System.out.printf("Indietro");
         CentriVaccinali.setRoot("Avvio");

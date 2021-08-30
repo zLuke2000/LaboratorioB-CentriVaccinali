@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
-
+/**
+ * Controller per l'interfaccia di autenticazione degli operatori vaccinali
+ */
 public class CVLoginController {
 
     @FXML private TextField L_CV_username;
