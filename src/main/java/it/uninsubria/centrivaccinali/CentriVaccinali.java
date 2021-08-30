@@ -47,6 +47,11 @@ public class CentriVaccinali extends Application {
                 width = w_cvlogin;
                 height = h_cvlogin;
                 break;
+            case "CV_registraVaccinato":
+                stage.setTitle("Registra un nuovo vaccinato");
+                width=600.0;       //dimensioni per interfaccia
+                height=560.0;      //registra vaccinato
+                break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;
