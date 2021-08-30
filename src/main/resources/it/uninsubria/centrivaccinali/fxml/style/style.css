@@ -8,14 +8,7 @@
 	-fx-font-size: 15;
 }
 
-#L_CV_welcome {
-
-	-fx-font-size: 40;
-	-fx-font-family: "STSong";
-}
-
 .text-field{
-
 	-fx-border-color: black;
 	-fx-border-radius: 5;
 	-fx-background-radius: 5;
@@ -23,45 +16,18 @@
 }
 
 .text-field:hover{
-
 	-fx-border-color: #b6e1fc;
 	-fx-border-radius: 5;
 	-fx-background-radius: 5;
 	-fx-border-width: 0.5;
 }
 
-#B_CV_login{
-
-	-fx-background-color: #e7f5fe;
-	-fx-border-color: black;
-	-fx-border-radius: 5;
-	-fx-border-width: 0.5;
-	-fx-background-radius: 5;
-}
-
-#B_CV_login:hover{
-
-	-fx-background-color: #b6e1fc;
-	-fx-border-color: black;
-	-fx-border-radius: 5;
-	-fx-border-width: 0.5;
-	-fx-background-radius: 5;
-}
-
-#L_CV_os{
-
-	-fx-font-size: 30;
-	-fx-font-family: "STSong";
-}
-
 .field-error{
-
 	-fx-border-color: red;
 	-fx-border-width: 1.5;
 }
 
 .tooltip-error{
-
 	-fx-border-color: red;
 	-fx-border-radius: 10;
 	-fx-border-width: 1.5;
@@ -70,24 +36,8 @@
 	-fx-text-fill: black;
 }
 
-#L_CV_RC_title {
-
-	-fx-font-size: 25;
-	-fx-font-family: "STSong";
-}
-
-#L_CV_targetData{
-
-	-fx-font-size: 12;
-}
-
-#L_CV_targetTipVaccino {
-
-	-fx-font-size: 12;
-}
-
-#L_CV_targetIDvaccino {
-
+/*Stile per label etichetta*/
+.labelTarget{
 	-fx-font-size: 12;
 }
 
