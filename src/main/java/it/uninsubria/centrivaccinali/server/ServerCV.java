@@ -1,7 +1,8 @@
 package it.uninsubria.centrivaccinali.server;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,22 +30,28 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // Leggo nome utente
-        String utente = null;
+        // Da sistemare
+        String utente = "123abc";
+        /*
         System.out.print("utente: ");
         try {
             utente = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+         */
 
         // Leggo password
-        String password = null;
+        // Da sistemare
+        String password = "123abc";
+        /*
         System.out.print("password: ");
         try {
             password = reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
+         */
 
         db = new Database();
         if(db.connect(utente, password)) {
@@ -62,8 +69,18 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public boolean autenticaOperatore(String username, String password) throws RemoteException {
-        System.out.println("[SERVER] richiesta di autenticazione da parte di: " + username);
-        return usernameOperatore.equals(username) && passwordOperatore.equals(password);
+    public void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
+        new Thread(() -> {
+            try {
+                // simulazione attesa
+                Thread.sleep(1000);
+                client.notifyStatus(usernameOperatore.equals(username) && passwordOperatore.equals(password));
+            } catch (RemoteException e){
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                System.err.println("[SERVER]: Sleep exception");
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

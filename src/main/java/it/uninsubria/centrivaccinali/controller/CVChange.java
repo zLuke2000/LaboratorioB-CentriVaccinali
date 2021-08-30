@@ -7,6 +7,11 @@ import javafx.scene.input.MouseEvent;
 /**
  * Controller per l'interfaccia di selezione tra "Registra vaccinato" e "Registra centro vaccinale"
  */
+import it.uninsubria.centrivaccinali.CentriVaccinali;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
 public class CVChange {
 
     /**
@@ -32,5 +37,15 @@ public class CVChange {
     public void BackTo(MouseEvent mouseEvent) {
         System.out.printf("Indietro");
         CentriVaccinali.setRoot("Avvio");
+    }
+
+    @FXML private Button B_CV_registracv;
+    @FXML private Button B_CV_registracittadino;
+
+    @FXML void registraNuovoVaccinato(ActionEvent event) {
+    }
+
+    @FXML void registraNuovoCentro(ActionEvent event) {
+        CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }
 }

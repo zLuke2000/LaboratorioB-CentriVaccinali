@@ -15,6 +15,7 @@ public class CVLoginController {
 
     @FXML private TextField L_CV_username;
     @FXML private PasswordField L_CV_password;
+    @FXML private ProgressIndicator PI_CV_load;
     @FXML private DialogPane DP_CV_info;
 
     private ClientCV client;
@@ -45,11 +46,8 @@ public class CVLoginController {
         }
 
         if(check) {
-            if (client.autenticaOperatore(username, password)) {
-                System.out.println("AUTH OK");
-            } else {
-                System.err.println("AUTH KO");
-            }
+            PI_CV_load.setVisible(true);
+            client.autenticaOperatore(this, username, password);
         }
     }
 
@@ -72,12 +70,17 @@ public class CVLoginController {
         tic.getStyleClass().remove("field-error");
     }
 
-    public void ShowInfo(MouseEvent mouseEvent) {
-        if(DP_CV_info.isVisible()) {
-            DP_CV_info.setVisible(false);
+    public void authStatus(Boolean status) {
+        PI_CV_load.setVisible(false);
+        if(status) {
+            CentriVaccinali.setRoot("CV_change");
         } else {
-            DP_CV_info.setVisible(true);
+
         }
+    }
+
+    public void ShowInfo(MouseEvent mouseEvent) {
+        DP_CV_info.setVisible(!DP_CV_info.isVisible());
     }
 
     public void BackTo(MouseEvent mouseEvent) {
