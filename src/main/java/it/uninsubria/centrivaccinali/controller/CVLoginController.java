@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
 
+/**
+ * Controller per l'interfaccia di autenticazione degli operatori vaccinali
+ */
 public class CVLoginController {
 
     @FXML private TextField L_CV_username;
@@ -64,5 +66,10 @@ public class CVLoginController {
 
     @FXML  public void ShowInfo(MouseEvent mouseEvent) {
         DP_CV_info.setVisible(!DP_CV_info.isVisible());
+    }
+
+    public void BackTo(MouseEvent mouseEvent) {
+        System.out.println("Indietro");
+        CentriVaccinali.setRoot("Avvio");
     }
 }

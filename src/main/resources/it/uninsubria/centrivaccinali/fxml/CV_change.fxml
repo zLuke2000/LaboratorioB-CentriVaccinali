@@ -6,23 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVChange">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVChangeController">
    <children>
-      <Button id="B_CV_registracv" fx:id="B_CV_registracv" alignment="CENTER" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onAction="#registraNuovoVaccinato" prefHeight="150.0" prefWidth="150.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="115.0">
+      <Button fx:id="B_CV_registracittadino" alignment="CENTER" layoutX="120.0" layoutY="80.0" mnemonicParsing="false" onAction="#RegistraVaccinato" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="115.0">
          <graphic>
-            <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" />
+            <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" styleClass="buttonIcon" />
          </graphic></Button>
-      <Button id="B_CV_registracittadino" fx:id="B_CV_registracittadino" alignment="CENTER" layoutX="120.0" layoutY="334.0" mnemonicParsing="false" onAction="#registraNuovoCentro" prefHeight="150.0" prefWidth="150.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
+      <Button fx:id="B_CV_registracv" alignment="CENTER" layoutX="120.0" layoutY="334.0" mnemonicParsing="false" onAction="#RegistraCentroVaccinale" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
          <graphic>
             <FontIcon iconColor="#1f4c9f" iconLiteral="ci-hospital" iconSize="110" />
          </graphic></Button>
-      <Label id="L_CV_os" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="14.0" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-      <Label layoutX="14.0" layoutY="59.0" text="Scegli:" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="14.0" styleClass="labelWelcome" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+      <Label layoutX="14.0" layoutY="59.0" text="Scegli:" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <padding>
-            <Insets left="20.0" />
+            <Insets left="45.0" />
          </padding>
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="283.0" text="Registra cittadino vaccinato" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="288.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="513.0" text="Registra centro vaccinale" underline="true" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="8.0" layoutY="23.0" onMouseClicked="#BackTo" styleClass="backIcon" wrappingWidth="13.0" />
    </children>
 </AnchorPane>

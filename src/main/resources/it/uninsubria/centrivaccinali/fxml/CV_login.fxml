@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVLoginController">
    <children>
-      <Label id="L_CV_welcome" alignment="CENTER" layoutX="65.0" layoutY="14.0" text="BENVENUTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
-      <Label id="L_CV_operatore" alignment="CENTER" layoutX="112.0" layoutY="89.0" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0" />
+      <Label alignment="CENTER" layoutX="65.0" layoutY="14.0" styleClass="labelWelcome" text="BENVENUTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+      <Label id="L_CV_operatore" alignment="CENTER" layoutX="112.0" layoutY="89.0" text="OPERATORE SANITARIO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
       <Label alignment="CENTER" layoutX="103.0" layoutY="140.0" prefHeight="17.0" prefWidth="185.0" text="Accedi con le credenziali fornite" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
-      <Button id="B_CV_login" fx:id="B_CV_login" defaultButton="true" layoutX="136.0" layoutY="388.0" mnemonicParsing="false" onAction="#autenticazioneOperatore" prefHeight="27.0" prefWidth="118.0" text="Accedi" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="370.0" />
-      <TextField fx:id="L_CV_username" layoutX="91.0" layoutY="232.0" onKeyTyped="#toDefault" prefHeight="27.0" prefWidth="210.0" promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="235.0" />
-      <PasswordField fx:id="L_CV_password" layoutX="94.0" layoutY="295.0" onKeyTyped="#toDefault" prefHeight="27.0" prefWidth="202.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="300.0" />
-      <FontIcon iconColor="#1f4c9f" iconLiteral="eli-user" iconSize="22" layoutX="66.0" layoutY="253.0" AnchorPane.bottomAnchor="309.2578125" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="238.0" />
-      <FontIcon iconColor="#1f4c9f" iconLiteral="eli-lock" iconSize="22" layoutX="71.0" layoutY="318.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="303.0" />
-      <FontIcon fx:id="FI_CV_info" iconColor="#1f4c9f" iconLiteral="fltfmz-question-circle-16" iconSize="25" layoutX="275.0" layoutY="412.0" onMouseClicked="#ShowInfo" AnchorPane.topAnchor="372.0" />
+      <Button fx:id="B_CV_login" layoutX="136.0" layoutY="388.0" mnemonicParsing="false" onAction="#autenticazioneOperatore" prefHeight="27.0" prefWidth="118.0" styleClass="buttonSmall" text="Accedi" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="370.0" />
+      <TextField fx:id="L_CV_username" layoutX="91.0" layoutY="232.0" prefHeight="27.0" prefWidth="210.0" promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="235.0" />
+      <PasswordField fx:id="L_CV_password" layoutX="94.0" layoutY="295.0" prefHeight="27.0" prefWidth="202.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="300.0" />
+      <FontIcon iconLiteral="eli-user" iconSize="22" layoutX="66.0" layoutY="253.0" styleClass="IconTarghet" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="238.0" />
+      <FontIcon iconLiteral="eli-lock" iconSize="22" layoutX="71.0" layoutY="318.0" styleClass="IconTarghet" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="303.0" />
+      <FontIcon fx:id="FI_CV_info" iconLiteral="fltfmz-question-circle-16" iconSize="25" layoutX="275.0" layoutY="412.0" onMouseClicked="#ShowInfo" styleClass="iconInfo" AnchorPane.topAnchor="372.0" />
       <ProgressIndicator fx:id="PI_CV_load" layoutX="179.0" layoutY="442.0" prefHeight="27.0" prefWidth="33.0" visible="false">
          <effect>
             <InnerShadow>
@@ -27,7 +35,7 @@
             </InnerShadow>
          </effect>
       </ProgressIndicator>
-      <DialogPane fx:id="DP_CV_info" layoutX="1.0" layoutY="411.0" prefHeight="155.0" prefWidth="390.0" visible="false">
+      <DialogPane fx:id="DP_CV_info" layoutX="1.0" layoutY="411.0" prefHeight="155.0" prefWidth="390.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <header>
             <Label alignment="CENTER" text="INFORMAZIONE">
                <font>
@@ -39,7 +47,7 @@
             <DropShadow />
          </effect>
          <content>
-            <ScrollPane prefHeight="19.0" prefWidth="371.0">
+            <ScrollPane>
                <content>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Le credenziali vengono fornite solo se la persona è un operatore sanitario e ha  il diritto di esercitare queste azioni: Registrare un hub vaccinale, o un cittadino che si è vaccinato nel proprio sito" underline="true" wrappingWidth="368.0">
                      <font>
@@ -50,5 +58,6 @@
             </ScrollPane>
          </content>
       </DialogPane>
+      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="14.0" layoutY="35.0" onMouseClicked="#BackTo" styleClass="backIcon" />
    </children>
 </AnchorPane>
