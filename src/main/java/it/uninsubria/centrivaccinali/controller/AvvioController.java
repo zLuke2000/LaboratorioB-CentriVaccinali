@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 
 public class AvvioController {
 
-        @FXML private Button B_accediCittadino; // Value injected by FXMLLoader
-        @FXML private Button B_accediOperatori; // Value injected by FXMLLoader
+        @FXML private Button B_accediCittadino;
+        @FXML private Button B_accediOperatori;
 
         @FXML
         void accediCittadino(ActionEvent event) {

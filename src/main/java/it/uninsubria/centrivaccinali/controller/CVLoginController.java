@@ -2,9 +2,11 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
@@ -16,8 +18,7 @@ public class CVLoginController {
     @FXML private DialogPane DP_CV_info;
 
     private ClientCV client;
-    private final Tooltip genericTooltip = new Tooltip("Inserire almeno un carattere");
-    private static final Duration tooltipDelay = new Duration(0);
+    private final CssHelper cssHelper = new CssHelper();
 
     public void initParameter(ClientCV client) {
         this.client = client;
@@ -30,16 +31,16 @@ public class CVLoginController {
         boolean check = true;
 
         if(username.length() == 0) {
-            toError(L_CV_username);
+            cssHelper.toError(L_CV_username, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            toDefault(L_CV_username);
+            cssHelper.toDefault(L_CV_username);
         }
         if(password.length() == 0) {
-            toError(L_CV_password);
+            cssHelper.toError(L_CV_password, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            toDefault(L_CV_password);
+            cssHelper.toDefault(L_CV_password);
         }
 
         if(check) {
@@ -48,23 +49,8 @@ public class CVLoginController {
         }
     }
 
-    /**
-     * Imposta a "rosso" il contorno della casella passata come parametro
-     * @param tic parametro generico per molteplici <code>text input controls</code>
-     */
-    public void toError(TextInputControl tic) {
-        tic.getStyleClass().add("field-error");
-        genericTooltip.getStyleClass().add("tooltip-error");
-        genericTooltip.setShowDelay(tooltipDelay);
-        tic.setTooltip(genericTooltip);
-    }
-
-    /**
-     * Reimposta a default il contorno della casella passata come parametro
-     * @param tic parametro generico per molteplici <code>text input controls</code>
-     */
-    public void toDefault(TextInputControl tic) {
-        tic.getStyleClass().remove("field-error");
+    @FXML public void toDefault(KeyEvent ke) {
+        cssHelper.toDefault((TextInputControl) ke.getSource());
     }
 
     public void authStatus(Boolean status) {
@@ -72,11 +58,11 @@ public class CVLoginController {
         if(status) {
             CentriVaccinali.setRoot("CV_change");
         } else {
-
+            System.err.println("[CVLogin] AUTH ERROR");
         }
     }
 
-    public void ShowInfo(MouseEvent mouseEvent) {
+    @FXML  public void ShowInfo(MouseEvent mouseEvent) {
         DP_CV_info.setVisible(!DP_CV_info.isVisible());
     }
 }
