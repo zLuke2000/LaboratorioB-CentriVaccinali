@@ -15,11 +15,22 @@
 	-fx-border-width: 0.5;
 }
 
+.textFiled-correct {
+	-fx-border-color: #28ba38;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+	-fx-border-width: 1.5;
+}
+
 .text-field:hover{
 	-fx-border-color: #b6e1fc;
 	-fx-border-radius: 5;
 	-fx-background-radius: 5;
 	-fx-border-width: 0.5;
+}
+
+.text-info {
+	-fx-font-size: 12;
 }
 
 .field-error{

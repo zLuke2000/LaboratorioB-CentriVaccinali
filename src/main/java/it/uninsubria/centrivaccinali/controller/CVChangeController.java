@@ -12,10 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class CVChange {
+public class CVChangeController {
 
     /**
      * Metodo per avviare l'interfaccia di registrazione di  un cittadino vaccinato
+     *
      * @param actionEvent
      */
     public void RegistraVaccinato(ActionEvent actionEvent) {
@@ -25,6 +26,7 @@ public class CVChange {
 
     /**
      * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale
+     *
      * @param actionEvent click sul bottone "Registra centro vaccinale"
      */
     public void RegistraCentroVaccinale(ActionEvent actionEvent) {
@@ -32,20 +34,11 @@ public class CVChange {
 
     /**
      * Metodo per tornare all'interfaccia precedente
+     *
      * @param mouseEvent click sull'icona per tornare indietro
      */
     public void BackTo(MouseEvent mouseEvent) {
         System.out.printf("Indietro");
         CentriVaccinali.setRoot("Avvio");
-    }
-
-    @FXML private Button B_CV_registracv;
-    @FXML private Button B_CV_registracittadino;
-
-    @FXML void registraNuovoVaccinato(ActionEvent event) {
-    }
-
-    @FXML void registraNuovoCentro(ActionEvent event) {
-        CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }
 }

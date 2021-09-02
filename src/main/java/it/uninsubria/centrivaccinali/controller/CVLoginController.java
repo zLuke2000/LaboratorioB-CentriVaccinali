@@ -13,13 +13,41 @@ import javafx.util.Duration;
  */
 public class CVLoginController {
 
+    /**
+     *
+     */
     @FXML private TextField L_CV_username;
+
+    /**
+     *
+     */
     @FXML private PasswordField L_CV_password;
+
+    /**
+     *
+     */
     @FXML private ProgressIndicator PI_CV_load;
+
+    /**
+     *
+     */
     @FXML private DialogPane DP_CV_info;
 
+    /**
+     *
+     */
     private ClientCV client;
+
+
+    /**
+     *
+     */
     private final Tooltip genericTooltip = new Tooltip("Inserire almeno un carattere");
+
+
+    /**
+     *
+     */
     private static final Duration tooltipDelay = new Duration(0);
 
     public void initParameter(ClientCV client) {
