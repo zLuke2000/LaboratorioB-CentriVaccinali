@@ -6,12 +6,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
  */
 public class CVLoginController {
+
+    private final String INFO = "Le credenziali vengono fornite solo se la persona è un operatore sanitario e " +
+            "ha  il diritto di esercitare queste azioni:" + "\n" + "- Registrare un hub vaccinale" + "\n" + "- Registrare " +
+            "un cittadino che si è vaccinato nel proprio sito";
+
+    @FXML private Text T_CV_infoLogin;
 
     /**
      *
@@ -28,10 +35,7 @@ public class CVLoginController {
      */
     @FXML private ProgressIndicator PI_CV_load;
 
-    /**
-     *
-     */
-    @FXML private DialogPane DP_CV_info;
+    
 
     /**
      *
@@ -50,10 +54,19 @@ public class CVLoginController {
      */
     private static final Duration tooltipDelay = new Duration(0);
 
+    /**
+     *
+     * @param client
+     */
     public void initParameter(ClientCV client) {
         this.client = client;
+        T_CV_infoLogin.setText(INFO);
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     void autenticazioneOperatore(ActionEvent event) {
         String username = L_CV_username.getText().trim();
@@ -98,6 +111,10 @@ public class CVLoginController {
         tic.getStyleClass().remove("field-error");
     }
 
+    /**
+     *
+     * @param status
+     */
     public void authStatus(Boolean status) {
         PI_CV_load.setVisible(false);
         if(status) {
@@ -107,12 +124,24 @@ public class CVLoginController {
         }
     }
 
-    public void ShowInfo(MouseEvent mouseEvent) {
-        DP_CV_info.setVisible(!DP_CV_info.isVisible());
-    }
-
+    /**
+     *
+     * @param mouseEvent
+     */
     public void BackTo(MouseEvent mouseEvent) {
         System.out.println("Indietro");
         CentriVaccinali.setRoot("Avvio");
+    }
+
+
+    /**
+     * @param mouseEvent
+     */
+    public void ShowInfo(MouseEvent mouseEvent) {
+        if(T_CV_infoLogin.isVisible()) {
+            T_CV_infoLogin.setVisible(false);
+        } else {
+            T_CV_infoLogin.setVisible(true);
+        }
     }
 }

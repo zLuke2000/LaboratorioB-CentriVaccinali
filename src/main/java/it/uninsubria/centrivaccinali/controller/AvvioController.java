@@ -3,9 +3,12 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
+/**
+ *
+ */
 public class AvvioController {
-
         /**
          * Metodo usato per accedere come operatore cittadino,
          * aprendo l'iterfaccia di login

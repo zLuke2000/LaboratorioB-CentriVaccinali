@@ -4,31 +4,71 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ *
+ */
 public class DBHelper {
 
-        private final static String protocol = "jdbc:postgresql://";
-        private final static String host = "localhost/";
-        private final static String resource = "laboratorioB";
-        private final static String url = protocol + host + resource;
+    /**
+     *
+     */
+    private final static String protocol = "jdbc:postgresql://";
 
-        private final static String username = "admin_laboratorioB";
-        private final static String password = "&UsCk*s$#wUOkG4r";
+    /**
+     *
+     */
+    private final static String host = "localhost/";
 
-        private static Connection connection = null;
+    /**
+     *
+     */
+    private final static String resource = "laboratorioB";
 
-        public DBHelper() {}
+    /**
+     *
+     */
+    private final static String url = protocol + host + resource;
 
-        public static Connection getConnection() throws SQLException {
+    /**
+     *
+     */
+    private final static String username = "admin_laboratorioB";
 
-            if(connection == null) {
-                connection = DriverManager.getConnection(url, username, password);
-            }
+    /**
+     *
+     */
+    private final static String password = "&UsCk*s$#wUOkG4r";
 
-            return connection;
+    /**
+     *
+     */
+    private static Connection connection = null;
+
+    /**
+     *
+     */
+    public DBHelper() {}
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public static Connection getConnection() throws SQLException {
+
+        if(connection == null) {
+            connection = DriverManager.getConnection(url, username, password);
         }
 
-        public static void closeConnection() throws SQLException {
-            connection.close();
-            connection = null;
-        }
+        return connection;
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    public static void closeConnection() throws SQLException {
+        connection.close();
+        connection = null;
+    }
 }

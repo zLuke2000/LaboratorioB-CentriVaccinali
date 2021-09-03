@@ -9,13 +9,35 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ *
+ */
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
+
+    /**
+     *
+     */
     private static Registry reg = null;
+
+    /**
+     *
+     */
     private static ServerCVInterface server;
+
+    /**
+     *
+     */
     private CVLoginController sourceCVlogin;
 
+    /**
+     *
+     * @throws RemoteException
+     */
     public ClientCV() throws RemoteException {
         // connessione a RMI
         try {
@@ -36,6 +58,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param source
+     * @param username
+     * @param password
+     */
     public void autenticaOperatore(CVLoginController source, String username, String password) {
         this.sourceCVlogin = source;
         try {

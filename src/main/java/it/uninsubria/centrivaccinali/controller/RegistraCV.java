@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 
 public class RegistraCV {
 
@@ -31,4 +32,8 @@ public class RegistraCV {
         @FXML public void initialize() {
             CB_qualificatore.getItems().addAll(TipologiaCentro.OSPEDALIERO, TipologiaCentro.AZIENDALE, TipologiaCentro.HUB);
         }
+
+    public void backTo(MouseEvent mouseEvent) {
+
+    }
 }

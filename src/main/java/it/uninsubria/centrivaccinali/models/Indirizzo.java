@@ -18,15 +18,30 @@ public class Indirizzo implements Serializable {
      * @see Qualificatore
      */
     private Qualificatore qualificatore;
-    /** Rappresenta il nome della "via" dell'indirizzo */
+
+    /**
+     * Rappresenta il nome della "via" dell'indirizzo
+     */
     private String nome;
-    /** Rappresenta il civico dell'indirizzo */
+
+    /**
+     * Rappresenta il civico dell'indirizzo
+     */
     private String civico;
-    /** Rappresenta il comune dell'indirizzo */
+
+    /**
+     * Rappresenta il comune dell'indirizzo
+     */
     private String comune;
-    /** Rappresenta la provincia dell'indirizzo */
+
+    /**
+     * Rappresenta la provincia dell'indirizzo
+     */
     private String provincia;
-    /** Rappresenta il cap dell'indirizzo */
+
+    /**
+     * Rappresenta il cap dell'indirizzo
+     */
     private int cap;
 
     /**

@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.client.ClientCVThread;
 import it.uninsubria.centrivaccinali.controller.AvvioController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import javafx.application.Application;
@@ -15,16 +14,50 @@ import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
+    /**
+     *
+     */
     private final static Double h_cvlogin = 565.0;
+
+    /**
+     *
+     */
     private final static Double w_cvlogin = 390.0;
 
+    /**
+     *
+     */
     private static Scene scene;
+
+    /**
+     *
+     */
     private static Stage stage;
+
+    /**
+     *
+     */
     private static Double width;
+
+    /**
+     *
+     */
     private static Double height;
+
+    /**
+     *
+     */
     private static ClientCV client;
+
+    /**
+     *
+     */
     private static FXMLLoader fxmlLoader;
 
+    /**
+     *
+     * @param s
+     */
     @Override
     public void start(Stage s) {
         CentriVaccinali.stage = s;
@@ -35,6 +68,10 @@ public class CentriVaccinali extends Application {
         stage.show();
     }
 
+    /**
+     *
+     * @param fxml
+     */
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
         switch(fxml) {
@@ -74,6 +111,11 @@ public class CentriVaccinali extends Application {
         stage.setHeight(height);
     }
 
+    /**
+     *
+     * @param fxml
+     * @return
+     */
     public static Parent loadFXML(String fxml) {
         fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
         try {
@@ -84,6 +126,10 @@ public class CentriVaccinali extends Application {
         }
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         // Avvio Thread separato per ClientCV
         try {
