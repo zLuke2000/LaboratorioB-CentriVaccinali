@@ -3,44 +3,52 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.AvvioController">
-   <VBox HBox.hgrow="ALWAYS">
-      <Button fx:id="B_accediCittadino" alignment="CENTER" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" VBox.vgrow="ALWAYS">
-         <graphic>
-            <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" wrappingWidth="141.0" />
-         </graphic>
-      </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Accedi come cittadino" underline="true">
-         <VBox.margin>
-            <Insets left="5.0" right="7.0" top="10.0" />
-         </VBox.margin>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-   </VBox>
-   <VBox prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
-      <Button id="B_accediOperatori" fx:id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#accediOperatore" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" VBox.vgrow="ALWAYS">
-         <graphic>
-            <FontIcon iconColor="#1f4c9f" iconLiteral="ci-hospital" iconSize="110" text="" wrappingWidth="104.0">
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.AvvioController">
+   <children>
+      <HBox maxHeight="300.0" maxWidth="580.0" minHeight="300.0" minWidth="580.0" prefHeight="300.0" prefWidth="580.0" stylesheets="@style/style.css">
+         <VBox HBox.hgrow="ALWAYS">
+            <Button fx:id="B_accediCittadino" alignment="CENTER" maxHeight="150.0" maxWidth="150.0" minHeight="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <FontIcon iconColor="#1f4c9f" iconLiteral="bpmn-user" iconSize="150" wrappingWidth="141.0" />
+               </graphic>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Accedi come cittadino" underline="true">
+               <VBox.margin>
+                  <Insets left="5.0" right="7.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </VBox>
+         <VBox prefHeight="150.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+            <Button id="B_accediOperatori" fx:id="B_accediOperatori" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#accediOperatore" prefHeight="150.0" prefWidth="150.0" styleClass="buttonIcon" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <FontIcon iconColor="#1f4c9f" iconLiteral="ci-hospital" iconSize="110" text="" wrappingWidth="104.0">
             </FontIcon>
-         </graphic>
-      </Button>
-      <Label text="Accedi come operatori" underline="true">
-         <VBox.margin>
-            <Insets left="4.0" top="10.0" />
-         </VBox.margin>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-   </VBox>
-   <padding>
-      <Insets left="80.0" top="50.0" />
-   </padding>
-</HBox>
+               </graphic>
+            </Button>
+            <Label text="Accedi come operatori" underline="true">
+               <VBox.margin>
+                  <Insets left="4.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </VBox>
+         <padding>
+            <Insets left="80.0" top="50.0" />
+         </padding>
+      </HBox>
+      <Circle id="stateIcon" fx:id="stateIcon" fill="#fcbd08" radius="7.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
+   </children>
+</AnchorPane>
