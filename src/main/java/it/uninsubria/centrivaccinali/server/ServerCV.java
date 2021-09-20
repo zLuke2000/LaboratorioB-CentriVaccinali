@@ -1,11 +1,10 @@
 package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -82,5 +81,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    @Override
+    public int registraCentro(CentroVaccinale cv) throws RemoteException {
+        return db.registraCentroVaccinale(cv);
     }
 }

@@ -33,6 +33,8 @@ public class CVChangeController {
      * @param actionEvent click sul bottone "Registra centro vaccinale"
      */
     public void RegistraCentroVaccinale(ActionEvent actionEvent) {
+        System.out.println("Interfaccia per registrazione di centro vaccinale");
+        CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }
 
     /**

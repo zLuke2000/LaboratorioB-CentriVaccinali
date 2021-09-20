@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.AvvioController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
+import it.uninsubria.centrivaccinali.controller.CVRegistraCentroVaccinale;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,50 +15,18 @@ import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
-    /**
-     *
-     */
+    private final static Double h_avvio = 300.0;
+    private final static Double w_avvio = 580.0;
     private final static Double h_cvlogin = 565.0;
-
-    /**
-     *
-     */
     private final static Double w_cvlogin = 390.0;
 
-    /**
-     *
-     */
     private static Scene scene;
-
-    /**
-     *
-     */
     private static Stage stage;
-
-    /**
-     *
-     */
     private static Double width;
-
-    /**
-     *
-     */
     private static Double height;
-
-    /**
-     *
-     */
     private static ClientCV client;
-
-    /**
-     *
-     */
     private static FXMLLoader fxmlLoader;
 
-    /**
-     *
-     * @param s
-     */
     @Override
     public void start(Stage s) {
         CentriVaccinali.stage = s;
@@ -68,14 +37,15 @@ public class CentriVaccinali extends Application {
         stage.show();
     }
 
-    /**
-     *
-     * @param fxml
-     */
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
         switch(fxml) {
             case "Avvio":
+                stage.setTitle("Progetto LaboratorioB");
+                height = h_avvio;
+                width = w_avvio;
+                break;
+            case "CI_home":
                 stage.setTitle("Progetto LaboratorioB");
                 break;
             case "CV_login":
@@ -94,6 +64,8 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
+                CVRegistraCentroVaccinale cvrcv = fxmlLoader.getController();
+                cvrcv.initParameter(client);
                 stage.setTitle("Registra nuovo centro vaccinale");
                 width = 800.0;
                 height = 350.0;
@@ -112,7 +84,6 @@ public class CentriVaccinali extends Application {
     }
 
     /**
-     *
      * @param fxml
      * @return
      */
@@ -127,7 +98,6 @@ public class CentriVaccinali extends Application {
     }
 
     /**
-     *
      * @param args
      */
     public static void main(String[] args) {
