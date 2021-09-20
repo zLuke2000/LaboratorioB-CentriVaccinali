@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
+import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 
 import java.rmi.NotBoundException;
@@ -20,6 +21,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         // connessione a RMI
         try {
             reg = LocateRegistry.getRegistry(1099);
+
         } catch (RemoteException e) {
             System.err.println("Non e' stato possibile trovare il registro RMI");
             e.printStackTrace();
@@ -54,7 +56,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             printout("AUTH KO");
         }
         sourceCVlogin.authStatus(ritorno);
+    }
 
+    public boolean registraCentroVaccinale(CentroVaccinale cv) {
+        try {
+            server.registraCentro(cv);
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

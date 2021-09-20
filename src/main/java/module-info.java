@@ -8,6 +8,7 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.carbonicons;
     requires org.kordamp.ikonli.elusive;
     requires org.kordamp.ikonli.subway;
+    requires org.kordamp.ikonli.fluentui;
     requires java.sql;
     requires java.rmi;
     
