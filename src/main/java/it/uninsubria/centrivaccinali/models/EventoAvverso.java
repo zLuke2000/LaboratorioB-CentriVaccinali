@@ -14,13 +14,24 @@ import java.io.Serializable;
 public class EventoAvverso implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**Descrive l'evento avverso avvenuto*/
+    /**
+     * Descrive l'evento avverso avvenuto
+     */
     private String evento;
-    /**Rappresenta il valore da 1 a 5 dell'intensit&agrave del valore avverso*/
+
+    /**
+     * Rappresenta il valore da 1 a 5 dell'intensit&agrave del valore avverso
+     */
     private int severita;
-    /**Note opzionali per descrivere l'evento*/
+
+    /**
+     * Note opzionali per descrivere l'evento
+     */
     private String note="";
 
+    /**
+     *
+     */
     public EventoAvverso() {}
 
     /**

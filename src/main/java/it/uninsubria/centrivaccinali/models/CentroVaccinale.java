@@ -11,6 +11,10 @@ import java.io.Serializable;
  * @author Pintonello Christian 741112
  */
 public class CentroVaccinale implements Serializable {
+
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
 
     /**  Rappresenta il nome del centro */

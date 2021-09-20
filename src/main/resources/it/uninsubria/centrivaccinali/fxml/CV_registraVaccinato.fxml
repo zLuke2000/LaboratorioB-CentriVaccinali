@@ -20,7 +20,7 @@
       <AnchorPane prefHeight="52.0" prefWidth="600.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutY="11.0" styleClass="labelWelcome" text="REGISTRA CITTADINO VACCINATO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <FontIcon fx:id="FI_CV_back" iconLiteral="subway-reply" iconSize="25" layoutX="14.0" layoutY="35.0" onMouseClicked="#BackTo" styleClass="backIcon" />
+            <FontIcon fx:id="FI_CV_back" iconLiteral="subway-reply" iconSize="25" layoutX="14.0" layoutY="35.0" onMouseClicked="#BackTo" styleClass="backIcon" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
          </children>
       </AnchorPane>
       <VBox alignment="TOP_CENTER" prefHeight="88.0" prefWidth="600.0">

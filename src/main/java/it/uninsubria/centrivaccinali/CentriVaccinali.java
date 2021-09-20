@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.AvvioController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCentroVaccinale;
 import javafx.application.Application;
@@ -82,6 +83,10 @@ public class CentriVaccinali extends Application {
         stage.setHeight(height);
     }
 
+    /**
+     * @param fxml
+     * @return
+     */
     public static Parent loadFXML(String fxml) {
         fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
         try {
@@ -92,6 +97,9 @@ public class CentriVaccinali extends Application {
         }
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         // Avvio Thread separato per ClientCV
         try {

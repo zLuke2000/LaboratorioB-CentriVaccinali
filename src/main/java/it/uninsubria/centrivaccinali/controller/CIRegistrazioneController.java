@@ -6,12 +6,26 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+/**
+ *
+ */
 public class CIRegistrazioneController {
 
+    /**
+     *
+     */
     private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
             " all'autenticazione";
+
+    /**
+     *
+     */
     private final String INFO_PASSWORD =  "- Min 8 caratteri, max 16 caretteri" + "\n" + "- Almeno un carattere speciale (!, ?, &, $, £...ecc)" +"\n"+
             "- Almeno un carattere maiuscolo" +  "\n" + " - Almeno un numero";
+
+    /**
+     *
+     */
     private final String INFO_ID_VACCINAZIONE =  "L'ID della vaccinazione è stato fornito al momento della somministrazione";
 
     //Testo per le info dei vari campi
@@ -61,7 +75,6 @@ public class CIRegistrazioneController {
      */
     @FXML private TextField TF_CI_idvaccinazioneRegistrazione;
 
-
     //PasswordField per l'acquisizione della password
     /**
      *
@@ -73,9 +86,18 @@ public class CIRegistrazioneController {
      */
     @FXML private PasswordField TF_CI_password2;
 
+
+    /**
+     *
+     * @param actionEvent
+     */
     public void registraCittadino(ActionEvent actionEvent) {
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void showInfoUsername(MouseEvent mouseEvent) {
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_USERNAME);
@@ -87,6 +109,10 @@ public class CIRegistrazioneController {
                 }
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void showInfoPassword(MouseEvent mouseEvent) {
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_PASSWORD);
@@ -98,6 +124,10 @@ public class CIRegistrazioneController {
                 }
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void showInfoVaccinazione(MouseEvent mouseEvent) {
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_ID_VACCINAZIONE);

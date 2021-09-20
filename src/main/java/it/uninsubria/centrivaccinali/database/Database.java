@@ -5,6 +5,9 @@ import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import java.sql.*;
 import java.util.UUID;
 
+/**
+ *
+ */
 public class Database {
     private final String utente = "123abc";
     private final String password = "123abc";
@@ -12,8 +15,17 @@ public class Database {
     private static PreparedStatement pstmt;
     private static Statement stmt;
 
+    /**
+     *
+     */
     public Database() {}
 
+    /**
+     *
+     * @param utente
+     * @param password
+     * @return
+     */
     public Boolean connect(String utente, String password) {
         if(this.utente.equals(utente) && this.password.equals(password)) {
             try {

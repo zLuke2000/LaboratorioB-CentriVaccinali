@@ -13,21 +13,44 @@ import java.io.Serializable;
 public class Cittadino implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**Rappresenta il nome del cittadino*/
+    /**
+     * Rappresenta il nome del cittadino
+     */
     private String nome;
-    /**Rappresenta il cognome del cittadino*/
+
+    /**
+     * Rappresenta il cognome del cittadino
+     */
     private String cognome;
-    /**Rappresenta il codice fiscale del cittadino*/
+
+    /**
+     * Rappresenta il codice fiscale del cittadino
+     */
     private String codicefiscale;
-    /**Rappresenta la mail del cittadino*/
+
+    /**
+     * Rappresenta la mail del cittadino
+     */
     private String mail;
-    /**Rappresenta l'userid con cui si registra il cittadino*/
+
+    /**
+     * Rappresenta l'userid con cui si registra il cittadino
+     */
     private String userid;
-    /**Rappresenta la password dell'account per il cittadino*/
+
+    /**
+     * Rappresenta la password dell'account per il cittadino
+     */
     private String password;
-    /**Rappresenta l'id ricevuto al momento della vaccinazione*/
+
+    /**
+     * Rappresenta l'id ricevuto al momento della vaccinazione
+     */
     private long id_vaccino;
 
+    /**
+     *
+     */
     public Cittadino() {}
 
     /**

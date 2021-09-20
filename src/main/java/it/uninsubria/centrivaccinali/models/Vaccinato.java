@@ -15,21 +15,44 @@ import java.sql.Date;
 public class Vaccinato implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**Rappresenta il nome del centro presso cui &egrave stato somministrato il vaccino*/
+    /**
+     * Rappresenta il nome del centro presso cui &egrave stato somministrato il vaccino
+     */
     private String nomeCentro;
-    /**Rappresenta il nome del cittadino vaccinato*/
+
+    /**
+     * Rappresenta il nome del cittadino vaccinato
+     */
     private String nome;
-    /**Rappresenta il cognome del cittadino vaccinato*/
+
+    /**
+     * Rappresenta il cognome del cittadino vaccinato
+     */
     private String cognome;
-    /**Rappresenta il codice fiscale del cittadino vaccinato*/
+
+    /**
+     * Rappresenta il codice fiscale del cittadino vaccinato
+     */
     private String codiceFiscale;
-    /**Rappresenta la data di somministrazione del vaccino*/
+
+    /**
+     * Rappresenta la data di somministrazione del vaccino
+     */
     private Date dataSomministrazione;
-    /**Rappresenta il tipo di vaccino somministrato*/
+
+    /**
+     * Rappresenta il tipo di vaccino somministrato
+     */
     private Vaccino vaccinoSomministrato;
-    /**Rappresenta l'id del vaccino associato al cittadino*/
+
+    /**
+     * Rappresenta l'id del vaccino associato al cittadino
+     */
     private long idVaccino;
 
+    /**
+     *
+     */
     public Vaccinato() {}
 
     /**
