@@ -5,14 +5,18 @@ import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
 public class CssHelper {
-    public CssHelper() {}
 
-    /**
-     * Imposta a "rosso" il contorno della casella passata come parametro
-     * Imposta un tooltip con il messaggio di errore (se non nullo)
-     * @param tic parametro generico per molteplici <code>text input controls</code>
-     * @param tooltip parametro per assegnazione di tooltip (pu&ograve essere null)
-     */
+    private static CssHelper instance=null;
+
+    private CssHelper(){  }
+
+    public static CssHelper getInstance(){
+        if(instance==null){
+            instance=new CssHelper();
+        }
+        return instance;
+    }
+
     public void toError(TextInputControl tic, Tooltip tooltip) {
         toDefault(tic);
         tic.getStyleClass().add("field-error");
