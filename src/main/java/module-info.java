@@ -10,6 +10,7 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.subway;
     requires org.kordamp.ikonli.fluentui;
     requires java.sql;
+    requires org.json;
     requires java.rmi;
     
     exports it.uninsubria.centrivaccinali;
