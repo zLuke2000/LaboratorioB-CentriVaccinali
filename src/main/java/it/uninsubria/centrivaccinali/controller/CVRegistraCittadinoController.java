@@ -73,11 +73,9 @@ public class CVRegistraCittadinoController {
 
 
     /**
-     *
      * @param mouseEvent
      */
     public void BackTo(MouseEvent mouseEvent) {
-        System.out.println("Indietro");
         CentriVaccinali.setRoot("CV_change");
     }
 }

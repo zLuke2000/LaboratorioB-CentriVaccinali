@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -12,24 +13,19 @@ import javafx.scene.input.KeyEvent;
 
 public class CVRegistraCentroVaccinale {
 
-        @FXML private Label L_titolo;
         @FXML private TextField TF_nome;
-        @FXML private Label L_infoIndirizzo;
         @FXML private ChoiceBox<Qualificatore> CB_qualificatore;
         @FXML private TextField TF_indirizzo;
         @FXML private TextField TF_civico;
         @FXML private TextField TF_comune;
         @FXML private TextField TF_provincia;
         @FXML private TextField TF_cap;
-        @FXML private Label L_infoIndirizzo1;
         @FXML private ToggleGroup TG_tipologia;
         @FXML private RadioButton RB_aziendale;
         @FXML private RadioButton RB_ospedaliero;
         @FXML private RadioButton RB_hub;
-        @FXML private Button B_indietro;
-        @FXML private Button B_conferma;
 
-        private ControlloParametri cp = new ControlloParametri();
+        private final ControlloParametri cp = new ControlloParametri();
         private ClientCV client;
 
         @FXML public void initialize() {
@@ -41,7 +37,8 @@ public class CVRegistraCentroVaccinale {
                 this.client = client;
         }
 
-        @FXML public void realtimeCheck(KeyEvent ke) {
+        @FXML void realtimeCheck(KeyEvent ke) {
+                //TODO controllo realtime della provincia
                 if(ke.getSource().equals(TF_nome)) {
                         cp.testoSemplice(TF_nome, 6, 50);
                 } else if(ke.getSource().equals(TF_indirizzo)) {
@@ -59,7 +56,7 @@ public class CVRegistraCentroVaccinale {
                 }
         }
 
-        @FXML public void salvaCentro() {
+        @FXML void salvaCentro() {
                 // Definizione e inizializzazione variabili
                 String nomeCentro = TF_nome.getText().trim();
                 String nomeIndirizzo = TF_indirizzo.getText().trim();
@@ -82,11 +79,37 @@ public class CVRegistraCentroVaccinale {
                                 tipologiaSelezionata = TipologiaCentro.HUB;
                         }
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(CB_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
-                        if(client.registraCentroVaccinale(centroVaccinale)) {
-                                System.out.println("REGISTRAZIONE EFFETTUATA");
-                        } else {
-                                System.out.println("3");
+                        // TODO da separare gli errori possibili
+                        switch(client.registraCentroVaccinale(centroVaccinale)) {
+                                case -1:
+                                        System.out.println("[ERRORE] centro gia' esistente ");
+                                        break;
+                                case 1:
+                                        System.out.println("REGISTRAZIONE EFFETTUATA");
+                                        break;
+                                case 2:
+                                        System.out.println("[ERRORE] errore catch 1");
+                                        break;
+                                case 3:
+                                        System.out.println("[ERRORE] errore catch 3");
+                                        break;
+                                case 4:
+                                        System.out.println("[ERRORE] indirizzo non trovato");
+                                        break;
+                                case 5:
+                                        System.out.println("[ERRORE] errore catch 5");
+                                        break;
+                                case 6:
+                                        System.out.println("[ERRORE] errore catch 6");
+                                        break;
+                                case 7:
+                                        System.out.println("[ERRORE] errore catch 7");
+                                        break;
                         }
                 }
+        }
+
+        @FXML void backTo() {
+                CentriVaccinali.setRoot("CV_change");
         }
 }

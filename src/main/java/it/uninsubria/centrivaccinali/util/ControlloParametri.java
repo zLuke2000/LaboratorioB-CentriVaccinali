@@ -1,8 +1,8 @@
 package it.uninsubria.centrivaccinali.util;
 
+import it.uninsubria.centrivaccinali.enumerator.Province;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,8 +76,14 @@ public class ControlloParametri {
         rPattern = Pattern.compile("[A-Z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
-            cssHelper.toValid(tic);
-            return true;
+            try {
+                Province.valueOf(tic.getText().trim());
+                cssHelper.toValid(tic);
+                return true;
+            } catch (IllegalArgumentException iae){
+                cssHelper.toError(tic, new Tooltip("sigla inesistente"));
+                return false;
+            }
         } else {
             cssHelper.toError(tic, new Tooltip("solo 2 lettere maiuscole ammesse"));
             return false;

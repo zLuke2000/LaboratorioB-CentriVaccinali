@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.controller.AvvioController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCentroVaccinale;
 import javafx.application.Application;
@@ -19,6 +18,8 @@ public class CentriVaccinali extends Application {
     private final static Double w_avvio = 580.0;
     private final static Double h_cvlogin = 565.0;
     private final static Double w_cvlogin = 390.0;
+    private final static Double h_cvchange = 565.0;
+    private final static Double w_cvchange = 390.0;
 
     private static Scene scene;
     private static Stage stage;
@@ -49,7 +50,6 @@ public class CentriVaccinali extends Application {
                 stage.setTitle("Progetto LaboratorioB");
                 break;
             case "CV_login":
-                System.out.println("[CV_MAIN] selezionato: CV_login");
                 CVLoginController cvlc = fxmlLoader.getController();
                 cvlc.initParameter(client);
                 stage.setTitle("Login operatore");
@@ -57,13 +57,11 @@ public class CentriVaccinali extends Application {
                 height = h_cvlogin;
                 break;
             case "CV_change":
-                System.out.println("[CV_MAIN] selezionato: CV_change");
                 stage.setTitle("Seleziona azione");
-                width = w_cvlogin + 500.0;
-                height = h_cvlogin + 500.0;
+                width = w_cvchange;
+                height = h_cvchange;
                 break;
             case "CV_registraCentroVaccinale":
-                System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
                 CVRegistraCentroVaccinale cvrcv = fxmlLoader.getController();
                 cvrcv.initParameter(client);
                 stage.setTitle("Registra nuovo centro vaccinale");
@@ -72,8 +70,8 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                width=600.0;       //dimensioni per interfaccia
-                height=560.0;      //registra vaccinato
+                width=600.0;
+                height=560.0;
                 break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");

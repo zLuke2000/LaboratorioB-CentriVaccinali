@@ -86,13 +86,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         sourceCVlogin.authStatus(ritorno);
     }
 
-    public boolean registraCentroVaccinale(CentroVaccinale cv) {
+    public int registraCentroVaccinale(CentroVaccinale cv) {
         try {
-            server.registraCentro(cv);
-            return true;
+            return server.registraCentro(cv);
         } catch (RemoteException e) {
             e.printStackTrace();
-            return false;
+            return -2;
         }
     }
 

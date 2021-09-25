@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.UUID;
 
 /**
- *
+ *  //TODO controllo sicurezza delle query
  */
 public class Database {
     private final String utente = "123abc";
@@ -42,37 +42,79 @@ public class Database {
     }
 
     public int registraCentroVaccinale(CentroVaccinale cv) {
-        // Scrivo l'indirizzo
         int result = -1;
         UUID uuid = null;
 
+        // Controllo che ci sia gia' l'indirizzo
         try {
-            pstmt = conn.prepareStatement("INSERT INTO public.\"IndirizzoCV\" (qualificatore, nome, civico, comune, provincia, cap) "
-                                            + "VALUES (?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("SELECT id_indirizzo " +
+                                              "FROM public.\"IndirizzoCV\" " +
+                                              "WHERE (qualificatore = ? AND " +
+                                              "nome = ? AND " +
+                                              "civico = ? AND " +
+                                              "comune = ? AND " +
+                                              "provincia = ? AND " +
+                                              "cap = ?)");
             pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
             pstmt.setString(2, cv.getIndirizzo().getNome());
             pstmt.setString(3, cv.getIndirizzo().getCivico());
             pstmt.setString(4, cv.getIndirizzo().getComune());
             pstmt.setString(5, cv.getIndirizzo().getProvincia());
             pstmt.setInt(6, cv.getIndirizzo().getCap());
-            result = pstmt.executeUpdate();
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) {
+                uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return 2;
         }
 
-        // Recupero l'id univoco dell'indirizzo appena registrato
-        if(result == 1) {
+        // Inserisco il nuovo centro solo se non presente
+        if(uuid == null) {
+            // Inserisco il nuovo indirizzo
             try {
-                stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT id_indirizzo " +
-                                                     "FROM public.\"IndirizzoCV\" " +
-                                                     "WHERE qualificatore = '" + cv.getIndirizzo().getQualificatore().toString() + "'");
-                rs.next();
-                uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
+                pstmt = conn.prepareStatement("INSERT INTO public.\"IndirizzoCV\" (qualificatore, nome, civico, comune, provincia, cap) "
+                                                + "VALUES (?, ?, ?, ?, ?, ?)");
+                pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
+                pstmt.setString(2, cv.getIndirizzo().getNome());
+                pstmt.setString(3, cv.getIndirizzo().getCivico());
+                pstmt.setString(4, cv.getIndirizzo().getComune());
+                pstmt.setString(5, cv.getIndirizzo().getProvincia());
+                pstmt.setInt(6, cv.getIndirizzo().getCap());
+                result = pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
                 return 3;
+            }
+
+            // Recupero l'id univoco dell'indirizzo appena registrato
+            if (result == 1) {
+                try {
+                    pstmt = conn.prepareStatement("SELECT id_indirizzo " +
+                            "FROM public.\"IndirizzoCV\" " +
+                            "WHERE (qualificatore = ? AND " +
+                            "nome = ? AND " +
+                            "civico = ? AND " +
+                            "comune = ? AND " +
+                            "provincia = ? AND " +
+                            "cap = ?)");
+                    pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
+                    pstmt.setString(2, cv.getIndirizzo().getNome());
+                    pstmt.setString(3, cv.getIndirizzo().getCivico());
+                    pstmt.setString(4, cv.getIndirizzo().getComune());
+                    pstmt.setString(5, cv.getIndirizzo().getProvincia());
+                    pstmt.setInt(6, cv.getIndirizzo().getCap());
+                    ResultSet rs = pstmt.executeQuery();
+                    if(rs.next()) {
+                        uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
+                    } else {
+                        return 4;
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return 5;
+                }
             }
         }
 
@@ -82,17 +124,32 @@ public class Database {
             try {
                 pstmt = conn.prepareStatement("INSERT INTO public.\"CentriVaccinali\" (nome, indirizzo, tipologia) "
                                                 + "VALUES (?, ?, ?)");
-                pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
+                pstmt.setString(1, cv.getNome());
                 pstmt.setObject(2, uuid);
-                pstmt.setString(3, cv.getIndirizzo().getCivico());
+                pstmt.setString(3, cv.getTipologia().toString());
                 result = pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return 4;
+                return 6;
             }
         }
 
-        // TODO Creare la tabella per il centro vaccinale corrente
+        // Creo la nuova tabella
+        try {
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
+                    "nomeCentro character varying(50) NOT NULL, " +
+                    "nome character varying(50) NOT NULL, " +
+                    "cognome character varying(50) NOT NULL, " +
+                    "codiceFiscale character varying(16) NOT NULL, " +
+                    "dataSomministrazione date NOT NULL, " +
+                    "vaccino character varying(16) NOT NULL, " +
+                    "idVaccinazione bigint NOT NULL, " +
+                    "PRIMARY KEY (codiceFiscale)" +
+                    "UNIQUE(idVaccinazione))");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 7;
+        }
         return result;
     }
 }

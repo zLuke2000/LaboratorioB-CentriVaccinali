@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
