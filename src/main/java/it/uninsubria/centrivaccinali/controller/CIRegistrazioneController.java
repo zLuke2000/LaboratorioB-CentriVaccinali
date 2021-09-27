@@ -1,8 +1,12 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -14,14 +18,32 @@ public class CIRegistrazioneController {
     /**
      *
      */
+    private ClientCV client;
+
+    /**
+     *
+     */
+    private CssHelper csshelper;
+
+    /**
+     *
+     */
+    private ControlloParametri cp;
+
+    /**
+     *
+     */
     private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
             " all'autenticazione";
 
     /**
      *
      */
-    private final String INFO_PASSWORD =  "- Min 8 caratteri, max 16 caretteri" + "\n" + "- Almeno un carattere speciale (!, ?, &, $, £...ecc)" +"\n"+
-            "- Almeno un carattere maiuscolo" +  "\n" + " - Almeno un numero";
+    private final String INFO_PASSWORD =  "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
+            "- Almeno 8 caratteri"  + "\n"
+            + "- Almeno una lettere maiuscola" +
+            "\n" + "- Almeno una lettere minuscola" + "\n" +
+            "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
 
     /**
      *
@@ -38,37 +60,27 @@ public class CIRegistrazioneController {
     /**
      *
      */
-    @FXML private TextField TX_CI_nomeRegistrazione;
+    @FXML private TextField TF_CI_nomeRegistrazione;
 
     /**
      *
      */
-    @FXML private TextField TX_CI_cognomeRegistrazione;
+    @FXML private TextField TF_CI_cognomeRegistrazione;
 
     /**
      *
      */
-    @FXML private TextField TX_CI_cfRegistrazione;
+    @FXML private TextField TF_CI_cfRegistrazione;
 
     /**
      *
      */
-    @FXML private TextField TX_CI_usernameRegistrazione;
+    @FXML private TextField TF_CI_usernameRegistrazione;
 
     /**
      *
      */
-    @FXML private TextField TX_CI_emailRegistrazione;
-
-    /**
-     *
-     */
-    @FXML private TextField TF_CI_password1Visible;
-
-    /**
-     *
-     */
-    @FXML private TextField TF_CI_password2Visible;
+    @FXML private TextField TF_CI_emailRegistrazione;
 
     /**
      *
@@ -86,6 +98,22 @@ public class CIRegistrazioneController {
      */
     @FXML private PasswordField TF_CI_password2;
 
+    /**
+     *
+     */
+    @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
+
+    /**
+     *
+     */
+    @FXML private ProgressIndicator PI_CI_loadUsername;
+
+
+    public void initParameter(ClientCV client) {
+        this.client = client;
+        this.csshelper = new CssHelper();
+        this.cp = new ControlloParametri();
+    }
 
     /**
      *
@@ -138,4 +166,56 @@ public class CIRegistrazioneController {
                     T_CI_infoRegistrazione.setVisible(false);
                 }
     }
+
+    /*
+    public void realtimeCheckidVaccinazione(KeyEvent keyEvent) {
+        if(client.checkIdVaccinazione(TF_CI_idvaccinazioneRegistrazione.getText().trim()) == 1) {
+            csshelper.toValid(TF_CI_idvaccinazioneRegistrazione);
+            PI_CI_loadIdVaccinazione.setVisible(false);
+        } else {
+            csshelper.toError(TF_CI_idvaccinazioneRegistrazione, new Tooltip("id non presente"));
+            PI_CI_loadIdVaccinazione.setVisible(true);
+        }
+    }
+     */
+
+    @FXML public void realtimeCheck(KeyEvent keyEvent) {
+        Object key = keyEvent.getSource();
+        if (TF_CI_nomeRegistrazione.equals(key)) {
+            cp.testoSemplice(TF_CI_nomeRegistrazione, 1, 50);
+        }
+        if (TF_CI_cognomeRegistrazione.equals(key)) {
+            cp.testoSemplice(TF_CI_cognomeRegistrazione, 1, 50);
+        }
+        if(TF_CI_cfRegistrazione.equals(key)) {
+            cp.CodiceFiscale(TF_CI_cfRegistrazione);
+        }
+        if(TF_CI_emailRegistrazione.equals(key)) {
+            cp.email(TF_CI_emailRegistrazione);
+        }
+        if(TF_CI_password1.equals(key)) {
+            cp.Password(TF_CI_password1);
+        }
+        if(TF_CI_password2.equals(key)) {
+            cp.checkSamePassword(TF_CI_password1, TF_CI_password2);
+        }
+        if(TF_CI_usernameRegistrazione.equals(key)) {
+            cp.testoSemplice(TF_CI_usernameRegistrazione, 1, 16);
+        }
+        if(TF_CI_idvaccinazioneRegistrazione.equals(key)) {
+            cp.testoSemplice(TF_CI_idvaccinazioneRegistrazione, 1, 16);
+        }
+    }
+
+    /*
+    public void realtimeUsernameCheck(KeyEvent keyEvent) {
+        if(client.checkUsername(TF_CI_usernameRegistrazione.getText().trim()) == 1) {
+            csshelper.toValid(TF_CI_usernameRegistrazione);
+            PI_CI_loadUsername.setVisible(false);
+        } else {
+            csshelper.toError(TF_CI_usernameRegistrazione, new Tooltip("Username già presente"));
+            PI_CI_loadUsername.setVisible(true);
+        }
+    }
+     */
 }

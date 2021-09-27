@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.database;
 
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Cittadino;
 
 import java.sql.*;
 import java.util.UUID;

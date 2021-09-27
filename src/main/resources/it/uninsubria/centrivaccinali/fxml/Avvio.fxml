@@ -49,6 +49,5 @@
             <Insets left="80.0" top="50.0" />
          </padding>
       </HBox>
-      <Circle id="stateIcon" fx:id="stateIcon" fill="#fcbd08" radius="7.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="17.0" />
    </children>
 </AnchorPane>

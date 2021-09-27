@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,6 +11,8 @@ import org.kordamp.ikonli.javafx.FontIcon;
  *Controller per l'interfaccia di login del cittadino
  */
 public class CIHomeController {
+
+    private ClientCV client;
 
     /**PasswordField per la password di autenticazione del cittadino*/
     @FXML private PasswordField TF_CI_loginPassword;
@@ -26,6 +29,10 @@ public class CIHomeController {
     @FXML private FontIcon FI_CI_showPassword;
 
 
+    public void initParameter(ClientCV client) {
+        this.client = client;
+    }
+
     /**
      * Metodo per entrare con l'accesso libero dentro all'applicazione
      * @param mouseEvent
@@ -39,6 +46,7 @@ public class CIHomeController {
      * @param actionEvent
      */
     public void AccediCittadino(ActionEvent actionEvent) {
+
     }
 
 

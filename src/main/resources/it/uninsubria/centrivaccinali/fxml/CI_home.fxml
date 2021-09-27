@@ -26,6 +26,5 @@
       <ProgressIndicator fx:id="PI_CI_AccediLoad" layoutX="179.0" layoutY="469.0" prefHeight="27.0" prefWidth="33.0" visible="false" />
       <FontIcon fx:id="FI_CI_hidePassword" iconLiteral="eli-eye-close" iconSize="17" layoutX="312.0" layoutY="355.0" onMouseClicked="#hidePassword" visible="false" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="340.0" />
       <FontIcon fx:id="FI_CI_showPassword" iconLiteral="eli-eye-open" iconSize="17" layoutX="312.0" layoutY="355.0" onMouseClicked="#showPassword" visible="true" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="340.0" />
-      <Circle id="stateIcon" fx:id="stateIcon" fill="DODGERBLUE" layoutX="367.0" layoutY="15.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

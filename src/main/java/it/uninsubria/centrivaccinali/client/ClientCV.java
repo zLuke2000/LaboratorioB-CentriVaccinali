@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 
 import java.rmi.NotBoundException;
@@ -95,8 +96,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             return false;
         }
     }
-
-
     private void printout(String s) {
         System.out.println("[CLIENT_CV] " + s);
     }

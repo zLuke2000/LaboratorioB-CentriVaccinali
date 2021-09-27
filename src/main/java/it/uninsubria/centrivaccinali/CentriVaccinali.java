@@ -1,9 +1,7 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.controller.AvvioController;
-import it.uninsubria.centrivaccinali.controller.CVLoginController;
-import it.uninsubria.centrivaccinali.controller.CVRegistraCentroVaccinale;
+import it.uninsubria.centrivaccinali.controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,6 +44,8 @@ public class CentriVaccinali extends Application {
                 width = w_avvio;
                 break;
             case "CI_home":
+                CIHomeController cihc = fxmlLoader.getController();
+                cihc.initParameter(client);
                 stage.setTitle("Progetto LaboratorioB");
                 break;
             case "CV_login":
@@ -75,6 +75,12 @@ public class CentriVaccinali extends Application {
                 width=600.0;       //dimensioni per interfaccia
                 height=560.0;      //registra vaccinato
                 break;
+            case "CI_registrazione":
+                CIRegistrazioneController circ = fxmlLoader.getController();
+                circ.initParameter(client);
+                stage.setTitle("Registrazione cittadino");
+                width = 390.0;
+                height = 640.0;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;

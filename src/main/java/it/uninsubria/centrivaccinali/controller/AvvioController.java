@@ -4,11 +4,13 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
 
 /**
  *
  */
 public class AvvioController {
+
         /**
          * Metodo usato per accedere come operatore cittadino,
          * aprendo l'iterfaccia di login
@@ -19,7 +21,6 @@ public class AvvioController {
                 System.out.println("Accesso cittadino");
                 CentriVaccinali.setRoot("CI_home");
         }
-
 
         /**
          * Metodo usato per accedere come operatore sanitario,

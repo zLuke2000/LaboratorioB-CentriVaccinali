@@ -34,6 +34,5 @@
       </ProgressIndicator>
       <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="14.0" layoutY="35.0" onMouseClicked="#BackTo" styleClass="backIcon" />
       <Text fx:id="T_CV_infoLogin" layoutX="183.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="360.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Circle id="stateIcon" fx:id="stateIcon" fill="DODGERBLUE" layoutX="360.0" layoutY="15.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

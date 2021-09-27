@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -24,19 +23,19 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="379.0">
                <children>
-                  <TextField fx:id="TX_CI_nomeRegistrazione" promptText="Nome">
+                  <TextField fx:id="TF_CI_nomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Nome">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="TX_CI_cognomeRegistrazione" promptText="Cognome">
+                  <TextField fx:id="TF_CI_cognomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Cognome">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
-            <TextField fx:id="TF_CI_cfRegistrazione" promptText="Codice Fiscale">
+            <TextField fx:id="TF_CI_cfRegistrazione" onKeyTyped="#realtimeCheck" promptText="Codice Fiscale">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -62,15 +61,20 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <TextField fx:id="TF_CI_usernameRegistrazione" prefHeight="27.0" prefWidth="185.0" promptText="Username" />
+                  <TextField fx:id="TF_CI_usernameRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0" prefWidth="185.0" promptText="Username" />
                   <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoUsername" styleClass="iconInfo">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </FontIcon>
+                  <ProgressIndicator fx:id="PI_CI_loadUsername" prefHeight="27.0" prefWidth="29.0" visible="false">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ProgressIndicator>
                </children>
             </HBox>
-            <TextField fx:id="TX_CI_emailRegistrazione" promptText="Email">
+            <TextField fx:id="TF_CI_emailRegistrazione" onKeyTyped="#realtimeCheck" promptText="Email">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -80,9 +84,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <TextField fx:id="TF_CI_password1Visible" layoutY="1.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <TextField fx:id="TF_CI_password2Visible" layoutX="189.0" layoutY="2.0" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <PasswordField fx:id="TF_CI_password1" layoutY="1.0" promptText="Password" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <PasswordField fx:id="TF_CI_password1" layoutY="1.0" onKeyTyped="#realtimeCheck" promptText="Password" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <PasswordField fx:id="TF_CI_password2" layoutX="189.0" layoutY="2.0" promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <FontIcon fx:id="FI_CI_infoPasswordRegistrazione" iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0" onMouseClicked="#showInfoPassword" styleClass="iconInfo" />
                </children>
@@ -97,12 +99,20 @@
       <Label alignment="CENTER" layoutX="180.0" layoutY="401.0" text="Vaccinazione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="405.0" />
       <HBox alignment="CENTER_LEFT" layoutX="133.0" layoutY="424.0" prefHeight="40.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="435.0">
          <children>
-            <TextField fx:id="TF_CI_idvaccinazioneRegistrazione" prefHeight="27.0" prefWidth="180.0" promptText="Id Vaccinazione" />
-            <FontIcon fx:id="FI_CI_infoVaccinazioneRegistrazione" iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo">
+            <TextField fx:id="TF_CI_idvaccinazioneRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0" prefWidth="180.0" promptText="Id Vaccinazione" />
+            <FontIcon fx:id="FI_CI_infoVaccinazioneRegistrazione" iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo" text="">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
             </FontIcon>
+            <ProgressIndicator fx:id="PI_CI_loadIdVaccinazione" prefHeight="12.0" prefWidth="30.0" visible="false">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </ProgressIndicator>
          </children>
       </HBox>
       <Separator layoutX="53.0" layoutY="474.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -116,6 +126,5 @@
       <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#registraCittadino" styleClass="buttonSmall" text="Registra" />
       <ProgressIndicator fx:id="PI_CI_loadRegistrazione" layoutX="179.0" layoutY="531.0" prefHeight="22.0" prefWidth="35.0" visible="false" />
       <Text fx:id="T_CI_infoRegistrazione" layoutX="8.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-info" underline="true" visible="false" wrappingWidth="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Circle id="stateIcon" fx:id="stateIcon" fill="DODGERBLUE" layoutX="363.0" layoutY="15.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>
