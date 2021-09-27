@@ -37,6 +37,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.23.jre7</version>
         </dependency>
+        <!-- JSON -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
         <!-- ICON -->
         <dependency>
             <groupId>org.kordamp.ikonli</groupId>

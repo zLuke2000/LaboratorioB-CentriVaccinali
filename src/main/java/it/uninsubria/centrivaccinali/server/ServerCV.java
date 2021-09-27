@@ -56,7 +56,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         if(db.connect(utente, password)) {
             try {
                 obj = new ServerCV();
-                reg = LocateRegistry.createRegistry(1099);
+                reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
                 reg.rebind("server", obj);
                 System.out.println("Server pronto");
             } catch (RemoteException e) {
@@ -74,10 +74,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
                 // simulazione attesa
                 Thread.sleep(1000);
                 client.notifyStatus(usernameOperatore.equals(username) && passwordOperatore.equals(password));
-            } catch (RemoteException e){
-                e.printStackTrace();
             } catch (InterruptedException e) {
                 System.err.println("[SERVER]: Sleep exception");
+                e.printStackTrace();
+            } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }).start();

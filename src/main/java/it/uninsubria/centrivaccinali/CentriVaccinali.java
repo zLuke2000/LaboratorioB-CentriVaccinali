@@ -17,6 +17,8 @@ public class CentriVaccinali extends Application {
     private final static Double w_avvio = 580.0;
     private final static Double h_cvlogin = 565.0;
     private final static Double w_cvlogin = 390.0;
+    private final static Double h_cvchange = 565.0;
+    private final static Double w_cvchange = 390.0;
 
     private static Scene scene;
     private static Stage stage;
@@ -59,8 +61,8 @@ public class CentriVaccinali extends Application {
             case "CV_change":
                 System.out.println("[CV_MAIN] selezionato: CV_change");
                 stage.setTitle("Seleziona azione");
-                width = w_cvlogin + 500.0;
-                height = h_cvlogin + 500.0;
+                width = w_cvchange;
+                height = h_cvchange;
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
@@ -72,8 +74,8 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                width=600.0;       //dimensioni per interfaccia
-                height=560.0;      //registra vaccinato
+                width=600.0;
+                height=560.0;
                 break;
             case "CI_registrazione":
                 CIRegistrazioneController circ = fxmlLoader.getController();

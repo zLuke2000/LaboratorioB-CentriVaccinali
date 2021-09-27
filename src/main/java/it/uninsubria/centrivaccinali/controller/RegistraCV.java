@@ -37,7 +37,7 @@ public class RegistraCV {
         @FXML private Button B_indietro;
         @FXML private Button B_conferma;
 
-        private final CssHelper cssHelper = new CssHelper();
+        private final CssHelper cssHelper = CssHelper.getInstance();
 
         @FXML public void initialize() {
                 CB_qualificatore.getItems().addAll(Qualificatore.values());

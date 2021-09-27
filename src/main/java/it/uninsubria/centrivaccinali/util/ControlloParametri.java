@@ -1,14 +1,16 @@
 package it.uninsubria.centrivaccinali.util;
 
+import it.uninsubria.centrivaccinali.enumerator.Province;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ControlloParametri {
 
-    private final CssHelper cssHelper = new CssHelper();
+    private static ControlloParametri instance = null;
+
+    private final CssHelper cssHelper = CssHelper.getInstance();
     private Pattern rPattern;
     private Matcher rMatcher;
     //private String infoErrorPassword = "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
@@ -17,7 +19,14 @@ public class ControlloParametri {
     //        "\n" + "- Almeno una lettere minuscola" + "\n" +
     //        "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
 
-    public ControlloParametri() {}
+    private ControlloParametri() {}
+
+    public static ControlloParametri getInstance(){
+        if(instance == null){
+            instance = new ControlloParametri();
+        }
+        return instance;
+    }
 
     public boolean testoSemplice(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
@@ -81,8 +90,14 @@ public class ControlloParametri {
         rPattern = Pattern.compile("[A-Z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
-            cssHelper.toValid(tic);
-            return true;
+            try {
+                Province.valueOf(tic.getText().trim());
+                cssHelper.toValid(tic);
+                return true;
+            } catch (IllegalArgumentException iae){
+                cssHelper.toError(tic, new Tooltip("sigla inesistente"));
+                return false;
+            }
         } else {
             cssHelper.toError(tic, new Tooltip("solo 2 lettere maiuscole ammesse"));
             return false;

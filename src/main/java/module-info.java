@@ -10,6 +10,7 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.subway;
     requires org.kordamp.ikonli.fluentui;
     requires java.sql;
+    requires org.json;
     requires java.rmi;
     
     exports it.uninsubria.centrivaccinali;
@@ -20,4 +21,6 @@ module it.uninsubria.centrivaccinali {
     opens it.uninsubria.centrivaccinali.client to javafx.fxml;
     exports it.uninsubria.centrivaccinali.server;
     opens it.uninsubria.centrivaccinali.server to javafx.fxml;
+    exports it.uninsubria.centrivaccinali.models;
+    opens it.uninsubria.centrivaccinali.models to javafx.fxml;
 }

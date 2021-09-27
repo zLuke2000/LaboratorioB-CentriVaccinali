@@ -3,13 +3,13 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.util.CssHelper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
@@ -44,7 +44,7 @@ public class CVLoginController {
      *
      */
     private ClientCV client;
-    private final CssHelper cssHelper = new CssHelper();
+    private final CssHelper cssHelper = CssHelper.getInstance();
 
     /**
      *
@@ -95,7 +95,7 @@ public class CVLoginController {
     public void authStatus(Boolean status) {
         PI_CV_load.setVisible(false);
         if(status) {
-            CentriVaccinali.setRoot("CV_change");
+            Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
         } else {
             System.err.println("[CVLogin] AUTH ERROR");
         }
