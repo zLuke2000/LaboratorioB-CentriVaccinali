@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.ActionEvent;
@@ -111,8 +112,8 @@ public class CIRegistrazioneController {
 
     public void initParameter(ClientCV client) {
         this.client = client;
-        this.csshelper = new CssHelper();
-        this.cp = new ControlloParametri();
+        this.csshelper = CssHelper.getInstance();
+        this.cp = ControlloParametri.getInstance();
     }
 
     /**
@@ -120,6 +121,15 @@ public class CIRegistrazioneController {
      * @param actionEvent
      */
     public void registraCittadino(ActionEvent actionEvent) {
+        String nome = TF_CI_nomeRegistrazione.getText();
+        String cognome = TF_CI_cognomeRegistrazione.getText();
+        String cf = TF_CI_cfRegistrazione.getText();
+        String email = TF_CI_emailRegistrazione.getText();
+        String user = TF_CI_usernameRegistrazione.getText();
+        String password = TF_CI_password1.getText();
+        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
+        Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+        client.registraCittadino(cittadino);
     }
 
     /**

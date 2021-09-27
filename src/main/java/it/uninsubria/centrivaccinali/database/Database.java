@@ -153,4 +153,8 @@ public class Database {
         }
         return result;
     }
+
+    public void registraCittadino(Cittadino cittadino) {
+
+    }
 }

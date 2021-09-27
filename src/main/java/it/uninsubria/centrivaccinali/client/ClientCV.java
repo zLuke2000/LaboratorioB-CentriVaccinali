@@ -82,4 +82,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         System.out.println("[CLIENT_CV] " + s);
     }
 
+    public void registraCittadino(Cittadino cittadino) {
+        server.registraCittadino(cittadino);
+    }
 }
