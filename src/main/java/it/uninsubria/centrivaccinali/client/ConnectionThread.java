@@ -1,11 +1,16 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Optional;
 
 /**
  * Classe per il controllo della connessione con il server
@@ -20,29 +25,42 @@ public class ConnectionThread extends Thread{
     }
 
     public void run(){
-        boolean result=false;
-            for (int i = 0; i < 2; i++) {
-                result = getRegistry() && getServerStub();
-                if (result) {
+        boolean status=false;
+            for (int i = 0; i < 1; i++) {
+                status = getRegistry() && getServerStub();
+                if (status) {
                     //setta nel client il registry e il server
                     ClientCV.setRegistry(reg);
                     ClientCV.setServer(server);
                     System.out.println("[ConnectionThread] Connessione al server eseguita");
                     break;
                 }
-                mySleep();
+                //mySleep();
             }
-            if (!result)
+            if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
+
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERRORE DI CONNESSIONE");
+                    alert.setHeaderText("Errore");
+                    alert.setContentText("Non è stato possibile connettersi al server, riconnettere?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent()){
+                        this.run();
+                    }
+                });
+            }
     }
 
     private boolean getRegistry(){
         try {
-            reg = LocateRegistry.getRegistry(1099);
+            reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
+            System.out.println(reg);
             return true;
-        } catch (RemoteException e) {
-            System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI ");
+            //e.printStackTrace();
             return false;
         }
     }
@@ -53,7 +71,7 @@ public class ConnectionThread extends Thread{
             return true;
         } catch (RemoteException | NotBoundException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }
@@ -61,6 +79,6 @@ public class ConnectionThread extends Thread{
     private void mySleep(){
         try {
             Thread.sleep(5000);
-        } catch (InterruptedException e) {  }
+        } catch (InterruptedException ignored) {  }
     }
 }

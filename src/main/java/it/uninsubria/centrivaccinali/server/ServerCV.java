@@ -56,7 +56,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         if(db.connect(utente, password)) {
             try {
                 obj = new ServerCV();
-                reg = LocateRegistry.createRegistry(1099);
+                reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
                 reg.rebind("server", obj);
                 System.out.println("Server pronto");
             } catch (RemoteException e) {
