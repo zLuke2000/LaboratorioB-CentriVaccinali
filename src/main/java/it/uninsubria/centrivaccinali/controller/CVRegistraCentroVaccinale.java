@@ -25,7 +25,7 @@ public class CVRegistraCentroVaccinale {
         @FXML private RadioButton RB_ospedaliero;
         @FXML private RadioButton RB_hub;
 
-        private final ControlloParametri cp = new ControlloParametri();
+        private final ControlloParametri cp = ControlloParametri.getInstance();
         private ClientCV client;
 
         @FXML public void initialize() {

@@ -8,11 +8,20 @@ import java.util.regex.Pattern;
 
 public class ControlloParametri {
 
-    private final CssHelper cssHelper = new CssHelper();
+    private static ControlloParametri instance = null;
+
+    private final CssHelper cssHelper = CssHelper.getInstance();
     private Pattern rPattern;
     private Matcher rMatcher;
 
-    public ControlloParametri() {}
+    private ControlloParametri() {}
+
+    public static ControlloParametri getInstance(){
+        if(instance == null){
+            instance = new ControlloParametri();
+        }
+        return instance;
+    }
 
     public boolean testoSemplice(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
