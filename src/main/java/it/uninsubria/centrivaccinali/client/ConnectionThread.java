@@ -26,7 +26,7 @@ public class ConnectionThread extends Thread{
 
     public void run(){
         boolean status=false;
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 12; i++) {
                 status = getRegistry() && getServerStub();
                 if (status) {
                     //setta nel client il registry e il server

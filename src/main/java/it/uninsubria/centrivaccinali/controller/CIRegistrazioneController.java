@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.rmi.RemoteException;
+
 /**
  *
  */
@@ -129,7 +131,11 @@ public class CIRegistrazioneController {
         String password = TF_CI_password1.getText();
         long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        client.registraCittadino(cittadino);
+        try {
+            client.registraCittadino(cittadino);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

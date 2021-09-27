@@ -15,10 +15,8 @@ public class CentriVaccinali extends Application {
 
     private final static Double h_avvio = 300.0;
     private final static Double w_avvio = 580.0;
-    private final static Double h_cvlogin = 565.0;
-    private final static Double w_cvlogin = 390.0;
-    private final static Double h_cvchange = 565.0;
-    private final static Double w_cvchange = 390.0;
+    private final static Double w_standard = 390.0;
+    private final static Double h_standard = 565.0;
 
     private static Scene scene;
     private static Stage stage;
@@ -49,20 +47,22 @@ public class CentriVaccinali extends Application {
                 CIHomeController cihc = fxmlLoader.getController();
                 cihc.initParameter(client);
                 stage.setTitle("Progetto LaboratorioB");
+                width = w_standard;
+                height = h_standard;
                 break;
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
                 CVLoginController cvlc = fxmlLoader.getController();
                 cvlc.initParameter(client);
                 stage.setTitle("Login operatore");
-                width = w_cvlogin;
-                height = h_cvlogin;
+                width = w_standard;
+                height = h_standard;
                 break;
             case "CV_change":
                 System.out.println("[CV_MAIN] selezionato: CV_change");
                 stage.setTitle("Seleziona azione");
-                width = w_cvchange;
-                height = h_cvchange;
+                width = w_standard;
+                height = h_standard;
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
