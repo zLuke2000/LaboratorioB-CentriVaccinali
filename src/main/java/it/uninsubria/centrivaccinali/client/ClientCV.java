@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.client;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import javafx.application.Platform;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
@@ -25,15 +26,21 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public ClientCV() throws RemoteException {
         //si occupa il thread di ottenere la connessione
-        ConnectionThread connChecker=new ConnectionThread();
+        ConnectionThread connChecker = new ConnectionThread();
     }
+
 
     public void autenticaOperatore(CVLoginController source, String username, String password) {
         this.sourceCVlogin = source;
-        try {
-            server.authOperatore(this, username, password);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if(server != null) {
+            try {
+                server.authOperatore(this, username, password);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // TODO ALERT
+            //Platform.runLater();
         }
     }
 
@@ -61,4 +68,5 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private void printout(String s) {
         System.out.println("[CLIENT_CV] " + s);
     }
+
 }
