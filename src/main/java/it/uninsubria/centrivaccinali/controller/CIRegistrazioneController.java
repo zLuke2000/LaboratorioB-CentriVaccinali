@@ -130,12 +130,8 @@ public class CIRegistrazioneController {
         String email = TF_CI_emailRegistrazione.getText();
         String user = TF_CI_usernameRegistrazione.getText();
         String password = TF_CI_password1.getText();
-        //TODO sistemare con UUID
-        UUID idVac = null;
-        //Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        Cittadino cittadino = new Cittadino("luca", "elle", "cf", "email", "user", "password", 1231231231231231L);
-        System.out.println("dio merda" +
-                "");
+        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
+        Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
         try {
             client.registraCittadino(cittadino);
         } catch (RemoteException e) {
@@ -224,7 +220,7 @@ public class CIRegistrazioneController {
             cp.testoSemplice(TF_CI_usernameRegistrazione, 1, 16);
         }
         if(TF_CI_idvaccinazioneRegistrazione.equals(key)) {
-            cp.testoSemplice(TF_CI_idvaccinazioneRegistrazione, 1, 16);
+            cp.numeri(TF_CI_idvaccinazioneRegistrazione, 16, 16);
         }
     }
 
