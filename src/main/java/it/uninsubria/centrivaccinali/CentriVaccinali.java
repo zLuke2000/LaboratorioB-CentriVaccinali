@@ -83,6 +83,7 @@ public class CentriVaccinali extends Application {
                 stage.setTitle("Registrazione cittadino");
                 width = 390.0;
                 height = 640.0;
+                break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;

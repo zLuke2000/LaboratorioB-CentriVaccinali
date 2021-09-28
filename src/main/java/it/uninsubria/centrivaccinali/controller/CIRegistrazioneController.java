@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.rmi.RemoteException;
+import java.util.UUID;
 
 /**
  *
@@ -129,8 +130,12 @@ public class CIRegistrazioneController {
         String email = TF_CI_emailRegistrazione.getText();
         String user = TF_CI_usernameRegistrazione.getText();
         String password = TF_CI_password1.getText();
-        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
-        Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+        //TODO sistemare con UUID
+        UUID idVac = null;
+        //Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+        Cittadino cittadino = new Cittadino("luca", "elle", "cf", "email", "user", "password", 1231231231231231L);
+        System.out.println("dio merda" +
+                "");
         try {
             client.registraCittadino(cittadino);
         } catch (RemoteException e) {
@@ -233,5 +238,5 @@ public class CIRegistrazioneController {
             PI_CI_loadUsername.setVisible(true);
         }
     }
-     */
+    */
 }

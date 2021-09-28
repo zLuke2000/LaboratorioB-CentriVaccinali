@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,6 +56,7 @@ public class CIHomeController {
      * @param mouseEvent
      */
     public void toRegistrazione(MouseEvent mouseEvent) {
+        CentriVaccinali.setRoot("CI_registrazione");
     }
 
 

@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.models;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @author Centore Luca 740951
@@ -31,7 +32,7 @@ public class Cittadino implements Serializable {
     /**
      * Rappresenta la mail del cittadino
      */
-    private String mail;
+    private String email;
 
     /**
      * Rappresenta l'userid con cui si registra il cittadino
@@ -58,16 +59,16 @@ public class Cittadino implements Serializable {
      * @param nome nome del cittadino
      * @param cognome cognome del cittadino
      * @param codicefiscale codice fiscale del cittadino
-     * @param mail mail del cittadino
+     * @param email mail del cittadino
      * @param userid userid di registrazione del cittadino
      * @param password password del cittadino
      * @param id_vaccino id di vaccinazione del cittadino
      */
-    public Cittadino(String nome, String cognome, String codicefiscale, String mail, String userid, String password, long id_vaccino) {
+    public Cittadino(String nome, String cognome, String codicefiscale, String email, String userid, String password, long id_vaccino) {
         this.nome = nome;
         this.cognome = cognome;
         this.codicefiscale = codicefiscale;
-        this.mail = mail;
+        this.email = email;
         this.userid = userid;
         this.password = password;
         this.id_vaccino = id_vaccino;
@@ -125,16 +126,16 @@ public class Cittadino implements Serializable {
      *  Metodo getter per la mail del cittadino
      * @return la <code>mail</code> del cittadino
      */
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
     /**
      *  Metodo setter per la mail del cittadino
-     * @param mail la nuova mail del cittadino
+     * @param email la nuova mail del cittadino
      */
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**

@@ -154,7 +154,21 @@ public class Database {
         return result;
     }
 
-    public void registraCittadino(Cittadino cittadino) {
-
+    public int registraCittadino(Cittadino c) {
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" (nome, cognome, codice_fiscale, email, userid, password, id_vaccino) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1, c.getNome());
+            pstmt.setString(2, c.getCognome());
+            pstmt.setString(3, c.getCodicefiscale());
+            pstmt.setString(4, c.getEmail());
+            pstmt.setString(5, c.getUserid());
+            pstmt.setString(6, c.getPassword());
+            pstmt.setObject(7, c.getId_vaccino());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }
