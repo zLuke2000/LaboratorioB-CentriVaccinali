@@ -2,6 +2,16 @@
 	-fx-font-size: 15;
 }
 
+.label-titleDashboar{
+	-fx-font-size: 40;
+	-fx-effect: dropshadow(gaussian, gray, 5, 0, 0.0, 3);
+	-fx-font-family: Beirut;
+}
+
+.panelSuperior{
+	-fx-background-color: #b6e1fc;
+}
+
 .text-field{
 	-fx-border-color: black;
 	-fx-border-radius: 5;
@@ -138,5 +148,41 @@
 .labelButton:hover{
 	-fx-font-size: 13;
 	-fx-text-fill: #1f4c9f;
+}
+
+.iconUserConnection {
+	-fx-icon-size: 12;
+	-fx-icon-color: #1f4c9f;
+}
+
+.textfiled-RicercaCV {
+	-fx-pref-height: 45;
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-border-color: black;
+	-fx-border-width: 0.5;
+}
+
+.comboBoxRicerca{
+	-fx-pref-height: 30;
+	-fx-background-radius: 9;
+	-fx-border-radius: 9;
+	-fx-border-color: black;
+	-fx-border-width: 0.5;
+}
+
+.comboBoxTipologia{
+	-fx-pref-height: 45;
+	-fx-background-radius: 9;
+	-fx-border-radius: 9;
+	-fx-border-color: black;
+	-fx-border-width: 0.5;
+}
+
+.MenuButton{
+	-fx-background-color: TRANSPARENT;
+	-fx-border-radius: 30;
+	-fx-border-color: #1f4c9f;
+	-fx-border-width: 1;
 }
 
