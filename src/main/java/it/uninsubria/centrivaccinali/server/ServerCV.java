@@ -65,6 +65,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
                 e.printStackTrace();
                 System.exit(-1);
             }
+            db.getNomeCentriVaccinali("");
         }
     }
 
