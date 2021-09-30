@@ -164,4 +164,16 @@ public class Indirizzo implements Serializable {
     public void setCap(Integer cap) {
         this.cap = cap;
     }
+
+    @Override
+    public String toString() {
+        return "Indirizzo{" +
+                "qualificatore=" + qualificatore +
+                ", nome='" + nome + '\'' +
+                ", civico='" + civico + '\'' +
+                ", comune='" + comune + '\'' +
+                ", provincia='" + provincia + '\'' +
+                ", cap=" + cap +
+                '}';
+    }
 }
