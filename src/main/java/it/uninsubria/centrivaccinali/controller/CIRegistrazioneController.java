@@ -10,12 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import java.rmi.RemoteException;
 
-import java.util.UUID;
-
-/**
- *
- */
 public class CIRegistrazioneController {
 
     private ClientCV client;
@@ -66,10 +62,9 @@ public class CIRegistrazioneController {
         String email = TF_CI_emailRegistrazione.getText().trim();
         String user = TF_CI_usernameRegistrazione.getText().trim();
         String password = TF_CI_password1.getText().trim();
-        //TODO CONTROLLO VALIDITA' UUID
-        //UUID idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
-        //Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        //client.registraCittadino(cittadino);
+        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
+        Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+        client.registraCittadino(cittadino);
     }
 
     /**
@@ -153,7 +148,7 @@ public class CIRegistrazioneController {
             cp.testoSemplice(TF_CI_usernameRegistrazione, 1, 16);
         }
         if(TF_CI_idvaccinazioneRegistrazione.equals(key)) {
-            cp.testoSemplice(TF_CI_idvaccinazioneRegistrazione, 1, 16);
+            cp.numeri(TF_CI_idvaccinazioneRegistrazione, 16, 16);
         }
     }
 
@@ -167,5 +162,5 @@ public class CIRegistrazioneController {
             PI_CI_loadUsername.setVisible(true);
         }
     }
-     */
+    */
 }
