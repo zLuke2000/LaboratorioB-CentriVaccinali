@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali.util;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 
 public class AlertConnection extends Alert {
 
