@@ -74,6 +74,11 @@
             <artifactId>ikonli-subway-pack</artifactId>
             <version>12.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-boxicons-pack</artifactId>
+            <version>12.2.0</version>
+        </dependency>
         <!-- TEST -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
