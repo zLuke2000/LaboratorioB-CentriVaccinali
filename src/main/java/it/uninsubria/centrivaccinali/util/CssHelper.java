@@ -11,8 +11,8 @@ public class CssHelper {
     private CssHelper(){  }
 
     public static CssHelper getInstance(){
-        if(instance==null){
-            instance=new CssHelper();
+        if(instance == null){
+            instance = new CssHelper();
         }
         return instance;
     }
@@ -35,7 +35,6 @@ public class CssHelper {
      */
     public void toValid(TextInputControl tic) {
         toDefault(tic);
-        tic.setTooltip(null);
         tic.getStyleClass().add("field-valid");
     }
 
@@ -46,5 +45,6 @@ public class CssHelper {
     public void toDefault(TextInputControl tic) {
         tic.getStyleClass().remove("field-error");
         tic.getStyleClass().remove("field-valid");
+        tic.setTooltip(null);
     }
 }

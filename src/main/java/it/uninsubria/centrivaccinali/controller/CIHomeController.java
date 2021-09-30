@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,17 +18,14 @@ public class CIHomeController {
     /**PasswordField per la password di autenticazione del cittadino*/
     @FXML private PasswordField TF_CI_loginPassword;
 
-
     /**TextField per mostrare la password del cittadino*/
     @FXML private TextField TF_CI_loginPasswordVisible;
 
     /**FontIcon per nascondere la password*/
     @FXML private FontIcon FI_CI_hidePassword;
 
-
     /**FontIcon per mostrare la password*/
     @FXML private FontIcon FI_CI_showPassword;
-
 
     public void initParameter(ClientCV client) {
         this.client = client;
@@ -55,8 +53,8 @@ public class CIHomeController {
      * @param mouseEvent
      */
     public void toRegistrazione(MouseEvent mouseEvent) {
+        CentriVaccinali.setRoot("CI_registrazione");
     }
-
 
     /**
      * Metodo per nascondere la password 

@@ -11,102 +11,42 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.util.UUID;
+
 /**
  *
  */
 public class CIRegistrazioneController {
 
-    /**
-     *
-     */
     private ClientCV client;
-
-    /**
-     *
-     */
     private CssHelper csshelper;
-
-    /**
-     *
-     */
     private ControlloParametri cp;
-
-    /**
-     *
-     */
     private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
             " all'autenticazione";
 
-    /**
-     *
-     */
     private final String INFO_PASSWORD =  "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
             "- Almeno 8 caratteri"  + "\n"
             + "- Almeno una lettere maiuscola" +
             "\n" + "- Almeno una lettere minuscola" + "\n" +
             "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
 
-    /**
-     *
-     */
     private final String INFO_ID_VACCINAZIONE =  "L'ID della vaccinazione è stato fornito al momento della somministrazione";
 
     //Testo per le info dei vari campi
-    /**
-     *
-     */
     @FXML private Text T_CI_infoRegistrazione;
 
     // TextField per l'acquisizione dei dati
-    /**
-     *
-     */
     @FXML private TextField TF_CI_nomeRegistrazione;
-
-    /**
-     *
-     */
     @FXML private TextField TF_CI_cognomeRegistrazione;
-
-    /**
-     *
-     */
     @FXML private TextField TF_CI_cfRegistrazione;
-
-    /**
-     *
-     */
     @FXML private TextField TF_CI_usernameRegistrazione;
-
-    /**
-     *
-     */
     @FXML private TextField TF_CI_emailRegistrazione;
-
-    /**
-     *
-     */
     @FXML private TextField TF_CI_idvaccinazioneRegistrazione;
 
     //PasswordField per l'acquisizione della password
-    /**
-     *
-     */
     @FXML private PasswordField TF_CI_password1;
-
-    /**
-     *
-     */
     @FXML private PasswordField TF_CI_password2;
-
-    /**
-     *
-     */
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
-
-    /**
-     *
-     */
     @FXML private ProgressIndicator PI_CI_loadUsername;
 
 
@@ -117,19 +57,19 @@ public class CIRegistrazioneController {
     }
 
     /**
-     *
      * @param actionEvent
      */
     public void registraCittadino(ActionEvent actionEvent) {
-        String nome = TF_CI_nomeRegistrazione.getText();
-        String cognome = TF_CI_cognomeRegistrazione.getText();
-        String cf = TF_CI_cfRegistrazione.getText();
-        String email = TF_CI_emailRegistrazione.getText();
-        String user = TF_CI_usernameRegistrazione.getText();
-        String password = TF_CI_password1.getText();
-        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
-        Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        client.registraCittadino(cittadino);
+        String nome = TF_CI_nomeRegistrazione.getText().trim();
+        String cognome = TF_CI_cognomeRegistrazione.getText().trim();
+        String cf = TF_CI_cfRegistrazione.getText().trim();
+        String email = TF_CI_emailRegistrazione.getText().trim();
+        String user = TF_CI_usernameRegistrazione.getText().trim();
+        String password = TF_CI_password1.getText().trim();
+        //TODO CONTROLLO VALIDITA' UUID
+        //UUID idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
+        //Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+        //client.registraCittadino(cittadino);
     }
 
     /**

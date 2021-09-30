@@ -19,6 +19,10 @@ public class CentriVaccinali extends Application {
     private final static Double w_cvlogin = 390.0;
     private final static Double h_cvchange = 565.0;
     private final static Double w_cvchange = 390.0;
+    private final static Double h_cihome = 565.0;
+    private final static Double w_cihome = 390.0;
+    private final static Double h_ciregistrazione = 390.0;
+    private final static Double w_ciregistrazione = 640.0;
 
     private static Scene scene;
     private static Stage stage;
@@ -49,6 +53,8 @@ public class CentriVaccinali extends Application {
                 CIHomeController cihc = fxmlLoader.getController();
                 cihc.initParameter(client);
                 stage.setTitle("Progetto LaboratorioB");
+                height = h_cihome;
+                width = w_cihome;
                 break;
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
@@ -81,8 +87,8 @@ public class CentriVaccinali extends Application {
                 CIRegistrazioneController circ = fxmlLoader.getController();
                 circ.initParameter(client);
                 stage.setTitle("Registrazione cittadino");
-                width = 390.0;
-                height = 640.0;
+                width = h_ciregistrazione;
+                height = w_ciregistrazione;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;

@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
@@ -21,44 +22,19 @@ public class CVLoginController {
             "un cittadino che si è vaccinato nel proprio sito";
 
     @FXML private Text T_CV_infoLogin;
-
-    /**
-     *
-     */
     @FXML private TextField L_CV_username;
-
-    /**
-     *
-     */
     @FXML private PasswordField L_CV_password;
-
-    /**
-     *
-     */
     @FXML private ProgressIndicator PI_CV_load;
+    @FXML private FontIcon FI_CV_info;
 
-
-    @FXML private DialogPane DP_CV_info;
-
-    /**
-     *
-     */
     private ClientCV client;
     private final CssHelper cssHelper = CssHelper.getInstance();
 
-    /**
-     *
-     * @param client
-     */
     public void initParameter(ClientCV client) {
         this.client = client;
         T_CV_infoLogin.setText(INFO);
     }
 
-    /**
-     *
-     * @param event
-     */
     @FXML
     void autenticazioneOperatore(ActionEvent event) {
         String username = L_CV_username.getText().trim();
@@ -88,10 +64,6 @@ public class CVLoginController {
         cssHelper.toDefault((TextInputControl) ke.getSource());
     }
 
-    /**
-     *
-     * @param status
-     */
     public void authStatus(Boolean status) {
         PI_CV_load.setVisible(false);
         if(status) {
@@ -100,24 +72,13 @@ public class CVLoginController {
             System.err.println("[CVLogin] AUTH ERROR");
         }
     }
-    /**
-     *
-     * @param mouseEvent
-     */
+
     public void BackTo(MouseEvent mouseEvent) {
         System.out.println("Indietro");
         CentriVaccinali.setRoot("Avvio");
     }
 
-
-    /**
-     * @param mouseEvent
-     */
-    public void ShowInfo(MouseEvent mouseEvent) {
-        if(T_CV_infoLogin.isVisible()) {
-            T_CV_infoLogin.setVisible(false);
-        } else {
-            T_CV_infoLogin.setVisible(true);
-        }
+    @FXML public void ShowInfo() {
+            T_CV_infoLogin.setVisible(!T_CV_infoLogin.isVisible());
     }
 }
