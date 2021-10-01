@@ -1,9 +1,14 @@
 package it.uninsubria.centrivaccinali.database;
 
+import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Indirizzo;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -152,6 +157,26 @@ public class Database {
             return 7;
         }
         return result;
+    }
+
+    public List<CentroVaccinale> getCentriVaccinali(String x){
+        List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM public.\"InfoCV\" WHERE nome_centro like ?");
+            pstmt.setString(1, x + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                arrayNomeCentri.add(
+                        new CentroVaccinale(rs.getString("nome_centro"),
+                                new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")), rs.getString("nome"),
+                                        rs.getString("civico"), rs.getString("comune"), rs.getString("provincia"),
+                                        rs.getInt("cap")), TipologiaCentro.valueOf(rs.getString("tipologia"))));
+            }
+            return arrayNomeCentri;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public int registraCittadino(Cittadino c) {

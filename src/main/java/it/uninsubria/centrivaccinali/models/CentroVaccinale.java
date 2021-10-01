@@ -97,4 +97,13 @@ public class CentroVaccinale implements Serializable {
     public void setTipologia(TipologiaCentro tipologia) {
         this.tipologia = tipologia;
     }
+
+    @Override
+    public String toString() {
+        return "CentroVaccinale{" +
+                "nome='" + nome + '\'' +
+                ", indirizzo=" + indirizzo +
+                ", tipologia=" + tipologia +
+                '}';
+    }
 }
