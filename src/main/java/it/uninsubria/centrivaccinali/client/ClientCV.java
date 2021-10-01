@@ -1,6 +1,8 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
+import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
@@ -11,6 +13,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 /**
  *
@@ -28,6 +31,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static Registry reg = null;
     private static ServerCVInterface server=null;
     private CVLoginController sourceCVlogin;
+    private CVRegistraCittadinoController sourceCVRegCittadino;
+
 
     public static void setRegistry(Registry reg) {
         ClientCV.reg = reg;
@@ -41,7 +46,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         //si occupa il thread di ottenere la connessione
         ConnectionThread connChecker = new ConnectionThread();
     }
-
 
     public void autenticaOperatore(CVLoginController source, String username, String password) {
         this.sourceCVlogin = source;
@@ -66,7 +70,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             printout("AUTH KO");
         }
         sourceCVlogin.authStatus(ritorno);
+    }
 
+    @Override
+    public void risultato(List<CentroVaccinale> listaCentri) throws RemoteException {
+        sourceCVRegCittadino.risultato(listaCentri);
     }
 
     public int registraCentroVaccinale(CentroVaccinale cv) {
@@ -78,11 +86,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    private void printout(String s) {
-        System.out.println("[CLIENT_CV] " + s);
-    }
-
     public void registraCittadino(Cittadino cittadino) throws RemoteException {
         server.registraCittadino(cittadino);
+    }
+
+    public void cercaCentrovaccinale(CVRegistraCittadinoController cvrcc, String testo) throws RemoteException {
+        sourceCVRegCittadino = cvrcc;
+        server.cercaCentroVaccinale(this, testo);
+    }
+
+    private void printout(String s) {
+        System.out.println("[CLIENT_CV] " + s);
     }
 }

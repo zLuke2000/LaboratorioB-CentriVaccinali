@@ -163,7 +163,7 @@ public class Database {
         List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * FROM public.\"InfoCV\" WHERE nome_centro like ?");
-            pstmt.setString(1, x + "%");
+            pstmt.setString(1, "%" + x + "%");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
                 arrayNomeCentri.add(

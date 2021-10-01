@@ -3,6 +3,8 @@ package it.uninsubria.centrivaccinali.util;
 import it.uninsubria.centrivaccinali.enumerator.Province;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
+
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,8 +30,8 @@ public class ControlloParametri {
         return instance;
     }
 
-    public boolean testoSemplice(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
+    public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
+        rPattern = Pattern.compile("[\\D\\d]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -87,8 +89,10 @@ public class ControlloParametri {
     }
 
     public boolean provincia(TextInputControl tic) {
-        rPattern = Pattern.compile("[A-Z]{2}");
+        rPattern = Pattern.compile("[A-Za-z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
+        tic.setText(tic.getText().toUpperCase(Locale.ROOT));
+        tic.positionCaret(tic.getText().length());
         if(rMatcher.matches()) {
             try {
                 Province.valueOf(tic.getText().trim());
@@ -104,7 +108,7 @@ public class ControlloParametri {
         }
     }
 
-    public boolean Password(TextInputControl tic) {
+    public boolean password(TextInputControl tic) {
         if(tic.getText().trim().length() <= 0) {
             return false;
         }
@@ -119,7 +123,7 @@ public class ControlloParametri {
         }
     }
 
-    public boolean CodiceFiscale(TextInputControl tic) {
+    public boolean codiceFiscale(TextInputControl tic) {
         if(tic.getText().trim().length() > 16) {
             return false;
         }  else {

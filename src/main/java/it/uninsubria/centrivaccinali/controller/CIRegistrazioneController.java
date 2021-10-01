@@ -64,7 +64,11 @@ public class CIRegistrazioneController {
         String password = TF_CI_password1.getText().trim();
         long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        client.registraCittadino(cittadino);
+        try {
+            client.registraCittadino(cittadino);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -127,19 +131,19 @@ public class CIRegistrazioneController {
     @FXML public void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
         if (TF_CI_nomeRegistrazione.equals(key)) {
-            cp.testoSemplice(TF_CI_nomeRegistrazione, 1, 50);
+            cp.testoSempliceConNumeri(TF_CI_nomeRegistrazione, 1, 50);
         }
         if (TF_CI_cognomeRegistrazione.equals(key)) {
-            cp.testoSemplice(TF_CI_cognomeRegistrazione, 1, 50);
+            cp.testoSempliceSenzaNumeri(TF_CI_cognomeRegistrazione, 1, 50);
         }
         if(TF_CI_cfRegistrazione.equals(key)) {
-            cp.CodiceFiscale(TF_CI_cfRegistrazione);
+            cp.codiceFiscale(TF_CI_cfRegistrazione);
         }
         if(TF_CI_emailRegistrazione.equals(key)) {
             cp.email(TF_CI_emailRegistrazione);
         }
         if(TF_CI_password1.equals(key)) {
-            cp.Password(TF_CI_password1);
+            cp.password(TF_CI_password1);
         }
         if(TF_CI_password2.equals(key)) {
             cp.checkSamePassword(TF_CI_password1, TF_CI_password2);

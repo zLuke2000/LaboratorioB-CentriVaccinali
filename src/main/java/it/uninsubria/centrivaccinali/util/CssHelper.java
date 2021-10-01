@@ -1,6 +1,6 @@
 package it.uninsubria.centrivaccinali.util;
 
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
@@ -17,7 +17,7 @@ public class CssHelper {
         return instance;
     }
 
-    public void toError(TextInputControl tic, Tooltip tooltip) {
+    public void toError(Control tic, Tooltip tooltip) {
         toDefault(tic);
         tic.getStyleClass().add("field-error");
         if(tooltip != null) {
@@ -33,7 +33,7 @@ public class CssHelper {
      * Rimuove il tooltip di errore
      * @param tic parametro generico per molteplici <code>text input controls</code>
      */
-    public void toValid(TextInputControl tic) {
+    public void toValid(Control tic) {
         toDefault(tic);
         tic.getStyleClass().add("field-valid");
     }
@@ -42,7 +42,7 @@ public class CssHelper {
      * Reimposta a default il contorno della casella passata come parametro
      * @param tic parametro generico per molteplici <code>text input controls</code>
      */
-    public void toDefault(TextInputControl tic) {
+    public void toDefault(Control tic) {
         tic.getStyleClass().remove("field-error");
         tic.getStyleClass().remove("field-valid");
         tic.setTooltip(null);

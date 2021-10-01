@@ -65,7 +65,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
                 e.printStackTrace();
                 System.exit(-1);
             }
-            db.getNomeCentriVaccinali("");
+            db.getCentriVaccinali("");
         }
     }
 
@@ -93,5 +93,17 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     @Override
     public void registraCittadino(Cittadino cittadino) {
         db.registraCittadino(cittadino);
+    }
+
+    @Override
+    public void cercaCentroVaccinale(ClientCVInterface client, String testo) throws RemoteException {
+        new Thread(() -> {
+            try {
+                System.out.println("CERCO: " + testo);
+                client.risultato(db.getCentriVaccinali(testo));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

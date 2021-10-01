@@ -167,13 +167,6 @@ public class Indirizzo implements Serializable {
 
     @Override
     public String toString() {
-        return "Indirizzo{" +
-                "qualificatore=" + qualificatore +
-                ", nome='" + nome + '\'' +
-                ", civico='" + civico + '\'' +
-                ", comune='" + comune + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", cap=" + cap +
-                '}';
+        return (String.join(" ", qualificatore.toString(), nome, civico) + ", " + String.join(" ", comune, String.valueOf(cap), ("(" + provincia + ")")));
     }
 }
