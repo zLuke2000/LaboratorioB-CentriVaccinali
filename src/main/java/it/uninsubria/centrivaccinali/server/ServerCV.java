@@ -105,4 +105,15 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }).start();
     }
+
+    @Override
+    public void getComuni(ClientCVInterface client, String provincia){
+        new Thread(() -> {
+            try {
+                client.risultato(db.getComuni(provincia), null, -2);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
 }
