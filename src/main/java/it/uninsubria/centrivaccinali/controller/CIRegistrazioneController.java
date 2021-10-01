@@ -149,7 +149,7 @@ public class CIRegistrazioneController {
             cp.checkSamePassword(TF_CI_password1, TF_CI_password2);
         }
         if(TF_CI_usernameRegistrazione.equals(key)) {
-            cp.testoSemplice(TF_CI_usernameRegistrazione, 1, 16);
+            cp.testoSempliceConNumeri(TF_CI_usernameRegistrazione, 1, 16);
         }
         if(TF_CI_idvaccinazioneRegistrazione.equals(key)) {
             cp.numeri(TF_CI_idvaccinazioneRegistrazione, 16, 16);
