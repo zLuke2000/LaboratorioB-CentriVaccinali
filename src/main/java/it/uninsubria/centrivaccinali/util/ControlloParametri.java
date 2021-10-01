@@ -42,6 +42,18 @@ public class ControlloParametri {
         }
     }
 
+    public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
+        rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
+        rMatcher = rPattern.matcher(tic.getText().trim());
+        if(rMatcher.matches()) {
+            cssHelper.toValid(tic);
+            return true;
+        } else {
+            cssHelper.toError(tic, new Tooltip("immettere da " + minChar + " a " + maxChar + " caratteri"));
+            return false;
+        }
+    }
+
     public boolean numeri(TextInputControl tic, int minChar, int maxChar) {
         if(minChar == maxChar) {
             rPattern = Pattern.compile("[\\d]{" + minChar + "}");

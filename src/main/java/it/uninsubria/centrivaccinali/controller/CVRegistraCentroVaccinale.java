@@ -46,7 +46,7 @@ public class CVRegistraCentroVaccinale {
                 } else if(ke.getSource().equals(TF_civico)) {
                         cp.numeroCivico(TF_civico);
                 } else if(ke.getSource().equals(TF_comune)) {
-                        cp.testoSemplice(TF_comune, 3, 50);
+                        cp.testoSempliceSenzaNumeri(TF_comune, 3, 50);
                 } else if(ke.getSource().equals(TF_provincia)) {
                         cp.provincia(TF_provincia);
                 } else if(ke.getSource().equals(TF_cap)) {
