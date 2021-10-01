@@ -77,7 +77,7 @@ public class CentriVaccinali extends Application {
                 CVRegistraCittadinoController cvrcc = fxmlLoader.getController();
                 cvrcc.initParameter(client);
                 width = 600.0;
-                height = 580.0;
+                height = 620.0;
                 break;
             case "CI_registrazione":
                 CIRegistrazioneController circ = fxmlLoader.getController();

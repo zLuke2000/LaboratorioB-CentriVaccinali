@@ -1,17 +1,17 @@
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +22,7 @@ public class ControlloParametri {
 
     private Pattern rPattern;
     private Matcher rMatcher;
-    private static ArrayList<String> listaProvince=new ArrayList<>();
+    private static ArrayList<String> listaProvince = new ArrayList<>();
 
     private ControlloParametri() {}
 
@@ -31,17 +31,22 @@ public class ControlloParametri {
             instance = new ControlloParametri();
             //salva le province sulla lista dal file .json
             try {
-                JSONParser parser=new JSONParser();
-                JSONArray a = (JSONArray) parser.parse(new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("province.json")).getPath()));
-                for (Object o: a){
-                    String s= (String) o;
-                   listaProvince.add(s);
+                JSONParser parser = new JSONParser();
+                FileReader fr = new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("province.json")).getPath());
+                JSONArray a = (JSONArray)parser.parse(fr);
+                for (Object o: a) {
+                   listaProvince.add(o.toString());
                 }
+                fr.close();
             } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
         }
         return instance;
+    }
+
+    public ArrayList<String> getProvince() {
+        return  listaProvince;
     }
 
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
@@ -161,6 +166,16 @@ public class ControlloParametri {
                 cssHelper.toError(tic, new Tooltip("Codice fiscale non valido"));
                 return false;
             }
+        }
+    }
+
+    public boolean data(DatePicker dp) {
+        if(dp.getEditor().getText().isBlank()) {
+            cssHelper.toError(dp, new Tooltip("Selezionare la data"));
+            return true;
+        } else {
+            cssHelper.toValid(dp);
+            return false;
         }
     }
 

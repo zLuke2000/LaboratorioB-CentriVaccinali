@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
@@ -116,18 +117,6 @@ public class CIRegistrazioneController {
                 }
     }
 
-    /*
-    public void realtimeCheckidVaccinazione(KeyEvent keyEvent) {
-        if(client.checkIdVaccinazione(TF_CI_idvaccinazioneRegistrazione.getText().trim()) == 1) {
-            csshelper.toValid(TF_CI_idvaccinazioneRegistrazione);
-            PI_CI_loadIdVaccinazione.setVisible(false);
-        } else {
-            csshelper.toError(TF_CI_idvaccinazioneRegistrazione, new Tooltip("id non presente"));
-            PI_CI_loadIdVaccinazione.setVisible(true);
-        }
-    }
-     */
-
     @FXML public void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
         if (TF_CI_nomeRegistrazione.equals(key)) {
@@ -156,15 +145,5 @@ public class CIRegistrazioneController {
         }
     }
 
-    /*
-    public void realtimeUsernameCheck(KeyEvent keyEvent) {
-        if(client.checkUsername(TF_CI_usernameRegistrazione.getText().trim()) == 1) {
-            csshelper.toValid(TF_CI_usernameRegistrazione);
-            PI_CI_loadUsername.setVisible(false);
-        } else {
-            csshelper.toError(TF_CI_usernameRegistrazione, new Tooltip("Username già presente"));
-            PI_CI_loadUsername.setVisible(true);
-        }
-    }
-    */
+    @FXML void BackTo() { CentriVaccinali.setRoot("CI_home"); }
 }

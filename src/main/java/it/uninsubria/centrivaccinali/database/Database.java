@@ -5,7 +5,6 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +20,6 @@ public class Database {
     private static PreparedStatement pstmt;
     private static Statement stmt;
 
-    /**
-     *
-     */
     public Database() {}
 
     /**
@@ -142,41 +138,22 @@ public class Database {
 
         // Creo la nuova tabella
         try {
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
-                    "nomeCentro character varying(50) NOT NULL, " +
-                    "nome character varying(50) NOT NULL, " +
-                    "cognome character varying(50) NOT NULL, " +
-                    "codiceFiscale character varying(16) NOT NULL, " +
-                    "dataSomministrazione date NOT NULL, " +
-                    "vaccino character varying(16) NOT NULL, " +
-                    "idVaccinazione bigint NOT NULL, " +
-                    "PRIMARY KEY (codiceFiscale)" +
-                    "UNIQUE(idVaccinazione))");
+            // TODO da sistemare
+            stmt.executeUpdate("CREATE TABLE tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
+                    "nome_centro varchar(50) NOT NULL, " +
+                    "nome varchar(50) NOT NULL, " +
+                    "cognome varchar(50) NOT NULL, " +
+                    "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
+                    "data_somministrazione date NOT NULL, " +
+                    "vaccino varchar(16) NOT NULL, " +
+                    "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
         } catch (SQLException e) {
             e.printStackTrace();
             return 7;
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
         }
         return result;
-    }
-
-    public List<CentroVaccinale> getCentriVaccinali(String x){
-        List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
-        try {
-            pstmt = conn.prepareStatement("SELECT * FROM public.\"InfoCV\" WHERE nome_centro like ?");
-            pstmt.setString(1, "%" + x + "%");
-            ResultSet rs = pstmt.executeQuery();
-            while(rs.next()) {
-                arrayNomeCentri.add(
-                        new CentroVaccinale(rs.getString("nome_centro"),
-                                new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")), rs.getString("nome"),
-                                        rs.getString("civico"), rs.getString("comune"), rs.getString("provincia"),
-                                        rs.getInt("cap")), TipologiaCentro.valueOf(rs.getString("tipologia"))));
-            }
-            return arrayNomeCentri;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public int registraCittadino(Cittadino c) {
@@ -189,11 +166,66 @@ public class Database {
             pstmt.setString(4, c.getEmail());
             pstmt.setString(5, c.getUserid());
             pstmt.setString(6, c.getPassword());
-            pstmt.setObject(7, c.getId_vaccino());
+            pstmt.setLong(7, c.getId_vaccino());
             return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    /**
+     * FUNZIONANTE
+     * @param provincia
+     * @return
+     */
+    public List<String> getComuni(String provincia){
+        List<String> arrayComuni = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT comune " +
+                                              "FROM public.\"IndirizzoCV\" " +
+                                              "WHERE provincia = ? " +
+                                              "ORDER BY comune");
+            pstmt.setString(1, provincia);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                arrayComuni.add(rs.getString("comune"));
+            }
+            return arrayComuni;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * FUNZIONANTE
+     * @param comune
+     * @return
+     */
+    public List<CentroVaccinale> getCentriVaccinali(String comune){
+        List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM public.\"InfoCV\" " +
+                    "WHERE comune = ? " +
+                    "ORDER BY nome_centro");
+            pstmt.setString(1, comune);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                arrayNomeCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
+                        new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
+                                rs.getString("nome"),
+                                rs.getString("civico"),
+                                rs.getString("comune"),
+                                rs.getString("provincia"),
+                                rs.getInt("cap")),
+                        TipologiaCentro.valueOf(rs.getString("tipologia"))));
+            }
+            return arrayNomeCentri;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

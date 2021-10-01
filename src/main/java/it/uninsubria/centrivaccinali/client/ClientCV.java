@@ -18,24 +18,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Optional;
 
-/**
- *
- */
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-
-    /**
-     *
-     */
     private static Registry reg = null;
     private static ServerCVInterface server=null;
     private CVLoginController sourceCVlogin;
     private CVRegistraCittadinoController sourceCVRegCittadino;
-
 
     private ConnectionThread connThread;
 
@@ -79,8 +68,14 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     @Override
-    public void risultato(List<CentroVaccinale> listaCentri) throws RemoteException {
-        sourceCVRegCittadino.risultato(listaCentri);
+    public void risultato(List<String> resultComuni, List<CentroVaccinale> resultCentri, int resultRegistrazione) throws RemoteException {
+        if(resultComuni != null) {
+            sourceCVRegCittadino.risultatoComuni(resultComuni);
+        } else if(resultCentri != null) {
+            sourceCVRegCittadino.risultatoCentri(resultCentri);
+        } else if(resultRegistrazione != -1) {
+            sourceCVRegCittadino.risultatoRegistrazione(resultRegistrazione);
+        }
     }
 
     public int registraCentroVaccinale(CentroVaccinale cv) {
@@ -97,9 +92,24 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         server.registraCittadino(cittadino);
     }
 
-    public void cercaCentrovaccinale(CVRegistraCittadinoController cvrcc, String testo) throws RemoteException {
+    public void getComuni(CVRegistraCittadinoController cvrcc, String provincia) {
         sourceCVRegCittadino = cvrcc;
-        server.cercaCentroVaccinale(this, testo);
+        try {
+            server.getComuni(this, provincia);
+        } catch (RemoteException e) {
+            System.err.println("[ClientCV] impossibile effettuare la ricerca dei comuni");
+            lanciaPopup();
+        }
+    }
+
+    public void getCentri(CVRegistraCittadinoController cvrcc, String comune) {
+        sourceCVRegCittadino = cvrcc;
+        try {
+            server.getCentri(this, comune);
+        } catch (RemoteException e) {
+            System.err.println("[ClientCV] Impossibile effettuare la ricerca dei centri");
+            lanciaPopup();
+        }
     }
 
     private void printout(String s) {

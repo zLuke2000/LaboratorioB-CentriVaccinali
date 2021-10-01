@@ -96,11 +96,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void cercaCentroVaccinale(ClientCVInterface client, String testo) throws RemoteException {
+    public void getCentri(ClientCVInterface client, String comuni) {
         new Thread(() -> {
             try {
-                System.out.println("CERCO: " + testo);
-                client.risultato(db.getCentriVaccinali(testo));
+                client.risultato(null, db.getCentriVaccinali(comuni), -2);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
