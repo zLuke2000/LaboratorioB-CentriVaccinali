@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import it.uninsubria.centrivaccinali.util.AlertConnection;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -44,8 +45,13 @@ public class ConnectionThread extends Thread{
                     alert.setHeaderText("Errore");
                     alert.setContentText("Non è stato possibile connettersi al server, riconnettere?");
                     Optional<ButtonType> result = alert.showAndWait();
-                    if (result.isPresent()){
+                    if (result.get()==ButtonType.YES){
+                        //fai ripartire il thread per provare ad
+                        // ottenere la connessione
                         this.run();
+                    }
+                    else {
+                        alert.close();
                     }
                 });
             }
@@ -55,7 +61,7 @@ public class ConnectionThread extends Thread{
         try {
             reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
             return true;
-        } catch (Exception e) {
+        } catch (RemoteException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");
             return false;
         }
