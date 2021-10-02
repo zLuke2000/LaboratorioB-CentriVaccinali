@@ -49,11 +49,11 @@
             <InnerShadow />
          </effect>
       </Separator>
-      <ComboBox fx:id="CI_CB_SceltaRicerca" layoutX="375.0" layoutY="119.0" prefWidth="150.0" promptText="Scegli tipo di ricerca" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="125.0" />
+      <ComboBox fx:id="CI_CB_SceltaRicerca" layoutX="375.0" layoutY="119.0" onAction="#changeResearch" prefWidth="150.0" promptText="Scegli tipo di ricerca" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="125.0" />
       <TextField fx:id="CI_TF_ricercaNomeCV" layoutX="370.0" layoutY="288.0" promptText="Inserisci nome centro vaccinale" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="288.0" />
       <ComboBox fx:id="CI_CB_ricercaTipologia" layoutX="375.0" layoutY="288.0" prefWidth="150.0" promptText="Tipologia centro" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="288.0" />
       <TextField fx:id="CI_TF_ricercaComune" layoutX="539.0" layoutY="298.0" promptText="Comune" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="288.0" />
-      <Button layoutX="423.0" layoutY="393.0" mnemonicParsing="false" onAction="#cercaCentroVaccinale" styleClass="buttonSmall" text="Cerca" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="395.0">
+      <Button fx:id="CI_B_ricerca" layoutX="423.0" layoutY="393.0" mnemonicParsing="false" onAction="#cercaCentroVaccinale" styleClass="buttonSmall" text="Cerca" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="395.0">
          <graphic>
             <FontIcon iconLiteral="bx-search-alt-2" iconSize="20" />
          </graphic>

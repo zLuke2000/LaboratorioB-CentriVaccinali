@@ -15,6 +15,8 @@ public class CentriVaccinali extends Application {
 
     private final static Double h_avvio = 300.0;
     private final static Double w_avvio = 580.0;
+    private final static Double h_dashboard = 600.0;
+    private final static Double w_dashboard = 900.0;
     private final static Double w_standard = 390.0;
     private final static Double h_standard = 565.0;
 
@@ -85,7 +87,11 @@ public class CentriVaccinali extends Application {
                 height = 640.0;
                 break;
             case "CI_dashboard":
+                CIDashboardController cidc = fxmlLoader.getController();
+                cidc.initParameter(client);
                 stage.setTitle("Area Cittadino");
+                height = h_dashboard;
+                width = w_avvio;
                 break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
