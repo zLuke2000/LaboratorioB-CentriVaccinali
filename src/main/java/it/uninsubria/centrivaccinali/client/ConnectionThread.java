@@ -1,7 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import it.uninsubria.centrivaccinali.util.AlertConnection;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -35,19 +35,23 @@ public class ConnectionThread extends Thread{
                     System.out.println("[ConnectionThread] Connessione al server eseguita");
                     break;
                 }
-                //mySleep();
+                mySleep();
             }
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
-
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERRORE DI CONNESSIONE");
                     alert.setHeaderText("Errore");
                     alert.setContentText("Non è stato possibile connettersi al server, riconnettere?");
                     Optional<ButtonType> result = alert.showAndWait();
-                    if (result.isPresent()){
+                    if (result.get()==ButtonType.YES){
+                        //fai ripartire il thread per provare ad
+                        // ottenere la connessione
                         this.run();
+                    }
+                    else {
+                        alert.close();
                     }
                 });
             }
@@ -56,11 +60,9 @@ public class ConnectionThread extends Thread{
     private boolean getRegistry(){
         try {
             reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
-            System.out.println(reg);
             return true;
-        } catch (Exception e) {
-            System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI ");
-            //e.printStackTrace();
+        } catch (RemoteException e) {
+            System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");
             return false;
         }
     }
@@ -71,7 +73,6 @@ public class ConnectionThread extends Thread{
             return true;
         } catch (RemoteException | NotBoundException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
-            //e.printStackTrace();
             return false;
         }
     }

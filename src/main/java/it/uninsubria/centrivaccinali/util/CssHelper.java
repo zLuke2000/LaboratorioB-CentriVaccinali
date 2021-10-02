@@ -1,6 +1,6 @@
 package it.uninsubria.centrivaccinali.util;
 
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
@@ -11,19 +11,19 @@ public class CssHelper {
     private CssHelper(){  }
 
     public static CssHelper getInstance(){
-        if(instance==null){
-            instance=new CssHelper();
+        if(instance == null){
+            instance = new CssHelper();
         }
         return instance;
     }
 
-    public void toError(TextInputControl tic, Tooltip tooltip) {
-        toDefault(tic);
-        tic.getStyleClass().add("field-error");
+    public void toError(Control c, Tooltip tooltip) {
+        toDefault(c);
+        c.getStyleClass().add("field-error");
         if(tooltip != null) {
             tooltip.getStyleClass().add("tooltip-error");
             tooltip.setShowDelay(new Duration(0));
-            tic.setTooltip(tooltip);
+            c.setTooltip(tooltip);
         }
     }
 
@@ -31,20 +31,20 @@ public class CssHelper {
      * Imposta a "verde" il contorno della casella passata come parametro
      * Resetta in automatico a default in caso fosse "rosso"
      * Rimuove il tooltip di errore
-     * @param tic parametro generico per molteplici <code>text input controls</code>
+     * @param c parametro generico per molteplici <code>text input controls</code>
      */
-    public void toValid(TextInputControl tic) {
-        toDefault(tic);
-        tic.setTooltip(null);
-        tic.getStyleClass().add("field-valid");
+    public void toValid(Control c) {
+        toDefault(c);
+        c.getStyleClass().add("field-valid");
     }
 
     /**
      * Reimposta a default il contorno della casella passata come parametro
-     * @param tic parametro generico per molteplici <code>text input controls</code>
+     * @param c parametro generico per molteplici <code>text input controls</code>
      */
-    public void toDefault(TextInputControl tic) {
-        tic.getStyleClass().remove("field-error");
-        tic.getStyleClass().remove("field-valid");
+    public void toDefault(Control c) {
+        c.getStyleClass().remove("field-error");
+        c.getStyleClass().remove("field-valid");
+        c.setTooltip(null);
     }
 }

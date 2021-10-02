@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.7.2</junit.version>
+        <junit.version>5.8.1</junit.version>
     </properties>
 
     <dependencies>
@@ -79,6 +79,12 @@
             <artifactId>ikonli-boxicons-pack</artifactId>
             <version>12.2.0</version>
         </dependency>
+        <!--JSON-->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
         <!-- TEST -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -114,8 +120,11 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.uninsubria.centrivaccinali/it.uninsubria.centrivaccinali.CentriVaccinali
-                            </mainClass>
+                            <mainClass>it.uninsubria.centrivaccinali/it.uninsubria.centrivaccinali.CentriVaccinali</mainClass>
+                            <options>
+                                <option>--add-exports</option>
+                                <option>javafx.base/com.sun.javafx.event=org.controlsfx.controls</option>
+                            </options>
                         </configuration>
                     </execution>
                 </executions>

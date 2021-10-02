@@ -8,10 +8,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ServerCVInterface extends Remote{
-    // void registraVaccinato(Vaccinato cittadinovaccinato) throws RemoteException;
-    // void registraCentroVaccinale(CentroVaccinale) throws RemoteException;
-
     void authOperatore(ClientCVInterface clientCV, String username, String password) throws RemoteException;
     int registraCentro(CentroVaccinale cv) throws RemoteException;
     void registraCittadino(Cittadino cittadino) throws RemoteException;
+    void getComuni(ClientCVInterface client, String provincia) throws RemoteException;
+    void getCentri(ClientCVInterface client, String comune) throws RemoteException;
 }

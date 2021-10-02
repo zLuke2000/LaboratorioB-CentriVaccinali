@@ -76,8 +76,10 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                width=600.0;
-                height=560.0;
+                CVRegistraCittadinoController cvrcc = fxmlLoader.getController();
+                cvrcc.initParameter(client);
+                width = 600.0;
+                height = 620.0;
                 break;
             case "CI_registrazione":
                 CIRegistrazioneController circ = fxmlLoader.getController();

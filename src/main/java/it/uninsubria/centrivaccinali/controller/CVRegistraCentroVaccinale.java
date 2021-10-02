@@ -40,13 +40,13 @@ public class CVRegistraCentroVaccinale {
         @FXML void realtimeCheck(KeyEvent ke) {
                 //TODO controllo realtime della provincia
                 if(ke.getSource().equals(TF_nome)) {
-                        cp.testoSemplice(TF_nome, 6, 50);
+                        cp.testoSempliceConNumeri(TF_nome, 6, 50);
                 } else if(ke.getSource().equals(TF_indirizzo)) {
-                        cp.testoSemplice(TF_indirizzo, 3, 50);
+                        cp.testoSempliceSenzaNumeri(TF_indirizzo, 3, 50);
                 } else if(ke.getSource().equals(TF_civico)) {
                         cp.numeroCivico(TF_civico);
                 } else if(ke.getSource().equals(TF_comune)) {
-                        cp.testoSemplice(TF_comune, 3, 50);
+                        cp.testoSempliceSenzaNumeri(TF_comune, 3, 50);
                 } else if(ke.getSource().equals(TF_provincia)) {
                         cp.provincia(TF_provincia);
                 } else if(ke.getSource().equals(TF_cap)) {
@@ -68,7 +68,7 @@ public class CVRegistraCentroVaccinale {
                 System.out.println("1");
 
                 CentroVaccinale centroVaccinale;
-                if(cp.testoSemplice(TF_nome, 6, 50) & cp.testoSemplice(TF_indirizzo, 3, 50) & cp.numeroCivico(TF_civico) & cp.testoSemplice(TF_comune, 3, 50) & cp.provincia(TF_provincia) & cp.numeri(TF_cap, 5, 5)) {
+                if(cp.testoSempliceConNumeri(TF_nome, 6, 50) & cp.testoSempliceSenzaNumeri(TF_indirizzo, 3, 50) & cp.numeroCivico(TF_civico) & cp.testoSempliceSenzaNumeri(TF_comune, 3, 50) & cp.provincia(TF_provincia) & cp.numeri(TF_cap, 5, 5)) {
                         System.out.println("2");
                         TipologiaCentro tipologiaSelezionata;
                         if(RB_ospedaliero.isSelected()) {

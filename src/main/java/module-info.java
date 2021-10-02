@@ -2,6 +2,7 @@ module it.uninsubria.centrivaccinali {
     requires javafx.controls;
     requires javafx.fxml;
 
+    requires javafx.controls;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.bpmn;
@@ -10,10 +11,11 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.subway;
     requires org.kordamp.ikonli.fluentui;
     requires org.kordamp.ikonli.boxicons;
+
+    requires json.simple;
     requires java.sql;
-    requires org.json;
     requires java.rmi;
-    
+
     exports it.uninsubria.centrivaccinali;
     opens it.uninsubria.centrivaccinali to javafx.fxml;
     exports it.uninsubria.centrivaccinali.controller;

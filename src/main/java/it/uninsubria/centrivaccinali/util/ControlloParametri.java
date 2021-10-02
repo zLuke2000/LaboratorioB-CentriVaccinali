@@ -1,34 +1,67 @@
 package it.uninsubria.centrivaccinali.util;
 
-import it.uninsubria.centrivaccinali.enumerator.Province;
+import it.uninsubria.centrivaccinali.CentriVaccinali;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ControlloParametri {
 
+    private final CssHelper cssHelper = CssHelper.getInstance();
     private static ControlloParametri instance = null;
 
-    private final CssHelper cssHelper = CssHelper.getInstance();
     private Pattern rPattern;
     private Matcher rMatcher;
-    //private String infoErrorPassword = "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
-    //        "- Almeno 8 caratteri"  + "\n"
-    //        + "- Almeno una lettere maiuscola" +
-    //        "\n" + "- Almeno una lettere minuscola" + "\n" +
-    //        "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
+    private static ArrayList<String> listaProvince = new ArrayList<>();
 
     private ControlloParametri() {}
 
     public static ControlloParametri getInstance(){
         if(instance == null){
             instance = new ControlloParametri();
+            //salva le province sulla lista dal file .json
+            try {
+                JSONParser parser = new JSONParser();
+                FileReader fr = new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("province.json")).getPath());
+                JSONArray a = (JSONArray)parser.parse(fr);
+                for (Object o: a) {
+                   listaProvince.add(o.toString());
+                }
+                fr.close();
+            } catch (IOException | ParseException e) {
+                e.printStackTrace();
+            }
         }
         return instance;
     }
 
-    public boolean testoSemplice(TextInputControl tic, int minChar, int maxChar) {
+    public ArrayList<String> getProvince() {
+        return  listaProvince;
+    }
+
+    public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
+        rPattern = Pattern.compile("[\\D\\d]{" + minChar + "," + maxChar + "}");
+        rMatcher = rPattern.matcher(tic.getText().trim());
+        if(rMatcher.matches()) {
+            cssHelper.toValid(tic);
+            return true;
+        } else {
+            cssHelper.toError(tic, new Tooltip("immettere da " + minChar + " a " + maxChar + " caratteri"));
+            return false;
+        }
+    }
+
+    public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
@@ -87,24 +120,25 @@ public class ControlloParametri {
     }
 
     public boolean provincia(TextInputControl tic) {
-        rPattern = Pattern.compile("[A-Z]{2}");
+        rPattern = Pattern.compile("[A-Za-z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
+        tic.setText(tic.getText().toUpperCase(Locale.ROOT));
+        tic.positionCaret(tic.getText().length());
         if(rMatcher.matches()) {
-            try {
-                Province.valueOf(tic.getText().trim());
+            if (listaProvince.contains(tic.getText().trim())){
                 cssHelper.toValid(tic);
                 return true;
-            } catch (IllegalArgumentException iae){
-                cssHelper.toError(tic, new Tooltip("sigla inesistente"));
-                return false;
+            }
+            else {
+                cssHelper.toError(tic, new Tooltip("provincia non esistente"));
             }
         } else {
             cssHelper.toError(tic, new Tooltip("solo 2 lettere maiuscole ammesse"));
-            return false;
         }
+        return false;
     }
 
-    public boolean Password(TextInputControl tic) {
+    public boolean password(TextInputControl tic) {
         if(tic.getText().trim().length() <= 0) {
             return false;
         }
@@ -119,7 +153,7 @@ public class ControlloParametri {
         }
     }
 
-    public boolean CodiceFiscale(TextInputControl tic) {
+    public boolean codiceFiscale(TextInputControl tic) {
         if(tic.getText().trim().length() > 16) {
             return false;
         }  else {
@@ -132,6 +166,16 @@ public class ControlloParametri {
                 cssHelper.toError(tic, new Tooltip("Codice fiscale non valido"));
                 return false;
             }
+        }
+    }
+
+    public boolean data(DatePicker dp) {
+        if(dp.getEditor().getText().isBlank()) {
+            cssHelper.toError(dp, new Tooltip("Selezionare la data"));
+            return true;
+        } else {
+            cssHelper.toValid(dp);
+            return false;
         }
     }
 
