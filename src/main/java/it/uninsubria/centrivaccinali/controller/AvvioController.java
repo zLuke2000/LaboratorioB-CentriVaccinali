@@ -3,12 +3,7 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.shape.Circle;
 
-/**
- *
- */
 public class AvvioController {
 
         /**
@@ -18,7 +13,6 @@ public class AvvioController {
          */
         @FXML
         void accediCittadino(ActionEvent event) {
-                System.out.println("Accesso cittadino");
                 CentriVaccinali.setRoot("CI_home");
         }
 
@@ -29,7 +23,6 @@ public class AvvioController {
          */
         @FXML
         void accediOperatore(ActionEvent event) {
-                System.out.println("Accesso operatore");
                 CentriVaccinali.setRoot("CV_login");
         }
 }

@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CVRegistraCittadinoController {
 
@@ -44,10 +45,11 @@ public class CVRegistraCittadinoController {
     private long idVac = 0L;
 
     @FXML void initialize() {
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmssSS");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
         String stringID = sdf.format(new Date());
-        TF_CV_idVaccino.setText(stringID);
+        stringID = stringID.substring(0, 16);
         idVac = Long.parseLong(stringID);
+        TF_CV_idVaccino.setText(stringID);
     }
 
     public void initParameter(ClientCV client) {
@@ -111,7 +113,6 @@ public class CVRegistraCittadinoController {
 
     @FXML void registraVaccinato() {
         if(cp.testoSempliceSenzaNumeri(TF_CV_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(TF_CV_cognomeCittadino, 2, 50) & cp.codiceFiscale(TF_CV_cfCittadino) & cp.data(DP_CV_datavaccino) & statoSelezione()) {
-
         }
     }
 
