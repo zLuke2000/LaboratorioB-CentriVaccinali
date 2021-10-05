@@ -186,3 +186,12 @@
 	-fx-border-width: 1;
 }
 
+.label-titleDialog {
+	-fx-font-size: 25;
+	-fx-font-family: "Times New Roman";
+}
+
+.textAreainfo {
+	-fx-background-color: TRANSPARENT;
+}
+

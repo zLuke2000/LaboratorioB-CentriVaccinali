@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<DialogPane expanded="true" styleClass="textAreainfo" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <header>
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity">
+            <children>
+                <Label layoutX="97.0" layoutY="3.0" styleClass="label-titleDialog" text="Informazione" />
+                <FontIcon iconLiteral="fltfmz-question-circle-16" iconSize="25" layoutX="268.0" layoutY="29.0" text="" />
+            </children></AnchorPane>
+    </header>
+    <content>
+        <AnchorPane disable="true">
+            <children>
+                <Label layoutX="59.0" layoutY="56.0" text="L'ID della vaccinazione è stato fornito al momento della somministrazione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children></AnchorPane>
+    </content>
+    <expandableContent>
+        <AnchorPane>
+            <children>
+            <TextArea editable="false" layoutX="14.0" layoutY="6.0" prefHeight="130.0" prefWidth="450.0" styleClass="textAreainfo" wrapText="true" />
+            </children></AnchorPane>
+    </expandableContent>
+    <buttonTypes>
+        <ButtonType fx:constant="OK" />
+    </buttonTypes>
+</DialogPane>
