@@ -2,7 +2,9 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
@@ -11,7 +13,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CVRegistraCittadinoController {
 
@@ -31,6 +35,8 @@ public class CVRegistraCittadinoController {
     @FXML private RadioButton RB_CV_astrazeneca;
     @FXML private RadioButton RB_CV_moderna;
     @FXML private RadioButton RB_CV_jj;
+    // ToggleGroup (RadioButton)
+    @FXML private ToggleGroup RadioGroup1;
     // DatePicker
     @FXML private DatePicker DP_CV_datavaccino;
     // Button
@@ -44,10 +50,11 @@ public class CVRegistraCittadinoController {
     private long idVac = 0L;
 
     @FXML void initialize() {
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmssSS");
-        String stringID = sdf.format(new Date());
-        TF_CV_idVaccino.setText(stringID);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+        String stringID = sdf.format(new java.util.Date());
+        stringID=stringID.substring(0, 16);
         idVac = Long.parseLong(stringID);
+        TF_CV_idVaccino.setText(stringID);
     }
 
     public void initParameter(ClientCV client) {
@@ -111,7 +118,24 @@ public class CVRegistraCittadinoController {
 
     @FXML void registraVaccinato() {
         if(cp.testoSempliceSenzaNumeri(TF_CV_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(TF_CV_cognomeCittadino, 2, 50) & cp.codiceFiscale(TF_CV_cfCittadino) & cp.data(DP_CV_datavaccino) & statoSelezione()) {
-
+            String nomeCentro=CB_CV_selezionaCentro.getSelectionModel().getSelectedItem();
+            String nome=TF_CV_nomeCittadino.getText();
+            String cognome=TF_CV_cognomeCittadino.getText();
+            String cf=TF_CV_cfCittadino.getText();
+            java.sql.Date data=java.sql.Date.valueOf(DP_CV_datavaccino.getValue());
+            Vaccino tipoVaccino;
+            Toggle selectedBtn=RadioGroup1.getSelectedToggle();
+            if (RB_CV_astrazeneca==selectedBtn) {
+                tipoVaccino = Vaccino.ASTRAZENECA;
+            } else if (RB_CV_jj==selectedBtn) {
+                tipoVaccino=Vaccino.JNJ;
+            } else if (RB_CV_moderna==selectedBtn) {
+                tipoVaccino=Vaccino.MODERNA;
+            } else {
+                tipoVaccino=Vaccino.PFIZER;
+            }
+            Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
+            client.registraVaccinato(nuovoVaccinato);
         }
     }
 

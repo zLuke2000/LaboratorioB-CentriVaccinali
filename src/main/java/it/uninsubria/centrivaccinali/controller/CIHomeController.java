@@ -4,7 +4,8 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -14,6 +15,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class CIHomeController {
 
     private ClientCV client;
+
+    /**TextField per l'username del cittadino*/
+    @FXML private TextField TF_CI_loginUsername;
 
     /**PasswordField per la password di autenticazione del cittadino*/
     @FXML private PasswordField TF_CI_loginPassword;
@@ -45,8 +49,17 @@ public class CIHomeController {
      * @param actionEvent
      */
     public void AccediCittadino(ActionEvent actionEvent) {
+        //TODO login
 
-    }
+//        String username=TF_CI_loginUsername.getText();
+//        String password="";
+//        if (!TF_CI_loginPassword.isVisible()){
+//            password=TF_CI_loginPasswordVisible.getText();
+//        } else {
+//            password=TF_CI_loginPassword.getText();
+//        }
+//        client.
+   }
 
 
     /**

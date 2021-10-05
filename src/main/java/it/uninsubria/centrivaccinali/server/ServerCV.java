@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -96,6 +97,11 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
+    public void registraVaccinato(Vaccinato vaccinato) throws RemoteException {
+        db.registraVaccinato( vaccinato);
+    }
+
+    @Override
     public void getCentri(ClientCVInterface client, String comuni) {
         new Thread(() -> {
             try {
@@ -105,6 +111,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }).start();
     }
+
 
     @Override
     public void getComuni(ClientCVInterface client, String provincia){
@@ -116,4 +123,11 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }).start();
     }
+
+    //TODO metodo login utente
+
+//    @Override
+//    public int loginUtente(String username, String password) throws RemoteException {
+//        return db.loginUtente(username, password);
+//    }
 }

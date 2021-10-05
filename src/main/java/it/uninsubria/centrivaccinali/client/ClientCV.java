@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
@@ -82,14 +83,28 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             return server.registraCentro(cv);
         } catch (RemoteException e) {
-            //TODO popup connessione server
-            e.printStackTrace();
+            System.err.println("[ClientCV] non e' stato possibile registrare il centro vaccinale");
+            lanciaPopup();
             return -2;
         }
     }
 
-    public void registraCittadino(Cittadino cittadino) throws RemoteException {
-        server.registraCittadino(cittadino);
+    public void registraCittadino(Cittadino cittadino) {
+        try {
+            server.registraCittadino(cittadino);
+        } catch (RemoteException e) {
+            System.err.println("[ClientCV] registrazione cittadino fallita");
+            lanciaPopup();
+        }
+    }
+
+    public void registraVaccinato(Vaccinato vaccinato) {
+        try {
+            server.registraVaccinato(vaccinato);
+        } catch (RemoteException e) {
+            System.err.println("[ClientCV] registrazione vaccinato fallita");
+            lanciaPopup();
+        }
     }
 
     public void getComuni(CVRegistraCittadinoController cvrcc, String provincia) {
@@ -117,21 +132,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     private void lanciaPopup(){
-//        Platform.runLater(() -> {
-//            AlertConnection alert=new AlertConnection("Non connesso al server,"+"\nvuoi provare a connetterti?");
-//            Optional<ButtonType> result = alert.showAndWait();
-//            if (result.get()==ButtonType.YES){
-//                //interrompi il thread e fallo ripartire
-//                //per provare ad ottenere la connessione
-//                if (connThread.isAlive()) {
-//                    connThread.interrupt();
-//                }
-//                connThread=new ConnectionThread();
-//            }
-//            else {
-//                alert.close();
-//            }
-//        });
         try {
             FXMLLoader fxmlLoader=new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_connectionError.fxml"));
             DialogPane connectionDialog=fxmlLoader.load();
@@ -140,6 +140,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             dialog.setTitle("ERRORE");
             Optional<ButtonType> clickedButton=dialog.showAndWait();
             if (clickedButton.get()==ButtonType.YES){
+                //faccio ripartire il thread che si occupa di ottenere
+                //la connessione (lo interrompo se e' ancora attivo)
                 if (connThread.isAlive()) connThread.interrupt();
                 connThread=new ConnectionThread();
             } else {
@@ -150,4 +152,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             e.printStackTrace();
         }
     }
+
+    //TODO metodo login utente
+
+//    public void loginUtente(String username, String password){
+//        try {
+//            server.loginUtente(username, password);
+//        } catch (RemoteException e) {
+//            System.err.println("[ClientCV] Login Utente fallito");
+//            e.printStackTrace();
+//            lanciaPopup();
+//        }
+//    }
 }

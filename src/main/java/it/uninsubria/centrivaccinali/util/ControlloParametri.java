@@ -64,6 +64,7 @@ public class ControlloParametri {
     public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
+        String tmp=tic.getText().trim();
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
             return true;
@@ -172,10 +173,10 @@ public class ControlloParametri {
     public boolean data(DatePicker dp) {
         if(dp.getEditor().getText().isBlank()) {
             cssHelper.toError(dp, new Tooltip("Selezionare la data"));
-            return true;
+            return false;
         } else {
             cssHelper.toValid(dp);
-            return false;
+            return true;
         }
     }
 
