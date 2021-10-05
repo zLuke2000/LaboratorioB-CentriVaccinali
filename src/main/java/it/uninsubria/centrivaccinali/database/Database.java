@@ -5,6 +5,8 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +78,8 @@ public class Database {
         if(uuid == null) {
             // Inserisco il nuovo indirizzo
             try {
-                pstmt = conn.prepareStatement("INSERT INTO public.\"IndirizzoCV\" (qualificatore, nome, civico, comune, provincia, cap) "
-                                                + "VALUES (?, ?, ?, ?, ?, ?)");
+                pstmt = conn.prepareStatement("INSERT INTO public.\"IndirizzoCV\" (id_indirizzo, qualificatore, nome, civico, comune, provincia, cap) "
+                                                + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
                 pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
                 pstmt.setString(2, cv.getIndirizzo().getNome());
                 pstmt.setString(3, cv.getIndirizzo().getCivico());
@@ -139,7 +141,8 @@ public class Database {
         // Creo la nuova tabella
         try {
             // TODO da sistemare
-            stmt.executeUpdate("CREATE TABLE tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
+            stmt=conn.createStatement();
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
                     "nome_centro varchar(50) NOT NULL, " +
                     "nome varchar(50) NOT NULL, " +
                     "cognome varchar(50) NOT NULL, " +
@@ -150,10 +153,23 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
             return 7;
-        } catch (NullPointerException npe) {
-            npe.printStackTrace();
         }
         return result;
+    }
+
+    //TODO metodo login utente
+
+    public int loginUtente(String username, String password) {
+        try {
+            pstmt=conn.prepareStatement("SELECT * FROM public.\"Cittadini_Registrati\" WHERE userid="+username+" AND password="+password);
+            ResultSet rs=pstmt.executeQuery();
+            if (rs.next()){
+                //TODO recupera info cittadino
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public int registraCittadino(Cittadino c) {
@@ -171,6 +187,27 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return -1;
+    }
+
+    public int registraVaccinato(Vaccinato nuovoVaccinato) {
+        System.out.println("registrazione in corso");
+        try {
+            String nomeCentro=nuovoVaccinato.getNomeCentro();
+            pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nomeCentro + "\" (nome_centro, nome, cognome, codice_fiscale, data_somministrazione, vaccino, id_vaccinazione) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1, nuovoVaccinato.getNomeCentro());
+            pstmt.setString(2, nuovoVaccinato.getNome());
+            pstmt.setString(3, nuovoVaccinato.getCognome());
+            pstmt.setString(4, nuovoVaccinato.getCodiceFiscale());
+            pstmt.setDate(5, nuovoVaccinato.getDataSomministrazione());
+            pstmt.setString(6, String.valueOf(nuovoVaccinato.getVaccinoSomministrato()));
+            pstmt.setLong(7, nuovoVaccinato.getIdVaccino());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("[Database] registrato nuovo vaccinato");
         return -1;
     }
 
