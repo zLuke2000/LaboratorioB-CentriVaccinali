@@ -5,15 +5,36 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
+import javafx.util.Duration;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
- *  //TODO controllo sicurezza delle query
+ *  TODO controllo sicurezza delle query
  */
 public class Database {
+
+    /**
+     * LEGENDA
+     * -1 ATTESA
+     *  0 Programma OK
+     *  1 Eccezione
+     *  2 Indirizzo non trovato
+     *  3
+     *  4
+     *  5
+     *  6
+     *  7
+     */
+    public static final int ATTESA = -1;
+    public static final int OK = 0;
+    public static final int EXCEPTION = 1;
+    public static final int INDIRIZZO_NON_TROVATO = 2;
+    public static final int TABELLA_NON_CREATA = 3;
+
     private final String utente = "123abc";
     private final String password = "123abc";
     private static Connection conn;
@@ -23,7 +44,6 @@ public class Database {
     public Database() {}
 
     /**
-     *
      * @param utente
      * @param password
      * @return
@@ -43,8 +63,13 @@ public class Database {
         return false;
     }
 
+    /**
+     * FUNZIONANTE
+     * @param cv
+     * @return
+     */
     public int registraCentroVaccinale(CentroVaccinale cv) {
-        int result = -1;
+        int result = ATTESA;
         UUID uuid = null;
 
         // Controllo che ci sia gia' l'indirizzo
@@ -69,7 +94,7 @@ public class Database {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 2;
+            return EXCEPTION;
         }
 
         // Inserisco il nuovo centro solo se non presente
@@ -87,7 +112,7 @@ public class Database {
                 result = pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return 3;
+                return EXCEPTION;
             }
 
             // Recupero l'id univoco dell'indirizzo appena registrato
@@ -111,19 +136,19 @@ public class Database {
                     if(rs.next()) {
                         uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
                     } else {
-                        return 4;
+                        return INDIRIZZO_NON_TROVATO;
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    return 5;
+                    return EXCEPTION;
                 }
             }
         }
 
         // Scrivo il centro vaccinale
         if(uuid != null) {
-            result = -1;
             try {
+                result = ATTESA;
                 pstmt = conn.prepareStatement("INSERT INTO public.\"CentriVaccinali\" (nome, indirizzo, tipologia) "
                                                 + "VALUES (?, ?, ?)");
                 pstmt.setString(1, cv.getNome());
@@ -132,30 +157,37 @@ public class Database {
                 result = pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return 6;
+                return EXCEPTION;
             }
         }
 
         // Creo la nuova tabella
-        try {
-            // TODO da sistemare
-            stmt.executeUpdate("CREATE TABLE tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
-                    "nome_centro varchar(50) NOT NULL, " +
-                    "nome varchar(50) NOT NULL, " +
-                    "cognome varchar(50) NOT NULL, " +
-                    "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
-                    "data_somministrazione date NOT NULL, " +
-                    "vaccino varchar(16) NOT NULL, " +
-                    "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 7;
-        } catch (NullPointerException npe) {
-            npe.printStackTrace();
+        if(result == 1) {
+            try {
+                stmt = conn.createStatement();
+                stmt.executeUpdate("CREATE TABLE tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
+                        "nome_centro varchar(50) NOT NULL, " +
+                        "nome varchar(50) NOT NULL, " +
+                        "cognome varchar(50) NOT NULL, " +
+                        "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
+                        "data_somministrazione date NOT NULL, " +
+                        "vaccino varchar(16) NOT NULL, " +
+                        "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
+                return OK;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return EXCEPTION;
+            }
+        } else {
+            return TABELLA_NON_CREATA;
         }
-        return result;
     }
 
+    /**
+     * FUNZIONANTE
+     * @param c
+     * @return
+     */
     public int registraCittadino(Cittadino c) {
         try {
             pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" (nome, cognome, codice_fiscale, email, userid, password, id_vaccino) "
@@ -167,11 +199,12 @@ public class Database {
             pstmt.setString(5, c.getUserid());
             pstmt.setString(6, c.getPassword());
             pstmt.setLong(7, c.getId_vaccino());
-            return pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            return OK;
         } catch (SQLException e) {
             e.printStackTrace();
+            return EXCEPTION;
         }
-        return -1;
     }
 
     /**
