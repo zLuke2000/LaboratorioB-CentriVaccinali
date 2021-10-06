@@ -179,8 +179,12 @@ public class Database {
 
     public int loginUtente(String username, String password) {
         try {
-            pstmt=conn.prepareStatement("SELECT * FROM public.\"Cittadini_Registrati\" WHERE userid="+username+" AND password="+password);
-            ResultSet rs=pstmt.executeQuery();
+            pstmt = conn.prepareStatement("SELECT *" +
+                                              "FROM public.\"Cittadini_Registrati\"" +
+                                              "WHERE userid = ? AND password = ?");
+            pstmt.setString(1, "'" + username + "'");
+            pstmt.setString(2, "'" + password + "'");
+            ResultSet rs = pstmt.executeQuery();
             if (rs.next()){
                 //TODO recupera info cittadino
             }
@@ -192,8 +196,7 @@ public class Database {
 
     public int registraCittadino(Cittadino c) {
         try {
-            pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" (nome, cognome, codice_fiscale, email, userid, password, id_vaccino) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, c.getNome());
             pstmt.setString(2, c.getCognome());
             pstmt.setString(3, c.getCodicefiscale());
@@ -212,9 +215,7 @@ public class Database {
     public int registraVaccinato(Vaccinato nuovoVaccinato) {
         System.out.println("registrazione in corso");
         try {
-            String nomeCentro=nuovoVaccinato.getNomeCentro();
-            pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nomeCentro + "\" (nome_centro, nome, cognome, codice_fiscale, data_somministrazione, vaccino, id_vaccinazione) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
             pstmt.setString(2, nuovoVaccinato.getNome());
             pstmt.setString(3, nuovoVaccinato.getCognome());
