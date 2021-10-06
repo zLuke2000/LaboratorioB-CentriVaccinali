@@ -16,8 +16,8 @@
 
 <AnchorPane prefHeight="640.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazioneController">
    <children>
-      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
-      <Label alignment="CENTER" layoutX="180.0" layoutY="18.0" styleClass="labelWelcome" text="REGISTRAZIONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" onMouseClicked="#backTo" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
+      <Label alignment="CENTER" layoutX="180.0" layoutY="18.0" styleClass="labelWelcome" text="REGISTRAZIONE" mouseTransparent="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="53.0" styleClass="la" text="I tuoi dati" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
       <VBox layoutY="83.0" prefHeight="120.0" prefWidth="390.0">
          <children>

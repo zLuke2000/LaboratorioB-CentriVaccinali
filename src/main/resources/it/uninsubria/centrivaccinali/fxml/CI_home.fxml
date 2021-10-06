@@ -12,7 +12,7 @@
    <children>
       <Label alignment="CENTER" layoutX="180.0" layoutY="14.0" styleClass="labelWelcome" text="BENVENUTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="77.0" text="Accedi con le tue credenziali" underline="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0" />
-      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="15.0" layoutY="28.0" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
+      <FontIcon iconLiteral="subway-reply" onMouseClicked="#backTo" iconSize="22" layoutX="15.0" layoutY="28.0" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="99.0" text="CITTADINO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0" />
       <TextField fx:id="TF_CI_loginUsername" layoutX="115.0" layoutY="258.0" promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="270.0" />
       <PasswordField fx:id="TF_CI_loginPassword" layoutX="115.0" layoutY="323.0" promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="335.0" />

@@ -73,11 +73,7 @@ public class CIRegistrazioneController {
         String password = TF_CI_password1.getText().trim();
         long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        try {
-            client.registraCittadino(cittadino);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        client.registraCittadino(cittadino);
     }
 
     /**
@@ -160,5 +156,5 @@ public class CIRegistrazioneController {
         }
     }
 
-    @FXML void BackTo() { CentriVaccinali.setRoot("CI_home"); }
+    public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("CI_home"); }
 }

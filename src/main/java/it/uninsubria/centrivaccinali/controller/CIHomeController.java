@@ -100,4 +100,6 @@ public class CIHomeController {
         FI_CI_showPassword.setVisible(false);
         FI_CI_hidePassword.setVisible(true);
     }
+
+    public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("Avvio"); }
 }
