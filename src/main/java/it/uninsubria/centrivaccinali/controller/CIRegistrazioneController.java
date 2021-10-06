@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -18,16 +19,21 @@ public class CIRegistrazioneController {
     private ClientCV client;
     private CssHelper csshelper;
     private ControlloParametri cp;
+    /*
     private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
             " all'autenticazione";
 
+     */
+    /*
     private final String INFO_PASSWORD =  "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
             "- Almeno 8 caratteri"  + "\n"
             + "- Almeno una lettere maiuscola" +
             "\n" + "- Almeno una lettere minuscola" + "\n" +
             "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
 
-    private final String INFO_ID_VACCINAZIONE =  "L'ID della vaccinazione è stato fornito al momento della somministrazione";
+     */
+
+    // private final String INFO_ID_VACCINAZIONE =  "L'ID della vaccinazione è stato fornito al momento della somministrazione";
 
     //Testo per le info dei vari campi
     @FXML private Text T_CI_infoRegistrazione;
@@ -45,6 +51,8 @@ public class CIRegistrazioneController {
     @FXML private PasswordField TF_CI_password2;
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
     @FXML private ProgressIndicator PI_CI_loadUsername;
+
+
 
 
     public void initParameter(ClientCV client) {
@@ -77,6 +85,7 @@ public class CIRegistrazioneController {
      * @param mouseEvent
      */
     public void showInfoUsername(MouseEvent mouseEvent) {
+        /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_USERNAME);
             T_CI_infoRegistrazione.setVisible(true);
@@ -85,6 +94,8 @@ public class CIRegistrazioneController {
                 } else {
                     T_CI_infoRegistrazione.setVisible(false);
                 }
+         */
+
     }
 
     /**
@@ -92,6 +103,7 @@ public class CIRegistrazioneController {
      * @param mouseEvent
      */
     public void showInfoPassword(MouseEvent mouseEvent) {
+        /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_PASSWORD);
             T_CI_infoRegistrazione.setVisible(true);
@@ -100,6 +112,7 @@ public class CIRegistrazioneController {
                 } else {
                     T_CI_infoRegistrazione.setVisible(false);
                 }
+         */
     }
 
     /**
@@ -107,6 +120,7 @@ public class CIRegistrazioneController {
      * @param mouseEvent
      */
     public void showInfoVaccinazione(MouseEvent mouseEvent) {
+        /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_ID_VACCINAZIONE);
             T_CI_infoRegistrazione.setVisible(true);
@@ -115,6 +129,7 @@ public class CIRegistrazioneController {
                 } else {
                     T_CI_infoRegistrazione.setVisible(false);
                 }
+         */
     }
 
     @FXML public void realtimeCheck(KeyEvent keyEvent) {

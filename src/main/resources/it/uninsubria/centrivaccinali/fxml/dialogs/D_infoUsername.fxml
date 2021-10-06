@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<DialogPane minHeight="200.0" minWidth="300.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <header>
+      <Label alignment="CENTER" contentDisplay="RIGHT" styleClass="label-titleDialog" text="Informazione">
+       <graphic>
+           <FontIcon iconLiteral="fltfmz-question-circle-16" />
+       </graphic></Label>
+   </header>
+   <content>
+      <Label contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" text="Controllare la disponibilità  dell'username,  ricordalo  che ti servirà all'autenticazione" wrapText="true" />
+   </content>
+    <buttonTypes>
+        <ButtonType fx:constant="CLOSE" />
+    </buttonTypes>
+</DialogPane>
