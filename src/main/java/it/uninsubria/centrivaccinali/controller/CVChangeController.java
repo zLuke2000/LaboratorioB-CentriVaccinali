@@ -5,14 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Controller per l'interfaccia di selezione tra "Registra vaccinato" e "Registra centro vaccinale"
- */
-import it.uninsubria.centrivaccinali.CentriVaccinali;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-
-/**
  *
  */
 public class CVChangeController {

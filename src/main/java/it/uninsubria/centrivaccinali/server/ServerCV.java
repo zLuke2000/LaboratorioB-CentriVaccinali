@@ -102,6 +102,13 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
+    public void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException {
+        new Thread(() -> {
+            db.loginUtente(client, username, password);
+        }).start();
+    }
+
+    @Override
     public void getCentri(ClientCVInterface client, String comuni) {
         new Thread(() -> {
             try {
@@ -111,7 +118,6 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }).start();
     }
-
 
     @Override
     public void getComuni(ClientCVInterface client, String provincia){
@@ -123,11 +129,4 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             }
         }).start();
     }
-
-    //TODO metodo login utente
-
-//    @Override
-//    public int loginUtente(String username, String password) throws RemoteException {
-//        return db.loginUtente(username, password);
-//    }
 }

@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.server;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
@@ -17,6 +18,5 @@ public interface ServerCVInterface extends Remote{
     void registraVaccinato(Vaccinato vaccinato) throws RemoteException;
 
     //TODO metodo login utente
-
-    //    int loginUtente(String username, String password) throws RemoteException;
+    void loginUtente(ClientCVInterface clientCV, String username, String password) throws RemoteException;
 }

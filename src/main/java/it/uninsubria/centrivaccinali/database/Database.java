@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.database;
 
+import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
@@ -7,6 +8,7 @@ import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 
+import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,35 +179,67 @@ public class Database {
         }
     }
 
-    public int loginUtente(String username, String password) {
+    public int loginUtente(ClientCVInterface client, String username, String password) {
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
                                               "WHERE userid = ? AND password = ?");
-            pstmt.setString(1, "'" + username + "'");
-            pstmt.setString(2, "'" + password + "'");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()){
-                //TODO recupera info cittadino
-            }
+                //TODO recupera info cittadino e notifica client
+                Cittadino c = new Cittadino(
+                        rs.getString("nome"),
+                        rs.getString("cognome"),
+                        rs.getString("codice_fiscale"),
+                        rs.getString("email"),
+                        rs.getString("userid"),
+                        rs.getString("password"),
+                        rs.getLong("id_vaccino")
+                );
+                System.out.println("[Database] login effettuato: " + rs.getString("userid"));
+                client.notifyLogin(true, c);
+            } else {
+                System.err.println("[Database] login fallito");
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            System.err.println("[Database] errore di comunicazione con il client");
             e.printStackTrace();
         }
         return -1;
     }
 
     public int registraCittadino(Cittadino c) {
+        //TODO controllo su nome e cognome???
         try {
-            pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setString(1, c.getNome());
-            pstmt.setString(2, c.getCognome());
-            pstmt.setString(3, c.getCodicefiscale());
-            pstmt.setString(4, c.getEmail());
-            pstmt.setString(5, c.getUserid());
-            pstmt.setString(6, c.getPassword());
-            pstmt.setLong(7, c.getId_vaccino());
-            pstmt.executeUpdate();
-            return OK;
+            System.out.println("[Database] controllo che id vaccinazione sia corretto");
+            pstmt=conn.prepareStatement("SELECT *" +
+                                        "FROM tabelle_cv.\"vaccinati\"" +
+                                        "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
+            pstmt.setLong(1, c.getId_vaccino());
+            pstmt.setString(2, c.getCodice_fiscale());
+            ResultSet rs = pstmt.executeQuery();
+            //id vaccinazione e' presente nel db dei centri vaccinali
+            //posso registrare il cittadino correttamente
+            if (rs.next()){
+                pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
+                pstmt.setString(1, c.getNome());
+                pstmt.setString(2, c.getCognome());
+                pstmt.setString(3, c.getCodice_fiscale());
+                pstmt.setString(4, c.getEmail());
+                pstmt.setString(5, c.getUserid());
+                pstmt.setString(6, c.getPassword());
+                pstmt.setLong(7, c.getId_vaccino());
+                pstmt.executeUpdate();
+                System.out.println("[Database] registrato nuovo cittadino");
+                return OK;
+            } else {
+                System.err.println("[Database] id vaccinazione o codice fiscale non valido");
+                //TODO mostra errore lato client
+                return EXCEPTION;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return EXCEPTION;
@@ -213,7 +247,7 @@ public class Database {
     }
 
     public int registraVaccinato(Vaccinato nuovoVaccinato) {
-        System.out.println("registrazione in corso");
+        int risultatoQuery=-1;
         try {
             pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
@@ -223,12 +257,26 @@ public class Database {
             pstmt.setDate(5, nuovoVaccinato.getDataSomministrazione());
             pstmt.setString(6, String.valueOf(nuovoVaccinato.getVaccinoSomministrato()));
             pstmt.setLong(7, nuovoVaccinato.getIdVaccino());
-            return pstmt.executeUpdate();
+            risultatoQuery=pstmt.executeUpdate();
+            System.out.println("[Database] registrato nuovo vaccinato");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("[Database] registrato nuovo vaccinato");
-        return -1;
+        new Thread(() -> {
+            try {
+                pstmt=conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati\" VALUES (?, ?, ?)");
+                pstmt.setLong(1, nuovoVaccinato.getIdVaccino());
+                pstmt.setString(2, nuovoVaccinato.getCodiceFiscale());
+                pstmt.setString(3, nuovoVaccinato.getNomeCentro());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            System.out.println("[Db thread] registrato vaccinato");
+        }).start();
+        //return -1;
+        return risultatoQuery;
+        //TODO sistemare i punti di return
     }
 
     /**

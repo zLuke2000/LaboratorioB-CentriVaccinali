@@ -7,8 +7,9 @@ import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -60,6 +61,7 @@ public class CIRegistrazioneController {
 
     public void initParameter(ClientCV client) {
         this.client = client;
+        //non usato
         this.csshelper = CssHelper.getInstance();
         this.cp = ControlloParametri.getInstance();
     }
@@ -177,5 +179,5 @@ public class CIRegistrazioneController {
         }
     }
 
-    @FXML void BackTo() { CentriVaccinali.setRoot("CI_home"); }
+    public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("CI_home"); }
 }

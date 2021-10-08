@@ -8,8 +8,12 @@ import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 public class CVRegistraCentroVaccinale {
 
@@ -28,6 +32,9 @@ public class CVRegistraCentroVaccinale {
         private final ControlloParametri cp = ControlloParametri.getInstance();
         private ClientCV client;
 
+        /**
+         *
+         */
         @FXML public void initialize() {
                 CB_qualificatore.getItems().addAll(Qualificatore.values());
                 CB_qualificatore.setValue(Qualificatore.VIA);
@@ -109,7 +116,5 @@ public class CVRegistraCentroVaccinale {
                 }
         }
 
-        @FXML void backTo() {
-                CentriVaccinali.setRoot("CV_change");
-        }
+        public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("CV_change"); }
 }
