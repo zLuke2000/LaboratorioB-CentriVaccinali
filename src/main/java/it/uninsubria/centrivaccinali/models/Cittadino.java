@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali.models;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 /**
  * @author Centore Luca 740951
@@ -27,7 +26,7 @@ public class Cittadino implements Serializable {
     /**
      * Rappresenta il codice fiscale del cittadino
      */
-    private String codicefiscale;
+    private String codice_fiscale;
 
     /**
      * Rappresenta la mail del cittadino
@@ -67,7 +66,7 @@ public class Cittadino implements Serializable {
     public Cittadino(String nome, String cognome, String codicefiscale, String email, String userid, String password, long id_vaccino) {
         this.nome = nome;
         this.cognome = cognome;
-        this.codicefiscale = codicefiscale;
+        this.codice_fiscale = codicefiscale;
         this.email = email;
         this.userid = userid;
         this.password = password;
@@ -110,16 +109,16 @@ public class Cittadino implements Serializable {
      *  Metodo getter per il codice fiscale del cittadino
      * @return  il <code>codice fiscale</code> del cittadino
      */
-    public String getCodicefiscale() {
-        return codicefiscale;
+    public String getCodice_fiscale() {
+        return codice_fiscale;
     }
 
     /**
      *  Metodo setter per il codice fiscale del cittadino
-     * @param codicefiscale il nuovo codice fiscale del cittadino
+     * @param codice_fiscale il nuovo codice fiscale del cittadino
      */
-    public void setCodicefiscale(String codicefiscale) {
-        this.codicefiscale = codicefiscale;
+    public void setCodice_fiscale(String codice_fiscale) {
+        this.codice_fiscale = codice_fiscale;
     }
 
     /**

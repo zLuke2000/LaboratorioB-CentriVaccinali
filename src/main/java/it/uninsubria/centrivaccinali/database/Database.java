@@ -1,6 +1,5 @@
 package it.uninsubria.centrivaccinali.database;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -190,9 +189,18 @@ public class Database {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()){
                 //TODO recupera info cittadino e notifica client
+                Cittadino c = new Cittadino(
+                        rs.getString("nome"),
+                        rs.getString("cognome"),
+                        rs.getString("codice_fiscale"),
+                        rs.getString("email"),
+                        rs.getString("userid"),
+                        rs.getString("password"),
+                        rs.getLong("id_vaccino")
+                );
                 System.out.println("[Database] login effettuato: " + rs.getString("userid"));
-                client.notifyStatus(true);
-            } else
+                client.notifyLogin(true, c);
+            } else {
                 System.err.println("[Database] login fallito");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,7 +219,7 @@ public class Database {
                                         "FROM tabelle_cv.\"vaccinati\"" +
                                         "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
             pstmt.setLong(1, c.getId_vaccino());
-            pstmt.setString(2, c.getCodicefiscale());
+            pstmt.setString(2, c.getCodice_fiscale());
             ResultSet rs = pstmt.executeQuery();
             //id vaccinazione e' presente nel db dei centri vaccinali
             //posso registrare il cittadino correttamente
@@ -219,7 +227,7 @@ public class Database {
                 pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
                 pstmt.setString(1, c.getNome());
                 pstmt.setString(2, c.getCognome());
-                pstmt.setString(3, c.getCodicefiscale());
+                pstmt.setString(3, c.getCodice_fiscale());
                 pstmt.setString(4, c.getEmail());
                 pstmt.setString(5, c.getUserid());
                 pstmt.setString(6, c.getPassword());

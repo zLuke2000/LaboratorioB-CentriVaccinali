@@ -13,5 +13,6 @@ public interface ClientCVInterface extends Remote {
      * @throws RemoteException
      */
     void notifyStatus(boolean ritorno) throws RemoteException;
+    void notifyLogin(boolean ritorno, Cittadino c) throws RemoteException;
     void risultato(List<String> resultComuni, List<CentroVaccinale> resultCentri, int resultRegistrazione) throws RemoteException;
 }

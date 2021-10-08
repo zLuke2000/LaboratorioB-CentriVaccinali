@@ -58,14 +58,14 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     @Override
-    public void notifyStatus(boolean ritorno) throws RuntimeException {
+    public void notifyStatus(boolean ritorno) throws RemoteException  {
         if (ritorno) {
             printout("AUTH OK");
         }
         else {
             printout("AUTH KO");
         }
-        //sourceCVlogin.authStatus(ritorno);
+        sourceCVlogin.authStatus(ritorno);
     }
 
     @Override
