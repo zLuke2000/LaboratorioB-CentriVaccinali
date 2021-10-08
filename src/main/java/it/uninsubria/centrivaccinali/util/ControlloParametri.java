@@ -156,6 +156,7 @@ public class ControlloParametri {
 
     public boolean codiceFiscale(TextInputControl tic) {
         if(tic.getText().trim().length() > 16) {
+            cssHelper.toError(tic, new Tooltip("Codice fiscale non valido"));
             return false;
         }  else {
             rPattern = Pattern.compile("^(([a-z]|[A-Z]){6})(\\d{2})([a-z]|[A-Z])(\\d{2})([a-z]|[A-Z])(\\d{3})([a-z]|[A-Z])$");
@@ -181,10 +182,11 @@ public class ControlloParametri {
     }
 
     public boolean email(TextInputControl tic) {
-        if(tic.getText().trim().length() > 16) {
+        if(tic.getText().trim().length() != 0) {
+            cssHelper.toError(tic, new Tooltip("Email non valida"));
             return false;
         }  else {
-            rPattern = Pattern.compile("\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b");
+            rPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
             rMatcher = rPattern.matcher(tic.getText().trim());
             if(rMatcher.matches()) {
                 cssHelper.toValid(tic);

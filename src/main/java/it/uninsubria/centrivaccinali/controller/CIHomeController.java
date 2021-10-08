@@ -50,6 +50,7 @@ public class CIHomeController {
      */
     public void AccediCittadino(ActionEvent actionEvent) {
         //TODO login
+        CentriVaccinali.setRoot("CI_dashboard");
 
 //        String username=TF_CI_loginUsername.getText();
 //        String password="";

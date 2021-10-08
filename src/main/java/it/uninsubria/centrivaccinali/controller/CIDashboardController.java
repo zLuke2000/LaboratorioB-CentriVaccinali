@@ -21,7 +21,7 @@ public class CIDashboardController {
     private final ObservableList<String> itemCV = FXCollections.observableArrayList("Tipologia centro", "Ospedaliero", "Aziendale" ,"Hub");
 
     @FXML
-    private ComboBox<String> CI_CB_SceltaRicerca;
+    private ChoiceBox<String> CI_CB_SceltaRicerca;
 
     @FXML
     private ComboBox<String> CI_CB_ricercaTipologia;
@@ -36,10 +36,14 @@ public class CIDashboardController {
     private Button CI_B_ricerca;
 
     public void initParameter(ClientCV client) {
-        this.client = client;
-        this.CI_CB_SceltaRicerca.setItems(itemResearch);
-        this.CI_CB_ricercaTipologia.setItems(itemCV);
-        this.cssh = CssHelper.getInstance();
+        this.client = client;;
+    }
+
+    @FXML void initialize() {
+        //System.out.println(CI_CB_SceltaRicerca);
+        this.CI_CB_SceltaRicerca.getItems().clear();
+        //this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
+        System.out.println(this.CI_CB_SceltaRicerca.getItems());
     }
 
     public void cercaCentroVaccinale(ActionEvent actionEvent) {
@@ -72,6 +76,7 @@ public class CIDashboardController {
 
 
     public void changeResearch(ActionEvent actionEvent) {
+        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
         String s = CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().toString();
         if(s.equals("Scegli tipo di ricerca")) {
             CI_CB_SceltaRicerca.setVisible(false);

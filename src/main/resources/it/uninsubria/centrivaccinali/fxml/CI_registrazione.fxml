@@ -85,7 +85,7 @@
                </VBox.margin>
                <children>
                   <PasswordField fx:id="TF_CI_password1" layoutY="1.0" onKeyTyped="#realtimeCheck" promptText="Password" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <PasswordField fx:id="TF_CI_password2" layoutX="189.0" layoutY="2.0" promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <PasswordField fx:id="TF_CI_password2" layoutX="189.0" layoutY="2.0" onKeyTyped="#realtimeCheck" promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <FontIcon fx:id="FI_CI_infoPasswordRegistrazione" iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0" onMouseClicked="#showInfoPassword" styleClass="iconInfo" />
                </children>
             </AnchorPane>

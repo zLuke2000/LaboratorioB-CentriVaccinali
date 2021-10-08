@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 public class CIRegistrazioneController {
@@ -19,6 +21,7 @@ public class CIRegistrazioneController {
     private ClientCV client;
     private CssHelper csshelper;
     private ControlloParametri cp;
+    private FXMLLoader loader;
     /*
     private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
             " all'autenticazione";
@@ -73,18 +76,20 @@ public class CIRegistrazioneController {
         String password = TF_CI_password1.getText().trim();
         long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        try {
-            client.registraCittadino(cittadino);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        client.registraCittadino(cittadino);
     }
 
     /**
      *
      * @param mouseEvent
      */
-    public void showInfoUsername(MouseEvent mouseEvent) {
+    public void showInfoUsername(MouseEvent mouseEvent) throws IOException {
+        loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoUsername.fxml"));
+        DialogPane infoUsername = loader.load();
+        Dialog dialog = new Dialog();
+        dialog.setDialogPane(infoUsername);
+        dialog.setTitle("INFO!");
+        dialog.showAndWait();
         /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_USERNAME);
@@ -102,7 +107,13 @@ public class CIRegistrazioneController {
      *
      * @param mouseEvent
      */
-    public void showInfoPassword(MouseEvent mouseEvent) {
+    public void showInfoPassword(MouseEvent mouseEvent) throws IOException {
+        loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoPassword.fxml"));
+        DialogPane infoUsername = loader.load();
+        Dialog dialog = new Dialog();
+        dialog.setDialogPane(infoUsername);
+        dialog.setTitle("INFO!");
+        dialog.showAndWait();
         /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_PASSWORD);
@@ -119,7 +130,13 @@ public class CIRegistrazioneController {
      *
      * @param mouseEvent
      */
-    public void showInfoVaccinazione(MouseEvent mouseEvent) {
+    public void showInfoVaccinazione(MouseEvent mouseEvent) throws IOException {
+        loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoIdVaccinazione.fxml"));
+        DialogPane infoUsername = loader.load();
+        Dialog dialog = new Dialog();
+        dialog.setDialogPane(infoUsername);
+        dialog.setTitle("INFO!");
+        dialog.showAndWait();
         /*
         if(!T_CI_infoRegistrazione.isVisible()) {
             T_CI_infoRegistrazione.setText(INFO_ID_VACCINAZIONE);

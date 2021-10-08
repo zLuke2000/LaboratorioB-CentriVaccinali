@@ -93,7 +93,7 @@ public class CentriVaccinali extends Application {
                 cidc.initParameter(client);
                 stage.setTitle("Area Cittadino");
                 height = h_dashboard;
-                width = w_avvio;
+                width = w_dashboard;
                 break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
