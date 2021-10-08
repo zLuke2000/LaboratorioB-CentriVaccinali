@@ -62,14 +62,18 @@ public class CIHomeController {
             client.loginUtente(username, password);
         }
         //TODO mostra errore (campi vuoti o con solo spazi)
-   }
+    }
 
-   public void loginStatus(Boolean ritorno){
-       if (ritorno) System.out.println("Login effettuato");
-       else System.out.println("Login fallito");
-   }
-
-
+    public void loginStatus(Boolean ritorno, Cittadino c){
+        if (ritorno) {
+           System.out.println("Login effettuato, benvenuto: " + c.getUserid());
+           //TODO passare il cittadino all'interfaccia
+           Platform.runLater(() -> {
+               CentriVaccinali.setRoot("CI_dashboard");
+           });
+        }
+        else System.out.println("Login fallito");
+    }
 
     /**
      * Metodo per passare all'interfaccia di registrazione
