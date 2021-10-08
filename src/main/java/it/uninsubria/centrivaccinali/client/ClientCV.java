@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.controller.CIHomeController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
@@ -26,6 +27,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static ServerCVInterface server=null;
     private CVLoginController sourceCVlogin;
     private CVRegistraCittadinoController sourceCVRegCittadino;
+    private CIHomeController sourceCIhome;
 
     private ConnectionThread connThread;
 
@@ -68,6 +70,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         sourceCVlogin.authStatus(ritorno);
     }
 
+    public void notifyLogin(boolean ritorno, Cittadino c) throws RemoteException {
+        if (ritorno) {
+            printout("AUTH OK");
+        }
+        else {
+            printout("AUTH KO");
+        }
+        sourceCIhome.loginStatus(ritorno, c);
+    }
+
     @Override
     public void risultato(List<String> resultComuni, List<CentroVaccinale> resultCentri, int resultRegistrazione) throws RemoteException {
         if(resultComuni != null) {
@@ -98,7 +110,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void loginUtente(String username, String password){
+    public void loginUtente(CIHomeController ciHomeController,String username, String password){
+        sourceCIhome=ciHomeController;
         try {
             server.loginUtente(this, username, password);
         } catch (RemoteException e) {

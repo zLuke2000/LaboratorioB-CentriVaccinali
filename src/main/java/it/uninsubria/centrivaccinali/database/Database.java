@@ -202,8 +202,15 @@ public class Database {
                 client.notifyLogin(true, c);
             } else {
                 System.err.println("[Database] login fallito");
+                client.notifyLogin(false, null);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                client.notifyLogin(false, null);
+            } catch (RemoteException ex) {
+                ex.printStackTrace();
+            }
         } catch (RemoteException e) {
             System.err.println("[Database] errore di comunicazione con il client");
             e.printStackTrace();
