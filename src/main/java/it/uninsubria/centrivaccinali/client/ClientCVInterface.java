@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Cittadino;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

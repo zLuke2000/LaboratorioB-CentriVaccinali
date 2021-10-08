@@ -2,7 +2,9 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -59,7 +61,7 @@ public class CIHomeController {
             password=TF_CI_loginPassword.getText();
         }
         if (!username.isBlank() && !password.isBlank()){
-            client.loginUtente(username, password);
+            client.loginUtente(this, username, password);
         }
         //TODO mostra errore (campi vuoti o con solo spazi)
     }
