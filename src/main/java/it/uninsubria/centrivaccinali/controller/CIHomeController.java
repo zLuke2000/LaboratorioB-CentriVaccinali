@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -48,18 +49,26 @@ public class CIHomeController {
      * Metodo per accedere con le credenziali del  cittadino
      * @param actionEvent
      */
-    public void AccediCittadino(ActionEvent actionEvent) {
-        //TODO login
-
-//        String username=TF_CI_loginUsername.getText();
-//        String password="";
-//        if (!TF_CI_loginPassword.isVisible()){
-//            password=TF_CI_loginPasswordVisible.getText();
-//        } else {
-//            password=TF_CI_loginPassword.getText();
-//        }
-//        client.
+    public void loginCittadino(ActionEvent actionEvent) {
+        //TODO controllo parametri su username e password
+        String username=TF_CI_loginUsername.getText();
+        String password="";
+        if (!TF_CI_loginPassword.isVisible()){
+            password=TF_CI_loginPasswordVisible.getText();
+        } else {
+            password=TF_CI_loginPassword.getText();
+        }
+        if (!username.isBlank() && !password.isBlank()){
+            client.loginUtente(username, password);
+        }
+        //TODO mostra errore (campi vuoti o con solo spazi)
    }
+
+   public void loginStatus(Boolean ritorno){
+       if (ritorno) System.out.println("Login effettuato");
+       else System.out.println("Login fallito");
+   }
+
 
 
     /**

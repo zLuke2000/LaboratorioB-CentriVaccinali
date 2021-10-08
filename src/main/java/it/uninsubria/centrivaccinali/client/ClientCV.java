@@ -65,7 +65,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         else {
             printout("AUTH KO");
         }
-        sourceCVlogin.authStatus(ritorno);
+        //sourceCVlogin.authStatus(ritorno);
     }
 
     @Override
@@ -94,6 +94,15 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             server.registraCittadino(cittadino);
         } catch (RemoteException e) {
             System.err.println("[ClientCV] registrazione cittadino fallita");
+            lanciaPopup();
+        }
+    }
+
+    public void loginUtente(String username, String password){
+        try {
+            server.loginUtente(this, username, password);
+        } catch (RemoteException e) {
+            System.err.println("[ClientCV] Login Utente fallito");
             lanciaPopup();
         }
     }
@@ -152,16 +161,4 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             e.printStackTrace();
         }
     }
-
-    //TODO metodo login utente
-
-//    public void loginUtente(String username, String password){
-//        try {
-//            server.loginUtente(username, password);
-//        } catch (RemoteException e) {
-//            System.err.println("[ClientCV] Login Utente fallito");
-//            e.printStackTrace();
-//            lanciaPopup();
-//        }
-//    }
 }

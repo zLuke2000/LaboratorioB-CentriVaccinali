@@ -1,5 +1,7 @@
 package it.uninsubria.centrivaccinali.database;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
@@ -7,6 +9,7 @@ import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 
+import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,18 +180,24 @@ public class Database {
         }
     }
 
-    public int loginUtente(String username, String password) {
+    public int loginUtente(ClientCVInterface client, String username, String password) {
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
                                               "WHERE userid = ? AND password = ?");
-            pstmt.setString(1, "'" + username + "'");
-            pstmt.setString(2, "'" + password + "'");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()){
-                //TODO recupera info cittadino
-            }
+                //TODO recupera info cittadino e notifica client
+                System.out.println("[Database] login effettuato: " + rs.getString("userid"));
+                client.notifyStatus(true);
+            } else
+                System.err.println("[Database] login fallito");
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            System.err.println("[Database] errore di comunicazione con il client");
             e.printStackTrace();
         }
         return -1;
