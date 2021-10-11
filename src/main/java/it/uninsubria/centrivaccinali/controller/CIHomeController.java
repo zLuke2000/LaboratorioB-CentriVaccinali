@@ -43,7 +43,7 @@ public class CIHomeController {
      * @param mouseEvent
      */
     public void ToFreeAccess(MouseEvent mouseEvent) {
-
+        CentriVaccinali.setRoot("CI_dashboard");
     }
 
 
@@ -51,9 +51,6 @@ public class CIHomeController {
      * Metodo per accedere con le credenziali del  cittadino
      * @param actionEvent
      */
-    public void AccediCittadino(ActionEvent actionEvent) {
-        //TODO login
-        CentriVaccinali.setRoot("CI_dashboard");
     public void loginCittadino(ActionEvent actionEvent) {
         //TODO controllo parametri su username e password
         String username=TF_CI_loginUsername.getText();

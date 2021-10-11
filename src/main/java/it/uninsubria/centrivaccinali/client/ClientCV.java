@@ -28,6 +28,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private CVLoginController sourceCVlogin;
     private CVRegistraCittadinoController sourceCVRegCittadino;
     private CIHomeController sourceCIhome;
+    private Cittadino utenteLoggato = null;
+
+    public Cittadino getUtenteLoggato() {
+        return utenteLoggato;
+    }
 
     private ConnectionThread connThread;
 
@@ -71,13 +76,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void notifyLogin(boolean ritorno, Cittadino c) throws RemoteException {
-        if (ritorno) {
-            printout("AUTH OK");
-        }
-        else {
-            printout("AUTH KO");
-        }
         sourceCIhome.loginStatus(ritorno, c);
+        this.utenteLoggato = c;
     }
 
     @Override

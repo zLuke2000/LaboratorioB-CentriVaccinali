@@ -7,6 +7,8 @@ import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class CIDashboardController {
 
@@ -16,15 +18,15 @@ public class CIDashboardController {
 
     private ClientCV client;
 
-    private final ObservableList<String> itemResearch = FXCollections.observableArrayList("Scegli tipo di ricerca", "Per nome", "Per comune e tipologia");
+    private final ObservableList<String> itemResearch = FXCollections.observableArrayList("Per nome", "Per comune e tipologia");
 
-    private final ObservableList<String> itemCV = FXCollections.observableArrayList("Tipologia centro", "Ospedaliero", "Aziendale" ,"Hub");
+    private final ObservableList<String> itemCV = FXCollections.observableArrayList("Ospedaliero", "Aziendale" ,"Hub");
 
     @FXML
     private ChoiceBox<String> CI_CB_SceltaRicerca;
 
     @FXML
-    private ComboBox<String> CI_CB_ricercaTipologia;
+    private ChoiceBox<String> CI_CB_ricercaTipologia;
 
     @FXML
     private TextField CI_TF_ricercaNomeCV;
@@ -35,15 +37,38 @@ public class CIDashboardController {
     @FXML
     private Button CI_B_ricerca;
 
+    @FXML
+    private Label target_Ricerca;
+
+    @FXML
+    private FontIcon CI_FI_dismiss;
+
+    @FXML
+    private MenuButton CI_MB_NoCitt;
+
+    @FXML
+    private MenuButton CI_MB_SiCitt;
+
     public void initParameter(ClientCV client) {
-        this.client = client;;
+        this.CittadinoConesso = client.getUtenteLoggato();
+        if(CittadinoConesso != null) {
+            System.out.println(CittadinoConesso.getUserid());
+            CI_MB_SiCitt.setVisible(true);
+            CI_MB_NoCitt.setVisible(false);
+            CI_MB_SiCitt.setText(CittadinoConesso.getUserid());
+        } else {
+            System.out.println("No");
+            CI_MB_SiCitt.setVisible(false);
+            CI_MB_NoCitt.setVisible(true);
+        }
     }
 
     @FXML void initialize() {
-        //System.out.println(CI_CB_SceltaRicerca);
-        this.CI_CB_SceltaRicerca.getItems().clear();
-        //this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
-        System.out.println(this.CI_CB_SceltaRicerca.getItems());
+        cssh = CssHelper.getInstance();
+        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
+        this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
+        this.CI_CB_ricercaTipologia.getItems().addAll(itemCV);
+        this.CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
     }
 
     public void cercaCentroVaccinale(ActionEvent actionEvent) {
@@ -52,9 +77,9 @@ public class CIDashboardController {
             if(nomeCV.isEmpty()) {
                 cssh.toError(CI_TF_ricercaNomeCV, new Tooltip("Inserisci nome"));
             } else {
-
+                System.out.println(nomeCV);
+                cssh.toValid(CI_TF_ricercaNomeCV);
             }
-
         } else {
             String tipologiaCV = null;
             String comuneCV;
@@ -69,33 +94,46 @@ public class CIDashboardController {
             }
             comuneCV = CI_TF_ricercaComune.getText().trim();
             if(comuneCV != null && tipologiaCV != null) {
-
+                System.out.println(tipologiaCV + "\n" + comuneCV);
+                cssh.toValid(CI_CB_ricercaTipologia);
+                cssh.toValid(CI_TF_ricercaComune);
             }
         }
     }
-
-
     public void changeResearch(ActionEvent actionEvent) {
-        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
-        String s = CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().toString();
-        if(s.equals("Scegli tipo di ricerca")) {
-            CI_CB_SceltaRicerca.setVisible(false);
-            CI_TF_ricercaNomeCV.setVisible(false);
-            CI_B_ricerca.setVisible(false);
-            CI_CB_ricercaTipologia.setVisible(false);
-            CI_TF_ricercaComune.setVisible(false);
-            } else if(s.equals("Per nome")){
+        if(actionEvent.getSource().equals(CI_CB_SceltaRicerca)) {
+            if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
+                System.out.println("2");
+                CI_FI_dismiss.setVisible(true);
+                target_Ricerca.setVisible(false);
+                CI_CB_SceltaRicerca.setVisible(false);
+                CI_TF_ricercaNomeCV.clear();
+                CI_TF_ricercaNomeCV.setVisible(true);
+                CI_B_ricerca.setVisible(true);
+                CI_CB_ricercaTipologia.setVisible(false);
+                CI_TF_ricercaComune.setVisible(false);
+            } else if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per comune e tipologia")) {
+                        System.out.println("3");
+                        CI_FI_dismiss.setVisible(true);
+                        target_Ricerca.setVisible(false);
                         CI_CB_SceltaRicerca.setVisible(false);
-                        CI_TF_ricercaNomeCV.setVisible(true);
+                        CI_TF_ricercaNomeCV.setVisible(false);
                         CI_B_ricerca.setVisible(true);
-                        CI_CB_ricercaTipologia.setVisible(false);
-                        CI_TF_ricercaComune.setVisible(false);
-                    } else if(s.equals("Per comune e tipologia")) {
-                                CI_CB_SceltaRicerca.setVisible(false);
-                                CI_TF_ricercaNomeCV.setVisible(false);
-                                CI_B_ricerca.setVisible(true);
-                                CI_CB_ricercaTipologia.setVisible(true);
-                                CI_TF_ricercaComune.setVisible(true);
-                            }
+                        CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
+                        CI_CB_ricercaTipologia.setVisible(true);
+                        CI_TF_ricercaComune.clear();
+                        CI_TF_ricercaComune.setVisible(true);
+            }
+        }
+    }
+    public void dismissResearch(MouseEvent mouseEvent) {
+        CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
+        CI_FI_dismiss.setVisible(false);
+        target_Ricerca.setVisible(true);
+        CI_CB_SceltaRicerca.setVisible(true);
+        CI_TF_ricercaNomeCV.setVisible(false);
+        CI_B_ricerca.setVisible(false);
+        CI_CB_ricercaTipologia.setVisible(false);
+        CI_TF_ricercaComune.setVisible(false);
     }
 }

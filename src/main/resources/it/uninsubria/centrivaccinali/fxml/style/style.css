@@ -2,7 +2,7 @@
 	-fx-font-size: 15;
 }
 
-.label-titleDashboar{
+.label-titleDashboard{
 	-fx-font-size: 40;
 	-fx-effect: dropshadow(gaussian, gray, 5, 0, 0.0, 3);
 	-fx-font-family: Beirut;
@@ -155,7 +155,25 @@
 	-fx-icon-color: #1f4c9f;
 }
 
+.iconDismiss {
+	-fx-icon-colro: black;
+	-fx-icon-size: 23;
+}
+
+.iconDismiss:hover {
+	-fx-icon-color: red;
+	-fx-icon-size: 27;
+}
+
 .textfiled-RicercaCV {
+	-fx-pref-height: 45;
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-border-color: black;
+	-fx-border-width: 0.5;
+}
+
+.textfiled-RicercaCV:hover {
 	-fx-pref-height: 45;
 	-fx-background-radius: 15;
 	-fx-border-radius: 15;

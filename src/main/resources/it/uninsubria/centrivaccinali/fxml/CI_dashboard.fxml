@@ -16,16 +16,16 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="95.0" prefWidth="900.0" styleClass="panelSuperior" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="294.0" layoutY="10.0" styleClass="label-titleDashboar" text="AREA   CITTADINO" AnchorPane.topAnchor="10.0">
+            <Label layoutX="294.0" layoutY="10.0" styleClass="label-titleDashboard" text="AREA   CITTADINO" AnchorPane.topAnchor="10.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <MenuButton layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="Samu00" visible="false" AnchorPane.rightAnchor="20.0">
+            <MenuButton fx:id="CI_MB_SiCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" visible="false" AnchorPane.rightAnchor="20.0">
               <items>
                 <MenuItem fx:id="ItemInfo" mnemonicParsing="false" text="Info" />
                   <SeparatorMenuItem hideOnClick="true" mnemonicParsing="false" />
@@ -35,7 +35,7 @@
                   <FontIcon iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
                </graphic>
             </MenuButton>
-            <MenuButton layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" AnchorPane.rightAnchor="20.0">
+            <MenuButton fx:id="CI_MB_NoCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" AnchorPane.rightAnchor="20.0">
                <items>
                   <MenuItem fx:id="ItemLogin" mnemonicParsing="false" text="Login" />
                </items>
@@ -51,9 +51,9 @@
          </effect>
       </Separator>
       <TextField fx:id="CI_TF_ricercaNomeCV" layoutX="370.0" layoutY="288.0" promptText="Inserisci nome centro vaccinale" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="288.0" />
-      <Label text="Tipologia ricerca:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="125.0" />
-      <ChoiceBox fx:id="CI_CB_SceltaRicerca"  onAction="#changeResearch" prefWidth="150.0" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="150.0" />
-      <ComboBox fx:id="CI_CB_ricercaTipologia" layoutX="375.0" layoutY="288.0" prefWidth="150.0" promptText="Tipologia centro" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="288.0" />
+      <Label fx:id="target_Ricerca" text="Tipologia ricerca:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="125.0" />
+      <ChoiceBox fx:id="CI_CB_SceltaRicerca" onAction="#changeResearch" prefWidth="150.0" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="150.0" />
+      <ChoiceBox fx:id="CI_CB_ricercaTipologia" layoutX="375.0" layoutY="288.0" prefWidth="150.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="288.0" />
       <TextField fx:id="CI_TF_ricercaComune" layoutX="539.0" layoutY="298.0" promptText="Comune" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="288.0" />
       <Button fx:id="CI_B_ricerca" layoutX="423.0" layoutY="393.0" mnemonicParsing="false" onAction="#cercaCentroVaccinale" styleClass="buttonSmall" text="Cerca" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="395.0">
          <graphic>
@@ -72,7 +72,8 @@
       <FontIcon iconLiteral="bx-search-alt-2" iconSize="25" layoutX="849.0" layoutY="152.0" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.rightAnchor="103.0" AnchorPane.topAnchor="135.0" />
       <ComboBox fx:id="CI_CB_ricercaTipologiaSearch" layoutX="78.0" layoutY="132.0" prefWidth="150.0" promptText="Tipologia centro" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="465.0" />
       <TextField fx:id="CI_TF_ricercaComuneSearch" layoutX="470.0" layoutY="133.0" promptText="Comune" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="50.0" />
-      <FontIcon iconLiteral="bx-search-alt-2" iconSize="25" layoutX="869.0" layoutY="160.0" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="142.0" />
-      <AnchorPane fx:id="CI_AP_container" layoutY="95.0" prefHeight="435.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+      <FontIcon fx:id="CI_FI_research2" iconLiteral="bx-search-alt-2" iconSize="25" layoutX="869.0" layoutY="160.0" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="142.0" />
+      <AnchorPane fx:id="CI_AP_container" layoutY="95.0" mouseTransparent="true" prefHeight="435.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+      <FontIcon fx:id="CI_FI_dismiss" iconLiteral="fltfal-dismiss-20" iconSize="25" onMouseClicked="#dismissResearch" styleClass="iconDismiss" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
    </children>
 </AnchorPane>

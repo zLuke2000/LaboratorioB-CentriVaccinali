@@ -182,11 +182,11 @@ public class ControlloParametri {
     }
 
     public boolean email(TextInputControl tic) {
-        if(tic.getText().trim().length() != 0) {
-            cssHelper.toError(tic, new Tooltip("Email non valida"));
+        if(tic.getText().trim().length() <= 0) {
+            cssHelper.toError(tic, new Tooltip("Inserire email"));
             return false;
         }  else {
-            rPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
+            rPattern = Pattern.compile("^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$");
             rMatcher = rPattern.matcher(tic.getText().trim());
             if(rMatcher.matches()) {
                 cssHelper.toValid(tic);
