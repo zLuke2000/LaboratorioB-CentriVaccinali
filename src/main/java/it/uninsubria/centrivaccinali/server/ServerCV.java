@@ -92,12 +92,24 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraCittadino(Cittadino cittadino) {
-        db.registraCittadino(cittadino);
+    public void registraCittadino(ClientCVInterface client, Cittadino cittadino) {
+        new Thread(() -> {
+            System.out.println("Thread registrazione");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Chiamo db");
+            db.registraCittadino(client, cittadino);
+        }).start();
     }
 
     @Override
     public void registraVaccinato(Vaccinato vaccinato) throws RemoteException {
+//        new Thread(() -> {
+//            db.registraVaccinato( vaccinato);
+//        }).start();
         db.registraVaccinato( vaccinato);
     }
 

@@ -188,7 +188,6 @@ public class Database {
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()){
-                //TODO recupera info cittadino e notifica client
                 Cittadino c = new Cittadino(
                         rs.getString("nome"),
                         rs.getString("cognome"),
@@ -199,15 +198,15 @@ public class Database {
                         rs.getLong("id_vaccino")
                 );
                 System.out.println("[Database] login effettuato: " + rs.getString("userid"));
-                client.notifyLogin(true, c);
+                client.notifyLogin(true, c, "login");
             } else {
                 System.err.println("[Database] login fallito");
-                client.notifyLogin(false, null);
+                client.notifyLogin(false, null, "login");
             }
         } catch (SQLException e) {
             e.printStackTrace();
             try {
-                client.notifyLogin(false, null);
+                client.notifyLogin(false, null, "login");
             } catch (RemoteException ex) {
                 ex.printStackTrace();
             }
@@ -218,8 +217,7 @@ public class Database {
         return -1;
     }
 
-    public int registraCittadino(Cittadino c) {
-        //TODO controllo su nome e cognome???
+    public int registraCittadino(ClientCVInterface client, Cittadino c) {
         try {
             System.out.println("[Database] controllo che id vaccinazione sia corretto");
             pstmt=conn.prepareStatement("SELECT *" +
@@ -241,13 +239,15 @@ public class Database {
                 pstmt.setLong(7, c.getId_vaccino());
                 pstmt.executeUpdate();
                 System.out.println("[Database] registrato nuovo cittadino");
+                client.notifyLogin(true, c, "registrazione");
                 return OK;
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
                 //TODO mostra errore lato client
+                client.notifyLogin(false, null, "registrazione");
                 return EXCEPTION;
             }
-        } catch (SQLException e) {
+        } catch (SQLException | RemoteException e) {
             e.printStackTrace();
             return EXCEPTION;
         }

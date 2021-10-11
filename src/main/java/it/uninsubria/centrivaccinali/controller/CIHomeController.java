@@ -19,6 +19,8 @@ public class CIHomeController {
 
     private ClientCV client;
 
+    private ControlloParametri cp = ControlloParametri.getInstance();
+
     /**TextField per l'username del cittadino*/
     @FXML private TextField TF_CI_loginUsername;
 
@@ -46,34 +48,35 @@ public class CIHomeController {
         CentriVaccinali.setRoot("CI_dashboard");
     }
 
-
     /**
      * Metodo per accedere con le credenziali del  cittadino
      * @param actionEvent
      */
     public void loginCittadino(ActionEvent actionEvent) {
-        //TODO controllo parametri su username e password
-        String username=TF_CI_loginUsername.getText();
-        String password="";
-        if (!TF_CI_loginPassword.isVisible()){
-            password=TF_CI_loginPasswordVisible.getText();
-        } else {
-            password=TF_CI_loginPassword.getText();
+        //effettuo login se username e password non sono vuoti
+        //e sono state inserite credenziali valide
+        if (cp.testoSempliceConNumeri(TF_CI_loginUsername,4, 16) & (cp.password(TF_CI_loginPassword) || cp.password(TF_CI_loginPasswordVisible))){
+            String username=TF_CI_loginUsername.getText();
+            String password="";
+            if (!TF_CI_loginPassword.isVisible()){
+                password=TF_CI_loginPasswordVisible.getText();
+            } else {
+                password=TF_CI_loginPassword.getText();
+            }
+            if (!username.isBlank() && !password.isBlank()){
+                client.loginUtente(this, username, password);
+            }
         }
-        if (!username.isBlank() && !password.isBlank()){
-            client.loginUtente(this, username, password);
-        }
-        //TODO mostra errore (campi vuoti o con solo spazi)
     }
 
-    public void loginStatus(Boolean ritorno, Cittadino c){
+    public void loginStatus(boolean ritorno, Cittadino c){
         if (ritorno) {
-           System.out.println("Login effettuato, benvenuto: " + c.getUserid());
-           //TODO passare il cittadino all'interfaccia
+           System.out.println("[CIHome] Login effettuato, benvenuto: " + c.getUserid());
            Platform.runLater(() -> {
                CentriVaccinali.setRoot("CI_dashboard");
            });
         }
+        //TODO errore per utente non esiste o credenziali sbagliate
         else System.out.println("Login fallito");
     }
 

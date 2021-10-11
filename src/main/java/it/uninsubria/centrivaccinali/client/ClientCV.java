@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.CIHomeController;
+import it.uninsubria.centrivaccinali.controller.CIRegistrazioneController;
 import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
@@ -28,6 +29,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private CVLoginController sourceCVlogin;
     private CVRegistraCittadinoController sourceCVRegCittadino;
     private CIHomeController sourceCIhome;
+    private CIRegistrazioneController sourceCIregistrazione;
     private Cittadino utenteLoggato = null;
 
     public Cittadino getUtenteLoggato() {
@@ -75,9 +77,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         sourceCVlogin.authStatus(ritorno);
     }
 
-    public void notifyLogin(boolean ritorno, Cittadino c) throws RemoteException {
-        sourceCIhome.loginStatus(ritorno, c);
-        this.utenteLoggato = c;
+    public void notifyLogin(boolean ritorno, Cittadino c, String tipo) throws RemoteException {
+        utenteLoggato=c;
+        if (tipo.equals("login")) {
+            sourceCIhome.loginStatus(ritorno, c);
+        } else if (tipo.equals("registrazione")) {
+            sourceCIregistrazione.notifyRegistrazione(ritorno);
+        }
     }
 
     @Override
@@ -101,9 +107,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void registraCittadino(Cittadino cittadino) {
+    public void registraCittadino(CIRegistrazioneController ciRegistrazioneController, Cittadino cittadino) {
+        sourceCIregistrazione=ciRegistrazioneController;
         try {
-            server.registraCittadino(cittadino);
+            server.registraCittadino(this,cittadino);
         } catch (RemoteException e) {
             System.err.println("[ClientCV] registrazione cittadino fallita");
             lanciaPopup();

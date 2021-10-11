@@ -18,6 +18,8 @@ public class CIDashboardController {
 
     private ClientCV client;
 
+    private ControlloParametri cp = ControlloParametri.getInstance();
+
     private final ObservableList<String> itemResearch = FXCollections.observableArrayList("Per nome", "Per comune e tipologia");
 
     private final ObservableList<String> itemCV = FXCollections.observableArrayList("Ospedaliero", "Aziendale" ,"Hub");
@@ -73,30 +75,25 @@ public class CIDashboardController {
 
     public void cercaCentroVaccinale(ActionEvent actionEvent) {
         if(CI_TF_ricercaNomeCV.isVisible()) {
-            String nomeCV = CI_TF_ricercaNomeCV.getText().trim();
-            if(nomeCV.isEmpty()) {
-                cssh.toError(CI_TF_ricercaNomeCV, new Tooltip("Inserisci nome"));
-            } else {
-                System.out.println(nomeCV);
-                cssh.toValid(CI_TF_ricercaNomeCV);
+            if (cp.testoSempliceSenzaNumeri(CI_TF_ricercaNomeCV, 6, 50)) {
+                String nomeCV = CI_TF_ricercaNomeCV.getText().trim();
+                //client.cercaPerNome
             }
         } else {
             String tipologiaCV = null;
             String comuneCV;
             if(CI_CB_ricercaTipologia.getSelectionModel().getSelectedItem().toString().equals("Ospedaliero")) {
                 tipologiaCV = "Ospedaliero";
-            } else if(CI_CB_ricercaTipologia.getSelectionModel().getSelectedItem().toString().equals("Hub")) {
+            } else if(CI_CB_ricercaTipologia.getSelectionModel().getSelectedItem().equals("Hub")) {
                 tipologiaCV = "Hub";
-                    } else if(CI_CB_ricercaTipologia.getSelectionModel().getSelectedItem().toString().equals("Aziendale")) {
+                    } else if(CI_CB_ricercaTipologia.getSelectionModel().getSelectedItem().equals("Aziendale")) {
                                 tipologiaCV = "Aziendale";
                             } else {
                                 cssh.toError(CI_CB_ricercaTipologia, new Tooltip("Metti tipologia"));
             }
             comuneCV = CI_TF_ricercaComune.getText().trim();
             if(comuneCV != null && tipologiaCV != null) {
-                System.out.println(tipologiaCV + "\n" + comuneCV);
-                cssh.toValid(CI_CB_ricercaTipologia);
-                cssh.toValid(CI_TF_ricercaComune);
+
             }
         }
     }

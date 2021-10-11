@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +78,18 @@ public class CIRegistrazioneController {
         String password = TF_CI_password1.getText().trim();
         long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
-        client.registraCittadino(cittadino);
+        System.out.println("Registro cittadino");
+        client.registraCittadino(this, cittadino);
+    }
+
+    public void notifyRegistrazione(boolean ritorno) {
+        if (ritorno) {
+            System.out.println("Registrazione effettuato");
+            Platform.runLater(() -> {
+                CentriVaccinali.setRoot("CI_dashboard");
+            });
+        }
+        System.err.println("Registrazione fallita");
     }
 
     /**

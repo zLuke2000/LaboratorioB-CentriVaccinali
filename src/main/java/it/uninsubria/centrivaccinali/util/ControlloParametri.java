@@ -141,6 +141,7 @@ public class ControlloParametri {
 
     public boolean password(TextInputControl tic) {
         if(tic.getText().trim().length() <= 0) {
+            cssHelper.toError(tic, new Tooltip("Password non valida"));
             return false;
         }
         rPattern  = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
