@@ -86,33 +86,8 @@ public class CVRegistraCentroVaccinale {
                                 tipologiaSelezionata = TipologiaCentro.HUB;
                         }
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(CB_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
+                        client.registraCentroVaccinale(centroVaccinale);
                         // TODO da separare gli errori possibili
-                        switch(client.registraCentroVaccinale(centroVaccinale)) {
-                                case -1:
-                                        System.out.println("[ERRORE] centro gia' esistente ");
-                                        break;
-                                case 1:
-                                        System.out.println("REGISTRAZIONE EFFETTUATA");
-                                        break;
-                                case 2:
-                                        System.out.println("[ERRORE] errore catch 1");
-                                        break;
-                                case 3:
-                                        System.out.println("[ERRORE] errore catch 3");
-                                        break;
-                                case 4:
-                                        System.out.println("[ERRORE] indirizzo non trovato");
-                                        break;
-                                case 5:
-                                        System.out.println("[ERRORE] errore catch 5");
-                                        break;
-                                case 6:
-                                        System.out.println("[ERRORE] errore catch 6");
-                                        break;
-                                case 7:
-                                        System.out.println("[ERRORE] errore catch 7");
-                                        break;
-                        }
                 }
         }
 

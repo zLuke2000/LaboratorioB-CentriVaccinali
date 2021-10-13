@@ -75,6 +75,7 @@ public class CVLoginController {
 
     public void BackTo(MouseEvent mouseEvent) {
         System.out.println("Indietro");
+        client.stopOperation();
         CentriVaccinali.setRoot("Avvio");
     }
 

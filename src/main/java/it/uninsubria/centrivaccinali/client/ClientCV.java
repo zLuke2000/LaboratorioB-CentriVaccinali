@@ -7,18 +7,17 @@ import it.uninsubria.centrivaccinali.controller.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
 import java.util.Optional;
 
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
@@ -31,12 +30,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private CIHomeController sourceCIhome;
     private CIRegistrazioneController sourceCIregistrazione;
     private Cittadino utenteLoggato = null;
+    private ConnectionThread connThread;
 
     public Cittadino getUtenteLoggato() {
         return utenteLoggato;
     }
-
-    private ConnectionThread connThread;
 
     public static void setRegistry(Registry reg) {
         ClientCV.reg = reg;
@@ -57,53 +55,54 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             try {
                 server.authOperatore(this, username, password);
             } catch (RemoteException e) {
-                System.err.println("[ClientCV] non e' stato possibile autenticare l'opertatore");
+                printerr("non e' stato possibile autenticare l'opertatore");
                 lanciaPopup();
             }
         } else {
-            System.err.println("[ClientCV] connessione al server assente");
+            printerr("connessione al server assente");
             lanciaPopup();
         }
     }
 
     @Override
-    public void notifyStatus(boolean ritorno) throws RemoteException  {
-        if (ritorno) {
-            printout("AUTH OK");
+    public void notifyStatus(Result ritorno) throws RemoteException  {
+        switch(ritorno.getOpType()) {
+            case Result.LOGIN_OPERATORE:
+                sourceCVlogin.authStatus(ritorno.getResult());
+                break;
+            case Result.REGISTRAZIONE_VACCINATO:
+                //TODO
+                break;
+            case Result.REGISTRAZIONE_CENTRO:
+                break;
+            case Result.LOGIN_UTENTE:
+                utenteLoggato= ritorno.getCittadino();
+                sourceCIhome.loginStatus(ritorno.getResult());
+                break;
+            case Result.REGISTRAZIONE_CITTADINO:
+                sourceCVRegCittadino.risultatoRegistrazione(ritorno.getExtendedResult());
+                break;
+            case Result.RISULTATO_COMUNI:
+                if(ritorno.getResultComuni() != null) {
+                    sourceCVRegCittadino.risultatoComuni(ritorno.getResultComuni());
+                }
+                break;
+            case Result.RISULTATO_CENTRI:
+                if(ritorno.getResultCentri() != null) {
+                    sourceCVRegCittadino.risultatoCentri(ritorno.getResultCentri());
+                }
+                break;
+            default:
+                printerr("errore opType");
         }
-        else {
-            printout("AUTH KO");
-        }
-        sourceCVlogin.authStatus(ritorno);
     }
 
-    public void notifyLogin(boolean ritorno, Cittadino c, String tipo) throws RemoteException {
-        utenteLoggato=c;
-        if (tipo.equals("login")) {
-            sourceCIhome.loginStatus(ritorno, c);
-        } else if (tipo.equals("registrazione")) {
-            sourceCIregistrazione.notifyRegistrazione(ritorno);
-        }
-    }
-
-    @Override
-    public void risultato(List<String> resultComuni, List<CentroVaccinale> resultCentri, int resultRegistrazione) throws RemoteException {
-        if(resultComuni != null) {
-            sourceCVRegCittadino.risultatoComuni(resultComuni);
-        } else if(resultCentri != null) {
-            sourceCVRegCittadino.risultatoCentri(resultCentri);
-        } else if(resultRegistrazione != -1) {
-            sourceCVRegCittadino.risultatoRegistrazione(resultRegistrazione);
-        }
-    }
-
-    public int registraCentroVaccinale(CentroVaccinale cv) {
+    public void registraCentroVaccinale(CentroVaccinale cv) {
         try {
-            return server.registraCentro(cv);
+            server.registraCentro(this, cv);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] non e' stato possibile registrare il centro vaccinale");
+            printerr("non e' stato possibile registrare il centro vaccinale");
             lanciaPopup();
-            return -2;
         }
     }
 
@@ -112,7 +111,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             server.registraCittadino(this,cittadino);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] registrazione cittadino fallita");
+            printerr("registrazione cittadino fallita");
             lanciaPopup();
         }
     }
@@ -122,7 +121,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             server.loginUtente(this, username, password);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] Login Utente fallito");
+            printerr("Login Utente fallito");
             lanciaPopup();
         }
     }
@@ -131,7 +130,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             server.registraVaccinato(vaccinato);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] registrazione vaccinato fallita");
+            printerr("registrazione vaccinato fallita");
             lanciaPopup();
         }
     }
@@ -141,7 +140,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             server.getComuni(this, provincia);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] impossibile effettuare la ricerca dei comuni");
+            printerr("impossibile effettuare la ricerca dei comuni");
             lanciaPopup();
         }
     }
@@ -151,13 +150,17 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         try {
             server.getCentri(this, comune);
         } catch (RemoteException e) {
-            System.err.println("[ClientCV] Impossibile effettuare la ricerca dei centri");
+            printerr("Impossibile effettuare la ricerca dei centri");
             lanciaPopup();
         }
     }
 
-    private void printout(String s) {
-        System.out.println("[CLIENT_CV] " + s);
+    public void stopOperation() {
+        try {
+            server.stopThread();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     private void lanciaPopup(){
@@ -177,8 +180,17 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
                 dialog.close();
             }
         } catch (IOException e) {
-            System.err.println("[ClientCV] errore durante la creazione del dialog");
+            printerr("errore durante la creazione del dialog");
             e.printStackTrace();
         }
     }
+
+    private void printout(String s) {
+        System.out.println("[CLIENT_CV] " + s);
+    }
+
+    private void printerr(String s) {
+        System.err.println("[CLIENT_CV] " + s);
+    }
+
 }
