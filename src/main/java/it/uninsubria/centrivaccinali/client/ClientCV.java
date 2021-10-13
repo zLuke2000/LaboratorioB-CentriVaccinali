@@ -128,7 +128,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public void registraVaccinato(Vaccinato vaccinato) {
         try {
-            server.registraVaccinato(vaccinato);
+            server.registraVaccinato(this, vaccinato);
         } catch (RemoteException e) {
             printerr("registrazione vaccinato fallita");
             lanciaPopup();

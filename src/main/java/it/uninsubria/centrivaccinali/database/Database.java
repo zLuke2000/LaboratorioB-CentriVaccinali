@@ -51,7 +51,7 @@ public class Database {
     /**
      * FUNZIONANTE
      */
-    public int registraCentroVaccinale(CentroVaccinale cv) {
+    public Result registraCentroVaccinale(CentroVaccinale cv) {
         int result = ATTESA;
         UUID uuid = null;
         risultato = new Result(false, Result.REGISTRAZIONE_CENTRO);
@@ -96,7 +96,8 @@ public class Database {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return EXCEPTION;
+                //TODO mostrare al client il tipo di eccezione
+                return risultato;
             }
 
             // Recupero l'id univoco dell'indirizzo appena registrato
@@ -159,7 +160,8 @@ public class Database {
         }
     }
 
-    public int loginUtente(ClientCVInterface client, String username, String password) {
+    public Result loginUtente(String username, String password) {
+        risultato = new Result(false, Result.LOGIN_UTENTE);
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
@@ -178,26 +180,20 @@ public class Database {
                         rs.getLong("id_vaccino")
                 );
                 System.out.println("[Database] login effettuato: " + rs.getString("userid"));
-                client.notifyLogin(true, c, "login");
+                risultato.setResult(true);
+                risultato.setCittadino(c);
             } else {
                 System.err.println("[Database] login fallito");
-                client.notifyLogin(false, null, "login");
+                //TODO mostrare errori
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                client.notifyLogin(false, null, "login");
-            } catch (RemoteException ex) {
-                ex.printStackTrace();
-            }
-        } catch (RemoteException e) {
-            System.err.println("[Database] errore di comunicazione con il client");
-            e.printStackTrace();
         }
-        return -1;
+        return risultato;
     }
 
-    public int registraCittadino(ClientCVInterface client, Cittadino c) {
+    public Result registraCittadino(Cittadino c) {
+        Result risultato = new Result(false, Result.REGISTRAZIONE_CITTADINO);
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                         "FROM tabelle_cv.\"vaccinati\"" +
@@ -218,13 +214,13 @@ public class Database {
                 pstmt.setLong(7, c.getId_vaccino());
                 pstmt.executeUpdate();
                 System.out.println("[Database] registrato nuovo cittadino");
-                client.notifyLogin(true, c, "registrazione");
-                return OK;
+                risultato.setResult(true);
+                risultato.setCittadino(c);
+                return risultato;
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
                 //TODO mostra errore lato client
-                client.notifyLogin(false, null, "registrazione");
-                return EXCEPTION;
+                //return
             }
         } catch (SQLException | RemoteException e) {
             e.printStackTrace();
@@ -232,8 +228,8 @@ public class Database {
         }
     }
 
-    public int registraVaccinato(Vaccinato nuovoVaccinato) {
-        int risultatoQuery=-1;
+    public Result registraVaccinato(Vaccinato nuovoVaccinato) {
+        Result risultato = new Result(false, Result.REGISTRAZIONE_VACCINATO);
         try {
             pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
@@ -243,26 +239,21 @@ public class Database {
             pstmt.setDate(5, nuovoVaccinato.getDataSomministrazione());
             pstmt.setString(6, String.valueOf(nuovoVaccinato.getVaccinoSomministrato()));
             pstmt.setLong(7, nuovoVaccinato.getIdVaccino());
-            risultatoQuery=pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            //inserisci nuovo vaccinato nella tabella associativa
+            pstmt=conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati\" VALUES (?, ?, ?)");
+            pstmt.setLong(1, nuovoVaccinato.getIdVaccino());
+            pstmt.setString(2, nuovoVaccinato.getCodiceFiscale());
+            pstmt.setString(3, nuovoVaccinato.getNomeCentro());
+            pstmt.executeUpdate();
             System.out.println("[Database] registrato nuovo vaccinato");
+            risultato.setResult(true);
+            return risultato;
         } catch (SQLException e) {
             e.printStackTrace();
+            //ritorna errore
         }
-        new Thread(() -> {
-            try {
-                pstmt=conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati\" VALUES (?, ?, ?)");
-                pstmt.setLong(1, nuovoVaccinato.getIdVaccino());
-                pstmt.setString(2, nuovoVaccinato.getCodiceFiscale());
-                pstmt.setString(3, nuovoVaccinato.getNomeCentro());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            System.out.println("[Db thread] registrato vaccinato");
-        }).start();
-        //return -1;
-        return risultatoQuery;
-        //TODO sistemare i punti di return
+        return risultato;
     }
 
     /**

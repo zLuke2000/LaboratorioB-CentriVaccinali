@@ -82,12 +82,20 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             } catch (InterruptedException | RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override
-    public int registraCentro(CentroVaccinale cv) throws RemoteException {
-        return db.registraCentroVaccinale(cv);
+    public void registraCentro(ClientCVInterface client, CentroVaccinale cv) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.registraCentroVaccinale(cv));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
     }
 
     @Override
@@ -134,7 +142,8 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override
@@ -145,7 +154,8 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override

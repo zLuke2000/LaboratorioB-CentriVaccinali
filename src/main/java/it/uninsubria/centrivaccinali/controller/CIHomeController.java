@@ -69,9 +69,8 @@ public class CIHomeController {
         }
     }
 
-    public void loginStatus(boolean ritorno, Cittadino c){
+    public void loginStatus(boolean ritorno){
         if (ritorno) {
-           System.out.println("[CIHome] Login effettuato, benvenuto: " + c.getUserid());
            Platform.runLater(() -> {
                CentriVaccinali.setRoot("CI_dashboard");
            });

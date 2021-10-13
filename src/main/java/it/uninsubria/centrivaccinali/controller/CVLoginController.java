@@ -69,6 +69,7 @@ public class CVLoginController {
         if(status) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
         } else {
+            //TODO mostra errore
             System.err.println("[CVLogin] AUTH ERROR");
         }
     }
