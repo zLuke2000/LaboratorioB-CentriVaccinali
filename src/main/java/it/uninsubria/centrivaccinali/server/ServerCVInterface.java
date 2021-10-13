@@ -1,6 +1,5 @@
 package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;

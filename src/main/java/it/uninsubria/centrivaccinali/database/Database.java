@@ -222,10 +222,11 @@ public class Database {
                 //TODO mostra errore lato client
                 //return
             }
-        } catch (SQLException | RemoteException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            return EXCEPTION;
+            // TODO separare gli errori (CF, Email, userID, IDvac) gia' in uso
         }
+        return risultato;
     }
 
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
