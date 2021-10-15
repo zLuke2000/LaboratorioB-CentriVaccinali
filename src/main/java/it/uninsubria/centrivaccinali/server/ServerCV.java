@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     private final String usernameOperatore = "123";
     private final String passwordOperatore = "123";
     private static Database db;
+    private Thread myThread;
     private static Registry reg;
     private static ServerCV obj;
 
@@ -72,73 +74,92 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
 
     @Override
     public void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
-        new Thread(() -> {
+        myThread = new Thread(() -> {
             try {
                 // simulazione attesa
-                Thread.sleep(1000);
-                client.notifyStatus(usernameOperatore.equals(username) && passwordOperatore.equals(password));
-            } catch (InterruptedException e) {
-                System.err.println("[SERVER]: Sleep exception");
-                e.printStackTrace();
-            } catch (RemoteException e) {
+                Thread.sleep(5000);
+                client.notifyStatus(new Result(usernameOperatore.equals(username) && passwordOperatore.equals(password), Result.LOGIN_OPERATORE));
+            } catch (InterruptedException | RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override
-    public int registraCentro(CentroVaccinale cv) throws RemoteException {
-        return db.registraCentroVaccinale(cv);
+    public void registraCentro(ClientCVInterface client, CentroVaccinale cv) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.registraCentroVaccinale(cv));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
     }
 
     @Override
     public void registraCittadino(ClientCVInterface client, Cittadino cittadino) {
-        new Thread(() -> {
-            System.out.println("Thread registrazione");
+        myThread = new Thread(() -> {
             try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
+                client.notifyStatus(db.registraCittadino(cittadino));
+            } catch (RemoteException e) {
                 e.printStackTrace();
             }
-            System.out.println("Chiamo db");
-            db.registraCittadino(client, cittadino);
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override
-    public void registraVaccinato(Vaccinato vaccinato) throws RemoteException {
-//        new Thread(() -> {
-//            db.registraVaccinato( vaccinato);
-//        }).start();
-        db.registraVaccinato( vaccinato);
+    public void registraVaccinato(ClientCVInterface client, Vaccinato vaccinato) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.registraVaccinato( vaccinato));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
     }
 
     @Override
     public void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException {
-        new Thread(() -> {
-            db.loginUtente(client, username, password);
-        }).start();
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.loginUtente(username, password));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
     }
 
     @Override
     public void getCentri(ClientCVInterface client, String comuni) {
-        new Thread(() -> {
+        myThread = new Thread(() -> {
             try {
-                client.risultato(null, db.getCentriVaccinali(comuni), -2);
+                client.notifyStatus(db.getCentriVaccinali(comuni));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
     }
 
     @Override
-    public void getComuni(ClientCVInterface client, String provincia){
-        new Thread(() -> {
+    public void getComuni(ClientCVInterface client, String provincia) {
+        myThread = new Thread(() -> {
             try {
-                client.risultato(db.getComuni(provincia), null, -2);
+                client.notifyStatus(db.getComuni(provincia));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+        myThread.start();
+    }
+
+    @Override
+    public void stopThread() {
+        myThread.interrupt();
     }
 }

@@ -69,12 +69,14 @@ public class CVLoginController {
         if(status) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
         } else {
+            //TODO mostra errore
             System.err.println("[CVLogin] AUTH ERROR");
         }
     }
 
     public void BackTo(MouseEvent mouseEvent) {
         System.out.println("Indietro");
+        client.stopOperation();
         CentriVaccinali.setRoot("Avvio");
     }
 

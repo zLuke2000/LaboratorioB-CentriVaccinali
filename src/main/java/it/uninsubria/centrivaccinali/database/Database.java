@@ -1,14 +1,9 @@
 package it.uninsubria.centrivaccinali.database;
 
-import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Cittadino;
-import it.uninsubria.centrivaccinali.models.Indirizzo;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
+import it.uninsubria.centrivaccinali.models.*;
 
-import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,27 +19,20 @@ public class Database {
      * -1 ATTESA
      *  0 Programma OK
      *  1 Eccezione
-     *  2 Indirizzo non trovato
      */
     public static final int ATTESA = -1;
     public static final int OK = 0;
     public static final int EXCEPTION = 1;
-    public static final int INDIRIZZO_NON_TROVATO = 2;
-    public static final int TABELLA_NON_CREATA = 3;
 
     private final String utente = "123abc";
     private final String password = "123abc";
     private static Connection conn;
     private static PreparedStatement pstmt;
     private static Statement stmt;
+    private Result risultato;
 
     public Database() {}
 
-    /**
-     * @param utente
-     * @param password
-     * @return
-     */
     public Boolean connect(String utente, String password) {
         if(this.utente.equals(utente) && this.password.equals(password)) {
             try {
@@ -62,12 +50,11 @@ public class Database {
 
     /**
      * FUNZIONANTE
-     * @param cv
-     * @return
      */
-    public int registraCentroVaccinale(CentroVaccinale cv) {
+    public Result registraCentroVaccinale(CentroVaccinale cv) {
         int result = ATTESA;
         UUID uuid = null;
+        risultato = new Result(false, Result.REGISTRAZIONE_CENTRO);
 
         // Controllo che ci sia gia' l'indirizzo
         try {
@@ -91,10 +78,11 @@ public class Database {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return EXCEPTION;
+            //TODO settare eccezzione
+            return risultato;
         }
 
-        // Inserisco il nuovo centro solo se non presente
+        // Inserisco il nuovo indirizzo solo se non presente
         if(uuid == null) {
             // Inserisco il nuovo indirizzo
             try {
@@ -105,81 +93,75 @@ public class Database {
                 pstmt.setString(4, cv.getIndirizzo().getComune());
                 pstmt.setString(5, cv.getIndirizzo().getProvincia());
                 pstmt.setInt(6, cv.getIndirizzo().getCap());
-                result = pstmt.executeUpdate();
+                pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                return EXCEPTION;
+                //TODO mostrare al client il tipo di eccezione
+                return risultato;
             }
 
             // Recupero l'id univoco dell'indirizzo appena registrato
-            if (result == 1) {
-                try {
-                    pstmt = conn.prepareStatement("SELECT id_indirizzo " +
-                            "FROM public.\"IndirizzoCV\" " +
-                            "WHERE (qualificatore = ? AND " +
-                            "nome = ? AND " +
-                            "civico = ? AND " +
-                            "comune = ? AND " +
-                            "provincia = ? AND " +
-                            "cap = ?)");
-                    pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
-                    pstmt.setString(2, cv.getIndirizzo().getNome());
-                    pstmt.setString(3, cv.getIndirizzo().getCivico());
-                    pstmt.setString(4, cv.getIndirizzo().getComune());
-                    pstmt.setString(5, cv.getIndirizzo().getProvincia());
-                    pstmt.setInt(6, cv.getIndirizzo().getCap());
-                    ResultSet rs = pstmt.executeQuery();
-                    if(rs.next()) {
-                        uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
-                    } else {
-                        return INDIRIZZO_NON_TROVATO;
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    return EXCEPTION;
-                }
+            try {
+                pstmt = conn.prepareStatement("SELECT id_indirizzo " +
+                        "FROM public.\"IndirizzoCV\" " +
+                        "WHERE (qualificatore = ? AND " +
+                        "nome = ? AND " +
+                        "civico = ? AND " +
+                        "comune = ? AND " +
+                        "provincia = ? AND " +
+                        "cap = ?)");
+                pstmt.setString(1, cv.getIndirizzo().getQualificatore().toString());
+                pstmt.setString(2, cv.getIndirizzo().getNome());
+                pstmt.setString(3, cv.getIndirizzo().getCivico());
+                pstmt.setString(4, cv.getIndirizzo().getComune());
+                pstmt.setString(5, cv.getIndirizzo().getProvincia());
+                pstmt.setInt(6, cv.getIndirizzo().getCap());
+                ResultSet rs = pstmt.executeQuery();
+                rs.next();
+                uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return risultato;
             }
         }
 
         // Scrivo il centro vaccinale
         if(uuid != null) {
-            result = ATTESA;
             try {
                 pstmt = conn.prepareStatement("INSERT INTO public.\"CentriVaccinali\" (nome, indirizzo, tipologia) "
                                                 + "VALUES (?, ?, ?)");
                 pstmt.setString(1, cv.getNome());
                 pstmt.setObject(2, uuid);
                 pstmt.setString(3, cv.getTipologia().toString());
-                result = pstmt.executeUpdate();
+                pstmt.executeUpdate();
             } catch (SQLException e) {
+                // TODO gestire tabella inserita con lo stesso nome
                 e.printStackTrace();
-                return EXCEPTION;
+                return risultato;
             }
         }
 
         // Creo la nuova tabella
-        if(result == 1) {
-            try {
-                stmt = conn.createStatement();
-                stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
-                        "nome_centro varchar(50) NOT NULL, " +
-                        "nome varchar(50) NOT NULL, " +
-                        "cognome varchar(50) NOT NULL, " +
-                        "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
-                        "data_somministrazione date NOT NULL, " +
-                        "vaccino varchar(16) NOT NULL, " +
-                        "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
-                return OK;
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return EXCEPTION;
-            }
-        } else {
-            return TABELLA_NON_CREATA;
+        try {
+            stmt = conn.createStatement();
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
+                    "nome_centro varchar(50) NOT NULL, " +
+                    "nome varchar(50) NOT NULL, " +
+                    "cognome varchar(50) NOT NULL, " +
+                    "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
+                    "data_somministrazione date NOT NULL, " +
+                    "vaccino varchar(16) NOT NULL, " +
+                    "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
+            risultato.setResult(true);
+            return risultato;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return risultato;
         }
     }
 
-    public int loginUtente(ClientCVInterface client, String username, String password) {
+    public Result loginUtente(String username, String password) {
+        risultato = new Result(false, Result.LOGIN_UTENTE);
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
@@ -198,29 +180,22 @@ public class Database {
                         rs.getLong("id_vaccino")
                 );
                 System.out.println("[Database] login effettuato: " + rs.getString("userid"));
-                client.notifyLogin(true, c, "login");
+                risultato.setResult(true);
+                risultato.setCittadino(c);
             } else {
                 System.err.println("[Database] login fallito");
-                client.notifyLogin(false, null, "login");
+                //TODO mostrare errori
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                client.notifyLogin(false, null, "login");
-            } catch (RemoteException ex) {
-                ex.printStackTrace();
-            }
-        } catch (RemoteException e) {
-            System.err.println("[Database] errore di comunicazione con il client");
-            e.printStackTrace();
         }
-        return -1;
+        return risultato;
     }
 
-    public int registraCittadino(ClientCVInterface client, Cittadino c) {
+    public Result registraCittadino(Cittadino c) {
+        Result risultato = new Result(false, Result.REGISTRAZIONE_CITTADINO);
         try {
-            System.out.println("[Database] controllo che id vaccinazione sia corretto");
-            pstmt=conn.prepareStatement("SELECT *" +
+            pstmt = conn.prepareStatement("SELECT *" +
                                         "FROM tabelle_cv.\"vaccinati\"" +
                                         "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
             pstmt.setLong(1, c.getId_vaccino());
@@ -239,22 +214,23 @@ public class Database {
                 pstmt.setLong(7, c.getId_vaccino());
                 pstmt.executeUpdate();
                 System.out.println("[Database] registrato nuovo cittadino");
-                client.notifyLogin(true, c, "registrazione");
-                return OK;
+                risultato.setResult(true);
+                risultato.setCittadino(c);
+                return risultato;
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
                 //TODO mostra errore lato client
-                client.notifyLogin(false, null, "registrazione");
-                return EXCEPTION;
+                //return
             }
-        } catch (SQLException | RemoteException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            return EXCEPTION;
+            // TODO separare gli errori (CF, Email, userID, IDvac) gia' in uso
         }
+        return risultato;
     }
 
-    public int registraVaccinato(Vaccinato nuovoVaccinato) {
-        int risultatoQuery=-1;
+    public Result registraVaccinato(Vaccinato nuovoVaccinato) {
+        Result risultato = new Result(false, Result.REGISTRAZIONE_VACCINATO);
         try {
             pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
@@ -264,34 +240,28 @@ public class Database {
             pstmt.setDate(5, nuovoVaccinato.getDataSomministrazione());
             pstmt.setString(6, String.valueOf(nuovoVaccinato.getVaccinoSomministrato()));
             pstmt.setLong(7, nuovoVaccinato.getIdVaccino());
-            risultatoQuery=pstmt.executeUpdate();
+            pstmt.executeUpdate();
+            //inserisci nuovo vaccinato nella tabella associativa
+            pstmt=conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati\" VALUES (?, ?, ?)");
+            pstmt.setLong(1, nuovoVaccinato.getIdVaccino());
+            pstmt.setString(2, nuovoVaccinato.getCodiceFiscale());
+            pstmt.setString(3, nuovoVaccinato.getNomeCentro());
+            pstmt.executeUpdate();
             System.out.println("[Database] registrato nuovo vaccinato");
+            risultato.setResult(true);
+            return risultato;
         } catch (SQLException e) {
             e.printStackTrace();
+            //ritorna errore
         }
-        new Thread(() -> {
-            try {
-                pstmt=conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati\" VALUES (?, ?, ?)");
-                pstmt.setLong(1, nuovoVaccinato.getIdVaccino());
-                pstmt.setString(2, nuovoVaccinato.getCodiceFiscale());
-                pstmt.setString(3, nuovoVaccinato.getNomeCentro());
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            System.out.println("[Db thread] registrato vaccinato");
-        }).start();
-        //return -1;
-        return risultatoQuery;
-        //TODO sistemare i punti di return
+        return risultato;
     }
 
     /**
      * FUNZIONANTE
-     * @param provincia
-     * @return
      */
-    public List<String> getComuni(String provincia){
+    public Result getComuni(String provincia){
+        Result risultato = new Result(false, Result.RISULTATO_COMUNI);
         List<String> arrayComuni = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT comune " +
@@ -303,19 +273,19 @@ public class Database {
             while(rs.next()) {
                 arrayComuni.add(rs.getString("comune"));
             }
-            return arrayComuni;
+            risultato.setResult(true);
+            risultato.setResultComuni(arrayComuni);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return risultato;
     }
 
     /**
      * FUNZIONANTE
-     * @param comune
-     * @return
      */
-    public List<CentroVaccinale> getCentriVaccinali(String comune){
+    public Result getCentriVaccinali(String comune){
+        Result risultato = new Result(false, Result.RISULTATO_CENTRI);
         List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
@@ -334,10 +304,11 @@ public class Database {
                                 rs.getInt("cap")),
                         TipologiaCentro.valueOf(rs.getString("tipologia"))));
             }
-            return arrayNomeCentri;
+            risultato.setResult(true);
+            risultato.setResultCentri(arrayNomeCentri);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return risultato;
     }
 }
