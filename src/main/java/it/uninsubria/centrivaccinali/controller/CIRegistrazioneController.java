@@ -23,24 +23,7 @@ public class CIRegistrazioneController {
     private CssHelper csshelper;
     private ControlloParametri cp;
     private FXMLLoader loader;
-    /*
-    private final String INFO_USERNAME =  "Controllare la disponibilità  dell'username, ricordalo  che ti servirà" +
-            " all'autenticazione";
 
-     */
-    /*
-    private final String INFO_PASSWORD =  "Password non valida" + "\n" + "Deve contenre:" + "\n"  +
-            "- Almeno 8 caratteri"  + "\n"
-            + "- Almeno una lettere maiuscola" +
-            "\n" + "- Almeno una lettere minuscola" + "\n" +
-            "- Almeno un numero" + "\n" +"- Può contenere valori speciali";
-
-     */
-
-    // private final String INFO_ID_VACCINAZIONE =  "L'ID della vaccinazione è stato fornito al momento della somministrazione";
-
-    //Testo per le info dei vari campi
-    @FXML private Text T_CI_infoRegistrazione;
 
     // TextField per l'acquisizione dei dati
     @FXML private TextField TF_CI_nomeRegistrazione;
@@ -103,17 +86,6 @@ public class CIRegistrazioneController {
         dialog.setDialogPane(infoUsername);
         dialog.setTitle("INFO!");
         dialog.showAndWait();
-        /*
-        if(!T_CI_infoRegistrazione.isVisible()) {
-            T_CI_infoRegistrazione.setText(INFO_USERNAME);
-            T_CI_infoRegistrazione.setVisible(true);
-        } else if(T_CI_infoRegistrazione.isVisible() && !T_CI_infoRegistrazione.getText().equals(INFO_USERNAME)){
-                    T_CI_infoRegistrazione.setText(INFO_USERNAME);
-                } else {
-                    T_CI_infoRegistrazione.setVisible(false);
-                }
-         */
-
     }
 
     /**
@@ -127,16 +99,6 @@ public class CIRegistrazioneController {
         dialog.setDialogPane(infoUsername);
         dialog.setTitle("INFO!");
         dialog.showAndWait();
-        /*
-        if(!T_CI_infoRegistrazione.isVisible()) {
-            T_CI_infoRegistrazione.setText(INFO_PASSWORD);
-            T_CI_infoRegistrazione.setVisible(true);
-        } else if(T_CI_infoRegistrazione.isVisible() && !T_CI_infoRegistrazione.getText().equals(INFO_PASSWORD)){
-                    T_CI_infoRegistrazione.setText(INFO_PASSWORD);
-                } else {
-                    T_CI_infoRegistrazione.setVisible(false);
-                }
-         */
     }
 
     /**
@@ -150,16 +112,6 @@ public class CIRegistrazioneController {
         dialog.setDialogPane(infoUsername);
         dialog.setTitle("INFO!");
         dialog.showAndWait();
-        /*
-        if(!T_CI_infoRegistrazione.isVisible()) {
-            T_CI_infoRegistrazione.setText(INFO_ID_VACCINAZIONE);
-            T_CI_infoRegistrazione.setVisible(true);
-        } else if(T_CI_infoRegistrazione.isVisible() && !T_CI_infoRegistrazione.getText().equals(INFO_ID_VACCINAZIONE)){
-                    T_CI_infoRegistrazione.setText(INFO_ID_VACCINAZIONE);
-                } else {
-                    T_CI_infoRegistrazione.setVisible(false);
-                }
-         */
     }
 
     @FXML public void realtimeCheck(KeyEvent keyEvent) {

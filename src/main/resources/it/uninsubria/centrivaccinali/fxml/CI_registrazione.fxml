@@ -11,14 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="640.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazioneController">
+<AnchorPane prefHeight="640.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazioneController">
    <children>
       <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" onMouseClicked="#backTo" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
       <Label alignment="CENTER" layoutX="180.0" layoutY="18.0" mouseTransparent="true" styleClass="labelWelcome" text="REGISTRAZIONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
-      <Label alignment="CENTER" layoutX="180.0" layoutY="53.0" styleClass="la" text="I tuoi dati" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+      <Label alignment="CENTER" layoutX="180.0" layoutY="53.0" text="I tuoi dati" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
       <VBox layoutY="83.0" prefHeight="120.0" prefWidth="390.0">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="379.0">
@@ -86,7 +85,7 @@
                <children>
                   <PasswordField fx:id="TF_CI_password1" layoutY="1.0" onKeyTyped="#realtimeCheck" promptText="Password" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <PasswordField fx:id="TF_CI_password2" layoutX="189.0" layoutY="2.0" onKeyTyped="#realtimeCheck" promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <FontIcon fx:id="FI_CI_infoPasswordRegistrazione" iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0" onMouseClicked="#showInfoPassword" styleClass="iconInfo" />
+                  <FontIcon iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0" onMouseClicked="#showInfoPassword" styleClass="iconInfo" />
                </children>
             </AnchorPane>
          </children>
@@ -100,12 +99,12 @@
       <HBox alignment="CENTER_LEFT" layoutX="133.0" layoutY="424.0" prefHeight="40.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="435.0">
          <children>
             <TextField fx:id="TF_CI_idvaccinazioneRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0" prefWidth="180.0" promptText="Id Vaccinazione" />
-            <FontIcon fx:id="FI_CI_infoVaccinazioneRegistrazione" iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo" text="">
+            <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo" text="">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
             </FontIcon>
-            <ProgressIndicator fx:id="PI_CI_loadIdVaccinazione" prefHeight="12.0" prefWidth="30.0" visible="false">
+            <ProgressIndicator  prefHeight="12.0" prefWidth="30.0" visible="false">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -125,6 +124,5 @@
       </Separator>
       <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#registraCittadino" styleClass="buttonSmall" text="Registra" />
       <ProgressIndicator fx:id="PI_CI_loadRegistrazione" layoutX="179.0" layoutY="531.0" prefHeight="22.0" prefWidth="35.0" visible="false" />
-      <Text fx:id="T_CI_infoRegistrazione" layoutX="8.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-info" underline="true" visible="false" wrappingWidth="350.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
