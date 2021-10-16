@@ -7,61 +7,37 @@ import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 public class CIDashboardController {
 
-    private Cittadino CittadinoConesso = null;
-
+    private Cittadino cittadinoConesso = null;
     private CssHelper cssh = CssHelper.getInstance();
-
     private ClientCV client;
-
     private ControlloParametri cp = ControlloParametri.getInstance();
-
     private final ObservableList<String> itemResearch = FXCollections.observableArrayList("Per nome", "Per comune e tipologia");
-
     private final ObservableList<String> itemCV = FXCollections.observableArrayList("Ospedaliero", "Aziendale" ,"Hub");
 
-    @FXML
-    private AnchorPane CI_AP_container;
-
-    @FXML
-    private ChoiceBox<String> CI_CB_SceltaRicerca;
-
-    @FXML
-    private ChoiceBox<String> CI_CB_ricercaTipologia;
-
-    @FXML
-    private TextField CI_TF_ricercaNomeCV;
-
-    @FXML
-    private TextField CI_TF_ricercaComune;
-
-    @FXML
-    private Button CI_B_ricerca;
-
-    @FXML
-    private Label target_Ricerca;
-
-    @FXML
-    private MenuButton CI_MB_NoCitt;
-
-    @FXML
-    private MenuButton CI_MB_SiCitt;
+    @FXML private AnchorPane CI_AP_container;
+    @FXML private ChoiceBox<String> CI_CB_SceltaRicerca;
+    @FXML private ChoiceBox<String> CI_CB_ricercaTipologia;
+    @FXML private TextField CI_TF_ricercaNomeCV;
+    @FXML private TextField CI_TF_ricercaComune;
+    @FXML private Button CI_B_ricerca;
+    @FXML private Label target_Ricerca;
+    @FXML private MenuButton CI_MB_NoCitt;
+    @FXML private MenuButton CI_MB_SiCitt;
 
     public void initParameter(ClientCV client) {
         this.client =  client;
-        this.CittadinoConesso = client.getUtenteLoggato();
-        if(CittadinoConesso != null) {
-            System.out.println(CittadinoConesso.getUserid());
+        this.cittadinoConesso = client.getUtenteLoggato();
+        if(cittadinoConesso != null) {
+            System.out.println(cittadinoConesso.getUserid());
             CI_MB_SiCitt.setVisible(true);
             CI_MB_NoCitt.setVisible(false);
-            CI_MB_SiCitt.setText(CittadinoConesso.getUserid());
+            CI_MB_SiCitt.setText(cittadinoConesso.getUserid());
         } else {
-            System.out.println("No");
+            System.out.println("Accesso libero");
             CI_MB_SiCitt.setVisible(false);
             CI_MB_NoCitt.setVisible(true);
         }
@@ -81,13 +57,11 @@ public class CIDashboardController {
         String tipologiaCV = null;
         String comuneCV = null;
         if(CI_TF_ricercaNomeCV.isVisible()) {
-            //System.out.println("Ok1");
             if (cp.testoSempliceSenzaNumeri(CI_TF_ricercaNomeCV, 6, 50)) {
-                //System.out.println("Ok2");
                 nomeCV = CI_TF_ricercaNomeCV.getText().trim();
-                //client.cercaPerNome
             } else {
-                CI_TF_ricercaNomeCV.setStyle("-fx-border-color: red");
+                //cssh.toError(CI_TF_ricercaNomeCV);
+                //CI_TF_ricercaNomeCV.setStyle("-fx-border-color: red");
             }
         } else {
             tipologiaCV = CI_CB_ricercaTipologia.getValue();
