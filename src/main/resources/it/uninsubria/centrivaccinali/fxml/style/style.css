@@ -37,12 +37,12 @@
 	-fx-font-size: 12;
 }
 
-.field-error{
+.field-error {
 	-fx-border-color: red;
 	-fx-border-width: 1.5;
 }
 
-.tooltip-error{
+.tooltip-error {
 	-fx-border-color: red;
 	-fx-border-radius: 10;
 	-fx-border-width: 1.5;
@@ -165,36 +165,22 @@
 	-fx-icon-size: 27;
 }
 
-.textfiled-RicercaCV {
+.textfield-RicercaCV {
 	-fx-pref-height: 45;
 	-fx-background-radius: 15;
 	-fx-border-radius: 15;
-	-fx-border-color: black;
-	-fx-border-width: 0.5;
 }
 
-.textfiled-RicercaCV:hover {
+.textfield-RicercaCV:hover {
 	-fx-pref-height: 45;
 	-fx-background-radius: 15;
 	-fx-border-radius: 15;
-	-fx-border-color: black;
-	-fx-border-width: 0.5;
-}
-
-.textfiled-RicercaCV-error {
-	-fx-pref-height: 45;
-	-fx-background-radius: 15;
-	-fx-border-radius: 15;
-	-fx-border-color: red;
-	-fx-border-width: 0.5;
 }
 
 .comboBoxRicerca{
 	-fx-pref-height: 30;
 	-fx-background-radius: 9;
 	-fx-border-radius: 9;
-	-fx-border-color: black;
-	-fx-border-width: 0.5;
 }
 
 .textfiled-LoginDash{
@@ -212,16 +198,6 @@
 	-fx-pref-height: 45;
 	-fx-background-radius: 9;
 	-fx-border-radius: 9;
-	-fx-border-color: black;
-	-fx-border-width: 0.5;
-}
-
-.comboBoxTipologia-error{
-	-fx-pref-height: 45;
-	-fx-background-radius: 9;
-	-fx-border-radius: 9;
-	-fx-border-color: red;
-	-fx-border-width: 0.5;
 }
 
 .MenuButton{

@@ -15,6 +15,8 @@ public class CIDashboardController {
 
     private Cittadino CittadinoConesso = null;
 
+    private Cittadino cittadinoConesso = null;
+    private CssHelper cssh = CssHelper.getInstance();
     private ClientCV client;
 
     private ControlloParametri cp = ControlloParametri.getInstance();

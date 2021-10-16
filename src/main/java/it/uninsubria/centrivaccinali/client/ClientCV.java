@@ -32,6 +32,15 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private Cittadino utenteLoggato = null;
     private ConnectionThread connThread;
 
+    private boolean connStatus() {
+        if(server == null) {
+            printerr("connessione al server assente");
+            lanciaPopup();
+            return false;
+        }
+        return true;
+    }
+
     public Cittadino getUtenteLoggato() {
         return utenteLoggato;
     }
@@ -51,16 +60,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public void autenticaOperatore(CVLoginController source, String username, String password) {
         this.sourceCVlogin = source;
-        if(server != null) {
+        if(connStatus()) {
             try {
                 server.authOperatore(this, username, password);
             } catch (RemoteException e) {
                 printerr("non e' stato possibile autenticare l'opertatore");
                 lanciaPopup();
             }
-        } else {
-            printerr("connessione al server assente");
-            lanciaPopup();
         }
     }
 
@@ -156,10 +162,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void stopOperation() {
-        try {
-            server.stopThread();
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if(server != null) {
+            try {
+                server.stopThread();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 

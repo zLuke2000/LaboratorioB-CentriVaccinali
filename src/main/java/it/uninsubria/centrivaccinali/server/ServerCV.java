@@ -160,6 +160,8 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
 
     @Override
     public void stopThread() {
-        myThread.interrupt();
+        if(myThread != null) {
+            myThread.interrupt();
+        }
     }
 }
