@@ -69,7 +69,9 @@ public class ControlloParametri {
             cssHelper.toValid(tic);
             return true;
         } else {
+            System.out.println("cp1");
             cssHelper.toError(tic, new Tooltip("immettere da " + minChar + " a " + maxChar + " caratteri"));
+            System.out.println("cp2");
             return false;
         }
     }

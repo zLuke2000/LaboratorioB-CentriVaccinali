@@ -130,6 +130,9 @@ public class CIRegistrazioneController {
         }
         if(TF_CI_password1.equals(key)) {
             cp.password(TF_CI_password1);
+            if(!TF_CI_password2.getText().isBlank()) {
+                cp.checkSamePassword(TF_CI_password1, TF_CI_password2);
+            }
         }
         if(TF_CI_password2.equals(key)) {
             cp.checkSamePassword(TF_CI_password1, TF_CI_password2);

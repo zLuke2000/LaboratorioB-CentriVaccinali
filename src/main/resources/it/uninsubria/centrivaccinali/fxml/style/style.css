@@ -181,6 +181,14 @@
 	-fx-border-width: 0.5;
 }
 
+.textfiled-RicercaCV-error {
+	-fx-pref-height: 45;
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-border-color: red;
+	-fx-border-width: 0.5;
+}
+
 .comboBoxRicerca{
 	-fx-pref-height: 30;
 	-fx-background-radius: 9;
@@ -194,6 +202,14 @@
 	-fx-background-radius: 9;
 	-fx-border-radius: 9;
 	-fx-border-color: black;
+	-fx-border-width: 0.5;
+}
+
+.comboBoxTipologia-error{
+	-fx-pref-height: 45;
+	-fx-background-radius: 9;
+	-fx-border-radius: 9;
+	-fx-border-color: red;
 	-fx-border-width: 0.5;
 }
 
@@ -211,5 +227,9 @@
 
 .textAreainfo {
 	-fx-background-color: TRANSPARENT;
+}
+
+.labelTitleSezInfo{
+	-fx-font-size: 18;
 }
 

@@ -74,6 +74,5 @@
       <TextField fx:id="CI_TF_ricercaComuneSearch" layoutX="470.0" layoutY="133.0" promptText="Comune" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="50.0" />
       <FontIcon fx:id="CI_FI_research2" iconLiteral="bx-search-alt-2" iconSize="25" layoutX="869.0" layoutY="160.0" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="142.0" />
       <AnchorPane fx:id="CI_AP_container" layoutY="95.0" mouseTransparent="true" prefHeight="435.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
-      <FontIcon fx:id="CI_FI_dismiss" iconLiteral="fltfal-dismiss-20" iconSize="25" onMouseClicked="#dismissResearch" styleClass="iconDismiss" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0" />
    </children>
 </AnchorPane>
