@@ -197,6 +197,17 @@
 	-fx-border-width: 0.5;
 }
 
+.textfiled-LoginDash{
+	-fx-background-color: TRANSPARENT;
+	-fx-border-width: 0.1;
+	-fx-border-fit: overflow;
+}
+
+.button-LoginDash{
+	-fx-background-color: TRANSPARENT;
+	-fx-text-fill: #1f4c9f;
+}
+
 .comboBoxTipologia{
 	-fx-pref-height: 45;
 	-fx-background-radius: 9;

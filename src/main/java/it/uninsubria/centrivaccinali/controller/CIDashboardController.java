@@ -15,8 +15,6 @@ public class CIDashboardController {
 
     private Cittadino CittadinoConesso = null;
 
-    private CssHelper cssh = CssHelper.getInstance();
-
     private ClientCV client;
 
     private ControlloParametri cp = ControlloParametri.getInstance();
@@ -35,22 +33,36 @@ public class CIDashboardController {
     private ChoiceBox<String> CI_CB_ricercaTipologia;
 
     @FXML
+    private TextField CI_TF_userDash;
+
+    @FXML
     private TextField CI_TF_ricercaNomeCV;
 
     @FXML
     private TextField CI_TF_ricercaComune;
 
     @FXML
+    private PasswordField CI_TF_passwordDash;
+
+    @FXML
     private Button CI_B_ricerca;
+
+    @FXML
+    private Button CI_B_loginDash;
 
     @FXML
     private Label target_Ricerca;
 
+    /*
     @FXML
     private MenuButton CI_MB_NoCitt;
+     */
 
     @FXML
     private MenuButton CI_MB_SiCitt;
+
+    @FXML
+    private ProgressIndicator CI_PI_loadLoginDash;
 
     public void initParameter(ClientCV client) {
         this.client =  client;
@@ -58,12 +70,13 @@ public class CIDashboardController {
         if(CittadinoConesso != null) {
             System.out.println(CittadinoConesso.getUserid());
             CI_MB_SiCitt.setVisible(true);
-            CI_MB_NoCitt.setVisible(false);
+            //CI_MB_NoCitt.setVisible(false);
             CI_MB_SiCitt.setText(CittadinoConesso.getUserid());
         } else {
-            System.out.println("No");
             CI_MB_SiCitt.setVisible(false);
-            CI_MB_NoCitt.setVisible(true);
+            CI_TF_userDash.setVisible(true);
+            CI_TF_passwordDash.setVisible(true);
+            CI_B_loginDash.setVisible(true);
         }
     }
 
@@ -117,6 +130,27 @@ public class CIDashboardController {
                         CI_TF_ricercaComune.clear();
                         CI_TF_ricercaComune.setVisible(true);
             }
+        }
+    }
+
+    public void showInfoMB(ActionEvent actionEvent) {
+
+    }
+
+    public void logoutInfoMB(ActionEvent actionEvent) {
+
+    }
+
+    public void loginMB(ActionEvent actionEvent) {
+        //CI_MB_NoCitt.setVisible(false);
+        CI_TF_userDash.setVisible(true);
+        CI_TF_passwordDash.setVisible(true);
+        CI_B_loginDash.setVisible(true);
+    }
+
+    public void loginDash(ActionEvent actionEvent) {
+        if(!CI_TF_userDash.getText().isBlank() && !CI_TF_passwordDash.getText().isBlank()) {
+
         }
     }
 }
