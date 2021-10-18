@@ -27,11 +27,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private ConnectionThread connThread;
 
     private Controller controller;
-    private CVLoginController sourceCVlogin;
-    private CVRegistraCittadinoController sourceCVRegCittadino;
-    private CIHomeController sourceCIhome;
-    private CIRegistrazioneController sourceCIregistrazione;
-    private CIDashboardController sourceCIdashboard;
+
+    public ClientCV() throws RemoteException {
+        //si occupa il thread di ottenere la connessione
+        connThread = new ConnectionThread();
+    }
 
     public Cittadino getUtenteLoggato() {
         return utenteLoggato;
@@ -43,11 +43,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public static void setServer(ServerCVInterface server) {
         ClientCV.server = server;
-    }
-
-    public ClientCV() throws RemoteException {
-        //si occupa il thread di ottenere la connessione
-        connThread = new ConnectionThread();
     }
 
     private boolean connectionStatus() {
@@ -74,35 +69,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
         switch(ritorno.getOpType()) {
-            case Result.LOGIN_OPERATORE:
-                controller.notifyController(ritorno);
-                break;
-            case Result.REGISTRAZIONE_VACCINATO:
-                controller.notifyController(ritorno);
-                break;
-            case Result.REGISTRAZIONE_CENTRO:
-                controller.notifyController(ritorno);
-                break;
             case Result.LOGIN_UTENTE:
                 utenteLoggato= ritorno.getCittadino();
                 controller.notifyController(ritorno);
                 break;
+            case Result.LOGIN_OPERATORE:
+            case Result.REGISTRAZIONE_VACCINATO:
+            case Result.REGISTRAZIONE_CENTRO:
             case Result.REGISTRAZIONE_CITTADINO:
-                controller.notifyController(ritorno);
-//                sourceCVRegCittadino.risultatoRegistrazione(ritorno.getExtendedResult());
-                break;
             case Result.RISULTATO_COMUNI:
-//                if(ritorno.getResultComuni() != null) {
-//                    sourceCVRegCittadino.risultatoComuni(ritorno.getResultComuni());
-//                }
-                controller.notifyController(ritorno);
-                break;
             case Result.RISULTATO_CENTRI:
-//                if(ritorno.getResultCentri() != null) {
-//                    sourceCVRegCittadino.risultatoCentri(ritorno.getResultCentri());
-//                }
-                controller.notifyController(ritorno);
-                break;
             case Result.RICERCA_CENTRO:
                 controller.notifyController(ritorno);
                 break;
@@ -133,8 +109,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void loginUtente(CIHomeController ciHomeController,String username, String password){
-        controller=ciHomeController;
+    public void loginUtente(Controller controller,String username, String password){
+        this.controller = controller;
         if (connectionStatus()) {
             try {
                 server.loginUtente(this, username, password);

@@ -346,10 +346,10 @@ public class Database {
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                     "FROM public.\"InfoCV\" " +
-                    "WHERE comune = ? AND " +
+                    "WHERE comune ILIKE ? AND " +
                     "tipologia = ?" +
                     "ORDER BY nome_centro");
-            pstmt.setString(1, comune);
+            pstmt.setString(1, "%" + comune + "%");
             pstmt.setString(2, tipologia.toString());
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {

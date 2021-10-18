@@ -82,17 +82,6 @@ public class CIHomeController extends Controller {
         }
     }
 
-    //FIXME metodo non piu' usato
-    public void loginStatus(boolean ritorno){
-        if (ritorno) {
-           Platform.runLater(() -> {
-               CentriVaccinali.setRoot("CI_dashboard");
-           });
-        }
-        //TODO errore per utente non esiste o credenziali sbagliate
-        else System.out.println("Login fallito");
-    }
-
     /**
      * Metodo per passare all'interfaccia di registrazione
      * @param mouseEvent

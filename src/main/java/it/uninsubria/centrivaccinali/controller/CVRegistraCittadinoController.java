@@ -135,26 +135,6 @@ public class CVRegistraCittadinoController extends Controller {
         client.stopOperation();
     }
 
-    public void risultatoComuni(List<String> resultComuni) {
-        Platform.runLater(() -> {
-            CB_CV_selezionaComune.getItems().clear();
-            CB_CV_selezionaComune.getItems().addAll(resultComuni);
-            CB_CV_selezionaComune.getSelectionModel().selectFirst();
-        });
-    }
-
-    public void risultatoCentri(List<CentroVaccinale> resultCentri) {
-        Platform.runLater(() -> {
-            listaCentri.clear();
-            listaCentri = resultCentri;
-            CB_CV_selezionaCentro.getItems().clear();
-            for (CentroVaccinale centro : resultCentri) {
-                CB_CV_selezionaCentro.getItems().add(centro.getNome());
-                CB_CV_selezionaCentro.getSelectionModel().selectFirst();
-            }
-        });
-    }
-
     @FXML void registraVaccinato() {
         if(cp.testoSempliceSenzaNumeri(TF_CV_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(TF_CV_cognomeCittadino, 2, 50) & cp.codiceFiscale(TF_CV_cfCittadino) & cp.data(DP_CV_datavaccino) & statoSelezione()) {
             String nomeCentro=CB_CV_selezionaCentro.getSelectionModel().getSelectedItem();
@@ -190,9 +170,5 @@ public class CVRegistraCittadinoController extends Controller {
             cssHelper.toError(CB_CV_selezionaCentro, null);
             return false;
         }
-    }
-
-    public void risultatoRegistrazione(int resultRegistrazione) {
-        // TODO risultato registrazione cittadino vaccinato
     }
 }

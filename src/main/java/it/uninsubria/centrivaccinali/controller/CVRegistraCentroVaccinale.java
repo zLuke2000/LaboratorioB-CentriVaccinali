@@ -46,7 +46,6 @@ public class CVRegistraCentroVaccinale extends Controller {
                 this.client = client;
         }
 
-        //TODO notifica registrazione centro vaccinale
         @Override
         public void notifyController(Result result) {
                 if (result.getResult()) {

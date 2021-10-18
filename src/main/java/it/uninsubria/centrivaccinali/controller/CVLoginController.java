@@ -73,21 +73,6 @@ public class CVLoginController extends Controller {
         }
     }
 
-//    @FXML public void toDefault(KeyEvent ke) {
-//        cssHelper.toDefault((TextInputControl) ke.getSource());
-//    }
-
-    //FIXME metodo non piu' usato
-    public void authStatus(Boolean status) {
-        PI_CV_load.setVisible(false);
-        if(status) {
-            Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
-        } else {
-            //TODO mostra errore
-            System.err.println("[CVLogin] AUTH ERROR");
-        }
-    }
-
     public void BackTo(MouseEvent mouseEvent) {
         System.out.println("Indietro");
         client.stopOperation();

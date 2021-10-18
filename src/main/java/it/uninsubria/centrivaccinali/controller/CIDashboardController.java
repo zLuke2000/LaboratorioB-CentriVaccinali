@@ -81,16 +81,25 @@ public class CIDashboardController extends Controller {
         }
     }
 
-    //TODO notifica della ricerca
     @Override
     public void notifyController(Result result) {
-        if (!result.getResultCentri().isEmpty()) {
-            for (CentroVaccinale cv: result.getResultCentri()) {
-                System.out.println(cv);
-            }
+        if (result.getOpType() == Result.LOGIN_UTENTE){
+            CI_TF_userDash.setVisible(false);
+            CI_TF_passwordDash.setVisible(false);
+            CI_B_loginDash.setVisible(false);
+            CI_PI_loadLoginDash.setVisible(false);
+            CI_MB_SiCitt.setText(client.getUtenteLoggato().getUserid());
+            CI_MB_SiCitt.setVisible(true);
         }
         else {
-            System.err.println("nessun risultato");
+            if (!result.getResultCentri().isEmpty()) {
+                for (CentroVaccinale cv: result.getResultCentri()) {
+                    System.out.println(cv);
+                }
+            }
+            else {
+                System.err.println("nessun risultato");
+            }
         }
     }
 
@@ -137,7 +146,6 @@ public class CIDashboardController extends Controller {
     }
 
     public void loginMB(ActionEvent actionEvent) {
-        //CI_MB_NoCitt.setVisible(false);
         CI_TF_userDash.setVisible(true);
         CI_TF_passwordDash.setVisible(true);
         CI_B_loginDash.setVisible(true);
@@ -145,7 +153,10 @@ public class CIDashboardController extends Controller {
 
     public void loginDash(ActionEvent actionEvent) {
         if(!CI_TF_userDash.getText().isBlank() && !CI_TF_passwordDash.getText().isBlank()) {
-
+            String username = CI_TF_userDash.getText().trim();
+            String password = CI_TF_passwordDash.getText().trim();
+            CI_PI_loadLoginDash.setVisible(true);
+            client.loginUtente(this, username, password);
         }
     }
 }
