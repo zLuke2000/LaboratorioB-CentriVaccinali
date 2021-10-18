@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
-import it.uninsubria.centrivaccinali.util.AlertConnection;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

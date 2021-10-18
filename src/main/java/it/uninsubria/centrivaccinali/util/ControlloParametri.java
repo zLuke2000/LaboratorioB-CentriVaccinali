@@ -26,7 +26,7 @@ public class ControlloParametri {
     private static ArrayList<String> listaProvince = new ArrayList<>();
 
     //Stringhe errore password
-    private final String err1 = "Password troppo corta";
+    private final String err1 = "Password troppo corta (almeno 8 caratteri)";
     private final String err2 = "Deve contenere almeno una lettera minuscola";
     private final String err3 = "Deve contenere almeno una lettera maiuscola";
     private final String err4 = "Deve contenere almeno un numero";
