@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
@@ -23,6 +24,12 @@ public class ControlloParametri {
     private Pattern rPattern;
     private Matcher rMatcher;
     private static ArrayList<String> listaProvince = new ArrayList<>();
+
+    //Stringhe errore password
+    private final String err1 = "Password troppo corta";
+    private final String err2 = "Deve contenere almeno una lettera minuscola";
+    private final String err3 = "Deve contenere almeno una lettera maiuscola";
+    private final String err4 = "Deve contenere almeno un numero";
 
     private ControlloParametri() {}
 
@@ -142,10 +149,60 @@ public class ControlloParametri {
     }
 
     public boolean password(TextInputControl tic) {
-        if(tic.getText().trim().length() <= 0) {
-            cssHelper.toError(tic, new Tooltip("Password non valida"));
-            return false;
+        String errTo0ltip = null;
+        boolean res = true;
+        if(tic.getText().trim().length() <= 8) {
+            //cssHelper.toError(tic, new Tooltip("Password troppo corta"));
+            res = false;
+            if(errTo0ltip != null) {
+                errTo0ltip = errTo0ltip + "\n" + err1;
+            } else {
+                errTo0ltip = err1;
+            }
+            //return false;
         }
+        rPattern = Pattern.compile(".*[a-z].*$");
+        rMatcher = rPattern.matcher(tic.getText().trim());
+        if(!rMatcher.matches()) {
+            System.out.println("NO min");
+            res = false;
+            if(errTo0ltip != null) {
+                errTo0ltip = errTo0ltip + "\n" + err2;
+            } else {
+                errTo0ltip = err2;
+            }
+        }
+        rPattern = Pattern.compile(".*[A-Z].*$");
+        rMatcher = rPattern.matcher(tic.getText().trim());
+        if(!rMatcher.matches()) {
+            System.out.println("NO mai");
+            res = false;
+            if(errTo0ltip != null) {
+                errTo0ltip = errTo0ltip + "\n" + err3;
+            } else {
+                errTo0ltip = err3;
+            }
+        }
+        rPattern = Pattern.compile(".*[0-9].*$");
+        rMatcher = rPattern.matcher(tic.getText().trim());
+        if(!rMatcher.matches()) {
+            System.out.println("NO num");
+            res = false;
+            if(errTo0ltip != null) {
+                errTo0ltip = errTo0ltip + "\n" + err4;
+            } else {
+                errTo0ltip = err4;
+            }
+        }
+
+        if(res == true) {
+            cssHelper.toValid(tic);
+        } else {
+            cssHelper.toError(tic, new Tooltip(errTo0ltip));
+        }
+        return res;
+        ///^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,})\S$/
+        /*
         rPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
         rMatcher  = rPattern.matcher((tic.getText().trim()));
         if(rMatcher.matches()) {
@@ -155,6 +212,7 @@ public class ControlloParametri {
             cssHelper.toError(tic, new Tooltip("Password non valida"));
             return false;
         }
+         */
     }
 
     public boolean codiceFiscale(TextInputControl tic) {

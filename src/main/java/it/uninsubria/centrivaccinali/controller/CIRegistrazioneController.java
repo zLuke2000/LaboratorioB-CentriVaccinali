@@ -39,8 +39,7 @@ public class CIRegistrazioneController {
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
     @FXML private ProgressIndicator PI_CI_loadUsername;
 
-
-
+    @FXML private Label CI_L_D_err1;
 
     public void initParameter(ClientCV client) {
         this.client = client;
