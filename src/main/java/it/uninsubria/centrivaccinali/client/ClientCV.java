@@ -1,10 +1,8 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.controller.CIHomeController;
-import it.uninsubria.centrivaccinali.controller.CIRegistrazioneController;
-import it.uninsubria.centrivaccinali.controller.CVLoginController;
-import it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController;
+import it.uninsubria.centrivaccinali.controller.*;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
@@ -24,21 +22,15 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     private static final long serialVersionUID = 1L;
     private static Registry reg = null;
-    private static ServerCVInterface server=null;
-    private CVLoginController sourceCVlogin;
-    private CVRegistraCittadinoController sourceCVRegCittadino;
-    private CIHomeController sourceCIhome;
-    private CIRegistrazioneController sourceCIregistrazione;
+    private static ServerCVInterface server = null;
     private Cittadino utenteLoggato = null;
     private ConnectionThread connThread;
 
-    private boolean connStatus() {
-        if(server == null) {
-            printerr("connessione al server assente");
-            lanciaPopup();
-            return false;
-        }
-        return true;
+    private Controller controller;
+
+    public ClientCV() throws RemoteException {
+        //si occupa il thread di ottenere la connessione
+        connThread = new ConnectionThread();
     }
 
     public Cittadino getUtenteLoggato() {
@@ -53,14 +45,18 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         ClientCV.server = server;
     }
 
-    public ClientCV() throws RemoteException {
-        //si occupa il thread di ottenere la connessione
-        connThread = new ConnectionThread();
+    private boolean connectionStatus() {
+        if (server == null) {
+            printerr("connessione al server assente");
+            lanciaPopup();
+            return false;
+        }
+        return true;
     }
 
-    public void autenticaOperatore(CVLoginController source, String username, String password) {
-        this.sourceCVlogin = source;
-        if(connStatus()) {
+    public void autenticaOperatore(CVLoginController cvLoginController, String username, String password) {
+        controller=cvLoginController;
+        if(connectionStatus()) {
             try {
                 server.authOperatore(this, username, password);
             } catch (RemoteException e) {
@@ -73,37 +69,26 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
         switch(ritorno.getOpType()) {
-            case Result.LOGIN_OPERATORE:
-                sourceCVlogin.authStatus(ritorno.getResult());
-                break;
-            case Result.REGISTRAZIONE_VACCINATO:
-                //TODO
-                break;
-            case Result.REGISTRAZIONE_CENTRO:
-                break;
             case Result.LOGIN_UTENTE:
                 utenteLoggato= ritorno.getCittadino();
-                sourceCIhome.loginStatus(ritorno.getResult());
+                controller.notifyController(ritorno);
                 break;
+            case Result.LOGIN_OPERATORE:
+            case Result.REGISTRAZIONE_VACCINATO:
+            case Result.REGISTRAZIONE_CENTRO:
             case Result.REGISTRAZIONE_CITTADINO:
-                sourceCVRegCittadino.risultatoRegistrazione(ritorno.getExtendedResult());
-                break;
             case Result.RISULTATO_COMUNI:
-                if(ritorno.getResultComuni() != null) {
-                    sourceCVRegCittadino.risultatoComuni(ritorno.getResultComuni());
-                }
-                break;
             case Result.RISULTATO_CENTRI:
-                if(ritorno.getResultCentri() != null) {
-                    sourceCVRegCittadino.risultatoCentri(ritorno.getResultCentri());
-                }
+            case Result.RICERCA_CENTRO:
+                controller.notifyController(ritorno);
                 break;
             default:
                 printerr("errore opType");
         }
     }
 
-    public void registraCentroVaccinale(CentroVaccinale cv) {
+    public void registraCentroVaccinale(CVRegistraCentroVaccinale cvRegistraCentroVaccinale, CentroVaccinale cv) {
+        controller=cvRegistraCentroVaccinale;
         try {
             server.registraCentro(this, cv);
         } catch (RemoteException e) {
@@ -113,26 +98,55 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void registraCittadino(CIRegistrazioneController ciRegistrazioneController, Cittadino cittadino) {
-        sourceCIregistrazione=ciRegistrazioneController;
-        try {
-            server.registraCittadino(this,cittadino);
-        } catch (RemoteException e) {
-            printerr("registrazione cittadino fallita");
-            lanciaPopup();
+        controller=ciRegistrazioneController;
+        if (connectionStatus()) {
+            try {
+                server.registraCittadino(this, cittadino);
+            } catch (RemoteException e) {
+                printerr("registrazione cittadino fallita");
+                lanciaPopup();
+            }
         }
     }
 
-    public void loginUtente(CIHomeController ciHomeController,String username, String password){
-        sourceCIhome=ciHomeController;
-        try {
-            server.loginUtente(this, username, password);
-        } catch (RemoteException e) {
-            printerr("Login Utente fallito");
-            lanciaPopup();
+    public void loginUtente(Controller controller,String username, String password){
+        this.controller = controller;
+        if (connectionStatus()) {
+            try {
+                server.loginUtente(this, username, password);
+            } catch (RemoteException e) {
+                printerr("Login Utente fallito");
+                lanciaPopup();
+            }
         }
     }
 
-    public void registraVaccinato(Vaccinato vaccinato) {
+    public void ricercaPerNome(CIDashboardController ciDashboardController, String nome) {
+        controller=ciDashboardController;
+        if (connectionStatus()) {
+            try {
+                server.ricercaCentroPerNome(this, nome);
+            } catch (RemoteException e) {
+                printerr("ricerca fallita");
+                lanciaPopup();
+            }
+        }
+    }
+
+    public void ricercaPerComuneTipologia(CIDashboardController ciDashboardController, String comune, TipologiaCentro tipologia) {
+        controller=ciDashboardController;
+        if (connectionStatus()) {
+            try {
+                server.ricercaCentroPerComuneTipologia(this, comune, tipologia);
+            } catch (RemoteException e) {
+                printerr("ricerca fallita");
+                lanciaPopup();
+            }
+        }
+    }
+
+    public void registraVaccinato(CVRegistraCittadinoController cvRegistraCittadinoController, Vaccinato vaccinato) {
+        controller=cvRegistraCittadinoController;
         try {
             server.registraVaccinato(this, vaccinato);
         } catch (RemoteException e) {
@@ -141,8 +155,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void getComuni(CVRegistraCittadinoController cvrcc, String provincia) {
-        sourceCVRegCittadino = cvrcc;
+    public void getComuni(CVRegistraCittadinoController cvRegistraCittadinoController, String provincia) {
+        controller = cvRegistraCittadinoController;
         try {
             server.getComuni(this, provincia);
         } catch (RemoteException e) {
@@ -151,8 +165,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void getCentri(CVRegistraCittadinoController cvrcc, String comune) {
-        sourceCVRegCittadino = cvrcc;
+    public void getCentri(CVRegistraCittadinoController cvRegistraCittadinoController, String comune) {
+        controller = cvRegistraCittadinoController;
         try {
             server.getCentri(this, comune);
         } catch (RemoteException e) {
@@ -162,7 +176,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void stopOperation() {
-        if(server != null) {
+        if (server != null) {
             try {
                 server.stopThread();
             } catch (RemoteException e) {

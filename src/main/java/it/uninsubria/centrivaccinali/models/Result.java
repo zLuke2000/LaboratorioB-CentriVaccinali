@@ -15,6 +15,7 @@ public class Result implements Serializable {
     // Sezione cittadino
     public static final int LOGIN_UTENTE = 11;
     public static final int REGISTRAZIONE_CITTADINO = 12;
+    public static final int RICERCA_CENTRO = 13;
 
     private int opType;
     private boolean result;

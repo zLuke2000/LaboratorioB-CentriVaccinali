@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
@@ -135,6 +136,30 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
+    public void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.ricercaCentroPerNome(nomeCentro));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
+    public void ricercaCentroPerComuneTipologia(ClientCVInterface client, String comune, TipologiaCentro tipologia) {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.ricercaCentroPerComuneTipologia(comune, tipologia));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
     public void getCentri(ClientCVInterface client, String comuni) {
         myThread = new Thread(() -> {
             try {
@@ -160,7 +185,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
 
     @Override
     public void stopThread() {
-        if(myThread != null) {
+        if (myThread != null) {
             myThread.interrupt();
         }
     }

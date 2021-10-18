@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 /**
  *Controller per l'interfaccia di login del cittadino
  */
-public class CIHomeController {
+public class CIHomeController extends Controller {
 
     private ClientCV client;
 
@@ -36,8 +37,20 @@ public class CIHomeController {
     /**FontIcon per mostrare la password*/
     @FXML private FontIcon FI_CI_showPassword;
 
+    @Override
     public void initParameter(ClientCV client) {
         this.client = client;
+    }
+
+    @Override
+    public void notifyController(Result result) {
+        if (result.getResult()) {
+            Platform.runLater(() -> {
+                CentriVaccinali.setRoot("CI_dashboard");
+            });
+        }
+        //TODO errore per utente non esiste o credenziali sbagliate
+        else System.out.println("Login fallito");
     }
 
     /**
@@ -67,16 +80,6 @@ public class CIHomeController {
                 client.loginUtente(this, username, password);
             }
         }
-    }
-
-    public void loginStatus(boolean ritorno){
-        if (ritorno) {
-           Platform.runLater(() -> {
-               CentriVaccinali.setRoot("CI_dashboard");
-           });
-        }
-        //TODO errore per utente non esiste o credenziali sbagliate
-        else System.out.println("Login fallito");
     }
 
     /**
@@ -118,5 +121,8 @@ public class CIHomeController {
         FI_CI_hidePassword.setVisible(true);
     }
 
-    public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("Avvio"); }
+    public void backTo(MouseEvent mouseEvent) {
+        CentriVaccinali.setRoot("Avvio");
+        client.stopOperation();
+    }
 }

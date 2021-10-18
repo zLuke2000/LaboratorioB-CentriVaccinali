@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
@@ -17,7 +18,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class CIRegistrazioneController {
+public class CIRegistrazioneController extends Controller {
 
     private ClientCV client;
     private CssHelper csshelper;
@@ -39,13 +40,21 @@ public class CIRegistrazioneController {
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
     @FXML private ProgressIndicator PI_CI_loadUsername;
 
-    @FXML private Label CI_L_D_err1;
-
+    @Override
     public void initParameter(ClientCV client) {
         this.client = client;
-        //non usato
-        this.csshelper = CssHelper.getInstance();
         this.cp = ControlloParametri.getInstance();
+    }
+
+    @Override
+    public void notifyController(Result result) {
+        if (result.getResult()) {
+            System.out.println("Registrazione effettuato");
+            Platform.runLater(() -> {
+                CentriVaccinali.setRoot("CI_dashboard");
+            });
+        }
+        System.err.println("Registrazione fallita");
     }
 
     /**
@@ -62,16 +71,6 @@ public class CIRegistrazioneController {
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
         System.out.println("Registro cittadino");
         client.registraCittadino(this, cittadino);
-    }
-
-    public void notifyRegistrazione(boolean ritorno) {
-        if (ritorno) {
-            System.out.println("Registrazione effettuato");
-            Platform.runLater(() -> {
-                CentriVaccinali.setRoot("CI_dashboard");
-            });
-        }
-        System.err.println("Registrazione fallita");
     }
 
     /**

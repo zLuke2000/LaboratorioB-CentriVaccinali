@@ -311,4 +311,62 @@ public class Database {
         }
         return risultato;
     }
+
+    public Result ricercaCentroPerNome(String nomeCentro) {
+        Result risultato = new Result(false, Result.RICERCA_CENTRO);
+        List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM public.\"InfoCV\" " +
+                    "WHERE nome_centro LIKE ? " +
+                    "ORDER BY nome_centro");
+            pstmt.setString(1, "%" + nomeCentro + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
+                        new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
+                                rs.getString("nome"),
+                                rs.getString("civico"),
+                                rs.getString("comune"),
+                                rs.getString("provincia"),
+                                rs.getInt("cap")),
+                        TipologiaCentro.valueOf(rs.getString("tipologia"))));
+            }
+            risultato.setResult(true);
+            risultato.setResultCentri(risultatoRicerca);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return risultato;
+    }
+
+    public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
+        Result risultato = new Result(false, Result.RICERCA_CENTRO);
+        List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
+        try {
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM public.\"InfoCV\" " +
+                    "WHERE comune ILIKE ? AND " +
+                    "tipologia = ?" +
+                    "ORDER BY nome_centro");
+            pstmt.setString(1, "%" + comune + "%");
+            pstmt.setString(2, tipologia.toString());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
+                        new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
+                                rs.getString("nome"),
+                                rs.getString("civico"),
+                                rs.getString("comune"),
+                                rs.getString("provincia"),
+                                rs.getInt("cap")),
+                        TipologiaCentro.valueOf(rs.getString("tipologia"))));
+            }
+            risultato.setResult(true);
+            risultato.setResultCentri(risultatoRicerca);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return risultato;
+    }
 }

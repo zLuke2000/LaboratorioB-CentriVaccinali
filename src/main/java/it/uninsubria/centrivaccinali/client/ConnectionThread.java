@@ -4,7 +4,6 @@ import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -39,6 +38,7 @@ public class ConnectionThread extends Thread{
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
                 Platform.runLater(() -> {
+                    //TODO usare D_connectionError.fxml
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERRORE DI CONNESSIONE");
                     alert.setHeaderText("Errore");
