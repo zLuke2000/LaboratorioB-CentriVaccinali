@@ -1,10 +1,12 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.models.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class AvvioController {
+public class AvvioController extends Controller {
 
         /**
          * Metodo usato per accedere come operatore cittadino,
@@ -25,4 +27,10 @@ public class AvvioController {
         void accediOperatore(ActionEvent event) {
                 CentriVaccinali.setRoot("CV_login");
         }
+
+        @Override
+        public void initParameter(ClientCV client) {  }
+
+        @Override
+        public void notifyController(Result result) {  }
 }

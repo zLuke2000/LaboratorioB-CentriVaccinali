@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
@@ -17,7 +18,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
-public class CIRegistrazioneController {
+public class CIRegistrazioneController extends Controller {
 
     private ClientCV client;
     private CssHelper csshelper;
@@ -41,12 +42,23 @@ public class CIRegistrazioneController {
 
 
 
-
+    @Override
     public void initParameter(ClientCV client) {
         this.client = client;
         //non usato
         this.csshelper = CssHelper.getInstance();
         this.cp = ControlloParametri.getInstance();
+    }
+
+    @Override
+    public void notifyController(Result result) {
+        if (result.getResult()) {
+            System.out.println("Registrazione effettuato");
+            Platform.runLater(() -> {
+                CentriVaccinali.setRoot("CI_dashboard");
+            });
+        }
+        System.err.println("Registrazione fallita");
     }
 
     /**
@@ -65,6 +77,7 @@ public class CIRegistrazioneController {
         client.registraCittadino(this, cittadino);
     }
 
+    //FIXME metodo non piu' usato
     public void notifyRegistrazione(boolean ritorno) {
         if (ritorno) {
             System.out.println("Registrazione effettuato");

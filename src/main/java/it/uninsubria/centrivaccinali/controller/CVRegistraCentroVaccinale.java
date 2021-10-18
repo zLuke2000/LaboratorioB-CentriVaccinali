@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -15,7 +16,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class CVRegistraCentroVaccinale {
+public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML private TextField TF_nome;
         @FXML private ChoiceBox<Qualificatore> CB_qualificatore;
@@ -40,8 +41,18 @@ public class CVRegistraCentroVaccinale {
                 CB_qualificatore.setValue(Qualificatore.VIA);
         }
 
+        @Override
         public void initParameter(ClientCV client) {
                 this.client = client;
+        }
+
+        //TODO notifica registrazione centro vaccinale
+        @Override
+        public void notifyController(Result result) {
+                if (result.getResult()) {
+                        System.out.println("Registrazione effettuata");
+                }
+                //TODO mostrare errori
         }
 
         @FXML void realtimeCheck(KeyEvent ke) {
@@ -86,10 +97,13 @@ public class CVRegistraCentroVaccinale {
                                 tipologiaSelezionata = TipologiaCentro.HUB;
                         }
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(CB_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
-                        client.registraCentroVaccinale(centroVaccinale);
+                        client.registraCentroVaccinale(this, centroVaccinale);
                         // TODO da separare gli errori possibili
                 }
         }
 
-        public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("CV_change"); }
+        public void backTo(MouseEvent mouseEvent) {
+                CentriVaccinali.setRoot("CV_change");
+                client.stopOperation();
+        }
 }

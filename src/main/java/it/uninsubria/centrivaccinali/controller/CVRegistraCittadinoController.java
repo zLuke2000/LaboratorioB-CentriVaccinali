@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
@@ -17,7 +18,7 @@ import java.sql.Date;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CVRegistraCittadinoController {
+public class CVRegistraCittadinoController extends Controller {
 
     // TextFiled
     @FXML private TextField TF_CV_selezionaProvincia;
@@ -57,8 +58,43 @@ public class CVRegistraCittadinoController {
         TF_CV_idVaccino.setText(stringID);
     }
 
+    @Override
     public void initParameter(ClientCV client) {
         this.client = client;
+    }
+
+    @Override
+    public void notifyController(Result result) {
+        switch (result.getOpType()){
+            case Result.RISULTATO_COMUNI:
+                if (result.getResultComuni() != null) {
+                    Platform.runLater(() -> {
+                        CB_CV_selezionaComune.getItems().clear();
+                        CB_CV_selezionaComune.getItems().addAll(result.getResultComuni());
+                        CB_CV_selezionaComune.getSelectionModel().selectFirst();
+                    });
+                }
+                break;
+            case Result.RISULTATO_CENTRI:
+                if (result.getResultCentri() != null){
+                    Platform.runLater(() -> {
+                        listaCentri.clear();
+                        listaCentri = result.getResultCentri();
+                        CB_CV_selezionaCentro.getItems().clear();
+                        for (CentroVaccinale centro : listaCentri) {
+                            CB_CV_selezionaCentro.getItems().add(centro.getNome());
+                            CB_CV_selezionaCentro.getSelectionModel().selectFirst();
+                        }
+                    });
+                }
+                break;
+            case Result.REGISTRAZIONE_VACCINATO:
+                if (result.getResult()) {
+                    System.out.println("Registrazione effettuata");
+                }
+                //TODO mostrare errori
+                break;
+        }
     }
 
     @FXML void realtimeCheck(KeyEvent ke) {
@@ -94,7 +130,10 @@ public class CVRegistraCittadinoController {
         }
     }
 
-    @FXML void BackTo() { CentriVaccinali.setRoot("CV_change"); }
+    @FXML void BackTo() {
+        CentriVaccinali.setRoot("CV_change");
+        client.stopOperation();
+    }
 
     public void risultatoComuni(List<String> resultComuni) {
         Platform.runLater(() -> {
@@ -135,7 +174,7 @@ public class CVRegistraCittadinoController {
                 tipoVaccino=Vaccino.PFIZER;
             }
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
-            client.registraVaccinato(nuovoVaccinato);
+            client.registraVaccinato(this, nuovoVaccinato);
         }
     }
 

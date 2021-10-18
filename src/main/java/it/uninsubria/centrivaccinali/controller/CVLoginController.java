@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
  */
-public class CVLoginController {
+public class CVLoginController extends Controller {
 
     private final String INFO = "Le credenziali vengono fornite solo se la persona è un operatore sanitario e " +
             "ha  il diritto di esercitare queste azioni:" + "\n" + "- Registrare un hub vaccinale" + "\n" + "- Registrare " +
@@ -30,9 +31,21 @@ public class CVLoginController {
     private ClientCV client;
     private final CssHelper cssHelper = CssHelper.getInstance();
 
+    @Override
     public void initParameter(ClientCV client) {
         this.client = client;
         T_CV_infoLogin.setText(INFO);
+    }
+
+    @Override
+    public void notifyController(Result result) {
+        PI_CV_load.setVisible(false);
+        if(result.getResult()) {
+            Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
+        } else {
+            //TODO mostra errore
+            System.err.println("[CVLogin] AUTH ERROR");
+        }
     }
 
     @FXML
@@ -60,10 +73,11 @@ public class CVLoginController {
         }
     }
 
-    @FXML public void toDefault(KeyEvent ke) {
-        cssHelper.toDefault((TextInputControl) ke.getSource());
-    }
+//    @FXML public void toDefault(KeyEvent ke) {
+//        cssHelper.toDefault((TextInputControl) ke.getSource());
+//    }
 
+    //FIXME metodo non piu' usato
     public void authStatus(Boolean status) {
         PI_CV_load.setVisible(false);
         if(status) {

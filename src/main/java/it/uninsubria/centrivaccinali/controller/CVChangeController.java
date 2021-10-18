@@ -1,13 +1,15 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.models.Result;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
  *
  */
-public class CVChangeController {
+public class CVChangeController extends Controller {
 
     /**
      * Metodo per avviare l'interfaccia di registrazione di  un cittadino vaccinato
@@ -38,4 +40,10 @@ public class CVChangeController {
         System.out.printf("Indietro");
         CentriVaccinali.setRoot("Avvio");
     }
+
+    @Override
+    public void initParameter(ClientCV client) {  }
+
+    @Override
+    public void notifyController(Result result) {  }
 }

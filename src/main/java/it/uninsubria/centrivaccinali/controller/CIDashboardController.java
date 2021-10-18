@@ -1,21 +1,18 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.client.*;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.util.*;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import org.kordamp.ikonli.javafx.FontIcon;
 
-public class CIDashboardController {
+public class CIDashboardController extends Controller {
 
-    private Cittadino CittadinoConesso = null;
-
-    private CssHelper cssh = CssHelper.getInstance();
+    private Cittadino cittadinoConesso = null;
 
     private ClientCV client;
 
@@ -52,14 +49,22 @@ public class CIDashboardController {
     @FXML
     private MenuButton CI_MB_SiCitt;
 
+    @FXML void initialize() {
+        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
+        this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
+        this.CI_CB_ricercaTipologia.getItems().addAll(itemCV);
+        this.CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
+    }
+
+    @Override
     public void initParameter(ClientCV client) {
         this.client =  client;
-        this.CittadinoConesso = client.getUtenteLoggato();
-        if(CittadinoConesso != null) {
-            System.out.println(CittadinoConesso.getUserid());
+        this.cittadinoConesso = client.getUtenteLoggato();
+        if(cittadinoConesso != null) {
+            System.out.println(cittadinoConesso.getUserid());
             CI_MB_SiCitt.setVisible(true);
             CI_MB_NoCitt.setVisible(false);
-            CI_MB_SiCitt.setText(CittadinoConesso.getUserid());
+            CI_MB_SiCitt.setText(cittadinoConesso.getUserid());
         } else {
             System.out.println("No");
             CI_MB_SiCitt.setVisible(false);
@@ -67,40 +72,38 @@ public class CIDashboardController {
         }
     }
 
-    @FXML void initialize() {
-        //this.CI_TF_ricercaNomeCV.getStyleClass().add("field-error");
-        //this.CI_TF_ricercaNomeCV.setStyle("-fx-border-color: red");
-        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
-        this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
-        this.CI_CB_ricercaTipologia.getItems().addAll(itemCV);
-        this.CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
+    //TODO notifica della ricerca
+    @Override
+    public void notifyController(Result result) {
+        if (!result.getResultCentri().isEmpty()) {
+            for (CentroVaccinale cv: result.getResultCentri()) {
+                System.out.println(cv);
+            }
+        }
+        else {
+            System.err.println("nessun risultato");
+        }
     }
 
     public void cercaCentroVaccinale(ActionEvent actionEvent) {
-        String nomeCV = null;
-        String tipologiaCV = null;
-        String comuneCV = null;
         if(CI_TF_ricercaNomeCV.isVisible()) {
-            //System.out.println("Ok1");
             if (cp.testoSempliceSenzaNumeri(CI_TF_ricercaNomeCV, 6, 50)) {
-                //System.out.println("Ok2");
-                nomeCV = CI_TF_ricercaNomeCV.getText().trim();
-                //client.cercaPerNome
-            } else {
-                CI_TF_ricercaNomeCV.setStyle("-fx-border-color: red");
+                String nomeCV = CI_TF_ricercaNomeCV.getText().trim();
+                client.ricercaPerNome(this, nomeCV);
             }
         } else {
-            tipologiaCV = CI_CB_ricercaTipologia.getValue();
-            if(cp.testoSempliceSenzaNumeri(CI_TF_ricercaComune, 6, 50)) {
-                comuneCV = CI_TF_ricercaComune.getText().trim();
-            } else {
-                CI_TF_ricercaComune.setStyle("-fx-border-color: red");
+            if(cp.testoSempliceSenzaNumeri(CI_TF_ricercaComune,3, 50)) {
+                String comuneCV = CI_TF_ricercaComune.getText().trim();
+                TipologiaCentro tipologiaCV = TipologiaCentro.valueOf(CI_CB_ricercaTipologia.getValue().toUpperCase());
+                client.ricercaPerComuneTipologia(this, comuneCV, tipologiaCV);
             }
         }
-        if((comuneCV != null && tipologiaCV != null) || nomeCV != null ) {
-            System.out.println(comuneCV + " " + tipologiaCV + " " + nomeCV);
-        }
     }
+    //TODO ritorna la lista dei centri trovati
+    public void notifyResearch() {
+
+    }
+
     public void changeResearch(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(CI_CB_SceltaRicerca)) {
             if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
