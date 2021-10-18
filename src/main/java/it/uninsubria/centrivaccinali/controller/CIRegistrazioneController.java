@@ -40,13 +40,9 @@ public class CIRegistrazioneController extends Controller {
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
     @FXML private ProgressIndicator PI_CI_loadUsername;
 
-
-
     @Override
     public void initParameter(ClientCV client) {
         this.client = client;
-        //non usato
-        this.csshelper = CssHelper.getInstance();
         this.cp = ControlloParametri.getInstance();
     }
 
@@ -75,17 +71,6 @@ public class CIRegistrazioneController extends Controller {
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
         System.out.println("Registro cittadino");
         client.registraCittadino(this, cittadino);
-    }
-
-    //FIXME metodo non piu' usato
-    public void notifyRegistrazione(boolean ritorno) {
-        if (ritorno) {
-            System.out.println("Registrazione effettuato");
-            Platform.runLater(() -> {
-                CentriVaccinali.setRoot("CI_dashboard");
-            });
-        }
-        System.err.println("Registrazione fallita");
     }
 
     /**
