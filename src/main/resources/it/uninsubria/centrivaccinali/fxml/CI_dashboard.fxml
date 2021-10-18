@@ -8,6 +8,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="95.0" prefWidth="900.0" styleClass="panelSuperior" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,22 +29,26 @@
             </Label>
             <MenuButton fx:id="CI_MB_SiCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" visible="false" AnchorPane.rightAnchor="20.0">
               <items>
-                <MenuItem fx:id="ItemInfo" mnemonicParsing="false" text="Info" />
+                <MenuItem fx:id="ItemInfo" mnemonicParsing="false" onAction="#showInfoMB" text="Info" />
                   <SeparatorMenuItem hideOnClick="true" mnemonicParsing="false" />
-                <MenuItem fx:id="ItemLogout" mnemonicParsing="false" text="Logout" />
+                <MenuItem fx:id="ItemLogout" mnemonicParsing="false" onAction="#logoutInfoMB" text="Logout" />
               </items>
                <graphic>
                   <FontIcon iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
                </graphic>
             </MenuButton>
-            <MenuButton fx:id="CI_MB_NoCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" AnchorPane.rightAnchor="20.0">
+            <MenuButton fx:id="CI_MB_NoCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" visible="false" AnchorPane.rightAnchor="20.0">
                <items>
-                  <MenuItem fx:id="ItemLogin" mnemonicParsing="false" text="Login" />
+                  <MenuItem fx:id="ItemLogin" mnemonicParsing="false" onAction="#loginMB" text="Login" />
                </items>
                <graphic>
                   <FontIcon iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
                </graphic>
             </MenuButton>
+            <TextField fx:id="CI_TF_userDash" layoutX="670.0" layoutY="30.0" prefHeight="27.0" prefWidth="85.0" promptText="Username" styleClass="textfiled-LoginDash" />
+            <PasswordField fx:id="CI_TF_passwordDash" layoutX="771.0" layoutY="29.0" prefHeight="27.0" prefWidth="85.0" promptText="Password" styleClass="textfiled-LoginDash" />
+            <Button fx:id="CI_B_loginDash" layoutX="738.0" layoutY="57.0" mnemonicParsing="false" onAction="#loginDash" styleClass="button-LoginDash" text="Login" AnchorPane.topAnchor="60.0" />
+            <ProgressIndicator fx:id="CI_PI_loadLoginDash" layoutX="856.0" layoutY="33.0" prefHeight="19.0" prefWidth="34.0" visible="false" />
          </children>
       </AnchorPane>
       <Separator layoutX="25.0" layoutY="116.0" prefHeight="0.0" prefWidth="882.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
@@ -50,11 +56,11 @@
             <InnerShadow />
          </effect>
       </Separator>
-      <TextField fx:id="CI_TF_ricercaNomeCV" layoutX="370.0" layoutY="288.0" promptText="Inserisci nome centro vaccinale" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="288.0" />
+      <TextField fx:id="CI_TF_ricercaNomeCV" layoutX="370.0" layoutY="288.0" promptText="Inserisci nome centro vaccinale" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="288.0" />
       <Label fx:id="target_Ricerca" text="Tipologia ricerca:" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="125.0" />
       <ChoiceBox fx:id="CI_CB_SceltaRicerca" onAction="#changeResearch" prefWidth="150.0" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="150.0" />
       <ChoiceBox fx:id="CI_CB_ricercaTipologia" layoutX="375.0" layoutY="288.0" prefWidth="150.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="288.0" />
-      <TextField fx:id="CI_TF_ricercaComune" layoutX="539.0" layoutY="298.0" promptText="Comune" styleClass="textfiled-RicercaCV" visible="false" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="288.0" />
+      <TextField fx:id="CI_TF_ricercaComune" layoutX="539.0" layoutY="298.0" promptText="Comune" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="288.0" />
       <Button fx:id="CI_B_ricerca" layoutX="423.0" layoutY="393.0" mnemonicParsing="false" onAction="#cercaCentroVaccinale" styleClass="buttonSmall" text="Cerca" visible="false" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="395.0">
          <graphic>
             <FontIcon iconLiteral="bx-search-alt-2" iconSize="20" />

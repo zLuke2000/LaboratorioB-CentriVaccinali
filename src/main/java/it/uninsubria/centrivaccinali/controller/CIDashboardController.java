@@ -32,22 +32,31 @@ public class CIDashboardController extends Controller {
     private ChoiceBox<String> CI_CB_ricercaTipologia;
 
     @FXML
+    private TextField CI_TF_userDash;
+
+    @FXML
     private TextField CI_TF_ricercaNomeCV;
 
     @FXML
     private TextField CI_TF_ricercaComune;
 
     @FXML
+    private PasswordField CI_TF_passwordDash;
+
+    @FXML
     private Button CI_B_ricerca;
+
+    @FXML
+    private Button CI_B_loginDash;
 
     @FXML
     private Label target_Ricerca;
 
     @FXML
-    private MenuButton CI_MB_NoCitt;
+    private MenuButton CI_MB_SiCitt;
 
     @FXML
-    private MenuButton CI_MB_SiCitt;
+    private ProgressIndicator CI_PI_loadLoginDash;
 
     @FXML void initialize() {
         this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
@@ -63,12 +72,12 @@ public class CIDashboardController extends Controller {
         if(cittadinoConesso != null) {
             System.out.println(cittadinoConesso.getUserid());
             CI_MB_SiCitt.setVisible(true);
-            CI_MB_NoCitt.setVisible(false);
             CI_MB_SiCitt.setText(cittadinoConesso.getUserid());
         } else {
-            System.out.println("No");
             CI_MB_SiCitt.setVisible(false);
-            CI_MB_NoCitt.setVisible(true);
+            CI_TF_userDash.setVisible(true);
+            CI_TF_passwordDash.setVisible(true);
+            CI_B_loginDash.setVisible(true);
         }
     }
 
@@ -99,10 +108,6 @@ public class CIDashboardController extends Controller {
             }
         }
     }
-    //TODO ritorna la lista dei centri trovati
-    public void notifyResearch() {
-
-    }
 
     public void changeResearch(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(CI_CB_SceltaRicerca)) {
@@ -120,6 +125,27 @@ public class CIDashboardController extends Controller {
                         CI_TF_ricercaComune.clear();
                         CI_TF_ricercaComune.setVisible(true);
             }
+        }
+    }
+
+    public void showInfoMB(ActionEvent actionEvent) {
+
+    }
+
+    public void logoutInfoMB(ActionEvent actionEvent) {
+
+    }
+
+    public void loginMB(ActionEvent actionEvent) {
+        //CI_MB_NoCitt.setVisible(false);
+        CI_TF_userDash.setVisible(true);
+        CI_TF_passwordDash.setVisible(true);
+        CI_B_loginDash.setVisible(true);
+    }
+
+    public void loginDash(ActionEvent actionEvent) {
+        if(!CI_TF_userDash.getText().isBlank() && !CI_TF_passwordDash.getText().isBlank()) {
+
         }
     }
 }

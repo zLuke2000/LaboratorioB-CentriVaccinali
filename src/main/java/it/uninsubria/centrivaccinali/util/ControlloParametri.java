@@ -146,7 +146,7 @@ public class ControlloParametri {
             cssHelper.toError(tic, new Tooltip("Password non valida"));
             return false;
         }
-        rPattern  = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
+        rPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
         rMatcher  = rPattern.matcher((tic.getText().trim()));
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
