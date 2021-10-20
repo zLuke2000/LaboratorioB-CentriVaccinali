@@ -4,6 +4,8 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 
+import java.rmi.ServerError;
+import java.util.regex.Pattern;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,21 +16,12 @@ import java.util.UUID;
  */
 public class Database {
 
-    /**
-     * LEGENDA
-     * -1 ATTESA
-     *  0 Programma OK
-     *  1 Eccezione
-     */
-    public static final int ATTESA = -1;
-    public static final int OK = 0;
-    public static final int EXCEPTION = 1;
-
     private final String utente = "123abc";
     private final String password = "123abc";
     private static Connection conn;
     private static PreparedStatement pstmt;
     private static Statement stmt;
+    private ResultSet rs;
     private Result risultato;
 
     public Database() {}
@@ -50,9 +43,9 @@ public class Database {
 
     /**
      * FUNZIONANTE
+     * extendedResult ritorna 1 se l'userID esiste - 0 se l'userID non esiste
      */
     public Result registraCentroVaccinale(CentroVaccinale cv) {
-        int result = ATTESA;
         UUID uuid = null;
         risultato = new Result(false, Result.REGISTRAZIONE_CENTRO);
 
@@ -72,7 +65,7 @@ public class Database {
             pstmt.setString(4, cv.getIndirizzo().getComune());
             pstmt.setString(5, cv.getIndirizzo().getProvincia());
             pstmt.setInt(6, cv.getIndirizzo().getCap());
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             if(rs.next()) {
                 uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
             }
@@ -95,7 +88,6 @@ public class Database {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                //TODO mostrare al client il tipo di eccezione
                 return risultato;
             }
 
@@ -115,7 +107,7 @@ public class Database {
                 pstmt.setString(4, cv.getIndirizzo().getComune());
                 pstmt.setString(5, cv.getIndirizzo().getProvincia());
                 pstmt.setInt(6, cv.getIndirizzo().getCap());
-                ResultSet rs = pstmt.executeQuery();
+                rs = pstmt.executeQuery();
                 rs.next();
                 uuid = rs.getObject("id_indirizzo", java.util.UUID.class);
             } catch (SQLException e) {
@@ -134,9 +126,22 @@ public class Database {
                 pstmt.setString(3, cv.getTipologia().toString());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
-                // TODO gestire tabella inserita con lo stesso nome
-                e.printStackTrace();
+                // Nome centro gia' inserito
+                System.err.println(e.getMessage());
+                if(((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]).equals("nome")) {
+                    risultato.setExtendedResult(Result.NOME_IN_USO);
+                }
                 return risultato;
+
+                /*
+                 * Dettaglio: Key (nome)=(CENTRO VACCINAZIONI VARESE SCHIRANNA) already exists. // PRIMO SPLIT
+                 *
+                 * ["Dettaglio: Key (nome", "=(CENTRO VACCINAZIONI VARESE SCHIRANNA)", " already exists."] // Prendo l'indice 0
+                 *
+                 * Dettaglio: Key (nome // Secondo SPLIT
+                 *
+                 * ["Dettaglio: Key (", "nome"] // Prendo l'indice 1
+                 */
             }
         }
 
@@ -167,7 +172,7 @@ public class Database {
                                               "WHERE userid = ? AND password = ?");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             if (rs.next()){
                 Cittadino c = new Cittadino(
                         rs.getString("nome"),
@@ -178,12 +183,17 @@ public class Database {
                         rs.getString("password"),
                         rs.getLong("id_vaccino")
                 );
-                System.out.println("[Database] login effettuato: " + rs.getString("userid"));
                 risultato.setResult(true);
                 risultato.setCittadino(c);
             } else {
-                System.err.println("[Database] login fallito");
-                //TODO mostrare errori
+                pstmt = conn.prepareStatement("SELECT COUNT(*)" +
+                                                 "FROM public.\"Cittadini_Registrati\"" +
+                                                 "WHERE userid = ?");
+                pstmt.setString(1, username);
+                rs = pstmt.executeQuery();
+                if(rs.next()) {
+                    risultato.setExtendedResult(Result.USERNAME_NON_TROVATO + rs.getInt(1));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -199,7 +209,7 @@ public class Database {
                                         "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
             pstmt.setLong(1, c.getId_vaccino());
             pstmt.setString(2, c.getCodice_fiscale());
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             //id vaccinazione e' presente nel db dei centri vaccinali
             //posso registrare il cittadino correttamente
             if (rs.next()){
