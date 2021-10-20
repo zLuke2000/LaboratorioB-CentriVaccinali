@@ -19,9 +19,7 @@ public class CssHelper {
 
     public void toError(Control c, Tooltip tooltip) {
         toDefault(c);
-        System.out.println("css");
         c.getStyleClass().add("field-error");
-        System.err.println(c.getStyleClass());
         if(tooltip != null) {
             tooltip.getStyleClass().add("tooltip-error");
             tooltip.setShowDelay(new Duration(0));

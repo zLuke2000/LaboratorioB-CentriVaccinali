@@ -78,7 +78,6 @@ public class Database {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            //TODO settare eccezzione
             return risultato;
         }
 
@@ -151,7 +150,7 @@ public class Database {
                     "codice_fiscale varchar(16) NOT NULL UNIQUE, " +
                     "data_somministrazione date NOT NULL, " +
                     "vaccino varchar(16) NOT NULL, " +
-                    "id_vaccinazione bigint NOT NULL PRIMARY KEY);");
+                    "id_vaccinazione numeric(16) NOT NULL PRIMARY KEY);");
             risultato.setResult(true);
             return risultato;
         } catch (SQLException e) {
@@ -195,8 +194,8 @@ public class Database {
     public Result registraCittadino(Cittadino c) {
         Result risultato = new Result(false, Result.REGISTRAZIONE_CITTADINO);
         try {
-            pstmt = conn.prepareStatement("SELECT *" +
-                                        "FROM tabelle_cv.\"vaccinati\"" +
+            pstmt = conn.prepareStatement("SELECT * " +
+                                        "FROM tabelle_cv.\"vaccinati\" " +
                                         "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
             pstmt.setLong(1, c.getId_vaccino());
             pstmt.setString(2, c.getCodice_fiscale());
@@ -219,12 +218,81 @@ public class Database {
                 return risultato;
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
-                //TODO mostra errore lato client
-                //return
+
+                pstmt = conn.prepareStatement("SELECT COUNT(*) " +
+                        "FROM tabelle_cv.\"vaccinati\" " +
+                        "WHERE id_vaccinazione = ?");
+                pstmt.setLong(1, c.getId_vaccino());
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    System.err.println("Codice fiscale non associato ad alcun vaccinato");
+                    risultato.setExtendedResult(Result.CF_NON_VALIDO);
+                }
+
+                pstmt = conn.prepareStatement("SELECT COUNT(*) " +
+                            "FROM tabelle_cv.\"vaccinati\" " +
+                            "WHERE codice_fiscale = ?");
+                pstmt.setString(1, c.getCodice_fiscale());
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    System.err.println("ID vaccinazione non associato ad alcun vaccinato");
+                    if(risultato.getExtendedResult() == Result.CF_NON_VALIDO) {
+                        risultato.setExtendedResult(Result.CF_ID_NON_VALIDI);
+                    } else {
+                        risultato.setExtendedResult(Result.IDVAC_NON_VALIDO);
+                    }
+                }
+                return risultato;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // TODO separare gli errori (CF, Email, userID, IDvac) gia' in uso
+            /*
+            // Controllo codice_fiscale e id_vaccino
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM tabelle_cv.\"vaccinati\" " +
+                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
+            pstmt.setLong(1, c.getId_vaccino());
+            pstmt.setString(2, c.getCodice_fiscale());
+            rs = pstmt.executeQuery();
+            // Controllo email
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM tabelle_cv.\"vaccinati\" " +
+                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
+            pstmt.setLong(1, c.getId_vaccino());
+            pstmt.setString(2, c.getCodice_fiscale());
+            rs = pstmt.executeQuery();
+            // Controllo userid
+            pstmt = conn.prepareStatement("SELECT * " +
+                    "FROM tabelle_cv.\"vaccinati\" " +
+                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
+            pstmt.setLong(1, c.getId_vaccino());
+            pstmt.setString(2, c.getCodice_fiscale());
+            rs = pstmt.executeQuery();
+
+            if(e.getMessage().contains("codice_fiscale") || e.getMessage().contains("id_vaccino")) {
+                System.err.println("Cittadino gia' registrato");
+            }
+            if(e.getMessage().contains("email")) {
+                System.err.println("Email gia' registrata");
+            }
+            if(e.getMessage().contains("userid")) {
+                System.err.println("Userid gia' registrato");
+            }
+            */
+
+            String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
+            switch (colonna) {
+                case "codice_fiscale":
+                case "id_vaccino":
+                    risultato.setExtendedResult(Result.CITTADINO_GIA_REGISTRATO);
+                    break;
+                case "email":
+                    risultato.setExtendedResult(Result.EMAIL_GIA_IN_USO);
+                    break;
+                case "userid":
+                    risultato.setExtendedResult(Result.USERID_GIA_IN_USO);
+                    break;
+            }
         }
         return risultato;
     }
@@ -252,7 +320,14 @@ public class Database {
             return risultato;
         } catch (SQLException e) {
             e.printStackTrace();
-            //ritorna errore
+            String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
+            if (colonna.equals("codice_fiscale")) {
+                System.err.println("Codice fiscale gia' associato ad un vaccinato");
+                risultato.setExtendedResult(Result.CF_GIA_IN_USO);
+            } else if(colonna.equals("id_vaccinazione")) {
+                System.err.println("Id vaccinazione gia' associato ad un vaccinato");
+                risultato.setExtendedResult(Result.IDVAC_GIA_IN_USO);
+            }
         }
         return risultato;
     }

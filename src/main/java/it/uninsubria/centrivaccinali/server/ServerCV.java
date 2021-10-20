@@ -78,7 +78,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         myThread = new Thread(() -> {
             try {
                 // simulazione attesa
-                Thread.sleep(5000);
+                Thread.sleep(1000);
                 client.notifyStatus(new Result(usernameOperatore.equals(username) && passwordOperatore.equals(password), Result.LOGIN_OPERATORE));
             } catch (InterruptedException | RemoteException e) {
                 e.printStackTrace();

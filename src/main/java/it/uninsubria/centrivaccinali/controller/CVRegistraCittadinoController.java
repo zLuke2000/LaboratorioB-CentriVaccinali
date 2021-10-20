@@ -91,8 +91,17 @@ public class CVRegistraCittadinoController extends Controller {
             case Result.REGISTRAZIONE_VACCINATO:
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
+                } else {
+                    switch (result.getExtendedResult()) {
+                        //TODO popup
+                        case Result.CF_GIA_IN_USO:
+                            System.err.println("Codice fiscale gia' associato ad un vaccinato");
+                            break;
+                        case Result.IDVAC_GIA_IN_USO:
+                            System.err.println("Id vaccinazione gia' associato ad un vaccinato");
+                            break;
+                    }
                 }
-                //TODO mostrare errori
                 break;
         }
     }

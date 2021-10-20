@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.client.*;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.util.*;
+import javafx.application.Platform;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.FXML;
@@ -84,12 +85,14 @@ public class CIDashboardController extends Controller {
     @Override
     public void notifyController(Result result) {
         if (result.getOpType() == Result.LOGIN_UTENTE){
-            CI_TF_userDash.setVisible(false);
-            CI_TF_passwordDash.setVisible(false);
-            CI_B_loginDash.setVisible(false);
-            CI_PI_loadLoginDash.setVisible(false);
-            CI_MB_SiCitt.setText(client.getUtenteLoggato().getUserid());
-            CI_MB_SiCitt.setVisible(true);
+            Platform.runLater(() -> {
+                CI_TF_userDash.setVisible(false);
+                CI_TF_passwordDash.setVisible(false);
+                CI_B_loginDash.setVisible(false);
+                CI_PI_loadLoginDash.setVisible(false);
+                CI_MB_SiCitt.setText(client.getUtenteLoggato().getUserid());
+                CI_MB_SiCitt.setVisible(true);
+            });
         }
         else {
             if (!result.getResultCentri().isEmpty()) {
