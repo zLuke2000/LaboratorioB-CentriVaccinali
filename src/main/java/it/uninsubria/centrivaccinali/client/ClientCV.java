@@ -37,6 +37,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         return utenteLoggato;
     }
 
+    public void LogoutUtente() {
+        this.utenteLoggato = null;
+    }
+
     public static void setRegistry(Registry reg) {
         ClientCV.reg = reg;
     }
