@@ -49,8 +49,16 @@ public class CIHomeController extends Controller {
                 CentriVaccinali.setRoot("CI_dashboard");
             });
         }
-        //TODO errore per utente non esiste o credenziali sbagliate
-        else System.out.println("Login fallito");
+        else {
+            System.out.println("Login fallito");
+            if (result.getExtendedResult() == Result.USERNAME_NON_TROVATO) {
+                System.out.println("Username non trovato");
+                //TODO popup
+            } else if (result.getExtendedResult() == Result.PASSWORD_ERRATA) {
+                System.out.println("Password errata");
+                //TODO popup
+            }
+        }
     }
 
     /**

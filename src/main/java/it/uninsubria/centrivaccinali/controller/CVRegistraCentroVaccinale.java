@@ -50,12 +50,17 @@ public class CVRegistraCentroVaccinale extends Controller {
         public void notifyController(Result result) {
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
+                } else {
+                        if(result.getExtendedResult() == Result.NOME_IN_USO) {
+                                System.err.println("Registrazione fallita - Centro vaccinale gia' registrato");
+                                //TODO POPUP ERRORE SPECIFICO
+                        } else {
+                                //TODO POPUP ERORRE GENERICO
+                        }
                 }
-                //TODO mostrare errori
         }
 
         @FXML void realtimeCheck(KeyEvent ke) {
-                //TODO controllo realtime della provincia
                 if(ke.getSource().equals(TF_nome)) {
                         cp.testoSempliceConNumeri(TF_nome, 6, 50);
                 } else if(ke.getSource().equals(TF_indirizzo)) {
@@ -97,7 +102,6 @@ public class CVRegistraCentroVaccinale extends Controller {
                         }
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(CB_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
                         client.registraCentroVaccinale(this, centroVaccinale);
-                        // TODO da separare gli errori possibili
                 }
         }
 
