@@ -5,23 +5,16 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
-import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 public class CIRegistrazioneController extends Controller {
 
     private ClientCV client;
-    private CssHelper csshelper;
     private ControlloParametri cp;
     private FXMLLoader loader;
 
@@ -50,9 +43,7 @@ public class CIRegistrazioneController extends Controller {
     public void notifyController(Result result) {
         if (result.getResult()) {
             System.out.println("Registrazione effettuato");
-            Platform.runLater(() -> {
-                CentriVaccinali.setRoot("CI_dashboard");
-            });
+            Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
         } else {
             System.err.println("Registrazione fallita");
             switch (result.getExtendedResult()) {
@@ -81,10 +72,7 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
-    /**
-     * @param actionEvent
-     */
-    public void registraCittadino(ActionEvent actionEvent) {
+    @FXML public void registraCittadino() {
         String nome = TF_CI_nomeRegistrazione.getText().trim();
         String cognome = TF_CI_cognomeRegistrazione.getText().trim();
         String cf = TF_CI_cfRegistrazione.getText().trim();
@@ -97,11 +85,7 @@ public class CIRegistrazioneController extends Controller {
         client.registraCittadino(this, cittadino);
     }
 
-    /**
-     *
-     * @param mouseEvent
-     */
-    public void showInfoUsername(MouseEvent mouseEvent) throws IOException {
+    @FXML public void showInfoUsername() throws IOException {
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoUsername.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -110,11 +94,7 @@ public class CIRegistrazioneController extends Controller {
         dialog.showAndWait();
     }
 
-    /**
-     *
-     * @param mouseEvent
-     */
-    public void showInfoPassword(MouseEvent mouseEvent) throws IOException {
+    @FXML public void showInfoPassword() throws IOException {
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoPassword.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -123,11 +103,7 @@ public class CIRegistrazioneController extends Controller {
         dialog.showAndWait();
     }
 
-    /**
-     *
-     * @param mouseEvent
-     */
-    public void showInfoVaccinazione(MouseEvent mouseEvent) throws IOException {
+    @FXML void showInfoVaccinazione() throws IOException {
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoIdVaccinazione.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -167,5 +143,5 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
-    public void backTo(MouseEvent mouseEvent) { CentriVaccinali.setRoot("CI_home"); }
+    @FXML public void backTo() { CentriVaccinali.setRoot("CI_home"); }
 }

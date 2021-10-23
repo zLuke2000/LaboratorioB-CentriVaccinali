@@ -14,7 +14,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 public class CVRegistraCentroVaccinale extends Controller {
 
@@ -51,7 +50,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
                 } else {
-                        if(result.getExtendedResult() == Result.NOME_IN_USO) {
+                        if(result.getExtendedResult().contains(Result.Error.NOME_IN_USO)) {
                                 System.err.println("Registrazione fallita - Centro vaccinale gia' registrato");
                                 //TODO POPUP ERRORE SPECIFICO
                         } else {
@@ -105,7 +104,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
-        public void backTo(MouseEvent mouseEvent) {
+        @FXML public void backTo() {
                 CentriVaccinali.setRoot("CV_change");
                 client.stopOperation();
         }

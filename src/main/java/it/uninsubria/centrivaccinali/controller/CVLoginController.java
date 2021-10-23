@@ -5,11 +5,8 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -48,8 +45,7 @@ public class CVLoginController extends Controller {
         }
     }
 
-    @FXML
-    void autenticazioneOperatore(ActionEvent event) {
+    @FXML void autenticazioneOperatore() {
         String username = L_CV_username.getText().trim();
         String password = L_CV_password.getText().trim();
         boolean check = true;
@@ -73,7 +69,7 @@ public class CVLoginController extends Controller {
         }
     }
 
-    public void BackTo(MouseEvent mouseEvent) {
+    @FXML public void BackTo() {
         System.out.println("Indietro");
         client.stopOperation();
         CentriVaccinali.setRoot("Avvio");

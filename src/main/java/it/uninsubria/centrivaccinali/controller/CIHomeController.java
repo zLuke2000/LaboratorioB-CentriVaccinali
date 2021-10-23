@@ -2,15 +2,12 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
@@ -20,7 +17,7 @@ public class CIHomeController extends Controller {
 
     private ClientCV client;
 
-    private ControlloParametri cp = ControlloParametri.getInstance();
+    private final ControlloParametri cp = ControlloParametri.getInstance();
 
     /**TextField per l'username del cittadino*/
     @FXML private TextField TF_CI_loginUsername;
@@ -45,16 +42,15 @@ public class CIHomeController extends Controller {
     @Override
     public void notifyController(Result result) {
         if (result.getResult()) {
-            Platform.runLater(() -> {
-                CentriVaccinali.setRoot("CI_dashboard");
-            });
+            Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
         }
         else {
             System.out.println("Login fallito");
             if (result.getExtendedResult() == Result.USERNAME_NON_TROVATO) {
                 System.out.println("Username non trovato");
-                //TODO popup
-            } else if (result.getExtendedResult() == Result.PASSWORD_ERRATA) {
+                //TODO tooltip
+            }
+            if (result.getExtendedResult().contains(Result.Error.PASSWORD_ERRATA)) {
                 System.out.println("Password errata");
                 //TODO popup
             }
@@ -63,22 +59,20 @@ public class CIHomeController extends Controller {
 
     /**
      * Metodo per entrare con l'accesso libero dentro all'applicazione
-     * @param mouseEvent
      */
-    public void ToFreeAccess(MouseEvent mouseEvent) {
+    @FXML public void ToFreeAccess() {
         CentriVaccinali.setRoot("CI_dashboard");
     }
 
     /**
-     * Metodo per accedere con le credenziali del  cittadino
-     * @param actionEvent
+     * Metodo per accedere con le credenziali del cittadino
      */
-    public void loginCittadino(ActionEvent actionEvent) {
+    @FXML public void loginCittadino() {
         //effettuo login se username e password non sono vuoti
         //e sono state inserite credenziali valide
         if (cp.testoSempliceConNumeri(TF_CI_loginUsername,4, 16) & (cp.password(TF_CI_loginPassword) || cp.password(TF_CI_loginPasswordVisible))){
             String username=TF_CI_loginUsername.getText();
-            String password="";
+            String password;
             if (!TF_CI_loginPassword.isVisible()){
                 password=TF_CI_loginPasswordVisible.getText();
             } else {
@@ -92,17 +86,15 @@ public class CIHomeController extends Controller {
 
     /**
      * Metodo per passare all'interfaccia di registrazione
-     * @param mouseEvent
      */
-    public void toRegistrazione(MouseEvent mouseEvent) {
+    @FXML public void toRegistrazione() {
         CentriVaccinali.setRoot("CI_registrazione");
     }
 
     /**
-     * Metodo per nascondere la password 
-     * @param mouseEvent click sull'icona per nascondere la password
+     * Metodo per nascondere la password
      */
-    public void hidePassword(MouseEvent mouseEvent) {
+    @FXML public void hidePassword() {
         //copia la password nel PasswordField
         //e cambia le visibilita' dei componenti
         String password = TF_CI_loginPasswordVisible.getText();
@@ -116,9 +108,8 @@ public class CIHomeController extends Controller {
 
     /**
      * Metodo per mostrare la password
-     * @param mouseEvent click sull'icona per mostrare la password
      */
-    public void showPassword(MouseEvent mouseEvent) {
+    @FXML public void showPassword() {
         //copia la password nel TextField
         //e cambia le visibilita' dei componenti
         String password=TF_CI_loginPassword.getText();
@@ -129,7 +120,7 @@ public class CIHomeController extends Controller {
         FI_CI_hidePassword.setVisible(true);
     }
 
-    public void backTo(MouseEvent mouseEvent) {
+    @FXML public void backTo() {
         CentriVaccinali.setRoot("Avvio");
         client.stopOperation();
     }

@@ -50,9 +50,7 @@ public class DBHelper {
     public DBHelper() {}
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * @throws SQLException eccezione SQL database
      */
     public static Connection getConnection() throws SQLException {
 
@@ -65,7 +63,7 @@ public class DBHelper {
 
     /**
      *
-     * @throws SQLException
+     * @throws SQLException eccezione SQL database
      */
     public static void closeConnection() throws SQLException {
         connection.close();

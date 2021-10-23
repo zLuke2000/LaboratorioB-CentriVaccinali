@@ -4,7 +4,6 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 
-import java.rmi.ServerError;
 import java.util.regex.Pattern;
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public class Database {
      */
     public Result registraCentroVaccinale(CentroVaccinale cv) {
         UUID uuid = null;
-        risultato = new Result(false, Result.REGISTRAZIONE_CENTRO);
+        risultato = new Result(false, Result.Operation.REGISTRAZIONE_CENTRO);
 
         // Controllo che ci sia gia' l'indirizzo
         try {
@@ -129,7 +128,7 @@ public class Database {
                 // Nome centro gia' inserito
                 System.err.println(e.getMessage());
                 if(((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]).equals("nome")) {
-                    risultato.setExtendedResult(Result.NOME_IN_USO);
+                    risultato.setExtendedResult(Result.Error.NOME_IN_USO);
                 }
                 return risultato;
 
@@ -165,7 +164,7 @@ public class Database {
     }
 
     public Result loginUtente(String username, String password) {
-        risultato = new Result(false, Result.LOGIN_UTENTE);
+        risultato = new Result(false, Result.Operation.LOGIN_CITTADINO);
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
@@ -192,7 +191,9 @@ public class Database {
                 pstmt.setString(1, username);
                 rs = pstmt.executeQuery();
                 if(rs.next()) {
-                    risultato.setExtendedResult(Result.USERNAME_NON_TROVATO + rs.getInt(1));
+                    risultato.setExtendedResult(Result.Error.USERNAME_NON_TROVATO);
+                } else {
+                    risultato.setExtendedResult(Result.Error.PASSWORD_ERRATA);
                 }
             }
         } catch (SQLException e) {
@@ -202,7 +203,7 @@ public class Database {
     }
 
     public Result registraCittadino(Cittadino c) {
-        Result risultato = new Result(false, Result.REGISTRAZIONE_CITTADINO);
+        Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_CITTADINO);
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                                         "FROM tabelle_cv.\"vaccinati\" " +
@@ -212,7 +213,7 @@ public class Database {
             rs = pstmt.executeQuery();
             //id vaccinazione e' presente nel db dei centri vaccinali
             //posso registrare il cittadino correttamente
-            if (rs.next()){
+            if (rs.next()) {
                 pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
                 pstmt.setString(1, c.getNome());
                 pstmt.setString(2, c.getCognome());
@@ -225,7 +226,6 @@ public class Database {
                 System.out.println("[Database] registrato nuovo cittadino");
                 risultato.setResult(true);
                 risultato.setCittadino(c);
-                return risultato;
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
 
@@ -236,7 +236,7 @@ public class Database {
                 rs = pstmt.executeQuery();
                 if (rs.next()) {
                     System.err.println("Codice fiscale non associato ad alcun vaccinato");
-                    risultato.setExtendedResult(Result.CF_NON_VALIDO);
+                    risultato.setExtendedResult(Result.Error.CF_NON_VALIDO);
                 }
 
                 pstmt = conn.prepareStatement("SELECT COUNT(*) " +
@@ -246,14 +246,14 @@ public class Database {
                 rs = pstmt.executeQuery();
                 if (rs.next()) {
                     System.err.println("ID vaccinazione non associato ad alcun vaccinato");
-                    if(risultato.getExtendedResult() == Result.CF_NON_VALIDO) {
-                        risultato.setExtendedResult(Result.CF_ID_NON_VALIDI);
+                    if(risultato.getExtendedResult().contains(Result.Error.CF_NON_VALIDO)) {
+                        risultato.setExtendedResult(Result.Error.CF_ID_NON_VALIDI);
                     } else {
-                        risultato.setExtendedResult(Result.IDVAC_NON_VALIDO);
+                        risultato.setExtendedResult(Result.Error.IDVAC_NON_VALIDO);
                     }
                 }
-                return risultato;
             }
+            return risultato;
         } catch (SQLException e) {
             e.printStackTrace();
             /*
@@ -294,13 +294,13 @@ public class Database {
             switch (colonna) {
                 case "codice_fiscale":
                 case "id_vaccino":
-                    risultato.setExtendedResult(Result.CITTADINO_GIA_REGISTRATO);
+                    risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
                     break;
                 case "email":
-                    risultato.setExtendedResult(Result.EMAIL_GIA_IN_USO);
+                    risultato.setExtendedResult(Result.Error.EMAIL_GIA_IN_USO);
                     break;
                 case "userid":
-                    risultato.setExtendedResult(Result.USERID_GIA_IN_USO);
+                    risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
                     break;
             }
         }
@@ -308,7 +308,7 @@ public class Database {
     }
 
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
-        Result risultato = new Result(false, Result.REGISTRAZIONE_VACCINATO);
+        Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_VACCINATO);
         try {
             pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
@@ -333,10 +333,10 @@ public class Database {
             String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
             if (colonna.equals("codice_fiscale")) {
                 System.err.println("Codice fiscale gia' associato ad un vaccinato");
-                risultato.setExtendedResult(Result.CF_GIA_IN_USO);
+                risultato.setExtendedResult(Result.Error.CF_GIA_IN_USO);
             } else if(colonna.equals("id_vaccinazione")) {
                 System.err.println("Id vaccinazione gia' associato ad un vaccinato");
-                risultato.setExtendedResult(Result.IDVAC_GIA_IN_USO);
+                risultato.setExtendedResult(Result.Error.IDVAC_GIA_IN_USO);
             }
         }
         return risultato;
@@ -346,7 +346,7 @@ public class Database {
      * FUNZIONANTE
      */
     public Result getComuni(String provincia){
-        Result risultato = new Result(false, Result.RISULTATO_COMUNI);
+        Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
         List<String> arrayComuni = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT comune " +
@@ -370,7 +370,7 @@ public class Database {
      * FUNZIONANTE
      */
     public Result getCentriVaccinali(String comune){
-        Result risultato = new Result(false, Result.RISULTATO_CENTRI);
+        Result risultato = new Result(false, Result.Operation.RISULTATO_CENTRI);
         List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
@@ -398,7 +398,7 @@ public class Database {
     }
 
     public Result ricercaCentroPerNome(String nomeCentro) {
-        Result risultato = new Result(false, Result.RICERCA_CENTRO);
+        Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
         List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
@@ -426,7 +426,7 @@ public class Database {
     }
 
     public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
-        Result risultato = new Result(false, Result.RICERCA_CENTRO);
+        Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
         List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +

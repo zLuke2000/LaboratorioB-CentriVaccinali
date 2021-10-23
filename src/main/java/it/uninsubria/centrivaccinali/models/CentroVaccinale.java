@@ -33,7 +33,7 @@ public class CentroVaccinale implements Serializable {
     private TipologiaCentro tipologia;
 
     /**
-     * Costruttore vuoto dell'oggetto <code>CentroVAccinale</code>
+     * Costruttore vuoto dell'oggetto <code>CentroVaccinale</code>
      */
     public CentroVaccinale() {}
 

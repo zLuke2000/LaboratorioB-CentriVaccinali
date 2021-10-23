@@ -3,28 +3,25 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class AvvioController extends Controller {
 
         /**
          * Metodo usato per accedere come operatore cittadino,
-         * aprendo l'iterfaccia di login
-         * @param event
+         * aprendo l'interfaccia di login
          */
         @FXML
-        void accediCittadino(ActionEvent event) {
+        void accediCittadino() {
                 CentriVaccinali.setRoot("CI_home");
         }
 
         /**
          * Metodo usato per accedere come operatore sanitario,
-         * aprendo l'iterfaccia di login
-         * @param event
+         * aprendo l'interfaccia di login
          */
         @FXML
-        void accediOperatore(ActionEvent event) {
+        void accediOperatore() {
                 CentriVaccinali.setRoot("CV_login");
         }
 

@@ -38,14 +38,14 @@ public class ConnectionThread extends Thread{
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
                 Platform.runLater(() -> {
-                    //TODO usare D_connectionError.fxml
+                    //TODO usare D_connectionError.fxml e creare controller a parte
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERRORE DI CONNESSIONE");
                     alert.setHeaderText("Errore");
                     alert.setContentText("Non è stato possibile connettersi al server, riconnettere?");
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get()==ButtonType.YES){
-                        //fai ripartire il thread per provare ad
+                        //fai ripartire il thread per provare a
                         // ottenere la connessione
                         this.run();
                     }

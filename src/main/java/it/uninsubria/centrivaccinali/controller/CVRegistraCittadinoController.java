@@ -14,9 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class CVRegistraCittadinoController extends Controller {
 
@@ -40,8 +38,6 @@ public class CVRegistraCittadinoController extends Controller {
     @FXML private ToggleGroup RadioGroup1;
     // DatePicker
     @FXML private DatePicker DP_CV_datavaccino;
-    // Button
-    @FXML private Button  B_CV_registraCittadino;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssHelper = CssHelper.getInstance();
@@ -66,7 +62,7 @@ public class CVRegistraCittadinoController extends Controller {
     @Override
     public void notifyController(Result result) {
         switch (result.getOpType()){
-            case Result.RISULTATO_COMUNI:
+            case RISULTATO_COMUNI:
                 if (result.getResultComuni() != null) {
                     Platform.runLater(() -> {
                         CB_CV_selezionaComune.getItems().clear();
@@ -75,7 +71,7 @@ public class CVRegistraCittadinoController extends Controller {
                     });
                 }
                 break;
-            case Result.RISULTATO_CENTRI:
+            case RISULTATO_CENTRI:
                 if (result.getResultCentri() != null){
                     Platform.runLater(() -> {
                         listaCentri.clear();
@@ -88,18 +84,17 @@ public class CVRegistraCittadinoController extends Controller {
                     });
                 }
                 break;
-            case Result.REGISTRAZIONE_VACCINATO:
+            case REGISTRAZIONE_VACCINATO:
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
                 } else {
-                    switch (result.getExtendedResult()) {
+                    if(result.getExtendedResult().contains(Result.Error.CF_GIA_IN_USO)) {
                         //TODO popup
-                        case Result.CF_GIA_IN_USO:
-                            System.err.println("Codice fiscale gia' associato ad un vaccinato");
-                            break;
-                        case Result.IDVAC_GIA_IN_USO:
-                            System.err.println("Id vaccinazione gia' associato ad un vaccinato");
-                            break;
+                        System.err.println("Codice fiscale gia' associato ad un vaccinato");
+                    }
+                    if(result.getExtendedResult().contains(Result.Error.IDVAC_GIA_IN_USO)) {
+                        //TODO popup
+                        System.err.println("Id vaccinazione gia' associato ad un vaccinato");
                     }
                 }
                 break;

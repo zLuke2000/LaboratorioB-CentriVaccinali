@@ -14,16 +14,14 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Optional;
 
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     private static final long serialVersionUID = 1L;
-    private static Registry reg = null;
     private static ServerCVInterface server = null;
-    private Cittadino utenteLoggato = null;
+    private Cittadino cittadinoConnesso = null;
     private ConnectionThread connThread;
 
     private Controller controller;
@@ -34,15 +32,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public Cittadino getUtenteLoggato() {
-        return utenteLoggato;
+        return cittadinoConnesso;
     }
 
     public void LogoutUtente() {
-        this.utenteLoggato = null;
-    }
-
-    public static void setRegistry(Registry reg) {
-        ClientCV.reg = reg;
+        this.cittadinoConnesso = null;
     }
 
     public static void setServer(ServerCVInterface server) {
@@ -72,23 +66,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
-        switch(ritorno.getOpType()) {
-            case Result.LOGIN_UTENTE:
-                utenteLoggato= ritorno.getCittadino();
-                controller.notifyController(ritorno);
-                break;
-            case Result.LOGIN_OPERATORE:
-            case Result.REGISTRAZIONE_VACCINATO:
-            case Result.REGISTRAZIONE_CENTRO:
-            case Result.REGISTRAZIONE_CITTADINO:
-            case Result.RISULTATO_COMUNI:
-            case Result.RISULTATO_CENTRI:
-            case Result.RICERCA_CENTRO:
-                controller.notifyController(ritorno);
-                break;
-            default:
-                printerr("errore opType");
+        if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
+            if (ritorno.getResult())
+                cittadinoConnesso = ritorno.getCittadino();
         }
+        controller.notifyController(ritorno);
     }
 
     public void registraCentroVaccinale(CVRegistraCentroVaccinale cvRegistraCentroVaccinale, CentroVaccinale cv) {
@@ -191,6 +173,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     private void lanciaPopup(){
         try {
+            // TODO gestire dialog con controller a parte
             FXMLLoader fxmlLoader=new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_connectionError.fxml"));
             DialogPane connectionDialog=fxmlLoader.load();
             Dialog<ButtonType> dialog=new Dialog<>();

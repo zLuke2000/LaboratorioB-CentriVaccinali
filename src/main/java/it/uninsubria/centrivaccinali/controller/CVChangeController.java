@@ -3,20 +3,14 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXML;
 
-/**
- *
- */
 public class CVChangeController extends Controller {
 
     /**
-     * Metodo per avviare l'interfaccia di registrazione di  un cittadino vaccinato
-     *
-     * @param actionEvent
+     * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato
      */
-    public void RegistraVaccinato(ActionEvent actionEvent) {
+    @FXML public void RegistraVaccinato() {
         System.out.println("Interfaccia per registrazione di un vaccinato");
         CentriVaccinali.setRoot("CV_registraVaccinato");
     }
@@ -24,9 +18,8 @@ public class CVChangeController extends Controller {
     /**
      * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale
      *
-     * @param actionEvent click sul bottone "Registra centro vaccinale"
      */
-    public void RegistraCentroVaccinale(ActionEvent actionEvent) {
+    @FXML public void RegistraCentroVaccinale() {
         System.out.println("Interfaccia per registrazione di centro vaccinale");
         CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }

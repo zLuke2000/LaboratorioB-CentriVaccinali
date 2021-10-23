@@ -1,7 +1,6 @@
 module it.uninsubria.centrivaccinali {
     requires javafx.controls;
     requires javafx.fxml;
-
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.bpmn;
@@ -12,7 +11,6 @@ module it.uninsubria.centrivaccinali {
     requires org.kordamp.ikonli.boxicons;
     requires org.kordamp.ikonli.fontawesome5;
     requires com.jfoenix;
-
     requires json.simple;
     requires java.sql;
     requires java.rmi;
@@ -28,4 +26,6 @@ module it.uninsubria.centrivaccinali {
     opens it.uninsubria.centrivaccinali.server to javafx.fxml;
     exports it.uninsubria.centrivaccinali.models;
     opens it.uninsubria.centrivaccinali.models to javafx.fxml;
+    exports it.uninsubria.centrivaccinali.enumerator;
+    opens it.uninsubria.centrivaccinali.enumerator to javafx.fxml;
 }

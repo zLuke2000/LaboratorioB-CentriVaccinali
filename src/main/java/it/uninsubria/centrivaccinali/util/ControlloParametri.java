@@ -22,7 +22,7 @@ public class ControlloParametri {
 
     private Pattern rPattern;
     private Matcher rMatcher;
-    private static ArrayList<String> listaProvince = new ArrayList<>();
+    private static final ArrayList<String> listaProvince = new ArrayList<>();
 
     //Stringhe errore password
     private final String err1 = "Password troppo corta (almeno 8 caratteri)";
@@ -194,7 +194,7 @@ public class ControlloParametri {
             }
         }
 
-        if(res == true) {
+        if(res) {
             cssHelper.toValid(tic);
         } else {
             cssHelper.toError(tic, new Tooltip(errTo0ltip));
