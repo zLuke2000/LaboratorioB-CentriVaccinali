@@ -170,21 +170,6 @@
 	-fx-text-fill: #1f4c9f;
 }
 
-.iconUserConnection {
-	-fx-icon-size: 12;
-	-fx-icon-color: #1f4c9f;
-}
-
-.iconDismiss {
-	-fx-icon-colro: black;
-	-fx-icon-size: 23;
-}
-
-.iconDismiss:hover {
-	-fx-icon-color: red;
-	-fx-icon-size: 27;
-}
-
 .textfield-RicercaCV {
 	-fx-pref-height: 45;
 	-fx-background-radius: 15;
@@ -244,5 +229,10 @@
 
 .labelTitleSezInfo{
 	-fx-font-size: 18;
+}
+
+.button-actionItem{
+	-fx-border-radius: 50;
+	-fx-background-radius: 50;
 }
 
