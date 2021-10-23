@@ -28,7 +28,6 @@ public class ConnectionThread extends Thread{
                 status = getRegistry() && getServerStub();
                 if (status) {
                     //setta nel client il registry e il server
-                    ClientCV.setRegistry(reg);
                     ClientCV.setServer(server);
                     System.out.println("[ConnectionThread] Connessione al server eseguita");
                     break;

@@ -26,11 +26,9 @@ public class CVChangeController extends Controller {
 
     /**
      * Metodo per tornare all'interfaccia precedente
-     *
-     * @param mouseEvent click sull'icona per tornare indietro
      */
-    public void BackTo(MouseEvent mouseEvent) {
-        System.out.printf("Indietro");
+    @FXML public void BackTo() {
+        System.out.println("Indietro");
         CentriVaccinali.setRoot("Avvio");
     }
 

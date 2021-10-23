@@ -34,11 +34,11 @@ public class Result implements Serializable {
         this.extendedResult.add(enumerator);
     }
 
-    public int getOpType() {
+    public Operation getOpType() {
         return opType;
     }
 
-    public void setOpType(int opType) {
+    public void setOpType(Operation opType) {
         this.opType = opType;
     }
 

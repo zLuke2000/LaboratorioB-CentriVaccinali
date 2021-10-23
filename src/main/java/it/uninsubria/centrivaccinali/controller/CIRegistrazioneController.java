@@ -46,28 +46,23 @@ public class CIRegistrazioneController extends Controller {
             Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
         } else {
             System.err.println("Registrazione fallita");
-            switch (result.getExtendedResult()) {
-                //TODO popup
-                case Result.CF_NON_VALIDO:
-                    System.err.println("Codice fiscale non associato ad alcun vaccinato");
-                    break;
-                case Result.IDVAC_NON_VALIDO:
-                    System.err.println("ID vaccinazione non associato ad alcun vaccinato");
-                    break;
-                case Result.CF_ID_NON_VALIDI:
-                    System.err.println("ID vaccinazione e codice fiscale non associati ad alcun vaccinato");
-                    break;
-                case Result.CITTADINO_GIA_REGISTRATO:
-                    System.err.println("Cittadino gia' registrato");
-                    break;
-                case Result.EMAIL_GIA_IN_USO:
-                    System.err.println("Email gia' registrata");
-                    break;
-                case Result.USERID_GIA_IN_USO:
-                    System.err.println("Username gia' registrato");
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + result.getExtendedResult());
+
+            //TODO tooltips
+            if (result.getExtendedResult().contains(Result.Error.CF_ID_NON_VALIDI)){
+                System.err.println("ID vaccinazione e codice fiscale non associati ad alcun vaccinato");
+            } else if (result.getExtendedResult().contains(Result.Error.CF_NON_VALIDO)){
+                System.err.println("Codice fiscale non associato ad alcun vaccinato");
+            } else if (result.getExtendedResult().contains(Result.Error.IDVAC_NON_VALIDO)){
+                System.err.println("ID vaccinazione non associato ad alcun vaccinato");
+            }
+            if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)){
+                System.err.println("Cittadino gia' registrato");
+            }
+            if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)){
+                System.err.println("Email gia' registrata");
+            }
+            if (result.getExtendedResult().contains(Result.Error.USERID_GIA_IN_USO)){
+                System.err.println("Username gia' registrato");
             }
         }
     }

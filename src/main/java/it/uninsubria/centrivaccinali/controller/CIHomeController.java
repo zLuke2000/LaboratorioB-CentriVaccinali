@@ -46,13 +46,13 @@ public class CIHomeController extends Controller {
         }
         else {
             System.out.println("Login fallito");
-            if (result.getExtendedResult() == Result.USERNAME_NON_TROVATO) {
+            if (result.getExtendedResult().contains(Result.Error.USERNAME_NON_TROVATO)) {
                 System.out.println("Username non trovato");
                 //TODO tooltip
             }
             if (result.getExtendedResult().contains(Result.Error.PASSWORD_ERRATA)) {
                 System.out.println("Password errata");
-                //TODO popup
+                //TODO tooltip
             }
         }
     }
