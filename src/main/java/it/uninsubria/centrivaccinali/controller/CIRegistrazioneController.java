@@ -10,28 +10,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 
 public class CIRegistrazioneController extends Controller {
 
+    @FXML
+    public AnchorPane ap_root;
     private ClientCV client;
     private ControlloParametri cp;
     private FXMLLoader loader;
 
 
     // TextField per l'acquisizione dei dati
-    @FXML private TextField TF_CI_nomeRegistrazione;
-    @FXML private TextField TF_CI_cognomeRegistrazione;
-    @FXML private TextField TF_CI_cfRegistrazione;
-    @FXML private TextField TF_CI_usernameRegistrazione;
-    @FXML private TextField TF_CI_emailRegistrazione;
-    @FXML private TextField TF_CI_idvaccinazioneRegistrazione;
+    @FXML private TextField tf_ci_nomeRegistrazione;
+    @FXML private TextField tf_ci_cognomeRegistrazione;
+    @FXML private TextField tf_ci_cfRegistrazione;
+    @FXML private TextField tf_ci_usernameRegistrazione;
+    @FXML private TextField tf_ci_emailRegistrazione;
+    @FXML private TextField tf_ci_idvaccinazioneRegistrazione;
 
     //PasswordField per l'acquisizione della password
-    @FXML private PasswordField TF_CI_password1;
-    @FXML private PasswordField TF_CI_password2;
-    @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
-    @FXML private ProgressIndicator PI_CI_loadUsername;
+    @FXML private PasswordField pf_ci_password1;
+    @FXML private PasswordField pf_ci_password2;
+    @FXML private ProgressIndicator pi_ci_loadIdVaccinazione;
+    @FXML private ProgressIndicator pi_ci_loadUsername;
 
     @Override
     public void initParameter(ClientCV client) {
@@ -68,13 +72,13 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML public void registraCittadino() {
-        String nome = TF_CI_nomeRegistrazione.getText().trim();
-        String cognome = TF_CI_cognomeRegistrazione.getText().trim();
-        String cf = TF_CI_cfRegistrazione.getText().trim();
-        String email = TF_CI_emailRegistrazione.getText().trim();
-        String user = TF_CI_usernameRegistrazione.getText().trim();
-        String password = TF_CI_password1.getText().trim();
-        long idVac = Long.parseLong(TF_CI_idvaccinazioneRegistrazione.getText());
+        String nome = tf_ci_nomeRegistrazione.getText().trim();
+        String cognome = tf_ci_cognomeRegistrazione.getText().trim();
+        String cf = tf_ci_cfRegistrazione.getText().trim();
+        String email = tf_ci_emailRegistrazione.getText().trim();
+        String user = tf_ci_usernameRegistrazione.getText().trim();
+        String password = pf_ci_password1.getText().trim();
+        long idVac = Long.parseLong(tf_ci_idvaccinazioneRegistrazione.getText());
         Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
         System.out.println("Registro cittadino");
         client.registraCittadino(this, cittadino);
@@ -109,32 +113,32 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML public void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
-        if (TF_CI_nomeRegistrazione.equals(key)) {
-            cp.testoSempliceConNumeri(TF_CI_nomeRegistrazione, 1, 50);
+        if (tf_ci_nomeRegistrazione.equals(key)) {
+            cp.testoSempliceConNumeri(tf_ci_nomeRegistrazione, 1, 50);
         }
-        if (TF_CI_cognomeRegistrazione.equals(key)) {
-            cp.testoSempliceSenzaNumeri(TF_CI_cognomeRegistrazione, 1, 50);
+        if (tf_ci_cognomeRegistrazione.equals(key)) {
+            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 1, 50);
         }
-        if(TF_CI_cfRegistrazione.equals(key)) {
-            cp.codiceFiscale(TF_CI_cfRegistrazione);
+        if(tf_ci_cfRegistrazione.equals(key)) {
+            cp.codiceFiscale(tf_ci_cfRegistrazione);
         }
-        if(TF_CI_emailRegistrazione.equals(key)) {
-            cp.email(TF_CI_emailRegistrazione);
+        if(tf_ci_emailRegistrazione.equals(key)) {
+            cp.email(tf_ci_emailRegistrazione);
         }
-        if(TF_CI_password1.equals(key)) {
-            cp.password(TF_CI_password1);
-            if(!TF_CI_password2.getText().isBlank()) {
-                cp.checkSamePassword(TF_CI_password1, TF_CI_password2);
+        if(pf_ci_password1.equals(key)) {
+            cp.password(pf_ci_password1);
+            if(!pf_ci_password2.getText().isBlank()) {
+                cp.checkSamePassword(pf_ci_password1, pf_ci_password2);
             }
         }
-        if(TF_CI_password2.equals(key)) {
-            cp.checkSamePassword(TF_CI_password1, TF_CI_password2);
+        if(pf_ci_password2.equals(key)) {
+            cp.checkSamePassword(pf_ci_password1, pf_ci_password2);
         }
-        if(TF_CI_usernameRegistrazione.equals(key)) {
-            cp.testoSempliceConNumeri(TF_CI_usernameRegistrazione, 1, 16);
+        if(tf_ci_usernameRegistrazione.equals(key)) {
+            cp.testoSempliceConNumeri(tf_ci_usernameRegistrazione, 1, 16);
         }
-        if(TF_CI_idvaccinazioneRegistrazione.equals(key)) {
-            cp.numeri(TF_CI_idvaccinazioneRegistrazione, 16, 16);
+        if(tf_ci_idvaccinazioneRegistrazione.equals(key)) {
+            cp.numeri(tf_ci_idvaccinazioneRegistrazione, 16, 16);
         }
     }
 

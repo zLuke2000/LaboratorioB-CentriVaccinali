@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
@@ -15,24 +16,26 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class CIHomeController extends Controller {
 
+    @FXML
+    public AnchorPane ap_root;
     private ClientCV client;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
 
     /**TextField per l'username del cittadino*/
-    @FXML private TextField TF_CI_loginUsername;
+    @FXML private TextField tf_ci_loginUsername;
 
     /**PasswordField per la password di autenticazione del cittadino*/
-    @FXML private PasswordField TF_CI_loginPassword;
+    @FXML private PasswordField tf_ci_loginPassword;
 
     /**TextField per mostrare la password del cittadino*/
-    @FXML private TextField TF_CI_loginPasswordVisible;
+    @FXML private TextField tf_ci_loginPasswordVisible;
 
     /**FontIcon per nascondere la password*/
-    @FXML private FontIcon FI_CI_hidePassword;
+    @FXML private FontIcon fi_ci_hidePassword;
 
     /**FontIcon per mostrare la password*/
-    @FXML private FontIcon FI_CI_showPassword;
+    @FXML private FontIcon fi_ci_showPassword;
 
     @Override
     public void initParameter(ClientCV client) {
@@ -70,13 +73,13 @@ public class CIHomeController extends Controller {
     @FXML public void loginCittadino() {
         //effettuo login se username e password non sono vuoti
         //e sono state inserite credenziali valide
-        if (cp.testoSempliceConNumeri(TF_CI_loginUsername,4, 16) & (cp.password(TF_CI_loginPassword) || cp.password(TF_CI_loginPasswordVisible))){
-            String username=TF_CI_loginUsername.getText();
+        if (cp.testoSempliceConNumeri(tf_ci_loginUsername,4, 16) & (cp.password(tf_ci_loginPassword) || cp.password(tf_ci_loginPasswordVisible))){
+            String username= tf_ci_loginUsername.getText();
             String password;
-            if (!TF_CI_loginPassword.isVisible()){
-                password=TF_CI_loginPasswordVisible.getText();
+            if (!tf_ci_loginPassword.isVisible()){
+                password= tf_ci_loginPasswordVisible.getText();
             } else {
-                password=TF_CI_loginPassword.getText();
+                password= tf_ci_loginPassword.getText();
             }
             if (!username.isBlank() && !password.isBlank()){
                 client.loginUtente(this, username, password);
@@ -97,12 +100,12 @@ public class CIHomeController extends Controller {
     @FXML public void hidePassword() {
         //copia la password nel PasswordField
         //e cambia le visibilita' dei componenti
-        String password = TF_CI_loginPasswordVisible.getText();
-        TF_CI_loginPassword.setText(password);
-        TF_CI_loginPasswordVisible.setVisible(false);
-        TF_CI_loginPassword.setVisible(true);
-        FI_CI_showPassword.setVisible(true);
-        FI_CI_hidePassword.setVisible(false);
+        String password = tf_ci_loginPasswordVisible.getText();
+        tf_ci_loginPassword.setText(password);
+        tf_ci_loginPasswordVisible.setVisible(false);
+        tf_ci_loginPassword.setVisible(true);
+        fi_ci_showPassword.setVisible(true);
+        fi_ci_hidePassword.setVisible(false);
     }
 
 
@@ -112,12 +115,12 @@ public class CIHomeController extends Controller {
     @FXML public void showPassword() {
         //copia la password nel TextField
         //e cambia le visibilita' dei componenti
-        String password=TF_CI_loginPassword.getText();
-        TF_CI_loginPasswordVisible.setText(password);
-        TF_CI_loginPasswordVisible.setVisible(true);
-        TF_CI_loginPassword.setVisible(false);
-        FI_CI_showPassword.setVisible(false);
-        FI_CI_hidePassword.setVisible(true);
+        String password= tf_ci_loginPassword.getText();
+        tf_ci_loginPasswordVisible.setText(password);
+        tf_ci_loginPasswordVisible.setVisible(true);
+        tf_ci_loginPassword.setVisible(false);
+        fi_ci_showPassword.setVisible(false);
+        fi_ci_hidePassword.setVisible(true);
     }
 
     @FXML public void backTo() {
