@@ -191,7 +191,8 @@ public class Database {
                                                  "WHERE userid = ?");
                 pstmt.setString(1, username);
                 rs = pstmt.executeQuery();
-                if(rs.next()) {
+                rs.next();
+                if(rs.getInt(1) == 0) {
                     risultato.setExtendedResult(Result.Error.USERNAME_NON_TROVATO);
                 } else {
                     risultato.setExtendedResult(Result.Error.PASSWORD_ERRATA);
@@ -212,7 +213,7 @@ public class Database {
             pstmt.setLong(1, c.getId_vaccino());
             pstmt.setString(2, c.getCodice_fiscale());
             rs = pstmt.executeQuery();
-            //id vaccinazione e' presente nel db dei centri vaccinali
+            //vaccinato e' presente nel db dei centri vaccinali
             //posso registrare il cittadino correttamente
             if (rs.next()) {
                 pstmt = conn.prepareStatement("INSERT INTO public.\"Cittadini_Registrati\" VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -229,68 +230,11 @@ public class Database {
                 risultato.setCittadino(c);
             } else {
                 System.err.println("[Database] id vaccinazione o codice fiscale non valido");
-
-                pstmt = conn.prepareStatement("SELECT COUNT(*) " +
-                        "FROM tabelle_cv.\"vaccinati\" " +
-                        "WHERE id_vaccinazione = ?");
-                pstmt.setLong(1, c.getId_vaccino());
-                rs = pstmt.executeQuery();
-                if (rs.next()) {
-                    System.err.println("Codice fiscale non associato ad alcun vaccinato");
-                    risultato.setExtendedResult(Result.Error.CF_NON_VALIDO);
-                }
-
-                pstmt = conn.prepareStatement("SELECT COUNT(*) " +
-                            "FROM tabelle_cv.\"vaccinati\" " +
-                            "WHERE codice_fiscale = ?");
-                pstmt.setString(1, c.getCodice_fiscale());
-                rs = pstmt.executeQuery();
-                if (rs.next()) {
-                    System.err.println("ID vaccinazione non associato ad alcun vaccinato");
-                    if(risultato.getExtendedResult().contains(Result.Error.CF_NON_VALIDO)) {
-                        risultato.setExtendedResult(Result.Error.CF_ID_NON_VALIDI);
-                    } else {
-                        risultato.setExtendedResult(Result.Error.IDVAC_NON_VALIDO);
-                    }
-                }
+                risultato.setExtendedResult(Result.Error.CF_ID_NON_VALIDI);
             }
             return risultato;
         } catch (SQLException e) {
             e.printStackTrace();
-            /*
-            // Controllo codice_fiscale e id_vaccino
-            pstmt = conn.prepareStatement("SELECT * " +
-                    "FROM tabelle_cv.\"vaccinati\" " +
-                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
-            pstmt.setLong(1, c.getId_vaccino());
-            pstmt.setString(2, c.getCodice_fiscale());
-            rs = pstmt.executeQuery();
-            // Controllo email
-            pstmt = conn.prepareStatement("SELECT * " +
-                    "FROM tabelle_cv.\"vaccinati\" " +
-                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
-            pstmt.setLong(1, c.getId_vaccino());
-            pstmt.setString(2, c.getCodice_fiscale());
-            rs = pstmt.executeQuery();
-            // Controllo userid
-            pstmt = conn.prepareStatement("SELECT * " +
-                    "FROM tabelle_cv.\"vaccinati\" " +
-                    "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
-            pstmt.setLong(1, c.getId_vaccino());
-            pstmt.setString(2, c.getCodice_fiscale());
-            rs = pstmt.executeQuery();
-
-            if(e.getMessage().contains("codice_fiscale") || e.getMessage().contains("id_vaccino")) {
-                System.err.println("Cittadino gia' registrato");
-            }
-            if(e.getMessage().contains("email")) {
-                System.err.println("Email gia' registrata");
-            }
-            if(e.getMessage().contains("userid")) {
-                System.err.println("Userid gia' registrato");
-            }
-            */
-
             String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
             try{
                 switch (colonna) {
