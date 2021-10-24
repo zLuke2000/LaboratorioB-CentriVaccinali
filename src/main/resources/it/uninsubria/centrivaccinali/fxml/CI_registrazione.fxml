@@ -1,128 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane prefHeight="640.0" prefWidth="390.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazioneController">
-   <children>
-      <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" onMouseClicked="#backTo" styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0" />
-      <Label alignment="CENTER" layoutX="180.0" layoutY="18.0" mouseTransparent="true" styleClass="labelWelcome" text="REGISTRAZIONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
-      <Label alignment="CENTER" layoutX="180.0" layoutY="53.0" text="I tuoi dati" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-      <VBox layoutY="83.0" prefHeight="120.0" prefWidth="390.0">
-         <children>
-            <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="379.0">
-               <children>
-                  <TextField fx:id="tf_ci_nomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Nome">
-                     <HBox.margin>
-                        <Insets right="15.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <TextField fx:id="TF_CI_cognomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Cognome">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <TextField fx:id="TF_CI_cfRegistrazione" onKeyTyped="#realtimeCheck" promptText="Codice Fiscale">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <padding>
-            <Insets left="20.0" right="17.0" top="15.0" />
-         </padding>
-      </VBox>
-      <Separator layoutX="40.0" layoutY="202.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="202.0">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Separator>
-      <Label alignment="CENTER" layoutX="180.0" layoutY="211.0" text="Le tue credenziali" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0" />
-      <VBox layoutX="145.0" layoutY="239.0" prefHeight="150.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <padding>
-            <Insets left="20.0" right="20.0" top="15.0" />
-         </padding>
-         <children>
-            <HBox alignment="CENTER_LEFT">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <children>
-                  <TextField fx:id="TF_CI_usernameRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0" prefWidth="185.0" promptText="Username" />
-                  <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoUsername" styleClass="iconInfo">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </FontIcon>
-                  <ProgressIndicator fx:id="PI_CI_loadUsername" prefHeight="27.0" prefWidth="29.0" visible="false">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </ProgressIndicator>
-               </children>
-            </HBox>
-            <TextField fx:id="TF_CI_emailRegistrazione" onKeyTyped="#realtimeCheck" promptText="Email">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </TextField>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <children>
-                  <PasswordField fx:id="TF_CI_password1" layoutY="1.0" onKeyTyped="#realtimeCheck" promptText="Password" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <PasswordField fx:id="TF_CI_password2" layoutX="189.0" layoutY="2.0" onKeyTyped="#realtimeCheck" promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <FontIcon iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0" onMouseClicked="#showInfoPassword" styleClass="iconInfo" />
-               </children>
-            </AnchorPane>
-         </children>
-      </VBox>
-      <Separator layoutX="40.0" layoutY="388.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Separator>
-      <Label alignment="CENTER" layoutX="180.0" layoutY="401.0" text="Vaccinazione" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="405.0" />
-      <HBox alignment="CENTER_LEFT" layoutX="133.0" layoutY="424.0" prefHeight="40.0" prefWidth="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="435.0">
-         <children>
-            <TextField fx:id="TF_CI_idvaccinazioneRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0" prefWidth="180.0" promptText="Id Vaccinazione" />
-            <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo" text="">
-               <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
-            </FontIcon>
-            <ProgressIndicator  prefHeight="12.0" prefWidth="30.0" visible="false">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <HBox.margin>
-                  <Insets left="5.0" />
-               </HBox.margin>
-            </ProgressIndicator>
-         </children>
+<AnchorPane fx:id="ap_root" prefHeight="640.0" prefWidth="390.0" stylesheets="@style/style.css"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.uninsubria.centrivaccinali.controller.CIRegistrazioneController">
+   <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="26.0" layoutY="27.0" onMouseClicked="#backTo"
+             styleClass="backIcon" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0"/>
+   <Label alignment="CENTER" layoutX="180.0" layoutY="18.0" mouseTransparent="true" styleClass="labelWelcome"
+          text="REGISTRAZIONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0"/>
+   <Label alignment="CENTER" layoutX="180.0" layoutY="53.0" text="I tuoi dati" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0"/>
+   <VBox layoutY="83.0" prefHeight="120.0" prefWidth="390.0">
+      <padding>
+         <Insets left="20.0" right="17.0" top="15.0"/>
+      </padding>
+      <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="379.0">
+         <TextField fx:id="tf_ci_nomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Nome">
+            <HBox.margin>
+               <Insets right="15.0"/>
+            </HBox.margin>
+         </TextField>
+         <TextField fx:id="tf_ci_cognomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Cognome">
+            <HBox.margin>
+               <Insets left="15.0"/>
+            </HBox.margin>
+         </TextField>
       </HBox>
-      <Separator layoutX="53.0" layoutY="474.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <effect>
-            <InnerShadow />
-         </effect>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-      </Separator>
-      <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#registraCittadino" styleClass="buttonSmall" text="Registra" />
-      <ProgressIndicator fx:id="PI_CI_loadRegistrazione" layoutX="179.0" layoutY="531.0" prefHeight="22.0" prefWidth="35.0" visible="false" />
-   </children>
+      <TextField fx:id="tf_ci_cfRegistrazione" onKeyTyped="#realtimeCheck" promptText="Codice Fiscale">
+         <VBox.margin>
+            <Insets/>
+         </VBox.margin>
+      </TextField>
+   </VBox>
+   <Separator layoutX="40.0" layoutY="202.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="202.0">
+      <effect>
+         <InnerShadow/>
+      </effect>
+   </Separator>
+   <Label alignment="CENTER" layoutX="180.0" layoutY="211.0" text="Le tue credenziali" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0"/>
+   <VBox layoutX="145.0" layoutY="239.0" prefHeight="150.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.rightAnchor="0.0">
+      <padding>
+         <Insets left="20.0" right="20.0" top="15.0"/>
+      </padding>
+      <HBox alignment="CENTER_LEFT">
+         <VBox.margin>
+            <Insets/>
+         </VBox.margin>
+         <TextField fx:id="tf_ci_usernameRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0"
+                    prefWidth="185.0" promptText="Username"/>
+         <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoUsername"
+                   styleClass="iconInfo">
+            <HBox.margin>
+               <Insets left="5.0"/>
+            </HBox.margin>
+         </FontIcon>
+         <ProgressIndicator fx:id="pi_ci_loadUsername" prefHeight="27.0" prefWidth="29.0" visible="false">
+            <HBox.margin>
+               <Insets left="5.0"/>
+            </HBox.margin>
+         </ProgressIndicator>
+      </HBox>
+      <TextField fx:id="tf_ci_emailRegistrazione" onKeyTyped="#realtimeCheck" promptText="Email">
+         <VBox.margin>
+            <Insets top="20.0"/>
+         </VBox.margin>
+      </TextField>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <VBox.margin>
+            <Insets top="20.0"/>
+         </VBox.margin>
+         <children>
+            <PasswordField fx:id="pf_ci_password1" layoutY="1.0" onKeyTyped="#realtimeCheck" promptText="Password"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+            <PasswordField fx:id="pf_ci_password2" layoutX="189.0" layoutY="2.0" onKeyTyped="#realtimeCheck"
+                           promptText="Reinserisci Password" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0"/>
+            <FontIcon iconLiteral="fltfmz-question-circle-16" layoutX="163.0" layoutY="27.0"
+                      onMouseClicked="#showInfoPassword" styleClass="iconInfo"/>
+         </children>
+      </AnchorPane>
+   </VBox>
+   <Separator layoutX="40.0" layoutY="388.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0">
+      <effect>
+         <InnerShadow/>
+      </effect>
+   </Separator>
+   <Label alignment="CENTER" layoutX="180.0" layoutY="401.0" text="Vaccinazione" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="405.0"/>
+   <HBox alignment="CENTER_LEFT" layoutX="133.0" layoutY="424.0" prefHeight="40.0" prefWidth="100.0"
+         AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="435.0">
+      <TextField fx:id="tf_ci_idvaccinazioneRegistrazione" onKeyTyped="#realtimeCheck" prefHeight="27.0"
+                 prefWidth="180.0" promptText="Id Vaccinazione"/>
+      <FontIcon iconLiteral="fltfmz-question-circle-16" onMouseClicked="#showInfoVaccinazione" styleClass="iconInfo"
+                text="">
+         <HBox.margin>
+            <Insets left="5.0"/>
+         </HBox.margin>
+      </FontIcon>
+      <ProgressIndicator prefHeight="12.0" prefWidth="30.0" visible="false">
+         <opaqueInsets>
+            <Insets/>
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets left="5.0"/>
+         </HBox.margin>
+      </ProgressIndicator>
+   </HBox>
+   <Separator layoutX="53.0" layoutY="474.0" opacity="0.2" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0">
+      <effect>
+         <InnerShadow/>
+      </effect>
+      <padding>
+         <Insets top="5.0"/>
+      </padding>
+   </Separator>
+   <Button layoutX="164.0" layoutY="497.0" mnemonicParsing="false" onAction="#registraCittadino"
+           styleClass="buttonSmall" text="Registra"/>
+   <ProgressIndicator fx:id="PI_CI_loadRegistrazione" layoutX="179.0" layoutY="531.0" prefHeight="22.0" prefWidth="35.0"
+                      visible="false"/>
 </AnchorPane>

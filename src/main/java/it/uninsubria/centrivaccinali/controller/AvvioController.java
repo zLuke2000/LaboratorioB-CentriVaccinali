@@ -4,10 +4,14 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 
 public class AvvioController extends Controller {
 
-        /**
+    @FXML
+    public AnchorPane ap_root;
+
+    /**
          * Metodo usato per accedere come operatore cittadino,
          * aprendo l'interfaccia di login
          */

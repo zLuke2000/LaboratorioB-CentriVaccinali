@@ -9,47 +9,45 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="style-trasparent">
-         <children>
-            <ImageView fx:id="CI_IV_TipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="style-trasparent" VBox.vgrow="ALWAYS" />
-            <Label fx:id="CI_L_TipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
-               <font>
-                  <Font size="9.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <Label fx:id="CI_LNomeCvItem" text="Centro Vaccinale Samuele">
-         <HBox.margin>
-            <Insets left="170.0" right="10.0" top="20.0" />
-         </HBox.margin>
+<HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@style/style.css"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="style-trasparent">
+      <ImageView fx:id="CI_IV_TipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true"
+                 preserveRatio="true" styleClass="style-trasparent" VBox.vgrow="ALWAYS"/>
+      <Label fx:id="CI_L_TipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
+         <font>
+            <Font size="9.0"/>
+         </font>
       </Label>
-      <Label fx:id="CI_LIndirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
+   </VBox>
+   <Label fx:id="CI_LNomeCvItem" text="Centro Vaccinale Samuele">
+      <HBox.margin>
+         <Insets left="170.0" right="10.0" top="20.0"/>
+      </HBox.margin>
+   </Label>
+   <Label fx:id="CI_LIndirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
+      <HBox.margin>
+         <Insets left="130.0" top="20.0"/>
+      </HBox.margin>
+   </Label>
+   <HBox alignment="CENTER" prefHeight="63.0" prefWidth="217.0" HBox.hgrow="ALWAYS">
+      <HBox.margin>
+         <Insets left="120.0"/>
+      </HBox.margin>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #5AE798;"
+              styleClass="button-actionItem">
          <HBox.margin>
-            <Insets left="130.0" top="20.0" />
+            <Insets right="10.0"/>
          </HBox.margin>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="63.0" prefWidth="217.0" HBox.hgrow="ALWAYS">
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="ci-add" iconSize="25" selectionEnd="0"/>
+         </graphic>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #F8E60D;"
+              styleClass="button-actionItem">
          <HBox.margin>
-            <Insets left="120.0" />
+            <Insets left="10.0"/>
          </HBox.margin>
-         <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #5AE798;" styleClass="button-actionItem">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="ci-add" iconSize="25" selectionEnd="0" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </children>
+      </Button>
+   </HBox>
 </HBox>
