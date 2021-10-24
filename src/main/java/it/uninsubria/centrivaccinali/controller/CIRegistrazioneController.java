@@ -14,13 +14,8 @@ import java.io.IOException;
 
 public class CIRegistrazioneController extends Controller {
 
-    private ClientCV client;
-    private ControlloParametri cp;
-    private FXMLLoader loader;
-
-
     // TextField per l'acquisizione dei dati
-    @FXML private TextField TF_CI_nomeRegistrazione;
+    @FXML private TextField tf_ci_nomeRegistrazione;
     @FXML private TextField TF_CI_cognomeRegistrazione;
     @FXML private TextField TF_CI_cfRegistrazione;
     @FXML private TextField TF_CI_usernameRegistrazione;
@@ -32,6 +27,11 @@ public class CIRegistrazioneController extends Controller {
     @FXML private PasswordField TF_CI_password2;
     @FXML private ProgressIndicator PI_CI_loadIdVaccinazione;
     @FXML private ProgressIndicator PI_CI_loadUsername;
+
+    private ClientCV client;
+    private FXMLLoader loader;
+    private ControlloParametri cp = ControlloParametri.getInstance();
+    private CssHelper cssh = CssHelper.getInstance();
 
     @Override
     public void initParameter(ClientCV client) {
@@ -48,27 +48,25 @@ public class CIRegistrazioneController extends Controller {
             System.err.println("Registrazione fallita");
 
             //TODO tooltips
-            if (result.getExtendedResult().contains(Result.Error.CF_ID_NON_VALIDI)){
-                System.err.println("ID vaccinazione e codice fiscale non associati ad alcun vaccinato");
-            } else if (result.getExtendedResult().contains(Result.Error.CF_NON_VALIDO)){
-                System.err.println("Codice fiscale non associato ad alcun vaccinato");
-            } else if (result.getExtendedResult().contains(Result.Error.IDVAC_NON_VALIDO)){
-                System.err.println("ID vaccinazione non associato ad alcun vaccinato");
+            if (result.getExtendedResult().contains(Result.Error.CF_ID_NON_VALIDI)) {
+                cssh.toError(TF_CI_cfRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
+                cssh.toError(TF_CI_idvaccinazioneRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
             }
-            if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)){
+            if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)) {
+                //TODO mostra popup
                 System.err.println("Cittadino gia' registrato");
             }
-            if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)){
-                System.err.println("Email gia' registrata");
+            if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)) {
+                cssh.toError(TF_CI_emailRegistrazione, new Tooltip("Email gia' registrata"));
             }
-            if (result.getExtendedResult().contains(Result.Error.USERID_GIA_IN_USO)){
-                System.err.println("Username gia' registrato");
+            if (result.getExtendedResult().contains(Result.Error.USERID_GIA_IN_USO)) {
+                cssh.toError(TF_CI_usernameRegistrazione, new Tooltip("Username gia' registrato"));
             }
         }
     }
 
     @FXML public void registraCittadino() {
-        String nome = TF_CI_nomeRegistrazione.getText().trim();
+        String nome = tf_ci_nomeRegistrazione.getText().trim();
         String cognome = TF_CI_cognomeRegistrazione.getText().trim();
         String cf = TF_CI_cfRegistrazione.getText().trim();
         String email = TF_CI_emailRegistrazione.getText().trim();
@@ -81,6 +79,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML public void showInfoUsername() throws IOException {
+        //TODO da sistemare
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoUsername.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -90,6 +89,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML public void showInfoPassword() throws IOException {
+        //TODO da sistemare
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoPassword.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -99,6 +99,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML void showInfoVaccinazione() throws IOException {
+        //TODO da sistemare
         loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoIdVaccinazione.fxml"));
         DialogPane infoUsername = loader.load();
         Dialog dialog = new Dialog();
@@ -109,8 +110,8 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML public void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
-        if (TF_CI_nomeRegistrazione.equals(key)) {
-            cp.testoSempliceConNumeri(TF_CI_nomeRegistrazione, 1, 50);
+        if (tf_ci_nomeRegistrazione.equals(key)) {
+            cp.testoSempliceConNumeri(tf_ci_nomeRegistrazione, 1, 50);
         }
         if (TF_CI_cognomeRegistrazione.equals(key)) {
             cp.testoSempliceSenzaNumeri(TF_CI_cognomeRegistrazione, 1, 50);

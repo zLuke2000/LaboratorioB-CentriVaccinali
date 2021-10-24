@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -19,6 +20,7 @@ public class CVLoginController extends Controller {
             "ha  il diritto di esercitare queste azioni:" + "\n" + "- Registrare un hub vaccinale" + "\n" + "- Registrare " +
             "un cittadino che si è vaccinato nel proprio sito";
 
+    @FXML public AnchorPane ap_root;
     @FXML private Text T_CV_infoLogin;
     @FXML private TextField L_CV_username;
     @FXML private PasswordField L_CV_password;

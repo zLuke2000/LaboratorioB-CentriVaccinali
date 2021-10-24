@@ -22,7 +22,7 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="379.0">
                <children>
-                  <TextField fx:id="TF_CI_nomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Nome">
+                  <TextField fx:id="tf_ci_nomeRegistrazione" onKeyTyped="#realtimeCheck" promptText="Nome">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>

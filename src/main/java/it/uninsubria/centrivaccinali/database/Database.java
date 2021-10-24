@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.util.regex.Pattern;
 import java.sql.*;
 import java.util.ArrayList;
@@ -291,17 +292,44 @@ public class Database {
             */
 
             String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
-            switch (colonna) {
-                case "codice_fiscale":
-                case "id_vaccino":
-                    risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
-                    break;
-                case "email":
-                    risultato.setExtendedResult(Result.Error.EMAIL_GIA_IN_USO);
-                    break;
-                case "userid":
-                    risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
-                    break;
+            try{
+                switch (colonna) {
+                    case "codice_fiscale":
+                        risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
+                    case "email":
+                        pstmt = conn.prepareStatement("SELECT COUNT(*) " +
+                                "FROM public.\"Cittadini_Registrati\"" +
+                                "WHERE email = ?");
+                        pstmt.setString(1, c.getEmail());
+                        rs = pstmt.executeQuery();
+                        rs.next();
+                        if(rs.getInt(1) == 1) {
+                            risultato.setExtendedResult(Result.Error.EMAIL_GIA_IN_USO);
+                        }
+                    case "userid":
+                        pstmt = conn.prepareStatement("SELECT COUNT(*) " +
+                                "FROM public.\"Cittadini_Registrati\"" +
+                                "WHERE userid = ?");
+                        pstmt.setString(1, c.getUserid());
+                        rs = pstmt.executeQuery();
+                        rs.next();
+                        if(rs.getInt(1) == 1) {
+                            risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
+                        }
+                    case "id_vaccino":
+                        pstmt = conn.prepareStatement("SELECT COUNT(*) " +
+                                "FROM public.\"Cittadini_Registrati\"" +
+                                "WHERE id_vaccino = ?");
+                        pstmt.setLong(1, c.getId_vaccino());
+                        rs = pstmt.executeQuery();
+                        rs.next();
+                        if(rs.getInt(1) == 1) {
+                            risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
+                        }
+                        break;
+                }
+            } catch(SQLException e1) {
+                e1.printStackTrace();
             }
         }
         return risultato;
