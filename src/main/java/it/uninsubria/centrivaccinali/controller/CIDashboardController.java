@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 
 import java.io.IOException;
 

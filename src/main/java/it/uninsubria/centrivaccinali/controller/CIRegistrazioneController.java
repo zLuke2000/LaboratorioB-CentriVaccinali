@@ -11,18 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class CIRegistrazioneController extends Controller {
-
-    @FXML
-    public AnchorPane ap_root;
-    private ClientCV client;
-    private ControlloParametri cp;
-    private FXMLLoader loader;
-
 
     // TextField per l'acquisizione dei dati
     @FXML private TextField tf_ci_nomeRegistrazione;
