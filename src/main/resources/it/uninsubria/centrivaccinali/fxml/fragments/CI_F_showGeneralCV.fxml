@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,11 +11,7 @@
       <AnchorPane layoutX="16.0" layoutY="14.0" prefWidth="370.0" styleClass="rootItem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="170.0" layoutY="35.0" styleClass="label-titleDashboard" text="INFORMAZIONI" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="85.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="100.0">
-               <image>
-                  <Image url="@../../Image/Aziendale.jpeg" />
-               </image>
-            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="85.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="100.0" />
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
                <children>
                   <Label styleClass="labelTargetInformazioniCV" text="Nome:">
