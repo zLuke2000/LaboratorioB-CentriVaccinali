@@ -1,5 +1,17 @@
+.rootItem{
+	-fx-background-color: #DDDDE1;
+	-fx-background-radius: 30;
+	-fx-border-color: black;
+	-fx-border-radius: 30;
+	-fx-border-width: 0.1;
+}
 .label{
 	-fx-font-size: 15;
+}
+
+.labelTargetInformazioniCV{
+	-fx-font-size: 30;
+	-fx-font-family: "STSong";
 }
 
 .style-trasparent {

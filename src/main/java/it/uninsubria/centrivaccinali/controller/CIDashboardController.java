@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import it.uninsubria.centrivaccinali.client.*;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.util.*;
 import javafx.application.Platform;
