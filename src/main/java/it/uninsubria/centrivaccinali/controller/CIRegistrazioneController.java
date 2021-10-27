@@ -58,18 +58,18 @@ public class CIRegistrazioneController extends Controller {
 
             //TODO tooltips
             if (result.getExtendedResult().contains(Result.Error.CF_ID_NON_VALIDI)) {
-                cssh.toError(TF_CI_cfRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
-                cssh.toError(TF_CI_idvaccinazioneRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
+                cssh.toError(tf_ci_cfRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
+                cssh.toError(tf_ci_idvaccinazioneRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
             }
             if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)) {
                 //TODO mostra popup
                 System.err.println("Cittadino gia' registrato");
             }
             if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)) {
-                cssh.toError(TF_CI_emailRegistrazione, new Tooltip("Email gia' registrata"));
+                cssh.toError(tf_ci_emailRegistrazione, new Tooltip("Email gia' registrata"));
             }
             if (result.getExtendedResult().contains(Result.Error.USERID_GIA_IN_USO)) {
-                cssh.toError(TF_CI_usernameRegistrazione, new Tooltip("Username gia' registrato"));
+                cssh.toError(tf_ci_usernameRegistrazione, new Tooltip("Username gia' registrato"));
             }
         }
     }

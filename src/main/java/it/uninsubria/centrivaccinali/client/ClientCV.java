@@ -8,6 +8,7 @@ import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -171,10 +172,14 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    private void lanciaPopup(){
+    private void lanciaPopup() {
+        // TODO da sistemare
+        DialogHelper dh = new DialogHelper("PROVA DIALOG", "prova descriozne dialog\ntest", DialogHelper.Type.ERROR);
+        dh.display(null);
+        /*
         try {
             // TODO gestire dialog con controller a parte
-            FXMLLoader fxmlLoader=new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_connectionError.fxml"));
+            FXMLLoader fxmlLoader=new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
             DialogPane connectionDialog=fxmlLoader.load();
             Dialog<ButtonType> dialog=new Dialog<>();
             dialog.setDialogPane(connectionDialog);
@@ -192,6 +197,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             printerr("errore durante la creazione del dialog");
             e.printStackTrace();
         }
+         */
     }
 
     private void printout(String s) {

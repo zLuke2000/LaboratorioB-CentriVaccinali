@@ -16,8 +16,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class CIHomeController extends Controller {
 
-    @FXML
-    public AnchorPane ap_root;
+    @FXML public AnchorPane ap_root;
     private ClientCV client;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
