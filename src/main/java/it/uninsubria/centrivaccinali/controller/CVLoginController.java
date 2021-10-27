@@ -21,7 +21,6 @@ public class CVLoginController extends Controller {
             "un cittadino che si è vaccinato nel proprio sito";
 
     @FXML public AnchorPane ap_root;
-
     @FXML private Text T_CV_infoLogin;
     @FXML private TextField L_CV_username;
     @FXML private PasswordField L_CV_password;

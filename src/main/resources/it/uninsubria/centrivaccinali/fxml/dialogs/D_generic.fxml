@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap_root" minHeight="200.0" minWidth="300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController">
+   <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+         <Button fx:id="b_d_close" mnemonicParsing="false" onAction="#indietro" text="OK" BorderPane.alignment="CENTER" />
+      </bottom>
+      <padding>
+         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+      </padding>
+      <top>
+         <Label fx:id="l_d_title" text="template" BorderPane.alignment="CENTER" />
+      </top>
+      <center>
+         <Label fx:id="l_d_description" text="template" wrapText="true" BorderPane.alignment="CENTER" />
+      </center>
+   </BorderPane>
+</AnchorPane>

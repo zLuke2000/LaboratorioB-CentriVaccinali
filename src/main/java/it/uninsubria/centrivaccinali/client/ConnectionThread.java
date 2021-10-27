@@ -37,7 +37,7 @@ public class ConnectionThread extends Thread{
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
                 Platform.runLater(() -> {
-                    //TODO usare D_connectionError.fxml e creare controller a parte
+                    //TODO usare D_generic.fxml e creare controller a parte
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERRORE DI CONNESSIONE");
                     alert.setHeaderText("Errore");
