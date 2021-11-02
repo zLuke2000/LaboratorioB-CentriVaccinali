@@ -69,6 +69,8 @@ public class Result implements Serializable {
     public enum Error {
         // Login utente
         USERNAME_NON_TROVATO, PASSWORD_ERRATA,
+        //Registrazione eventi avversi
+        EVENTO_GIA_INSERITO,
         //Registrazione utente
         CF_NON_VALIDO, IDVAC_NON_VALIDO, CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
         //Registrazione vaccinato
