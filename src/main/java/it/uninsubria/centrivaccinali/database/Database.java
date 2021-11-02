@@ -426,4 +426,21 @@ public class Database {
         }
         return risultato;
     }
+
+    public Result registraEA(EventoAvverso ea, long idVac) {
+        Result risultato = new Result(false, Result.Operation.REGISTRA_EVENTO_AVVERSO);
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO public.\"EventiAvversi\" " +
+                                              "VALUES (?, ?, ?, ?)");
+            pstmt.setLong(1, idVac);
+            pstmt.setString(2, ea.getEvento());
+            pstmt.setInt(3, ea.getSeverita());
+            pstmt.setString(4, ea.getNote());
+            risultato.setResult(true);
+        } catch (SQLException e) {
+            risultato.setExtendedResult(Result.Error.EVENTO_GIA_INSERITO);
+            e.printStackTrace();
+        }
+        return risultato;
+    }
 }

@@ -56,7 +56,7 @@ public class ControlloParametri {
     }
 
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[\\D\\d]{" + minChar + "," + maxChar + "}");
+        rPattern = Pattern.compile("[A-Za-z\\d]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -70,7 +70,6 @@ public class ControlloParametri {
     public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
-        String tmp=tic.getText().trim();
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
             return true;

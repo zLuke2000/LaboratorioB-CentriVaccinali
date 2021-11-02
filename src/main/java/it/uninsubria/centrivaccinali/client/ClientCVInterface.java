@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

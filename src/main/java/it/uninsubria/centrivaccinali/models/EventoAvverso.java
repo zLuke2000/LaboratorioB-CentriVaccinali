@@ -93,4 +93,5 @@ public class EventoAvverso implements Serializable {
     public void setNote(String note) {
         this.note = note;
     }
+
 }

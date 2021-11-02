@@ -1,22 +1,12 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.*;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Cittadino;
-import it.uninsubria.centrivaccinali.models.Result;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
+import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Optional;
 
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
@@ -158,6 +148,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             server.getCentri(this, comune);
         } catch (RemoteException e) {
             printerr("Impossibile effettuare la ricerca dei centri");
+            lanciaPopup();
+        }
+    }
+
+    public void registraEventoAvverso(EAController eaController , EventoAvverso ea) {
+        controller = eaController;
+        try {
+            server.registraEventoAvverso(this, ea, cittadinoConnesso.getId_vaccino());
+        } catch (RemoteException e) {
+            printerr("Impossibile registrare l'evento");
             lanciaPopup();
         }
     }

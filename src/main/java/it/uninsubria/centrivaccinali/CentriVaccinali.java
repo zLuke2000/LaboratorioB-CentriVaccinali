@@ -95,6 +95,12 @@ public class CentriVaccinali extends Application {
                 height = h_dashboard;
                 width = w_dashboard;
                 break;
+                //TODO DA RIMUOVERE
+            case "fragments/F_CI_EA_root":
+                stage.setTitle("EVENTI AVVERSI");
+                height = 820.0;
+                width = 1200.0;
+                break;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;
