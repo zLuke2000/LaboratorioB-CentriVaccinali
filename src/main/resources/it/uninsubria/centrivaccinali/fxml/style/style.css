@@ -236,3 +236,6 @@
 	-fx-background-radius: 50;
 }
 
+.slider .track {
+    -fx-background-color: #00FF00;
+}
