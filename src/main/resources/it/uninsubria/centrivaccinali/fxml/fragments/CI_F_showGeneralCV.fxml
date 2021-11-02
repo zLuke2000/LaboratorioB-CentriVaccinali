@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="16.0" layoutY="14.0" prefWidth="370.0" styleClass="rootItem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="170.0" layoutY="35.0" styleClass="label-titleDashboard" text="INFORMAZIONI" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="85.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="100.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
+               <children>
+                  <Label styleClass="labelTargetInformazioniCV" text="Nome:">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="CI_L_NomeCVInfo" text="Label">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="labelTargetInformazioniCV" text="Indirizzo:">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="CI_L_NomeCVInfo1" layoutX="178.0" layoutY="75.0" text="Label">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="labelTargetInformazioniCV" text="Tipologia:">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="CI_L_NomeCVInfo11" layoutX="178.0" layoutY="139.0" text="Label">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+      <AnchorPane layoutX="468.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0" styleClass="rootItem" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" styleClass="label-titleDashboard" text="GRAFICO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="497.0" layoutY="470.0" prefHeight="200.0" prefWidth="200.0" styleClass="rootItem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="445.0">
+         <children>
+            <Label alignment="CENTER" styleClass="label-titleDashboard" text="RIASSUNTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</AnchorPane>

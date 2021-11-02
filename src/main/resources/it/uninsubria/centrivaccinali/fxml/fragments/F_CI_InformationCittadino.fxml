@@ -89,6 +89,6 @@
          </children>
       </GridPane>
       <Label layoutX="343.0" layoutY="224.0" styleClass="labelTitleSezInfo" text="Dati Personali" AnchorPane.topAnchor="224.0" />
-      <Button layoutX="811.0" layoutY="441.0" mnemonicParsing="false" onAction="#quitInfo" styleClass="buttonSmall" text="Chiudi" AnchorPane.topAnchor="441.0" />
+      <Button layoutX="811.0" layoutY="441.0" mnemonicParsing="false" styleClass="buttonSmall" text="Chiudi" AnchorPane.topAnchor="441.0" />
    </children>
 </AnchorPane>
