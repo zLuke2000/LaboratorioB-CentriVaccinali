@@ -26,11 +26,24 @@ public class CentriVaccinali extends Application {
     private static Double height;
     private static ClientCV client;
     private static FXMLLoader fxmlLoader;
+    private static Controller controller;
+
+    private double xOffset;
+    private double yOffset;
 
     @Override
     public void start(Stage s) {
         CentriVaccinali.stage = s;
         scene = new Scene(Objects.requireNonNull(loadFXML("Avvio")));
+//        stage.initStyle(StageStyle.TRANSPARENT);
+//        scene.setOnMousePressed(mouseEvent -> {
+//            xOffset = mouseEvent.getSceneX();
+//            yOffset = mouseEvent.getSceneY();
+//        });
+//        scene.setOnMouseDragged(mouseEvent -> {
+//            stage.setX(mouseEvent.getScreenX() - xOffset);
+//            stage.setY(mouseEvent.getScreenY() - yOffset);
+//        });
         stage.setScene(scene);
         stage.setTitle("Progetto LaboratorioB");
         stage.setResizable(false);
@@ -46,16 +59,16 @@ public class CentriVaccinali extends Application {
                 width = w_avvio;
                 break;
             case "CI_home":
-                CIHomeController cihc = fxmlLoader.getController();
-                cihc.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("Progetto LaboratorioB");
                 width = w_standard;
                 height = h_standard;
                 break;
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
-                CVLoginController cvlc = fxmlLoader.getController();
-                cvlc.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("Login operatore");
                 width = w_standard;
                 height = h_standard;
@@ -68,35 +81,37 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
-                CVRegistraCentroVaccinale cvrcv = fxmlLoader.getController();
-                cvrcv.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("Registra nuovo centro vaccinale");
                 width = 800.0;
                 height = 350.0;
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                CVRegistraCittadinoController cvrcc = fxmlLoader.getController();
-                cvrcc.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 width = 600.0;
                 height = 620.0;
                 break;
             case "CI_registrazione":
-                CIRegistrazioneController circ = fxmlLoader.getController();
-                circ.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("Registrazione cittadino");
                 width = 390.0;
                 height = 640.0;
                 break;
             case "CI_dashboard":
-                CIDashboardController cidc = fxmlLoader.getController();
-                cidc.initParameter(client);
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("Area Cittadino");
                 height = h_dashboard;
                 width = w_dashboard;
                 break;
                 //TODO DA RIMUOVERE
             case "fragments/F_CI_EA_root":
+                controller = fxmlLoader.getController();
+                controller.initParameter(client);
                 stage.setTitle("EVENTI AVVERSI");
                 height = 820.0;
                 width = 1200.0;

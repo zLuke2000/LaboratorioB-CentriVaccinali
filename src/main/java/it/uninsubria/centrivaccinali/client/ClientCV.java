@@ -5,6 +5,8 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
+import javafx.scene.control.Button;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -50,6 +52,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
                 server.authOperatore(this, username, password);
             } catch (RemoteException e) {
                 printerr("non e' stato possibile autenticare l'opertatore");
+                controller.notifyController(new Result(false, Result.Operation.LOGIN_OPERATORE));
                 lanciaPopup();
             }
         }
@@ -173,31 +176,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     private void lanciaPopup() {
-        // TODO da sistemare
-        DialogHelper dh = new DialogHelper("PROVA DIALOG", "prova descriozne dialog\ntest", DialogHelper.Type.ERROR);
-        dh.display(null);
-        /*
-        try {
-            // TODO gestire dialog con controller a parte
-            FXMLLoader fxmlLoader=new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
-            DialogPane connectionDialog=fxmlLoader.load();
-            Dialog<ButtonType> dialog=new Dialog<>();
-            dialog.setDialogPane(connectionDialog);
-            dialog.setTitle("ERRORE");
-            Optional<ButtonType> clickedButton=dialog.showAndWait();
-            if (clickedButton.get()==ButtonType.YES){
-                //faccio ripartire il thread che si occupa di ottenere
-                //la connessione (lo interrompo se e' ancora attivo)
-                if (connThread.isAlive()) connThread.interrupt();
-                connThread=new ConnectionThread();
-            } else {
-                dialog.close();
+        DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
+        Button b = new Button("SI");
+        b.setOnAction( eh -> {
+            if (connThread.isAlive()){
+                connThread.interrupt();
             }
-        } catch (IOException e) {
-            printerr("errore durante la creazione del dialog");
-            e.printStackTrace();
-        }
-         */
+            connThread = new ConnectionThread();
+        });
+        dh.addButton(b);
+        dh.display(null);
     }
 
     private void printout(String s) {

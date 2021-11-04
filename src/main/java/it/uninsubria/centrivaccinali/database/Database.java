@@ -436,6 +436,7 @@ public class Database {
             pstmt.setString(2, ea.getEvento());
             pstmt.setInt(3, ea.getSeverita());
             pstmt.setString(4, ea.getNote());
+            pstmt.executeUpdate();
             risultato.setResult(true);
         } catch (SQLException e) {
             risultato.setExtendedResult(Result.Error.EVENTO_GIA_INSERITO);

@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result implements Serializable {
@@ -8,7 +9,7 @@ public class Result implements Serializable {
     private static final long serialVersionUID = 1L;
     private Operation opType;
     private boolean result;
-    private List<Error> extendedResult;
+    private List<Error> extendedResult = new ArrayList<>();
     private Cittadino cittadino;
     private List<String> resultComuni;
     private List<CentroVaccinale> resultCentri;

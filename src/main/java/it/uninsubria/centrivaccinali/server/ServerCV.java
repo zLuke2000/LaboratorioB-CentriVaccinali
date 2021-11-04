@@ -158,7 +158,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraEventoAvverso(ClientCV client, EventoAvverso ea, long id_vaccino) throws RemoteException {
+    public void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea, long id_vaccino) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraEA(ea, id_vaccino));

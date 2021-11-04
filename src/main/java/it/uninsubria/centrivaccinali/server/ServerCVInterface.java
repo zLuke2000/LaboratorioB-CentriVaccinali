@@ -21,7 +21,7 @@ public interface ServerCVInterface extends Remote{
     void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException;
     void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException;
     void ricercaCentroPerComuneTipologia(ClientCVInterface clientCV, String comune, TipologiaCentro tipologia) throws RemoteException;
-    void registraEventoAvverso(ClientCV clientCV, EventoAvverso ea, long id_vaccino) throws RemoteException;
+    void registraEventoAvverso(ClientCVInterface clientCV, EventoAvverso ea, long id_vaccino) throws RemoteException;
     // Metodi in comune
     void getComuni(ClientCVInterface client, String provincia) throws RemoteException;
     void getCentri(ClientCVInterface client, String comune) throws RemoteException;

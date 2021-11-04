@@ -8,6 +8,7 @@ import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
@@ -54,9 +55,8 @@ public class CVRegistraCentroVaccinale extends Controller {
                 } else {
                         if(result.getExtendedResult().contains(Result.Error.NOME_IN_USO)) {
                                 System.err.println("Registrazione fallita - Centro vaccinale gia' registrato");
-                                //TODO POPUP ERRORE SPECIFICO
-                        } else {
-                                //TODO POPUP ERORRE GENERICO
+                                DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Centro vaccinale gia' registrato", DialogHelper.Type.ERROR);
+                                dh.display(null);
                         }
                 }
         }
@@ -88,11 +88,8 @@ public class CVRegistraCentroVaccinale extends Controller {
                 String provincia = tf_provincia.getText().trim();
                 String cap = tf_cap.getText().trim();
 
-                System.out.println("1");
-
                 CentroVaccinale centroVaccinale;
                 if(cp.testoSempliceConNumeri(tf_nome, 6, 50) & cp.testoSempliceSenzaNumeri(tf_indirizzo, 3, 50) & cp.numeroCivico(tf_civico) & cp.testoSempliceSenzaNumeri(tf_comune, 3, 50) & cp.provincia(tf_provincia) & cp.numeri(tf_cap, 5, 5)) {
-                        System.out.println("2");
                         TipologiaCentro tipologiaSelezionata;
                         if(rb_ospedaliero.isSelected()) {
                                 tipologiaSelezionata = TipologiaCentro.OSPEDALIERO;

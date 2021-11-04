@@ -9,23 +9,23 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@style/style.css"
+<HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@style/style.css" fx:controller="it.uninsubria.centrivaccinali.controller.CIItemListController"
       xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="style-trasparent">
-      <ImageView fx:id="CI_IV_TipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true"
+      <ImageView fx:id="ci_iv_tipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true"
                  preserveRatio="true" styleClass="style-trasparent" VBox.vgrow="ALWAYS"/>
-      <Label fx:id="CI_L_TipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
+      <Label fx:id="ci_l_tipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
          <font>
             <Font size="9.0"/>
          </font>
       </Label>
    </VBox>
-   <Label fx:id="CI_LNomeCvItem" text="Centro Vaccinale Samuele">
+   <Label fx:id="ci_l_nomeCVItem" text="Centro Vaccinale Samuele">
       <HBox.margin>
          <Insets left="170.0" right="10.0" top="20.0"/>
       </HBox.margin>
    </Label>
-   <Label fx:id="CI_LIndirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
+   <Label fx:id="ci_l_indirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
       <HBox.margin>
          <Insets left="130.0" top="20.0"/>
       </HBox.margin>

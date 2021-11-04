@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -97,13 +98,18 @@ public class EAController extends Controller{
     @Override
     public void notifyController(Result result) {
         if (result.getResult()){
-            dh = new DialogHelper("EVVIVA", "Registrazione OK", DialogHelper.Type.INFO);
-            dh.display(null); //TODO da sistemato con il root della dashboard
+            Platform.runLater(() -> {
+                dh = new DialogHelper("EVVIVA", "Registrazione OK", DialogHelper.Type.INFO);
+                dh.display(null); //TODO da sistemato con il root della dashboard
+            });
             System.out.println("OK");
         }
         else{
-            dh = new DialogHelper("ATTENZIONE", "Registrazione OK", DialogHelper.Type.INFO);
-            dh.display(null); //TODO da sistemato con il root della dashboard
+            Platform.runLater(() -> {
+                dh = new DialogHelper("ATTENZIONE", "Registrazione OK", DialogHelper.Type.ERROR);
+                dh.display(null); //TODO da sistemato con il root della dashboard
+            });
+
         }
     }
 }

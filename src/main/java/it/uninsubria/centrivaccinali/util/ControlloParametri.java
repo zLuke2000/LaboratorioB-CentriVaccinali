@@ -162,7 +162,6 @@ public class ControlloParametri {
         rPattern = Pattern.compile(".*[a-z].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
-            System.out.println("NO min");
             res = false;
             if(errTo0ltip != null) {
                 errTo0ltip = errTo0ltip + "\n" + err2;
@@ -173,7 +172,6 @@ public class ControlloParametri {
         rPattern = Pattern.compile(".*[A-Z].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
-            System.out.println("NO mai");
             res = false;
             if(errTo0ltip != null) {
                 errTo0ltip = errTo0ltip + "\n" + err3;
@@ -184,7 +182,6 @@ public class ControlloParametri {
         rPattern = Pattern.compile(".*[0-9].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
-            System.out.println("NO num");
             res = false;
             if(errTo0ltip != null) {
                 errTo0ltip = errTo0ltip + "\n" + err4;

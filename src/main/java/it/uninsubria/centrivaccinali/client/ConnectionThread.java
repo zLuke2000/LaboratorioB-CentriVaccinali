@@ -1,14 +1,13 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Button;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Optional;
 
 /**
  * Classe per il controllo della connessione con il server
@@ -37,20 +36,14 @@ public class ConnectionThread extends Thread{
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
                 Platform.runLater(() -> {
-                    //TODO usare D_generic.fxml e creare controller a parte
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERRORE DI CONNESSIONE");
-                    alert.setHeaderText("Errore");
-                    alert.setContentText("Non è stato possibile connettersi al server, riconnettere?");
-                    Optional<ButtonType> result = alert.showAndWait();
-                    if (result.get()==ButtonType.YES){
-                        //fai ripartire il thread per provare a
-                        // ottenere la connessione
-                        this.run();
-                    }
-                    else {
-                        alert.close();
-                    }
+                    //TODO aggiungere si/no per far ripartire il thread
+                    DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
+                    Button b = new Button("SI");
+                    b.setOnAction( eh -> {
+                        this.start();
+                    });
+                    dh.addButton(b);
+                    dh.display(null);
                 });
             }
     }

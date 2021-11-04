@@ -92,11 +92,11 @@ public class CVRegistraCittadinoController extends Controller {
                     System.out.println("Registrazione effettuata");
                 } else {
                     if(result.getExtendedResult().contains(Result.Error.CF_GIA_IN_USO)) {
-                        //TODO popup
+                        cssHelper.toError(tf_cv_cfCittadino, new Tooltip("Codice fiscale gia' associato ad un vaccinato"));
                         System.err.println("Codice fiscale gia' associato ad un vaccinato");
                     }
                     if(result.getExtendedResult().contains(Result.Error.IDVAC_GIA_IN_USO)) {
-                        //TODO popup
+                        cssHelper.toError(tf_cv_idVaccino, new Tooltip("Id vaccinazione gia' associato ad un vaccinato"));
                         System.err.println("Id vaccinazione gia' associato ad un vaccinato");
                     }
                 }
@@ -149,17 +149,7 @@ public class CVRegistraCittadinoController extends Controller {
             String cognome= tf_cv_cognomeCittadino.getText();
             String cf= tf_cv_cfCittadino.getText();
             java.sql.Date data=java.sql.Date.valueOf(dp_cv_datavaccino.getValue());
-            Vaccino tipoVaccino;
-            Toggle selectedBtn= radioGroup1.getSelectedToggle();
-            if (rb_cv_astrazeneca ==selectedBtn) {
-                tipoVaccino = Vaccino.ASTRAZENECA;
-            } else if (rb_cv_jj ==selectedBtn) {
-                tipoVaccino=Vaccino.JNJ;
-            } else if (rb_cv_moderna ==selectedBtn) {
-                tipoVaccino=Vaccino.MODERNA;
-            } else {
-                tipoVaccino=Vaccino.PFIZER;
-            }
+            Vaccino tipoVaccino = Vaccino.valueOf(((RadioButton) radioGroup1.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
             client.registraVaccinato(this, nuovoVaccinato);
         }
