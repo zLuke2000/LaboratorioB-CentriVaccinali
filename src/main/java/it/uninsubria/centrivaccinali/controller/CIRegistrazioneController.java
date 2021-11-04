@@ -92,23 +92,15 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML public void showInfoUsername() throws IOException {
-        //TODO da sistemare
-        loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoUsername.fxml"));
-        DialogPane infoUsername = loader.load();
-        Dialog dialog = new Dialog();
-        dialog.setDialogPane(infoUsername);
-        dialog.setTitle("INFO!");
-        dialog.showAndWait();
+        DialogHelper dh = new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
+                "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO);
+        dh.display(ap_root);
     }
 
     @FXML public void showInfoPassword() throws IOException {
-        //TODO da sistemare
-        loader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_infoPassword.fxml"));
-        DialogPane infoUsername = loader.load();
-        Dialog dialog = new Dialog();
-        dialog.setDialogPane(infoUsername);
-        dialog.setTitle("INFO!");
-        dialog.showAndWait();
+        DialogHelper dh = new DialogHelper("INFO PASSWORD", "La password deve avere almeno: " +
+                "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO);
+        dh.display(ap_root);
     }
 
     @FXML void showInfoVaccinazione() throws IOException {
