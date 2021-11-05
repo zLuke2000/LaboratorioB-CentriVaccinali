@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane fx:id="ap_root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <AnchorPane layoutX="-6.0" layoutY="1.0" prefHeight="95.0" prefWidth="907.0" styleClass="panelSuperior" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label layoutX="458.0" layoutY="8.0" styleClass="label-titleDashboard" text="AREA   CITTADINO" AnchorPane.topAnchor="8.0">
          <padding>
@@ -70,74 +83,26 @@
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
       <VBox fx:id="CI_HB_containerItem" alignment="TOP_CENTER" prefHeight="560.0" prefWidth="1192.0">
-         <HBox prefHeight="45.0" prefWidth="1193.0">
+         <GridPane>
             <VBox.margin>
                <Insets right="25.0" />
             </VBox.margin>
-            <padding>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </padding>
-            <Label alignment="TOP_CENTER" styleClass="label-targetItemList" text="Tipologia" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="20.0" right="97.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="15.0" layoutY="15.0" styleClass="label-targetItemList" text="Nome" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="150.0" right="97.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="81.0" layoutY="15.0" styleClass="label-targetItemList" text="Indirizzo" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="170.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="146.0" layoutY="15.0" styleClass="label-targetItemList" text="Azioni" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="350.0" />
-               </HBox.margin>
-            </Label>
-         </HBox>
-         <HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@style/style.css">
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="style-trasparent">
-               <ImageView fx:id="CI_IV_TipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="style-trasparent" VBox.vgrow="ALWAYS">
-                  <Image url="@../Image/Ospedaliero.png" />
-               </ImageView>
-               <Label fx:id="CI_L_TipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
-                  <font>
-                     <Font size="9.0" />
-                  </font>
-               </Label>
-            </VBox>
-            <Label fx:id="CI_LNomeCvItem" text="Centro Vaccinale 1">
-               <HBox.margin>
-                  <Insets left="170.0" top="20.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="CI_LIndirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
-               <HBox.margin>
-                  <Insets left="130.0" top="20.0" />
-               </HBox.margin>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="217.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets left="120.0" />
-               </HBox.margin>
-               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #5AE798;" styleClass="button-actionItem">
-                  <HBox.margin>
-                     <Insets right="10.0" />
-                  </HBox.margin>
-                  <graphic>
-                     <FontIcon iconColor="WHITE" iconLiteral="ci-add" iconSize="25" selectionEnd="0" />
-                  </graphic>
-               </Button>
-               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
-                  <HBox.margin>
-                     <Insets left="10.0" />
-                  </HBox.margin>
-               </Button>
-            </HBox>
-         </HBox>
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <Label alignment="CENTER" prefHeight="23.0" prefWidth="107.0" styleClass="label-targetItemList" text="Tipologia" textFill="#000000cf" />
+               <Label alignment="CENTER" prefHeight="23.0" prefWidth="425.0" styleClass="label-targetItemList" text="Nome" textFill="#000000cf" GridPane.columnIndex="1" />
+               <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="427.0" styleClass="label-targetItemList" text="Indirizzo" textFill="#000000cf" GridPane.columnIndex="2" />
+               <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="223.0" styleClass="label-targetItemList" text="Azioni" textFill="#000000cf" GridPane.columnIndex="3" />
+            </children>
+         </GridPane>
       </VBox>
    </ScrollPane>
 </AnchorPane>

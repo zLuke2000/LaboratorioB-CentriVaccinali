@@ -18,6 +18,18 @@
 	-fx-background-color: TRANSPARENT;
 }
 
+.label-titleProspetto{
+	-fx-font-size: 35;
+	-fx-effect: dropshadow(gaussian, gray, 5, 0, 0.0, 3);
+	-fx-font-family: "Bodoni 72 Oldstyle";
+}
+
+.label-titleInfoProspetto{
+	-fx-font-size: 25;
+	-fx-font-family: AppleGothic;
+}
+
+
 .label-titleDashboard{
 	-fx-font-size: 40;
 	-fx-effect: dropshadow(gaussian, gray, 5, 0, 0.0, 3);
@@ -122,9 +134,29 @@
 	-fx-border-width: 0;
 }
 
+.ToggleButton:selected{
+	-fx-background-color: #b6e1fc;
+	-fx-background-radius: 20;
+	-fx-border-radius: 20;
+	-fx-border-width: 0.5;
+	-fx-border-color: black;
+}
+
+.ToggleButton{
+	-fx-background-radius: 20;
+	-fx-border-radius: 20;
+	-fx-border-width: 0.5;
+	-fx-border-color: black;
+}
+
 /*Stile per scritta "Benvenuto"*/
 .labelWelcome{
 	-fx-font-size: 25;
+	-fx-font-family: "STSong";
+}
+
+.labelTagSegnalazioni{
+	-fx-font-size: 1;
 	-fx-font-family: "STSong";
 }
 
@@ -134,14 +166,14 @@
 	-fx-icon-color:black;
 }
 
-.IconTarghet {
-	-fx-icon-color: #1f4c9f;
-	-fx-icon-size: 22;
-}
-
 .backIcon:hover{
 	-fx-icon-size: 22;
 	-fx-icon-color: red;
+}
+
+.IconTarghet {
+	-fx-icon-color: #1f4c9f;
+	-fx-icon-size: 22;
 }
 
 .iconInfo{

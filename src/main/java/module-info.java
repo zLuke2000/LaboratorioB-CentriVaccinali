@@ -15,6 +15,7 @@ module it.uninsubria.centrivaccinali {
     requires java.sql;
     requires java.rmi;
     requires javafx.base;
+    requires javafx.graphics;
 
     exports it.uninsubria.centrivaccinali;
     opens it.uninsubria.centrivaccinali to javafx.fxml;
