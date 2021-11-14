@@ -59,16 +59,12 @@ public class CentriVaccinali extends Application {
                 width = w_avvio;
                 break;
             case "CI_home":
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("Progetto LaboratorioB");
                 width = w_standard;
                 height = h_standard;
                 break;
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("Login operatore");
                 width = w_standard;
                 height = h_standard;
@@ -81,37 +77,27 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("Registra nuovo centro vaccinale");
                 width = 800.0;
                 height = 350.0;
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 width = 600.0;
                 height = 620.0;
                 break;
             case "CI_registrazione":
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("Registrazione cittadino");
                 width = 390.0;
                 height = 640.0;
                 break;
             case "CI_dashboard":
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("Area Cittadino");
                 height = h_dashboard;
                 width = w_dashboard;
                 break;
                 //TODO DA RIMUOVERE
             case "fragments/F_CI_EA_root":
-                controller = fxmlLoader.getController();
-                controller.initParameter(client);
                 stage.setTitle("EVENTI AVVERSI");
                 height = 820.0;
                 width = 1200.0;
@@ -120,6 +106,8 @@ public class CentriVaccinali extends Application {
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;
         }
+        controller = fxmlLoader.getController();
+        controller.initParameter(client);
         stage.setWidth(width);
         stage.setHeight(height);
     }

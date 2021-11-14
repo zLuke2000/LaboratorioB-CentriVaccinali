@@ -1,16 +1,17 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.enumerator.EventiAvversi;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
-import it.uninsubria.centrivaccinali.util.ControlloParametri;
-import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EAController extends Controller{
 
@@ -26,8 +27,6 @@ public class EAController extends Controller{
     public TextArea ta_ea_note;
     public Label l_ea_caratteri;
 
-    private CssHelper css = CssHelper.getInstance();
-    private ControlloParametri cp = ControlloParametri.getInstance();
     private DialogHelper dh;
     private RadioButton[] rbArray;
     private ClientCV client;
@@ -39,7 +38,9 @@ public class EAController extends Controller{
             rbArray[i].setText(String.valueOf(EventiAvversi.values()[i]));
         }
         // Imposto l'handler per la colorazione dello slider
-        s_severita.valueProperty().addListener( e -> s_severita.lookup(".track").setStyle("-fx-background-color: hsb( " + (120-s_severita.getValue()*120/5) + ", 75%, 100%);"));
+        s_severita.valueProperty().addListener( e -> {
+            s_severita.lookup(".track").setStyle("-fx-background-color: hsb( " + Math.round((-15*s_severita.getValue())+75) + ", 75%, 100%);");
+        });
     }
 
     @FXML
@@ -52,42 +53,39 @@ public class EAController extends Controller{
     }
 
     @FXML
-    boolean controlloLunghezza() {
-        l_ea_caratteri.setText(ta_ea_note.getText().trim().length() + "/256");
+    void controlloLunghezza() {
         if(ta_ea_note.getText().trim().length() > 256) {
-            css.toError(ta_ea_note, new Tooltip("Massimo 256 caratteri"));
-            return false;
-        } else {
-            css.toDefault(ta_ea_note);
-            return true;
+            ta_ea_note.setText(ta_ea_note.getText().substring(0, 256));
+            ta_ea_note.positionCaret(ta_ea_note.getText().length());
+        }
+        l_ea_caratteri.setText(ta_ea_note.getText().trim().length() + "/256");
+    }
+
+    @FXML
+    void controlloTestoEvento() {
+        Pattern pattern = Pattern.compile("[^a-zA-Z\\s]");
+        Matcher matcher = pattern.matcher(tf_ea_altro.getText());
+        if (matcher.find()) {
+            tf_ea_altro.setText(tf_ea_altro.getText().replaceAll("[^a-zA-Z\\s]", ""));
+            tf_ea_altro.positionCaret(tf_ea_altro.getText().length());
         }
     }
 
     @FXML
-    void salva() {
-        if(tg_ea_gruppo.getSelectedToggle() != null) {
-            saveToDB(true);
+    private void salvaEA() {
+        String evento;
+        if (tg_ea_gruppo.getSelectedToggle() != null) {
+            evento = ((RadioButton) tg_ea_gruppo.getSelectedToggle()).getText();
+        } else if (!tf_ea_altro.getText().isBlank()){
+            evento = tf_ea_altro.getText().trim();
         } else {
-            if(cp.testoSempliceSenzaNumeri(tf_ea_altro, 1, 30)) {
-                saveToDB(false);
-            } else {
-                dh = new DialogHelper("ATTENZIONE", "Selezionare un evento avverso\noppure immetterne uno personalizzato", DialogHelper.Type.WARNING);
-                dh.display(null); //TODO da sistemato con il root della dashboard
-            }
+            dh = new DialogHelper("ERRORE", "E' necessario inserire un tipo di evento", DialogHelper.Type.ERROR);
+            dh.display(null); //TODO da sistemato con il root della dashboard
+            return;
         }
-
-    }
-
-    private void saveToDB(boolean evento) {
-        if(controlloLunghezza()) {
-            EventoAvverso eaCorrente = new EventoAvverso("", (int) s_severita.getValue(), ta_ea_note.getText().trim());
-            if(evento) {
-                eaCorrente.setEvento(((RadioButton) tg_ea_gruppo.getSelectedToggle()).getText());
-            } else {
-                eaCorrente.setEvento(tf_ea_altro.getText().trim());
-            }
-            client.registraEventoAvverso(this, eaCorrente);
-        }
+        int severita = (int) s_severita.getValue();
+        String note = ta_ea_note.getText().trim();
+        client.registraEventoAvverso(this, new EventoAvverso(evento, severita, note, null));
     }
 
     @Override
@@ -99,14 +97,19 @@ public class EAController extends Controller{
     public void notifyController(Result result) {
         if (result.getResult()){
             Platform.runLater(() -> {
-                dh = new DialogHelper("EVVIVA", "Registrazione OK", DialogHelper.Type.INFO);
+                dh = new DialogHelper("EVENTO AVVERSO REGISTRATO", "L'evento avverso e' stato registrato", DialogHelper.Type.INFO);
                 dh.display(null); //TODO da sistemato con il root della dashboard
+                // RESET INTERFACCIA
+                tg_ea_gruppo.selectToggle(null);
+                tf_ea_altro.setText("");
+                s_severita.setValue(1);
+                ta_ea_note.setText("");
+                l_ea_caratteri.setText("0/256");
             });
-            System.out.println("OK");
         }
         else{
             Platform.runLater(() -> {
-                dh = new DialogHelper("ATTENZIONE", "Registrazione OK", DialogHelper.Type.ERROR);
+                dh = new DialogHelper("ATTENZIONE", "Registrazione fallita.\nQuesto evento avverso e' gia' stato inserito", DialogHelper.Type.ERROR);
                 dh.display(null); //TODO da sistemato con il root della dashboard
             });
 

@@ -94,4 +94,10 @@ public class EventoAvverso implements Serializable {
         this.note = note;
     }
 
+    @Override
+    public String toString() {
+        return "Evento='" + evento + '\'' +
+                ", Severita=" + severita +
+                ", Note='" + note + '\'';
+    }
 }
