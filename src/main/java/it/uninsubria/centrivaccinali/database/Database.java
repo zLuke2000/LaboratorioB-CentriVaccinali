@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.database;
 
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
+import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 
 import java.nio.channels.ScatteringByteChannel;
@@ -408,7 +409,7 @@ public class Database {
                     "ORDER BY nome_centro");
             pstmt.setString(1, "%" + comune + "%");
             pstmt.setString(2, tipologia.toString());
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while(rs.next()) {
                 risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
@@ -440,6 +441,24 @@ public class Database {
             risultato.setResult(true);
         } catch (SQLException e) {
             risultato.setExtendedResult(Result.Error.EVENTO_GIA_INSERITO);
+            e.printStackTrace();
+        }
+        return risultato;
+    }
+
+    public Result leggiEA(String nomeCentro) {
+        Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
+        try {
+            pstmt = conn.prepareStatement("SELECT DISTINCT evento, severita, note, vaccino " +
+                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + nomeCentro);
+            rs = pstmt.executeQuery();
+            List<EventoAvverso> listaEventi = new ArrayList<>();
+            while(rs.next()) {
+                listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
+            }
+            risultato.setResult(true);
+            risultato.setListaEA(listaEventi);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return risultato;

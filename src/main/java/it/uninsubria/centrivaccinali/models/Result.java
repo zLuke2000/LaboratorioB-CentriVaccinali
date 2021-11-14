@@ -13,6 +13,7 @@ public class Result implements Serializable {
     private Cittadino cittadino;
     private List<String> resultComuni;
     private List<CentroVaccinale> resultCentri;
+    private List<EventoAvverso> resultEA;
 
     public Result(boolean result, Operation opType) {
         this.result = result;
@@ -67,6 +68,14 @@ public class Result implements Serializable {
         this.resultCentri = resultCentri;
     }
 
+    public List<EventoAvverso> getListaEA() {
+        return resultEA;
+    }
+
+    public void setListaEA(List<EventoAvverso> resultEA) {
+        this.resultEA = resultEA;
+    }
+
     public enum Error {
         // Login utente
         USERNAME_NON_TROVATO, PASSWORD_ERRATA,
@@ -84,6 +93,6 @@ public class Result implements Serializable {
         // Sezione operatore
         LOGIN_OPERATORE, REGISTRAZIONE_VACCINATO, RISULTATO_COMUNI, RISULTATO_CENTRI, REGISTRAZIONE_CENTRO,
         // Sezione cittadino
-        LOGIN_CITTADINO, REGISTRAZIONE_CITTADINO, RICERCA_CENTRO, REGISTRA_EVENTO_AVVERSO,
+        LOGIN_CITTADINO, REGISTRAZIONE_CITTADINO, RICERCA_CENTRO, REGISTRA_EVENTO_AVVERSO, LEGGI_EVENTI_AVVERSI
     }
 }

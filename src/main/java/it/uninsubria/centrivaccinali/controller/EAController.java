@@ -28,20 +28,16 @@ public class EAController extends Controller{
     public Label l_ea_caratteri;
 
     private DialogHelper dh;
-    private RadioButton[] rbArray;
     private ClientCV client;
 
     @FXML
     void initialize() {
-        rbArray = new RadioButton[]{rb_ea1, rb_ea2, rb_ea3, rb_ea4, rb_ea5, rb_ea6};
-        for(int i=0; i<rbArray.length; i++) {
-            rbArray[i].setText(String.valueOf(EventiAvversi.values()[i]));
-        }
         // Imposto l'handler per la colorazione dello slider
         s_severita.valueProperty().addListener( e -> {
             s_severita.lookup(".track").setStyle("-fx-background-color: hsb( " + Math.round((-15*s_severita.getValue())+75) + ", 75%, 100%);");
         });
     }
+
 
     @FXML
     void selezioneEvento(Event e) {
