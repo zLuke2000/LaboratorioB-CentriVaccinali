@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result implements Serializable {
@@ -8,10 +9,11 @@ public class Result implements Serializable {
     private static final long serialVersionUID = 1L;
     private Operation opType;
     private boolean result;
-    private List<Error> extendedResult;
+    private List<Error> extendedResult = new ArrayList<>();
     private Cittadino cittadino;
     private List<String> resultComuni;
     private List<CentroVaccinale> resultCentri;
+    private List<EventoAvverso> resultEA;
 
     public Result(boolean result, Operation opType) {
         this.result = result;
@@ -66,9 +68,19 @@ public class Result implements Serializable {
         this.resultCentri = resultCentri;
     }
 
+    public List<EventoAvverso> getListaEA() {
+        return resultEA;
+    }
+
+    public void setListaEA(List<EventoAvverso> resultEA) {
+        this.resultEA = resultEA;
+    }
+
     public enum Error {
         // Login utente
         USERNAME_NON_TROVATO, PASSWORD_ERRATA,
+        //Registrazione eventi avversi
+        EVENTO_GIA_INSERITO,
         //Registrazione utente
         CF_NON_VALIDO, IDVAC_NON_VALIDO, CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
         //Registrazione vaccinato
@@ -79,8 +91,8 @@ public class Result implements Serializable {
 
     public enum Operation {
         // Sezione operatore
-        LOGIN_OPERATORE,REGISTRAZIONE_VACCINATO,RISULTATO_COMUNI,RISULTATO_CENTRI,REGISTRAZIONE_CENTRO,
+        LOGIN_OPERATORE, REGISTRAZIONE_VACCINATO, RISULTATO_COMUNI, RISULTATO_CENTRI, REGISTRAZIONE_CENTRO,
         // Sezione cittadino
-        LOGIN_CITTADINO, REGISTRAZIONE_CITTADINO, RICERCA_CENTRO,
+        LOGIN_CITTADINO, REGISTRAZIONE_CITTADINO, RICERCA_CENTRO, REGISTRA_EVENTO_AVVERSO, LEGGI_EVENTI_AVVERSI
     }
 }

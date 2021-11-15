@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.EAController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <Button mnemonicParsing="false" onAction="#salvaEA" text="SALVA" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+    <TextArea fx:id="ta_ea_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="Mal di testa" GridPane.columnIndex="1">
+        <toggleGroup>
+          <ToggleGroup fx:id="tg_ea_gruppo" />
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="rb_ea2" onAction="#selezioneEvento" text="febbre" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton fx:id="rb_ea3" onAction="#selezioneEvento" text="dolori muscolari e articolari" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" />
+    <RadioButton fx:id="rb_ea4" onAction="#selezioneEvento" text="linfoadenopatia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <RadioButton fx:id="rb_ea5" onAction="#selezioneEvento" text="tachicardia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" />
+    <RadioButton fx:id="rb_ea6" onAction="#selezioneEvento" text="crisi ipertensiva" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <TextField fx:id="tf_ea_altro" onKeyTyped="#controlloTestoEvento" onMouseClicked="#selezioneEvento" promptText="Altro..." GridPane.columnIndex="4" GridPane.rowIndex="1" />
+    <Label fx:id="l_ea_caratteri" text="0/256" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+        <font>
+            <Font size="14.0" />
+        </font>
+      <GridPane.margin>
+         <Insets top="10.0" />
+      </GridPane.margin>
+    </Label>
+    <Slider fx:id="s_severita" blockIncrement="2.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" min="1.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" showTickLabels="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2" />
+</GridPane>

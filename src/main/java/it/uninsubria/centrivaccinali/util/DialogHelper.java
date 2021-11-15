@@ -1,12 +1,12 @@
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -24,6 +24,7 @@ public class DialogHelper {
     private Stage stage;
     private FadeTransition ft = new FadeTransition(Duration.millis(2000));
     private Pane rootPane;
+    private GenericDialogController gdc;
 
     public DialogHelper(String titolo, String descrizione, Type tipo) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
@@ -35,7 +36,7 @@ public class DialogHelper {
         }
         Scene scene = new Scene(parent);
         stage = new Stage();
-        GenericDialogController gdc = fxmlLoader.getController();
+        gdc = fxmlLoader.getController();
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -86,6 +87,9 @@ public class DialogHelper {
         stage.showAndWait();
     }
 
+    public void addButton(Button b) {
+        gdc.addButton(b);
+    }
 
     public void close() {
         stage.close();

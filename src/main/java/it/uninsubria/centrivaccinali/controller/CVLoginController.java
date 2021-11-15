@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.CssHelper;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,11 +22,11 @@ public class CVLoginController extends Controller {
             "un cittadino che si è vaccinato nel proprio sito";
 
     @FXML public AnchorPane ap_root;
-    @FXML private Text T_CV_infoLogin;
-    @FXML private TextField L_CV_username;
-    @FXML private PasswordField L_CV_password;
-    @FXML private ProgressIndicator PI_CV_load;
-    @FXML private FontIcon FI_CV_info;
+    @FXML private Text t_cv_infoLogin;
+    @FXML private TextField l_cv_username;
+    @FXML private PasswordField l_cv_password;
+    @FXML private ProgressIndicator pi_cv_load;
+    @FXML private FontIcon fi_cv_info;
 
     private ClientCV client;
     private final CssHelper cssHelper = CssHelper.getInstance();
@@ -33,40 +34,41 @@ public class CVLoginController extends Controller {
     @Override
     public void initParameter(ClientCV client) {
         this.client = client;
-        T_CV_infoLogin.setText(INFO);
+        t_cv_infoLogin.setText(INFO);
     }
 
     @Override
     public void notifyController(Result result) {
-        PI_CV_load.setVisible(false);
+        pi_cv_load.setVisible(false);
         if(result.getResult()) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
         } else {
-            //TODO mostra errore
             System.err.println("[CVLogin] AUTH ERROR");
+            DialogHelper dh = new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR);
+            dh.display(ap_root);
         }
     }
 
     @FXML void autenticazioneOperatore() {
-        String username = L_CV_username.getText().trim();
-        String password = L_CV_password.getText().trim();
+        String username = l_cv_username.getText().trim();
+        String password = l_cv_password.getText().trim();
         boolean check = true;
 
         if(username.length() == 0) {
-            cssHelper.toError(L_CV_username, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(l_cv_username, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(L_CV_username);
+            cssHelper.toDefault(l_cv_username);
         }
         if(password.length() == 0) {
-            cssHelper.toError(L_CV_password, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(l_cv_password, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(L_CV_password);
+            cssHelper.toDefault(l_cv_password);
         }
 
         if(check) {
-            PI_CV_load.setVisible(true);
+            pi_cv_load.setVisible(true);
             client.autenticaOperatore(this, username, password);
         }
     }
@@ -78,6 +80,6 @@ public class CVLoginController extends Controller {
     }
 
     @FXML public void ShowInfo() {
-            T_CV_infoLogin.setVisible(!T_CV_infoLogin.isVisible());
+            t_cv_infoLogin.setVisible(!t_cv_infoLogin.isVisible());
     }
 }

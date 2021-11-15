@@ -8,7 +8,7 @@ public class CssHelper {
 
     private static CssHelper instance=null;
 
-    private CssHelper(){  }
+    private CssHelper(){ }
 
     public static CssHelper getInstance(){
         if(instance == null){

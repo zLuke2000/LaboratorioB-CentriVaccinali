@@ -81,15 +81,6 @@
 	-fx-border-width: 1.5;
 }
 
-.tooltip-error {
-	-fx-border-color: red;
-	-fx-border-radius: 10;
-	-fx-border-width: 1.5;
-	-fx-background-color: white;
-	-fx-background-radius: 10;
-	-fx-text-fill: black;
-}
-
 /*Stile per label etichetta*/
 .labelTarget{
 	-fx-font-size: 12;
@@ -280,3 +271,6 @@
 	-fx-background-radius: 50;
 }
 
+.slider .track {
+    -fx-background-color: #ffff00;
+}

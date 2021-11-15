@@ -1,5 +1,7 @@
 package it.uninsubria.centrivaccinali.models;
 
+import it.uninsubria.centrivaccinali.enumerator.Vaccino;
+
 import java.io.Serializable;
 
 /**
@@ -30,6 +32,11 @@ public class EventoAvverso implements Serializable {
     private String note="";
 
     /**
+     * VAccino utilizzato
+     */
+    private Vaccino vac = null;
+
+    /**
      *
      */
     public EventoAvverso() {}
@@ -39,11 +46,13 @@ public class EventoAvverso implements Serializable {
      * @param evento la stringa che descrive l'evento
      * @param severita l'intero che rappresent&agrave l'intensita dell'evento
      * @param note note opzionali per descrivere l'evento
+     * @param vac mettere null durante inserimento
      */
-    public EventoAvverso(String evento, int severita, String note) {
+    public EventoAvverso(String evento, int severita, String note, Vaccino vac) {
         this.evento = evento;
         this.severita = severita;
         this.note = note;
+        this.vac = vac;
     }
 
     /**
@@ -92,5 +101,12 @@ public class EventoAvverso implements Serializable {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento='" + evento + '\'' +
+                ", Severita=" + severita +
+                ", Note='" + note + '\'';
     }
 }

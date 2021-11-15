@@ -1,12 +1,10 @@
 package it.uninsubria.centrivaccinali.server;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Cittadino;
-import it.uninsubria.centrivaccinali.models.Result;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
+import it.uninsubria.centrivaccinali.models.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -152,6 +150,18 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.ricercaCentroPerComuneTipologia(comune, tipologia));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
+    public void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea, long id_vaccino) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.registraEA(ea, id_vaccino));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

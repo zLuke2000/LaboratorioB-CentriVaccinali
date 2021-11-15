@@ -1,18 +1,25 @@
 package it.uninsubria.centrivaccinali.controller;
 
 import com.jfoenix.controls.JFXComboBox;
-import it.uninsubria.centrivaccinali.client.*;
+import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
-import it.uninsubria.centrivaccinali.models.*;
-import it.uninsubria.centrivaccinali.util.*;
+import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.application.Platform;
-import javafx.collections.*;
-import javafx.event.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
-import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 
 import java.io.IOException;
 
@@ -91,6 +98,12 @@ public class CIDashboardController extends Controller {
     @FXML
     private FontIcon CI_FI_research2;
 
+    @FXML
+    private VBox CI_HB_containerItem;
+
+    @FXML
+    private ScrollPane ci_scrollpane;
+
     @FXML void initialize() {
         this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
         this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
@@ -130,12 +143,26 @@ public class CIDashboardController extends Controller {
         }
         else {
             if (!result.getResultCentri().isEmpty()) {
+                Platform.runLater(() -> {
+                    ci_scrollpane.setVisible(true);
+                });
                 for (CentroVaccinale cv: result.getResultCentri()) {
                     System.out.println(cv);
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/ItemList.fxml"));
+                    try {
+                        HBox itemList = fxmlLoader.load();
+                        CIItemListController itemController = fxmlLoader.getController();
+                        itemController.setData(cv);
+                        Platform.runLater(() -> {
+                            CI_HB_containerItem.getChildren().add(itemList);
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             else {
-                System.err.println("nessun risultato");
+                System.err.println("Nessun risultato");
                 CI_L_NessunRisultato.setVisible(true);
             }
         }
@@ -217,7 +244,6 @@ public class CIDashboardController extends Controller {
         }
     }
 
-
     public void loginMB(ActionEvent actionEvent) {
     }
 
@@ -235,6 +261,10 @@ public class CIDashboardController extends Controller {
         CI_TF_ricercaComuneSearch.setVisible(true);
         CI_CB_ricercaTipologiaSearch.setVisible(true);
         CI_FI_research2.setVisible(true);
+    }
+
+    public void tempEV() {
+        CentriVaccinali.setRoot("fragments/F_CI_EA_root");
     }
 }
 

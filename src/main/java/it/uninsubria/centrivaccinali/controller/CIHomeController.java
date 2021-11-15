@@ -4,10 +4,12 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -36,6 +38,8 @@ public class CIHomeController extends Controller {
     /**FontIcon per mostrare la password*/
     @FXML private FontIcon fi_ci_showPassword;
 
+    private CssHelper cssh = CssHelper.getInstance();
+
     @Override
     public void initParameter(ClientCV client) {
         this.client = client;
@@ -50,11 +54,14 @@ public class CIHomeController extends Controller {
             System.out.println("Login fallito");
             if (result.getExtendedResult().contains(Result.Error.USERNAME_NON_TROVATO)) {
                 System.out.println("Username non trovato");
-                //TODO tooltip
+                cssh.toError(tf_ci_loginUsername, new Tooltip("Username non corretto"));
+                cssh.toDefault(tf_ci_loginPasswordVisible);
+                cssh.toDefault(tf_ci_loginPassword);
             }
             if (result.getExtendedResult().contains(Result.Error.PASSWORD_ERRATA)) {
                 System.out.println("Password errata");
-                //TODO tooltip
+                cssh.toError(tf_ci_loginPassword, new Tooltip("Password non corretta"));
+                cssh.toError(tf_ci_loginPasswordVisible, new Tooltip("Password non corretta"));
             }
         }
     }

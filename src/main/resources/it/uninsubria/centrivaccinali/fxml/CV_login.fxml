@@ -21,19 +21,19 @@
    <Button fx:id="B_CV_login" layoutX="136.0" layoutY="388.0" mnemonicParsing="false"
            onAction="#autenticazioneOperatore" prefHeight="27.0" prefWidth="118.0" styleClass="buttonSmall"
            text="Accedi" AnchorPane.leftAnchor="136.0" AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="370.0"/>
-   <TextField fx:id="L_CV_username" layoutX="91.0" layoutY="232.0" prefHeight="27.0" prefWidth="210.0"
+   <TextField fx:id="l_cv_username" layoutX="91.0" layoutY="232.0" prefHeight="27.0" prefWidth="210.0"
               promptText="Username" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0"
               AnchorPane.topAnchor="235.0"/>
-   <PasswordField fx:id="L_CV_password" layoutX="94.0" layoutY="295.0" prefHeight="27.0" prefWidth="202.0"
+   <PasswordField fx:id="l_cv_password" layoutX="94.0" layoutY="295.0" prefHeight="27.0" prefWidth="202.0"
                   promptText="Password" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0"
                   AnchorPane.topAnchor="300.0"/>
    <FontIcon iconLiteral="eli-user" iconSize="22" layoutX="66.0" layoutY="253.0" styleClass="IconTarghet"
              AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="238.0"/>
    <FontIcon iconLiteral="eli-lock" iconSize="22" layoutX="71.0" layoutY="318.0" styleClass="IconTarghet"
              AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="303.0"/>
-   <FontIcon fx:id="FI_CV_info" iconLiteral="fltfmz-question-circle-16" iconSize="25" layoutX="275.0" layoutY="412.0"
+   <FontIcon fx:id="fi_cv_info" iconLiteral="fltfmz-question-circle-16" iconSize="25" layoutX="275.0" layoutY="412.0"
              onMouseClicked="#ShowInfo" styleClass="iconInfo" AnchorPane.topAnchor="372.0"/>
-   <ProgressIndicator fx:id="PI_CV_load" layoutX="179.0" layoutY="442.0" prefHeight="27.0" prefWidth="33.0"
+   <ProgressIndicator fx:id="pi_cv_load" layoutX="179.0" layoutY="442.0" prefHeight="27.0" prefWidth="33.0"
                       visible="false" AnchorPane.bottomAnchor="120.0">
       <effect>
          <InnerShadow>
@@ -45,6 +45,6 @@
    </ProgressIndicator>
    <FontIcon iconLiteral="subway-reply" iconSize="22" layoutX="14.0" layoutY="35.0" onMouseClicked="#BackTo"
              styleClass="backIcon"/>
-   <Text fx:id="T_CV_infoLogin" layoutX="183.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false"
+   <Text fx:id="t_cv_infoLogin" layoutX="183.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false"
          wrappingWidth="360.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
 </AnchorPane>
