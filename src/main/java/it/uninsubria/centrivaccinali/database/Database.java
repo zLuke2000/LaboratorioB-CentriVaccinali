@@ -167,6 +167,7 @@ public class Database {
 
     public Result loginUtente(String username, String password) {
         risultato = new Result(false, Result.Operation.LOGIN_CITTADINO);
+        //Verifico corrispondenza userid e password
         try {
             pstmt = conn.prepareStatement("SELECT *" +
                                               "FROM public.\"Cittadini_Registrati\"" +
@@ -186,6 +187,19 @@ public class Database {
                 );
                 risultato.setResult(true);
                 risultato.setCittadino(c);
+
+                // Ottengo nome_centro del cittadino
+                pstmt = conn.prepareStatement("SELECT nome_centro" +
+                                                  "FROM tabelle_cv.\"vaccinati\"" +
+                                                  "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
+                pstmt.setLong(1, c.getId_vaccino());
+                pstmt.setString(2, c.getCodice_fiscale());
+                rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    risultato.setCentroCittadino(rs.getString("nome_centro"));
+                } else {
+                    throw new SQLException();
+                }
             } else {
                 pstmt = conn.prepareStatement("SELECT COUNT(*)" +
                                                  "FROM public.\"Cittadini_Registrati\"" +
