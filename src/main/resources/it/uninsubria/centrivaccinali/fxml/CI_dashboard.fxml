@@ -10,6 +10,7 @@
 <?import org.kordamp.ikonli.javafx.*?>
 
 <AnchorPane fx:id="ap_root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<?import com.jfoenix.controls.JFXComboBox?>
    <AnchorPane layoutX="-6.0" layoutY="1.0" prefHeight="95.0" prefWidth="907.0" styleClass="panelSuperior" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label layoutX="458.0" layoutY="8.0" styleClass="label-titleDashboard" text="AREA   CITTADINO" AnchorPane.topAnchor="8.0">
          <padding>
@@ -51,6 +52,7 @@
             <Font size="17.0" />
          </font>
       </Button>
+      <Button layoutX="574.0" layoutY="518.0" mnemonicParsing="false" onAction="#tempEV" text="EV" />
    </AnchorPane>
    <AnchorPane fx:id="CI_AP_ricerca2" layoutX="50.0" layoutY="132.0" visible="false" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <TextField fx:id="CI_TF_ricercaNomeCVSearch" layoutX="50.0" layoutY="8.0" prefHeight="45.0" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="40.0">

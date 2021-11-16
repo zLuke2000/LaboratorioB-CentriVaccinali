@@ -11,6 +11,7 @@ public class Result implements Serializable {
     private boolean result;
     private List<Error> extendedResult = new ArrayList<>();
     private Cittadino cittadino;
+    private String centroCittadino;
     private List<String> resultComuni;
     private List<CentroVaccinale> resultCentri;
     private List<EventoAvverso> resultEA;
@@ -50,6 +51,14 @@ public class Result implements Serializable {
 
     public void setCittadino(Cittadino c) {
         cittadino = c;
+    }
+
+    public String getCentroCittadino() {
+        return centroCittadino;
+    }
+
+    public void setCentroCittadino(String centroCittadino) {
+        this.centroCittadino = centroCittadino;
     }
 
     public List<String> getResultComuni() {

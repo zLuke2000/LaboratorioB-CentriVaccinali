@@ -8,6 +8,7 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -81,5 +82,10 @@ public class CVLoginController extends Controller {
 
     @FXML public void ShowInfo() {
             t_cv_infoLogin.setVisible(!t_cv_infoLogin.isVisible());
+    }
+
+    @FXML
+    void chiudi() {
+        super.closeApp();
     }
 }

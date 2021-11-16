@@ -6,15 +6,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
-    private final static Double h_avvio = 300.0;
-    private final static Double w_avvio = 580.0;
+    private final static Double h_avvio = 271.0;
+    private final static Double w_avvio = 450.0;
     private final static Double h_dashboard = 800.0;
     private final static Double w_dashboard = 1200.0;
     private final static Double w_standard = 390.0;
@@ -35,16 +38,17 @@ public class CentriVaccinali extends Application {
     public void start(Stage s) {
         CentriVaccinali.stage = s;
         scene = new Scene(Objects.requireNonNull(loadFXML("Avvio")));
-//        stage.initStyle(StageStyle.TRANSPARENT);
-//        scene.setOnMousePressed(mouseEvent -> {
-//            xOffset = mouseEvent.getSceneX();
-//            yOffset = mouseEvent.getSceneY();
-//        });
-//        scene.setOnMouseDragged(mouseEvent -> {
-//            stage.setX(mouseEvent.getScreenX() - xOffset);
-//            stage.setY(mouseEvent.getScreenY() - yOffset);
-//        });
+        stage.initStyle(StageStyle.TRANSPARENT);
+        scene.setOnMousePressed(mouseEvent -> {
+            xOffset = mouseEvent.getSceneX();
+            yOffset = mouseEvent.getSceneY();
+        });
+        scene.setOnMouseDragged(mouseEvent -> {
+            stage.setX(mouseEvent.getScreenX() - xOffset);
+            stage.setY(mouseEvent.getScreenY() - yOffset);
+        });
         stage.setScene(scene);
+        scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Progetto LaboratorioB");
         stage.setResizable(false);
         stage.show();
