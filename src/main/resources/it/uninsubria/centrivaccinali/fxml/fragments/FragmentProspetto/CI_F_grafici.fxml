@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="600.0" prefWidth="780.0" fx:controller="it.uninsubria.centrivaccinali.controller.CIGraficiController">
-
-</AnchorPane>

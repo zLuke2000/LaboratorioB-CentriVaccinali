@@ -69,7 +69,7 @@
             <ToggleGroup fx:id="ToogleGroup" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton focusTraversable="false" layoutX="813.0" layoutY="85.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Grafico" toggleGroup="$ToogleGroup" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="95.0">
+      <ToggleButton focusTraversable="false" layoutX="813.0" layoutY="85.0" mnemonicParsing="false" onAction="#showProspetto" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Grafico" toggleGroup="$ToogleGroup" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="95.0">
          <effect>
             <InnerShadow>
                <color>
