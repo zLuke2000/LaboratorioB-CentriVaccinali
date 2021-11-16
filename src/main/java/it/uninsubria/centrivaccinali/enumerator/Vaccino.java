@@ -13,4 +13,13 @@ public enum Vaccino {
             default: throw new IllegalArgumentException();
         }
     }
+
+    public static Vaccino getValue(String str) {
+        for (Vaccino v : values()) {
+            if (v.toString().equalsIgnoreCase(str)) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
 }

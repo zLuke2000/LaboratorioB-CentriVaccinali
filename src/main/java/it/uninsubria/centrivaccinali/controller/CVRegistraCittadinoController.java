@@ -149,7 +149,7 @@ public class CVRegistraCittadinoController extends Controller {
             String cognome= tf_cv_cognomeCittadino.getText();
             String cf= tf_cv_cfCittadino.getText();
             java.sql.Date data=java.sql.Date.valueOf(dp_cv_datavaccino.getValue());
-            Vaccino tipoVaccino = Vaccino.valueOf(((RadioButton) radioGroup1.getSelectedToggle()).getText());
+            Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) radioGroup1.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
             client.registraVaccinato(this, nuovoVaccinato);
         }

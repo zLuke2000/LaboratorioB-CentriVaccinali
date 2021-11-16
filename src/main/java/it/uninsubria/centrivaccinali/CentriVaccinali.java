@@ -102,6 +102,10 @@ public class CentriVaccinali extends Application {
                 height = 820.0;
                 width = 1200.0;
                 break;
+            case "fragments/CI_F_showGeneralCV":
+                stage.setTitle("Info CV");
+                height = 800.0;
+                width = 1200.0;
             default:
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;

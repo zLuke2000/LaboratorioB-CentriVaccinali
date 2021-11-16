@@ -39,6 +39,6 @@ public class AvvioController extends Controller {
     }
 
     public void openEV() {
-        CentriVaccinali.setRoot("fragments/F_CI_EA_root");
+        CentriVaccinali.setRoot("fragments/CI_F_showGeneralCV");
     }
 }
