@@ -1,0 +1,17 @@
+.transparent {
+    -fx-background-color: transparent;
+}
+
+.default-bg {
+    -fx-background-color: linear-gradient(to bottom right, #6935fb, #24cae2);
+	-fx-background-radius: 20;
+}
+
+.buttton-preset-1 {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+}
+
+.test {
+    -fx-prompt-text-fill: red
+}

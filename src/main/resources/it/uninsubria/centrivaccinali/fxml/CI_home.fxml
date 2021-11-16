@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane fx:id="ap_root" prefHeight="565.0" prefWidth="390.0" stylesheets="@style/style.css"
+<AnchorPane fx:id="ap_root" prefHeight="565.0" prefWidth="390.0" stylesheets="@../style/style.css"
             xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="it.uninsubria.centrivaccinali.controller.CIHomeController">
    <Label alignment="CENTER" layoutX="180.0" layoutY="14.0" styleClass="labelWelcome" text="BENVENUTO"

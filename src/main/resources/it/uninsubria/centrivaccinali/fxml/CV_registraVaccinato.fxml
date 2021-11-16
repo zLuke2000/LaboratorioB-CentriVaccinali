@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController">
-   <VBox prefHeight="600.0" prefWidth="600.0" stylesheets="@style/style.css">
+   <VBox prefHeight="600.0" prefWidth="600.0" stylesheets="@../style/style.css">
       <AnchorPane prefHeight="52.0" prefWidth="600.0">
          <Label alignment="CENTER" contentDisplay="CENTER" layoutY="11.0" styleClass="labelWelcome"
                 text="REGISTRA CITTADINO VACCINATO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>

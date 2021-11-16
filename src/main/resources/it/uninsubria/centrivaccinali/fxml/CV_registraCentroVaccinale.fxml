@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<GridPane fx:id="gp_root" prefHeight="300.0" prefWidth="800.0" stylesheets="@style/style.css"
+<GridPane fx:id="gp_root" prefHeight="300.0" prefWidth="800.0" stylesheets="@../style/style.css"
           xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCentroVaccinale">
     <columnConstraints>

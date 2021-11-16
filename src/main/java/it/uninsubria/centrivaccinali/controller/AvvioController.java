@@ -31,14 +31,13 @@ public class AvvioController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) {
-    }
+    public void initParameter(ClientCV client) { }
 
     @Override
-    public void notifyController(Result result) {
-    }
+    public void notifyController(Result result) { }
 
-    public void openEV() {
-        CentriVaccinali.setRoot("fragments/F_CI_EA_root");
+    @FXML
+    void chiudi() {
+        super.closeApp();
     }
 }
