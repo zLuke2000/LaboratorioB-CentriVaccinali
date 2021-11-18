@@ -77,8 +77,8 @@ public class CentriVaccinali extends Application {
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
                 stage.setTitle("Login operatore");
-                width = w_standard;
-                height = h_standard;
+                height = h_cv_login;
+                width = w_cv_login;
                 break;
             case "CV_change":
                 System.out.println("[CV_MAIN] selezionato: CV_change");

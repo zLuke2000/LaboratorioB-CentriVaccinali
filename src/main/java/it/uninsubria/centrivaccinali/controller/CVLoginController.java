@@ -38,7 +38,8 @@ public class CVLoginController extends Controller {
 
     @Override
     public void notifyController(Result result) {
-        pi_cv_load.setVisible(false);
+        main_scene.setCursor(Cursor.DEFAULT);
+        b_accedi.setDisable(false);
         if(result.getResult()) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
         } else {
@@ -67,7 +68,8 @@ public class CVLoginController extends Controller {
         }
 
         if(check) {
-            pi_cv_load.setVisible(true);
+            main_scene.setCursor(Cursor.WAIT);
+            b_accedi.setDisable(true);
             client.autenticaOperatore(this, username, password);
         }
     }
