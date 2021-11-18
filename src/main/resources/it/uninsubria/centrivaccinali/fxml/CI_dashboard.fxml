@@ -1,157 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<AnchorPane fx:id="ap_root" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
-   <AnchorPane layoutX="-6.0" layoutY="1.0" prefHeight="95.0" prefWidth="907.0" styleClass="panelSuperior" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Label layoutX="458.0" layoutY="8.0" styleClass="label-titleDashboard" text="AREA   CITTADINO" AnchorPane.topAnchor="8.0">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+   <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="default-bg">
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+   </AnchorPane>
+   <AnchorPane layoutX="-6.0" layoutY="1.0" prefHeight="100.0" AnchorPane.bottomAnchor="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label alignment="CENTER" styleClass="label-titleDashboard" text="AREA CITTADINO" textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
       </Label>
-      <MenuButton fx:id="CI_MB_SiCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" visible="false" AnchorPane.rightAnchor="20.0">
+      <MenuButton fx:id="CI_MB_SiCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente di prova" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
          <items>
             <MenuItem fx:id="ItemInfo" mnemonicParsing="false" onAction="#showInfoMB" text="Info" />
-            <SeparatorMenuItem hideOnClick="true" mnemonicParsing="false" />
+            <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="ItemLogout" mnemonicParsing="false" onAction="#logoutInfoMB" text="Logout" />
          </items>
          <graphic>
-            <FontIcon iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
+            <FontIcon iconColor="#323232" iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
          </graphic>
       </MenuButton>
-      <TextField fx:id="CI_TF_userDash" focusTraversable="false" layoutX="937.0" layoutY="12.0" prefHeight="27.0" prefWidth="85.0" promptText="Username" styleClass="textfiled-LoginDash" AnchorPane.topAnchor="12.0" />
-      <PasswordField fx:id="CI_TF_passwordDash" focusTraversable="false" layoutX="1046.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" promptText="Password" styleClass="textfiled-LoginDash" AnchorPane.topAnchor="14.0" />
-      <Button fx:id="CI_B_loginDash" layoutX="1007.0" layoutY="41.0" mnemonicParsing="false" onAction="#loginDash" styleClass="button-LoginDash" text="Login" AnchorPane.topAnchor="41.0" />
-      <ProgressIndicator fx:id="CI_PI_loadLoginDash" layoutX="856.0" layoutY="33.0" prefHeight="19.0" prefWidth="34.0" visible="false" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
-      <Button fx:id="CI_B_loginDash1" layoutX="960.0" layoutY="66.0" mnemonicParsing="false" onAction="#loginDash" styleClass="button-RegDash" text="Non hai un account?  Registrati" underline="true" AnchorPane.topAnchor="66.0" />
-   </AnchorPane>
-   <Separator layoutX="25.0" layoutY="116.0" prefHeight="0.0" prefWidth="882.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
-      <effect>
-         <InnerShadow />
-      </effect>
-   </Separator>
-   <AnchorPane fx:id="CI_AP_ricercaHome" layoutX="1.0" layoutY="125.0" prefHeight="459.0" prefWidth="1198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-      <TextField fx:id="CI_TF_ricercaNomeCV" layoutY="275.0" promptText="Inserisci nome centro vaccinale" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="275.0" />
-      <Label fx:id="target_Ricerca" text="Tipologia ricerca:" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="30.0" />
-      <ChoiceBox fx:id="CI_CB_SceltaRicerca" layoutY="25.0" onAction="#changeResearch" prefWidth="150.0" styleClass="comboBoxRicerca" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="55.0" />
-      <ChoiceBox fx:id="CI_CB_ricercaTipologia" layoutX="50.0" layoutY="175.0" prefWidth="150.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
-      <TextField fx:id="CI_TF_ricercaComune" layoutX="50.0" layoutY="275.0" promptText="Comune" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
-      <Button fx:id="CI_B_ricerca" layoutX="200.0" layoutY="425.0" mnemonicParsing="false" onAction="#cercaCentroVaccinale" styleClass="buttonSmall" text="Cerca" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="500.0">
-         <graphic>
-            <FontIcon iconLiteral="bx-search-alt-2" iconSize="20" />
-         </graphic>
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="574.0" layoutY="518.0" mnemonicParsing="false" onAction="#tempEV" text="EV" />
-   </AnchorPane>
-   <AnchorPane fx:id="CI_AP_ricerca2" layoutX="50.0" layoutY="132.0" visible="false" AnchorPane.bottomAnchor="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-      <TextField fx:id="CI_TF_ricercaNomeCVSearch" layoutX="50.0" layoutY="8.0" prefHeight="45.0" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="40.0">
-         <padding>
-            <Insets right="30.0" />
-         </padding>
-      </TextField>
-      <FontIcon fx:id="CI_FI_ricercaNomeCV2" iconLiteral="bx-search-alt-2" iconSize="25" layoutX="1022.0" layoutY="18.0" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="50.0" />
-      <ChoiceBox fx:id="CI_CB_ricercaTipologiaSearch" prefWidth="150.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="625.0" AnchorPane.topAnchor="40.0" />
-      <TextField fx:id="CI_TF_ricercaComuneSearch" layoutX="625.0" layoutY="1.0" prefHeight="40.0" promptText="Comune" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="625.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="40.0" />
-      <FontIcon fx:id="CI_FI_research2" iconLiteral="bx-search-alt-2" iconSize="25" layoutX="1122.0" layoutY="5.5625" onMouseClicked="#cercaCentroVaccinale" visible="false" AnchorPane.topAnchor="47.0" />
-      <JFXComboBox fx:id="CI_CB_SceltaRicerca2" onAction="#changeResearch2" visible="false" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-   </AnchorPane>
-   <Label fx:id="CI_L_NessunRisultato" styleClass="label-NessunRis" text="Nessun  Risulato" visible="false" AnchorPane.leftAnchor="378.0" AnchorPane.rightAnchor="378.0" AnchorPane.topAnchor="300.0" />
-   <ScrollPane fx:id="ci_scrollpane" layoutX="38.0" layoutY="233.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
-      <padding>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </padding>
-      <VBox fx:id="CI_HB_containerItem" alignment="TOP_CENTER" prefHeight="560.0" prefWidth="1192.0">
-         <HBox prefHeight="45.0" prefWidth="1193.0">
-            <VBox.margin>
-               <Insets right="25.0" />
-            </VBox.margin>
-            <padding>
-               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </padding>
-            <Label alignment="TOP_CENTER" styleClass="label-targetItemList" text="Tipologia" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="20.0" right="97.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="15.0" layoutY="15.0" styleClass="label-targetItemList" text="Nome" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="150.0" right="97.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="81.0" layoutY="15.0" styleClass="label-targetItemList" text="Indirizzo" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="170.0" />
-               </HBox.margin>
-            </Label>
-            <Label alignment="TOP_CENTER" layoutX="146.0" layoutY="15.0" styleClass="label-targetItemList" text="Azioni" textFill="#000000cf">
-               <HBox.margin>
-                  <Insets left="350.0" />
-               </HBox.margin>
-            </Label>
-         </HBox>
-         <HBox prefHeight="67.0" prefWidth="1163.0" styleClass="style-trasparent" stylesheets="@../style/style.css">
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="style-trasparent">
-               <ImageView fx:id="CI_IV_TipologiaItem" fitHeight="50.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="style-trasparent" VBox.vgrow="ALWAYS">
-                  <Image url="@../image/Ospedaliero.png" />
-               </ImageView>
-               <Label fx:id="CI_L_TipologiaItem" style="-fx-font-size: 10;" text="Tipologia">
-                  <font>
-                     <Font size="9.0" />
-                  </font>
-               </Label>
-            </VBox>
-            <Label fx:id="CI_LNomeCvItem" text="Centro Vaccinale 1">
-               <HBox.margin>
-                  <Insets left="170.0" top="20.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="CI_LIndirizzoItem" text="Via della traversa 38A, Lomazzo CO 22074">
-               <HBox.margin>
-                  <Insets left="130.0" top="20.0" />
-               </HBox.margin>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="217.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets left="120.0" />
-               </HBox.margin>
-               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #5AE798;" styleClass="button-actionItem">
-                  <HBox.margin>
-                     <Insets right="10.0" />
-                  </HBox.margin>
-                  <graphic>
-                     <FontIcon iconColor="WHITE" iconLiteral="ci-add" iconSize="25" selectionEnd="0" />
-                  </graphic>
-               </Button>
-               <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
-                  <HBox.margin>
-                     <Insets left="10.0" />
-                  </HBox.margin>
-               </Button>
+      <VBox alignment="CENTER" layoutX="913.0" layoutY="9.0" spacing="3.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="12.0">
+         <children>
+            <HBox spacing="16.0" styleClass="contorno-opaco-50">
+               <children>
+                  <TextField fx:id="CI_TF_userDash" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Username" styleClass="field-preset-1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="CI_TF_passwordDash" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Password" styleClass="field-preset-1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="CI_B_loginDash" mnemonicParsing="false" onAction="#loginDash" styleClass="button-preset-1" text="Login">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
             </HBox>
-         </HBox>
+            <Button fx:id="CI_B_loginDash1" mnemonicParsing="false" onAction="#loginDash" styleClass="transparent" text="Non hai un account?  Registrati" underline="true" />
+         </children>
       </VBox>
-   </ScrollPane>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+         <image>
+            <Image url="@../image/closeIcon.png" />
+         </image>
+      </ImageView>
+   </AnchorPane>
+   <Pane layoutX="277.0" layoutY="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <styleClass>
+         <String fx:value="bordo-sotto" />
+         <String fx:value="opaco-20" />
+      </styleClass>
+   </Pane>
+   <stylesheets>
+      <URL value="@../style/style.css" />
+      <URL value="@../style/dashboardStyle.css" />
+   </stylesheets>
 </AnchorPane>

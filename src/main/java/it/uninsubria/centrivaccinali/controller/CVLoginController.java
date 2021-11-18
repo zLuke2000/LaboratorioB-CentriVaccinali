@@ -7,35 +7,33 @@ import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
+ *
+ * Le credenziali vengono fornite solo se la persona è un operatore sanitario e ha il diritto di esercitare queste azioni:
+ * - Registrare un hub vaccinale
+ * - Registrare un cittadino che si è vaccinato nel proprio sito
  */
 public class CVLoginController extends Controller {
 
-    private final String INFO = "Le credenziali vengono fornite solo se la persona è un operatore sanitario e " +
-            "ha  il diritto di esercitare queste azioni:" + "\n" + "- Registrare un hub vaccinale" + "\n" + "- Registrare " +
-            "un cittadino che si è vaccinato nel proprio sito";
-
     @FXML public AnchorPane ap_root;
-    @FXML private Text t_cv_infoLogin;
+    @FXML public Button b_accedi;
     @FXML private TextField l_cv_username;
     @FXML private PasswordField l_cv_password;
-    @FXML private ProgressIndicator pi_cv_load;
-    @FXML private FontIcon fi_cv_info;
 
     private ClientCV client;
+    private Scene main_scene;
     private final CssHelper cssHelper = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
         this.client = client;
-        t_cv_infoLogin.setText(INFO);
+        main_scene = scene;
     }
 
     @Override
@@ -81,7 +79,7 @@ public class CVLoginController extends Controller {
     }
 
     @FXML public void ShowInfo() {
-            t_cv_infoLogin.setVisible(!t_cv_infoLogin.isVisible());
+        new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display(ap_root);
     }
 
     @FXML

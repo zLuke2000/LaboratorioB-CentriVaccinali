@@ -4,6 +4,7 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class CVChangeController extends Controller {
@@ -37,7 +38,7 @@ public class CVChangeController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) {  }
+    public void initParameter(ClientCV client, Scene scene) {  }
 
     @Override
     public void notifyController(Result result) {  }

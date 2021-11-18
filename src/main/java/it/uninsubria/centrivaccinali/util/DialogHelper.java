@@ -46,13 +46,13 @@ public class DialogHelper {
         // Imposto lo stile della finestra
         switch (tipo) {
             case INFO:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("fxml/dialogs/style/InfoStyle.css")));
+                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/InfoStyle.css")));
                 break;
             case WARNING:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("fxml/dialogs/style/WarningStyle.css")));
+                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/WarningStyle.css")));
                 break;
             case ERROR:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("fxml/dialogs/style/ErrorStyle.css")));
+                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/ErrorStyle.css")));
                 break;
         }
         // Imposto titolo della finestra

@@ -10,10 +10,8 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
@@ -21,7 +19,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML public GridPane gp_root;
         @FXML private TextField tf_nome;
-        @FXML private ChoiceBox<Qualificatore> cb_qualificatore;
+        @FXML private ComboBox<Qualificatore> cb_qualificatore;
         @FXML private TextField tf_indirizzo;
         @FXML private TextField tf_civico;
         @FXML private TextField tf_comune;
@@ -44,7 +42,7 @@ public class CVRegistraCentroVaccinale extends Controller {
         }
 
         @Override
-        public void initParameter(ClientCV client) {
+        public void initParameter(ClientCV client, Scene scene) {
                 this.client = client;
         }
 
