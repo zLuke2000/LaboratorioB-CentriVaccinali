@@ -109,7 +109,10 @@ public class CIDashboardController extends Controller {
     @FXML
     private ScrollPane ci_scrollpane;
 
+    private Controller controllerRicerca;
+
     @FXML void initialize() {
+        //TODO inserire fragment ricerca home
         this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
         this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
         this.CI_CB_SceltaRicerca2.getItems().addAll(itemResearch);
