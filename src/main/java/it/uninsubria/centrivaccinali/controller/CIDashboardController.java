@@ -25,6 +25,11 @@ import java.io.IOException;
 
 public class CIDashboardController extends Controller {
 
+
+    //Container
+    @FXML
+    private AnchorPane CI_HP_containerDashboard;
+
     private Cittadino cittadinoConesso = null;
 
     private ClientCV client;
