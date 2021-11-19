@@ -1,189 +1,249 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController">
-   <VBox prefHeight="600.0" prefWidth="600.0" stylesheets="@../style/style.css">
-      <AnchorPane prefHeight="52.0" prefWidth="600.0">
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutY="11.0" styleClass="labelWelcome"
-                text="REGISTRA CITTADINO VACCINATO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
-         <FontIcon fx:id="FI_CV_back" iconLiteral="subway-reply" iconSize="25" layoutX="14.0" layoutY="35.0"
-                   onMouseClicked="#BackTo" styleClass="backIcon" AnchorPane.leftAnchor="14.0"
-                   AnchorPane.topAnchor="14.0"/>
-      </AnchorPane>
-      <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="600.0">
-         <padding>
-            <Insets bottom="10.0" top="10.0"/>
-         </padding>
-         <Label text="Dati Centro Vaccinale"/>
-         <GridPane>
-            <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Label text="Immettere provincia" GridPane.halignment="CENTER"/>
-            <ChoiceBox fx:id="cb_cv_selezionaComune" onAction="#cbChange" prefWidth="150.0"
-                       GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
-            <Label text="Seleziona comune" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
-            <ChoiceBox fx:id="cb_cv_selezionaCentro" onAction="#cbChange" prefWidth="150.0"
-                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
-            <Label text="Seleziona centro" GridPane.columnIndex="2" GridPane.halignment="CENTER"/>
-            <Label fx:id="l_cv_infoCentro" text="" visible="false" GridPane.columnSpan="2147483647"
-                   GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
-            <TextField fx:id="tf_cv_selezionaProvincia" onKeyTyped="#realtimeCheck" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="16.0" right="16.0"/>
-               </GridPane.margin>
-            </TextField>
-         </GridPane>
-      </VBox>
-      <Separator opacity="0.2" prefWidth="200.0">
-         <effect>
-            <InnerShadow/>
-         </effect>
-      </Separator>
-      <VBox alignment="TOP_CENTER" prefHeight="132.0" prefWidth="600.0">
-         <padding>
-            <Insets top="10.0"/>
-         </padding>
-         <Label text="Dati anagrafici cittadino vaccinato">
-            <VBox.margin>
-               <Insets bottom="10.0"/>
-            </VBox.margin>
+<AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController">
+   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="8.0" styleClass="default-bg">
+      <Label text="Dati Centro Vaccinale">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Label text="Immettere provincia" textFill="#323232" GridPane.halignment="CENTER">
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
          </Label>
-         <HBox alignment="CENTER" prefHeight="58.0" prefWidth="600.0">
-            <padding>
-               <Insets left="70.0" right="70.0"/>
-            </padding>
-            <VBox.margin>
-               <Insets bottom="5.0"/>
-            </VBox.margin>
-            <TextField fx:id="tf_cv_nomeCittadino" onKeyTyped="#realtimeCheck" prefHeight="27.0"
-                       prefWidth="275.0" promptText="Nome">
-               <HBox.margin>
-                  <Insets right="5.0"/>
-               </HBox.margin>
-            </TextField>
-            <TextField fx:id="tf_cv_cognomeCittadino" onKeyTyped="#realtimeCheck" prefHeight="27.0"
-                       prefWidth="275.0" promptText="Cognome">
-               <HBox.margin>
-                  <Insets left="50.0"/>
-               </HBox.margin>
-            </TextField>
-         </HBox>
-         <TextField fx:id="tf_cv_cfCittadino" onKeyTyped="#realtimeCheck" promptText="Codice  Fiscale">
-            <VBox.margin>
-               <Insets left="70.0" right="70.0"/>
-            </VBox.margin>
+         <Label text="Seleziona comune" textFill="#323232" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Label>
+         <Label text="Seleziona centro" textFill="#323232" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Label>
+         <Label fx:id="l_cv_infoCentro" text="" visible="false" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+         <TextField fx:id="tf_cv_selezionaProvincia" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#realtimeCheck" styleClass="field-preset-1" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets left="16.0" right="16.0" />
+            </GridPane.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
          </TextField>
-      </VBox>
-      <Separator layoutX="10.0" layoutY="150.0" opacity="0.2" prefWidth="200.0">
+         <ComboBox fx:id="cb_cv_selezionaComune" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets left="16.0" right="16.0" />
+            </GridPane.margin>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ComboBox>
+         <ComboBox fx:id="cb_cv_selezionaCentro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets left="16.0" right="16.0" />
+            </GridPane.margin>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ComboBox>
+      </GridPane>
+      <Separator opacity="0.2">
          <effect>
-            <InnerShadow/>
+            <InnerShadow />
          </effect>
-         <VBox.margin>
-            <Insets top="20.0"/>
-         </VBox.margin>
       </Separator>
-      <VBox alignment="TOP_CENTER" prefHeight="160.0" prefWidth="600.0">
+      <Label text="Dati anagrafici cittadino" textFill="#323232">
          <VBox.margin>
-            <Insets/>
+            <Insets />
          </VBox.margin>
-         <padding>
-            <Insets top="10.0"/>
-         </padding>
-         <Label text="Dati vaccino">
-            <VBox.margin>
-               <Insets bottom="10.0"/>
-            </VBox.margin>
-         </Label>
-         <HBox alignment="TOP_CENTER" prefHeight="61.0" prefWidth="600.0">
-            <padding>
-               <Insets top="10.0"/>
-            </padding>
-            <Label styleClass="labelTarget" text="Data somministrazione:">
-               <HBox.margin>
-                  <Insets right="10.0" top="5.0"/>
-               </HBox.margin>
-            </Label>
-            <DatePicker fx:id="dp_cv_datavaccino" editable="false" promptText="Inserisci data"/>
-         </HBox>
-         <HBox prefHeight="60.0" prefWidth="600.0">
-            <padding>
-               <Insets left="100.0" right="100.0" top="15.0"/>
-            </padding>
-            <Label styleClass="labelTarget" text="Tipologia:">
-               <HBox.margin>
-                  <Insets right="20.0"/>
-               </HBox.margin>
-            </Label>
-            <RadioButton fx:id="RB_CV_pfizer" mnemonicParsing="false" selected="true" text="Pfizer">
-               <HBox.margin>
-                  <Insets right="15.0"/>
-               </HBox.margin>
-               <toggleGroup>
-                  <ToggleGroup fx:id="radioGroup1"/>
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="rb_cv_astrazeneca" layoutX="134.0" layoutY="20.0" mnemonicParsing="false"
-                         prefHeight="19.0" prefWidth="96.0" text="Astrazeneca" toggleGroup="$radioGroup1">
-               <HBox.margin>
-                  <Insets right="15.0"/>
-               </HBox.margin>
-            </RadioButton>
-            <RadioButton fx:id="rb_cv_moderna" layoutX="225.0" layoutY="20.0" mnemonicParsing="false"
-                         text="Moderna" toggleGroup="$radioGroup1">
-               <HBox.margin>
-                  <Insets right="15.0"/>
-               </HBox.margin>
-            </RadioButton>
-            <RadioButton fx:id="rb_cv_jj" layoutX="315.0" layoutY="20.0" mnemonicParsing="false" text="J&amp;J"
-                         toggleGroup="$radioGroup1">
-               <HBox.margin>
-                  <Insets right="8.0"/>
-               </HBox.margin>
-            </RadioButton>
-         </HBox>
-      </VBox>
-      <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="600.0">
-         <opaqueInsets>
-            <Insets/>
-         </opaqueInsets>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" spacing="32.0">
          <VBox.margin>
-            <Insets/>
+            <Insets left="32.0" right="32.0" />
          </VBox.margin>
-         <Label id="L_CV_targetIDvaccino" text="ID univoco:">
+         <TextField fx:id="tf_cv_nomeCittadino" onKeyTyped="#realtimeCheck" promptText="Nome" styleClass="field-preset-1" HBox.hgrow="ALWAYS">
             <HBox.margin>
-               <Insets right="10.0" top="5.0"/>
+               <Insets />
             </HBox.margin>
-         </Label>
-         <TextField fx:id="tf_cv_idVaccino" editable="false" onKeyTyped="#realtimeCheck">
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="tf_cv_cognomeCittadino" onKeyTyped="#realtimeCheck" promptText="Cognome" styleClass="field-preset-1" HBox.hgrow="ALWAYS">
             <HBox.margin>
-               <Insets/>
+               <Insets />
             </HBox.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
          </TextField>
       </HBox>
-      <Button fx:id="B_CV_confermaRegistrazioneCittadino" onAction="#registraVaccinato" styleClass="buttonSmall"
-              text="Registra">
+      <TextField fx:id="tf_cv_cfCittadino" onKeyTyped="#realtimeCheck" promptText="Codice  Fiscale" styleClass="field-preset-1">
          <VBox.margin>
-            <Insets left="260.0" right="260.0"/>
+            <Insets left="32.0" right="32.0" />
          </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Separator layoutX="10.0" layoutY="150.0" opacity="0.2">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Separator>
+      <Label text="Dati vaccino" textFill="#323232">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" spacing="16.0">
+         <Label styleClass="labelTarget" text="Data somministrazione:" textFill="#323232">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Label>
+         <DatePicker fx:id="dp_cv_datavaccino" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="207.0" promptText="Inserisci data">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </DatePicker>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+         <Label styleClass="labelTarget" text="Tipologia:" textFill="#323232">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Label>
+         <RadioButton fx:id="RB_CV_pfizer" mnemonicParsing="false" selected="true" text="Pfizer" textFill="#323232">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <toggleGroup>
+               <ToggleGroup fx:id="tg_vaccino" />
+            </toggleGroup>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </RadioButton>
+         <RadioButton fx:id="rb_cv_astrazeneca" mnemonicParsing="false" text="Astrazeneca" textFill="#323232" toggleGroup="$tg_vaccino">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </RadioButton>
+         <RadioButton fx:id="rb_cv_moderna" mnemonicParsing="false" text="Moderna" textFill="#323232" toggleGroup="$tg_vaccino">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </RadioButton>
+         <RadioButton fx:id="rb_cv_jj" mnemonicParsing="false" text="J&amp;J" textFill="#323232" toggleGroup="$tg_vaccino">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font>
+         </RadioButton>
+      </HBox>
+      <HBox alignment="CENTER" spacing="16.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <Label id="L_CV_targetIDvaccino" text="ID univoco:" textFill="#323232">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Label>
+         <TextField fx:id="tf_cv_idVaccino" editable="false" onKeyTyped="#realtimeCheck" styleClass="field-preset-1">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </TextField>
+      </HBox>
+      <Button fx:id="B_CV_confermaRegistrazioneCittadino" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#registraVaccinato" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Registra" textFill="#323232">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <ProgressIndicator fx:id="CV_registraVaccLoad" prefHeight="27.0" prefWidth="20.0" visible="false">
-         <VBox.margin>
-            <Insets left="290.0" right="290.0" top="10.0"/>
-         </VBox.margin>
-      </ProgressIndicator>
    </VBox>
+   <Label alignment="CENTER" contentDisplay="CENTER" styleClass="labelWelcome" text="REGISTRA CITTADINO VACCINATO" textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+      <font>
+         <Font name="Calibri Bold" size="24.0" />
+      </font>
+   </Label>
+   <FontIcon fx:id="FI_CV_back" iconColor="#323232" iconLiteral="subway-reply" iconSize="25" onMouseClicked="#BackTo" styleClass="backIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </FontIcon>
 </AnchorPane>

@@ -8,9 +8,11 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.models.Vaccinato;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +22,7 @@ import java.util.*;
 
 public class CVRegistraCittadinoController extends Controller {
 
-    @FXML public AnchorPane ap_registraVaccinato;
+    @FXML public AnchorPane ap_root;
     // TextFiled
     @FXML private TextField tf_cv_selezionaProvincia;
     @FXML private TextField tf_cv_nomeCittadino;
@@ -38,7 +40,7 @@ public class CVRegistraCittadinoController extends Controller {
     @FXML private RadioButton rb_cv_moderna;
     @FXML private RadioButton rb_cv_jj;
     // ToggleGroup (RadioButton)
-    @FXML private ToggleGroup radioGroup1;
+    @FXML private ToggleGroup tg_vaccino;
     // DatePicker
     @FXML private DatePicker dp_cv_datavaccino;
 
@@ -50,6 +52,10 @@ public class CVRegistraCittadinoController extends Controller {
     private long idVac = 0L;
 
     @FXML void initialize() {
+        initializeIdVaccino();
+    }
+
+    private void initializeIdVaccino () {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
         String stringID = sdf.format(new java.util.Date());
         stringID=stringID.substring(0, 16);
@@ -58,7 +64,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
         this.client = client;
     }
 
@@ -90,7 +96,18 @@ public class CVRegistraCittadinoController extends Controller {
             case REGISTRAZIONE_VACCINATO:
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
+                    DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
+                    dh.display(ap_root);
+                    //reset interfaccia
+                    tf_cv_nomeCittadino.setText("");
+                    tf_cv_cognomeCittadino.setText("");
+                    tf_cv_cfCittadino.setText("");
+                    dp_cv_datavaccino.setValue(null);
+                    tg_vaccino.selectToggle(rb_cv_pfizer);
+                    initializeIdVaccino();
                 } else {
+                    DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Non e' stato possibile registrare correttamente il cittadino", DialogHelper.Type.ERROR);
+                    dh.display(ap_root);
                     if(result.getExtendedResult().contains(Result.Error.CF_GIA_IN_USO)) {
                         cssHelper.toError(tf_cv_cfCittadino, new Tooltip("Codice fiscale gia' associato ad un vaccinato"));
                         System.err.println("Codice fiscale gia' associato ad un vaccinato");
@@ -149,7 +166,7 @@ public class CVRegistraCittadinoController extends Controller {
             String cognome= tf_cv_cognomeCittadino.getText();
             String cf= tf_cv_cfCittadino.getText();
             java.sql.Date data=java.sql.Date.valueOf(dp_cv_datavaccino.getValue());
-            Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) radioGroup1.getSelectedToggle()).getText());
+            Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
             client.registraVaccinato(this, nuovoVaccinato);
         }

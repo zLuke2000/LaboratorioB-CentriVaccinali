@@ -3,8 +3,8 @@ package it.uninsubria.centrivaccinali.controller;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class AvvioController extends Controller {
@@ -31,7 +31,7 @@ public class AvvioController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) { }
+    public void initParameter(ClientCV client, Scene scene) { }
 
     @Override
     public void notifyController(Result result) { }

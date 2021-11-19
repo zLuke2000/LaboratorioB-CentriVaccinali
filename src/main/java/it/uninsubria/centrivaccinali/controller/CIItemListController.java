@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,7 +26,7 @@ public class CIItemListController extends Controller{
     private Label ci_l_tipologiaItem;
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
 
     }
 

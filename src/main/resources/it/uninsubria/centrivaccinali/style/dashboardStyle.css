@@ -1,0 +1,36 @@
+.opaco-20 {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.bordo-sotto {
+    -fx-background-radius: 0 0 20 20;
+}
+
+/* MENU BUTTON */
+.menu-button {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+}
+
+.menu-button .arrow-button .arrow{
+    -fx-background-color: #323232;
+}
+
+.menu-item: hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 5;
+}
+
+.menu-item: focused {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 5;
+}
+
+.context-menu {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 5;
+}
+
+.context-menu .separator:horizontal .line {
+    -fx-border-color: #323232 transparent transparent transparent;
+}

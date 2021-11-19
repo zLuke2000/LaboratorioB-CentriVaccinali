@@ -10,10 +10,8 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
@@ -21,7 +19,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML public GridPane gp_root;
         @FXML private TextField tf_nome;
-        @FXML private ChoiceBox<Qualificatore> cb_qualificatore;
+        @FXML private ComboBox<Qualificatore> cb_qualificatore;
         @FXML private TextField tf_indirizzo;
         @FXML private TextField tf_civico;
         @FXML private TextField tf_comune;
@@ -44,7 +42,7 @@ public class CVRegistraCentroVaccinale extends Controller {
         }
 
         @Override
-        public void initParameter(ClientCV client) {
+        public void initParameter(ClientCV client, Scene scene) {
                 this.client = client;
         }
 
@@ -52,11 +50,21 @@ public class CVRegistraCentroVaccinale extends Controller {
         public void notifyController(Result result) {
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
+                        DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Centro vaccinale registrato con successo", DialogHelper.Type.INFO);
+                        dh.display(gp_root);
+                        //reset interfaccia
+                        tf_nome.setText("");
+                        cb_qualificatore.setValue(Qualificatore.VIA);
+                        tf_indirizzo.setText("");
+                        tf_civico.setText("");
+                        tf_provincia.setText("");
+                        tf_cap.setText("");
+                        tg_tipologia.selectToggle(rb_ospedaliero);
                 } else {
                         if(result.getExtendedResult().contains(Result.Error.NOME_IN_USO)) {
                                 System.err.println("Registrazione fallita - Centro vaccinale gia' registrato");
                                 DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Centro vaccinale gia' registrato", DialogHelper.Type.ERROR);
-                                dh.display(null);
+                                dh.display(gp_root);
                         }
                 }
         }
@@ -90,14 +98,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
                 CentroVaccinale centroVaccinale;
                 if(cp.testoSempliceConNumeri(tf_nome, 6, 50) & cp.testoSempliceSenzaNumeri(tf_indirizzo, 3, 50) & cp.numeroCivico(tf_civico) & cp.testoSempliceSenzaNumeri(tf_comune, 3, 50) & cp.provincia(tf_provincia) & cp.numeri(tf_cap, 5, 5)) {
-                        TipologiaCentro tipologiaSelezionata;
-                        if(rb_ospedaliero.isSelected()) {
-                                tipologiaSelezionata = TipologiaCentro.OSPEDALIERO;
-                        } else if(rb_aziendale.isSelected()) {
-                                tipologiaSelezionata = TipologiaCentro.AZIENDALE;
-                        } else {
-                                tipologiaSelezionata = TipologiaCentro.HUB;
-                        }
+                        TipologiaCentro tipologiaSelezionata = TipologiaCentro.getValue(((RadioButton) tg_tipologia.getSelectedToggle()).getText());
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(cb_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
                         client.registraCentroVaccinale(this, centroVaccinale);
                 }

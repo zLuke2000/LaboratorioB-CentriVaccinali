@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -41,7 +42,7 @@ public class CIHomeController extends Controller {
     private CssHelper cssh = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
         this.client = client;
     }
 
@@ -69,7 +70,7 @@ public class CIHomeController extends Controller {
     /**
      * Metodo per entrare con l'accesso libero dentro all'applicazione
      */
-    @FXML public void ToFreeAccess() {
+    @FXML public void toFreeAccess() {
         CentriVaccinali.setRoot("CI_dashboard");
     }
 

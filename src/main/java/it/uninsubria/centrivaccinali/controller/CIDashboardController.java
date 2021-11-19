@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -122,7 +123,7 @@ public class CIDashboardController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
         this.client =  client;
         this.cittadinoConesso = client.getUtenteLoggato();
         if(cittadinoConesso != null) {

@@ -28,6 +28,5 @@ public class GenericDialogController {
     public void addButton(Button b){
         fp_buttons.getChildren().add(b);
         b_d_close.setText("NO");
-
     }
 }

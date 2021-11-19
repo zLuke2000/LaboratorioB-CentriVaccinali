@@ -9,17 +9,24 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
-    private final static Double h_avvio = 271.0;
     private final static Double w_avvio = 450.0;
-    private final static Double h_dashboard = 800.0;
+    private final static Double h_avvio = 280.0;
+
+    private final static Double w_cv_login = 390.0;
+    private final static Double h_cv_login = 420.0;
+
+    private final static Double w_ci_reg = 400.0;
+    private final static Double h_ci_reg = 520.0;
+
     private final static Double w_dashboard = 1200.0;
+    private final static Double h_dashboard = 800.0;
+
     private final static Double w_standard = 390.0;
     private final static Double h_standard = 565.0;
 
@@ -70,14 +77,14 @@ public class CentriVaccinali extends Application {
             case "CV_login":
                 System.out.println("[CV_MAIN] selezionato: CV_login");
                 stage.setTitle("Login operatore");
-                width = w_standard;
-                height = h_standard;
+                height = h_cv_login;
+                width = w_cv_login;
                 break;
             case "CV_change":
                 System.out.println("[CV_MAIN] selezionato: CV_change");
                 stage.setTitle("Seleziona azione");
-                width = w_standard;
-                height = h_standard;
+                width = w_avvio;
+                height = h_avvio;
                 break;
             case "CV_registraCentroVaccinale":
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
@@ -92,8 +99,8 @@ public class CentriVaccinali extends Application {
                 break;
             case "CI_registrazione":
                 stage.setTitle("Registrazione cittadino");
-                width = 390.0;
-                height = 640.0;
+                width = w_ci_reg;
+                height = h_ci_reg;
                 break;
             case "CI_dashboard":
                 stage.setTitle("Area Cittadino");
@@ -115,7 +122,7 @@ public class CentriVaccinali extends Application {
                 break;
         }
         controller = fxmlLoader.getController();
-        controller.initParameter(client);
+        controller.initParameter(client, scene);
         stage.setWidth(width);
         stage.setHeight(height);
     }
