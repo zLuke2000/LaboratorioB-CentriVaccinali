@@ -1,6 +1,5 @@
 package it.uninsubria.centrivaccinali.controller;
 
-import com.jfoenix.controls.JFXComboBox;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -11,21 +10,14 @@ import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 
@@ -125,17 +117,6 @@ public class CIDashboardController extends Controller {
     private Controller controllerRicerca;*/
 
     @FXML void initialize() {
-        //TODO inserire fragment ricerca
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
-                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
-        try {
-            AnchorPane ap = fxmlLoader.load();
-            ci_p_container.getChildren().add(ap);
-            CIRicercaHomeController c = fxmlLoader.getController();
-            c.setParentController(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -3,34 +3,55 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="705.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRicercaHomeController">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="trasparent" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRicercaResultController">
    <children>
-      <Pane prefHeight="705.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Separator opacity="0.2" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="597.0" AnchorPane.topAnchor="20.0">
-         <effect>
-            <InnerShadow choke="0.34" height="10.0" radius="4.5" width="10.0">
-               <color>
-                  <Color red="0.28947368264198303" green="0.28947368264198303" blue="0.28947368264198303" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Separator>
+      <AnchorPane layoutX="600.0" prefHeight="700.0" prefWidth="600.0" styleClass="trasparent">
+         <children>
+            <ScrollPane layoutX="165.0" layoutY="104.0" prefHeight="710.0" prefWidth="600.0" styleClass="trasparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+               <content>
+                  <VBox fx:id="vb_risultati" prefHeight="694.0" prefWidth="588.0" styleClass="trasparent" />
+               </content>
+            </ScrollPane>
+            <GridPane layoutX="10.0" layoutY="10.0" prefHeight="21.0" prefWidth="581.0" styleClass="trasparent" AnchorPane.topAnchor="0.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="223.0" styleClass="label-targetItemList" text="Tipologia" />
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="228.0" styleClass="label-targetItemList" text="Generalità" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="240.0" styleClass="label-targetItemList" text="Azioni" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
       <AnchorPane minWidth="550.0" styleClass="trasparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="603.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="ci_tf_ricercaNomeCV" layoutY="275.0" promptText="Inserisci nome centro vaccinale" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="275.0" />
             <Label fx:id="target_Ricerca" text="Tipologia ricerca:" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="30.0" />
             <ComboBox fx:id="ci_cb_sceltaRicerca" layoutX="279.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="30.0" prefWidth="700.0" styleClass="combo-box" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="53.0" />
-            <ComboBox fx:id="ci_cb_sceltaTipologia" layoutX="50.0" layoutY="175.0" prefWidth="150.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-            <TextField fx:id="ci_tf_ricercaComune" layoutX="50.0" layoutY="275.0" promptText="Comune" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+            <AnchorPane fx:id="ci_ap_tc" layoutX="100.0" layoutY="175.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <ComboBox fx:id="ci_cb_sceltaTipologia" prefWidth="150.0" styleClass="comboBoxTipologia" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+                  <TextField fx:id="ci_tf_ricercaComune" layoutY="100.0" promptText="Comune" styleClass="textfield-RicercaCV" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+               </children>
+            </AnchorPane>
             <Button fx:id="CI_B_ricerca" layoutX="200.0" layoutY="425.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cercaCentroVaccinale" prefHeight="33.0" prefWidth="200.0" styleClass="button-preset-1" text="Cerca" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
                <graphic>
                   <FontIcon iconLiteral="bx-search-alt-2" iconSize="20" />
@@ -41,5 +62,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Separator maxWidth="2.0" minWidth="2.0" opacity="0.2" orientation="VERTICAL" prefHeight="200.0" prefWidth="2.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="595.0" AnchorPane.topAnchor="10.0">
+         <effect>
+            <Shadow height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </Separator>
    </children>
 </AnchorPane>

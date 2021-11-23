@@ -4,17 +4,18 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class CIRicercaHomeController extends Controller{
 
     private ClientCV client;
     private ControlloParametri cp = ControlloParametri.getInstance();
-    private CIDashboardController parentController;
+    private CIDashboardController parent;
 
     //Se falso vuol dire che non ha fatto nessuna ricerca e che quindi è nell'interffaccia di home,
     //se vero vuol dire che ha fatto almeno una ricerca e cio vuol dire che si ritrova nell'interfaccia
@@ -22,7 +23,16 @@ public class CIRicercaHomeController extends Controller{
     private boolean interfaces = false;
 
     @FXML
+    private AnchorPane ci_ap_tc;
+
+    @FXML
+    private AnchorPane ci_ap_tcmini;
+
+    @FXML
     private TextField ci_tf_ricercaNomeCV;
+
+    @FXML
+    private TextField ci_tf_ricercaNomeCVmini;
 
     @FXML
     private ComboBox ci_cb_sceltaRicerca;
@@ -31,7 +41,16 @@ public class CIRicercaHomeController extends Controller{
     private ComboBox ci_cb_sceltaTipologia;
 
     @FXML
+    private ComboBox ci_cb_sceltaTipologiamini;
+
+    @FXML
     private TextField ci_tf_ricercaComune;
+
+    @FXML
+    private TextField ci_tf_ricercaComunemini;
+
+    @FXML
+    private ComboBox ci_cb_sceltaRicercamini;
 
     @FXML void initialize () {
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
@@ -49,20 +68,16 @@ public class CIRicercaHomeController extends Controller{
 
     }
 
-    public void cambiaRicerca() {
-        if(ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
+    public void cambiaRicerca(Event e) {
+        if (ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
             ci_tf_ricercaNomeCV.clear();
             ci_tf_ricercaNomeCV.setVisible(true);
-            //CI_B_ricerca.setVisible(true);
-            ci_cb_sceltaTipologia.setVisible(false);
-            ci_tf_ricercaComune.setVisible(false);
-        } else if(ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per comune e tipologia")) {
+            ci_ap_tc.setVisible(false);
+        } else if (ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per comune e tipologia")) {
             ci_tf_ricercaNomeCV.setVisible(false);
-            //CI_B_ricerca.setVisible(true);
             ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
-            ci_cb_sceltaTipologia.setVisible(true);
             ci_tf_ricercaComune.clear();
-            ci_tf_ricercaComune.setVisible(true);
+            ci_ap_tc.setVisible(true);
         }
     }
 
@@ -81,8 +96,8 @@ public class CIRicercaHomeController extends Controller{
         parentController.prova();
     }
 
-    public void setParentController(Controller c) {
-        parentController = (CIDashboardController) c;
+    public void setParent(Controller c) {
+        parent = (CIDashboardController) c;
     }
 
     //TODO metodo per chiudere applicazione

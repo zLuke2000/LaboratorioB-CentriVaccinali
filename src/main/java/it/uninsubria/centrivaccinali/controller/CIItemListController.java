@@ -57,4 +57,10 @@ public class CIItemListController extends Controller{
 
     public void visualizzaInfoCentroVaccinale(ActionEvent actionEvent) {
     }
+
+    public void addEvent(ActionEvent actionEvent) {
+    }
+
+    public void showInfo(ActionEvent actionEvent) {
+    }
 }
