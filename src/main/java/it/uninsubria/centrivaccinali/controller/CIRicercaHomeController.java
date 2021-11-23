@@ -14,6 +14,12 @@ public class CIRicercaHomeController extends Controller{
 
     private ClientCV client;
     private ControlloParametri cp = ControlloParametri.getInstance();
+    private CIDashboardController parentController;
+
+    //Se falso vuol dire che non ha fatto nessuna ricerca e che quindi è nell'interffaccia di home,
+    //se vero vuol dire che ha fatto almeno una ricerca e cio vuol dire che si ritrova nell'interfaccia
+    //della seconda ricerca
+    private boolean interfaces = false;
 
     @FXML
     private TextField ci_tf_ricercaNomeCV;
@@ -73,6 +79,10 @@ public class CIRicercaHomeController extends Controller{
 //            //....
 //        }
         parentController.prova();
+    }
+
+    public void setParentController(Controller c) {
+        parentController = (CIDashboardController) c;
     }
 
     //TODO metodo per chiudere applicazione

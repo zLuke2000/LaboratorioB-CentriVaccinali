@@ -68,7 +68,7 @@
             <Button fx:id="CI_B_loginDash1" mnemonicParsing="false" onAction="#loginDash" styleClass="transparent" text="Non hai un account?  Registrati" underline="true" />
          </children>
       </VBox>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+      <ImageView onMouseClicked="#chiudi" fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <image>
             <Image url="@../image/closeIcon.png" />
          </image>

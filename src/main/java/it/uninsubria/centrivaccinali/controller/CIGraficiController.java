@@ -44,7 +44,7 @@ public class CIGraficiController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client) {
+    public void initParameter(ClientCV client, Scene scene) {
         this.client = client;
     }
 

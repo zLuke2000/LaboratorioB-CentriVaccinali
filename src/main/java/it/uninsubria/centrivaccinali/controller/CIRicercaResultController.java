@@ -14,13 +14,9 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class CIRicercaResultController extends Controller{
 
+    private ClientCV client;
 
     @FXML void initialize () {
-    }
-
-    @Override
-    public void initParameter(ClientCV client) {
-
     }
 
     @Override

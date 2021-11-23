@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -294,8 +295,25 @@ public class CIDashboardController extends Controller {
         CI_FI_research2.setVisible(true);
     } */
 
-    public void tempEV() {
-        CentriVaccinali.setRoot("fragments/F_CI_EA_root");
+    public void prova() {
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaResult.fxml"));
+        try {
+            AnchorPane paneRicerca = fxmlLoader.load();
+            FadeTransition transition = new FadeTransition(Duration.millis(1000), paneRicerca);
+            transition.setFromValue(0);
+            transition.setToValue(1);
+            transition.setInterpolator(Interpolator.EASE_IN);
+            ci_p_container.getChildren().add(paneRicerca);
+            transition.play();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void chiudi() {
+        super.closeApp();
+    }
+
 }
 
