@@ -23,23 +23,16 @@ import java.io.IOException;
 
 public class CIDashboardController extends Controller {
 
+    public MenuButton CI_MB_SiCitt;
+    public Button CI_B_loginDash;
+    private Cittadino cittadinoConesso = null;
+    private ClientCV client;
+    private ControlloParametri cp = ControlloParametri.getInstance();
+    private CIRicercaResultController resultController = null;
+
     //Container
     @FXML
     public Pane ci_p_container;
-
-    public MenuButton CI_MB_SiCitt;
-
-    public Button CI_B_loginDash;
-
-    private Cittadino cittadinoConesso = null;
-
-    private ClientCV client;
-
-    private ControlloParametri cp = ControlloParametri.getInstance();
-
-    private final ObservableList<String> itemResearch = FXCollections.observableArrayList("Per nome", "Per comune e tipologia");
-
-    private final ObservableList<String> itemCV = FXCollections.observableArrayList("Ospedaliero", "Aziendale" ,"Hub");
 
     /*
     @FXML
@@ -122,6 +115,7 @@ public class CIDashboardController extends Controller {
     @Override
     public void initParameter(ClientCV client, Scene scene) {
         this.client =  client;
+        System.out.println("Dash: " + client);
         this.cittadinoConesso = client.getUtenteLoggato();
         if(cittadinoConesso != null) {
             System.out.println(cittadinoConesso.getUserid());
@@ -133,11 +127,23 @@ public class CIDashboardController extends Controller {
             CI_TF_passwordDash.setVisible(true);
             CI_B_loginDash.setVisible(true);
         }
+        //TODO sistemare magari fuori da initParameter
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            ci_p_container.getChildren().add(ap);
+            CIRicercaHomeController c = fxmlLoader.getController();
+            c.setParent(this);
+            c.initParameter(client, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void notifyController(Result result) {
-        if (result.getOpType() == Result.Operation.LOGIN_CITTADINO){
+        if (result.getOpType() == Result.Operation.LOGIN_CITTADINO) {
             Platform.runLater(() -> {
                 CI_TF_userDash.setVisible(false);
                 CI_TF_passwordDash.setVisible(false);
@@ -147,98 +153,25 @@ public class CIDashboardController extends Controller {
             });
         }
         else {
-            if (!result.getResultCentri().isEmpty()) {
-                Platform.runLater(() -> {
-                    //TODO si inserisce transizione
-                    //ci_scrollpane.setVisible(true);
-                });
-                for (CentroVaccinale cv : result.getResultCentri()) {
-                    System.out.println(cv);
-                    /*
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/ItemList.fxml"));
-                    try {
-                        HBox itemList = fxmlLoader.load();
-                        CIItemListController itemController = fxmlLoader.getController();
-                        itemController.setData(cv);
-                        Platform.runLater(() -> {
-                            CI_HB_containerItem.getChildren().add(itemList);
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                     */
+            if (resultController == null) {
+                FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                        .getResource("fxml/fragments/fragmentDashboard/Idea1Doppia.fxml"));
+                try {
+                    AnchorPane ap = fxmlLoader.load();
+                    Platform.runLater(() -> {
+                        ci_p_container.getChildren().clear();
+                        ci_p_container.getChildren().add(ap);
+                    });
+                    resultController = fxmlLoader.getController();
+                    resultController.setParent(this);
+                    resultController.initParameter(client, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-            else {
-                System.err.println("Nessun risultato");
-            }
+            resultController.setData(result.getResultCentri());
         }
     }
-
-    public void cercaCentroVaccinale(CIRicercaHomeController controller) {
-        /*
-        Object source = actionEvent.getSource();
-        if(source.equals(CI_B_ricerca)){
-            if(CI_TF_ricercaNomeCV.isVisible() && cp.testoSempliceSenzaNumeri(CI_TF_ricercaNomeCV, 6, 50)) {
-                String nomeCV = CI_TF_ricercaNomeCV.getText().trim();
-                client.ricercaPerNome(this, nomeCV);
-                CI_TF_ricercaNomeCVSearch.setText(nomeCV);
-                CI_CB_SceltaRicerca2.setValue("Per nome");
-                CI_AP_ricercaHome.setVisible(false);
-                CI_AP_ricerca2.setVisible(true);
-            } else if (CI_CB_ricercaTipologia.isVisible() && cp.testoSempliceSenzaNumeri(CI_TF_ricercaComune,3, 50)) {
-                String comuneCV = CI_TF_ricercaComune.getText().trim();
-                TipologiaCentro tipologiaCV = TipologiaCentro.valueOf(CI_CB_ricercaTipologia.getValue().toUpperCase());
-                client.ricercaPerComuneTipologia(this, comuneCV, tipologiaCV);
-                CI_CB_ricercaTipologiaSearch.setValue(CI_CB_ricercaTipologia.getValue());
-                CI_TF_ricercaComuneSearch.setText(comuneCV);
-                CI_CB_SceltaRicerca2.setValue("Per comune e tipologia");
-                CI_AP_ricercaHome.setVisible(true);
-                CI_AP_ricerca2.setVisible(false);
-            }
-        } else if(source.equals(CI_FI_ricercaNomeCV2)) {
-                    String nomeCV = CI_TF_ricercaNomeCVSearch.getText().trim();
-                    client.ricercaPerNome(this, nomeCV);
-                } else if(source.equals(CI_FI_research2)) {
-                            String comuneCV = CI_TF_ricercaComuneSearch.getText().trim();
-                            TipologiaCentro tipologiaCV = TipologiaCentro.valueOf(CI_CB_ricercaTipologiaSearch.getValue().toUpperCase());
-                            client.ricercaPerComuneTipologia(this, comuneCV, tipologiaCV);
-                        }
-
-         */
-    }
-
-    /*
-    public void changeResearch(ActionEvent actionEvent) {
-        if(actionEvent.getSource().equals(CI_CB_SceltaRicerca)) {
-            if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
-                CI_TF_ricercaNomeCV.clear();
-                CI_TF_ricercaNomeCV.setVisible(true);
-                CI_B_ricerca.setVisible(true);
-                CI_CB_ricercaTipologia.setVisible(false);
-                CI_TF_ricercaComune.setVisible(false);
-            } else if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per comune e tipologia")) {
-                        CI_TF_ricercaNomeCV.setVisible(false);
-                        CI_B_ricerca.setVisible(true);
-                        CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
-                        CI_CB_ricercaTipologia.setVisible(true);
-                        CI_TF_ricercaComune.clear();
-                        CI_TF_ricercaComune.setVisible(true);
-            }
-        }
-    }
-
-
-    public void changeResearch2(ActionEvent actionEvent) {
-        if(actionEvent.getSource().equals(CI_CB_SceltaRicerca2)) {
-            if(CI_CB_SceltaRicerca2.getSelectionModel().getSelectedItem().equals("Per nome")) {
-                RicercaPerNome();
-            } else if(CI_CB_SceltaRicerca2.getSelectionModel().getSelectedItem().equals("Per comune e tipologia")) {
-                RicercaPerTipoCom();
-            }
-        }
-    } */
 
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
     }
@@ -276,6 +209,7 @@ public class CIDashboardController extends Controller {
         CI_FI_research2.setVisible(true);
     } */
 
+    //FIXME togliere
     public void prova() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
                 .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaResult.fxml"));

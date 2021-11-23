@@ -55,6 +55,7 @@ public class CIRicercaHomeController extends Controller{
     @FXML void initialize () {
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
         this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
+        ci_tf_ricercaNomeCV.setVisible(true);
         this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
@@ -83,17 +84,22 @@ public class CIRicercaHomeController extends Controller{
 
     @FXML
     public void cercaCentroVaccinale() {
+        String ricerca = (String) ci_cb_sceltaRicerca.getValue();
+        if (ricerca.equals("Per nome") && !ci_tf_ricercaNomeCV.getText().isBlank()) {
+            System.out.println("Ric: " + client);
+            System.out.println(parent + ci_tf_ricercaNomeCV.getText());
+            client.ricercaPerNome(parent, ci_tf_ricercaNomeCV.getText());
+        }
+        else if (ricerca.equals("Per comune e tipologia") && !ci_tf_ricercaComune.getText().isBlank()) {
+            client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(),
+                    TipologiaCentro.getValue((String) ci_cb_sceltaTipologia.getValue()));
+        }
+
         //TODO (idea) chiamare qua la ricerca dei centri vaccinali, e notifivare la dashboard
         // con la notifyStatus facendo i divuti cambiamenti, così da non doverci preoccupare di
         // dati e controller da portare in giro ( facendo fiventare il controller della dashboard
         // un singleton )
 
-//        if(ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
-//            String nome= ci_tf_ricercaNomeCV.getText().trim();
-//        } else {
-//            //....
-//        }
-        parentController.prova();
     }
 
     public void setParent(Controller c) {

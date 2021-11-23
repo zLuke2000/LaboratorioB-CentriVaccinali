@@ -14,7 +14,7 @@
    <children>
       <ScrollPane layoutX="165.0" layoutY="104.0" prefHeight="710.0" prefWidth="600.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox prefHeight="694.0" prefWidth="588.0">
+            <VBox fx:id="vb_risultati" prefHeight="694.0" prefWidth="588.0">
                <children>
                   <GridPane prefHeight="21.0" prefWidth="581.0">
                     <columnConstraints>
