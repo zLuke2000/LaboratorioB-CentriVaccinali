@@ -69,7 +69,8 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
-        @FXML void realtimeCheck(KeyEvent ke) {
+        @FXML
+        void realtimeCheck(KeyEvent ke) {
                 if(ke.getSource().equals(tf_nome)) {
                         cp.testoSempliceConNumeri(tf_nome, 6, 50);
                 } else if(ke.getSource().equals(tf_indirizzo)) {
@@ -87,7 +88,8 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
-        @FXML void salvaCentro() {
+        @FXML
+        void salvaCentro() {
                 // Definizione e inizializzazione variabili
                 String nomeCentro = tf_nome.getText().trim();
                 String nomeIndirizzo = tf_indirizzo.getText().trim();
@@ -104,8 +106,14 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
-        @FXML public void backTo() {
+        @FXML
+        public void backTo() {
                 CentriVaccinali.setRoot("CV_change");
                 client.stopOperation();
+        }
+
+        @FXML
+        void chiudi() {
+                super.closeApp();
         }
 }

@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVChangeController">
+<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVChangeController">
    <AnchorPane prefHeight="565.0" prefWidth="390.0" styleClass="default-bg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" styleClass="labelWelcome" text="OPERATORE SANITARIO" textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
          <font>
             <Font name="Calibri Bold" size="30.0" />
          </font></Label>
-      <FontIcon iconColor="#323232" iconLiteral="subway-reply" iconSize="22" layoutX="8.0" layoutY="23.0" onMouseClicked="#BackTo" styleClass="redIcon" wrappingWidth="13.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></FontIcon>
       <HBox alignment="CENTER" prefHeight="181.0" prefWidth="450.0" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="79.0">
          <children>
             <VBox alignment="CENTER" spacing="9.0">
                <children>
                   <Button fx:id="B_CV_registracittadino" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegistraVaccinato" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
                      <graphic>
-                        <FontIcon iconColor="#323232" iconLiteral="bpmn-user" iconSize="150" styleClass="buttonIcon" />
+                        <FontIcon iconColor="#323232" iconLiteral="mdi2a-account-circle-outline" iconSize="150" styleClass="buttonIcon" />
                      </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -44,7 +35,7 @@
                <children>
                   <Button fx:id="B_CV_registracv" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegistraCentroVaccinale" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
                      <graphic>
-                        <FontIcon iconColor="#323232" iconLiteral="ci-hospital" iconSize="110" />
+                        <FontIcon iconColor="#323232" iconLiteral="mdi2h-hospital-building" iconSize="135" />
                      </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -59,13 +50,7 @@
             </VBox>
          </children>
       </HBox>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="41.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@../image/closeIcon.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
+      <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" layoutX="30.0" layoutY="37.0" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
+      <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" layoutX="403.0" layoutY="29.0" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    </AnchorPane>
 </AnchorPane>
