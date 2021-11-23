@@ -26,7 +26,7 @@
          <children>
             <ImageView fx:id="ci_iv_imageItem" fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Image/Aziendale.jpeg" />
+                  <Image url="@../image/Aziendale.jpeg" />
                </image>
             </ImageView>
             <Label fx:id="ci_l_tipologiaItem" style="-fx-font-size: 10;" text="Tipologia" />

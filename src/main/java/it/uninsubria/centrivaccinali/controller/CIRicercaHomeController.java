@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -33,7 +34,8 @@ public class CIRicercaHomeController extends Controller{
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
 
-    public void initParameter(ClientCV client) {
+    @Override
+    public void initParameter(ClientCV client, Scene scene) {
         this.client = client;
     }
 
@@ -58,10 +60,27 @@ public class CIRicercaHomeController extends Controller{
         }
     }
 
+    @FXML
     public void cercaCentroVaccinale() {
+        //TODO (idea) chiamare qua la ricerca dei centri vaccinali, e notifivare la dashboard
+        // con la notifyStatus facendo i divuti cambiamenti, così da non doverci preoccupare di
+        // dati e controller da portare in giro ( facendo fiventare il controller della dashboard
+        // un singleton )
+
+//        if(ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
+//            String nome= ci_tf_ricercaNomeCV.getText().trim();
+//        } else {
+//            //....
+//        }
+        parentController.prova();
     }
 
     //TODO metodo per chiudere applicazione
 
     //TODO metodo per tornare indietro
+
+
+    public void switchIterfaces(boolean interfaces) {
+        this.interfaces = interfaces;
+    }
 }

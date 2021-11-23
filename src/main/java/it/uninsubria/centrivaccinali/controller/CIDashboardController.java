@@ -8,6 +8,8 @@ import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,17 +21,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 
 public class CIDashboardController extends Controller {
 
-
     //Container
     @FXML
-    private AnchorPane CI_HP_containerDashboard;
+    public Pane ci_p_container;
+
+    public MenuButton CI_MB_SiCitt;
+
+    public Button CI_B_loginDash;
 
     private Cittadino cittadinoConesso = null;
 
@@ -41,6 +48,7 @@ public class CIDashboardController extends Controller {
 
     private final ObservableList<String> itemCV = FXCollections.observableArrayList("Ospedaliero", "Aziendale" ,"Hub");
 
+    /*
     @FXML
     private AnchorPane CI_AP_container;
 
@@ -61,10 +69,12 @@ public class CIDashboardController extends Controller {
 
     @FXML
     private JFXComboBox<String> CI_CB_SceltaRicerca2;
+     */
 
     @FXML
     private TextField CI_TF_userDash;
 
+    /*
     @FXML
     private TextField CI_TF_ricercaNomeCV;
 
@@ -75,11 +85,12 @@ public class CIDashboardController extends Controller {
     private TextField CI_TF_ricercaNomeCVSearch;
 
     @FXML
-    private TextField CI_TF_ricercaComuneSearch;
+    private TextField CI_TF_ricercaComuneSearch;*/
 
     @FXML
     private PasswordField CI_TF_passwordDash;
 
+    /*
     @FXML
     private Button CI_B_ricerca;
 
@@ -110,16 +121,20 @@ public class CIDashboardController extends Controller {
     @FXML
     private ScrollPane ci_scrollpane;
 
-    private Controller controllerRicerca;
+    private Controller controllerRicerca;*/
 
     @FXML void initialize() {
-        //TODO inserire fragment ricerca home
-        this.CI_CB_SceltaRicerca.getItems().addAll(itemResearch);
-        this.CI_CB_SceltaRicerca.getSelectionModel().selectFirst();
-        this.CI_CB_SceltaRicerca2.getItems().addAll(itemResearch);
-        this.CI_CB_ricercaTipologia.getItems().addAll(itemCV);
-        this.CI_CB_ricercaTipologia.getSelectionModel().selectFirst();
-        this.CI_CB_ricercaTipologiaSearch.getItems().addAll(itemCV);
+        //TODO inserire fragment ricerca
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            ci_p_container.getChildren().add(ap);
+            CIRicercaHomeController c = fxmlLoader.getController();
+            c.setParentController(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -145,7 +160,6 @@ public class CIDashboardController extends Controller {
                 CI_TF_userDash.setVisible(false);
                 CI_TF_passwordDash.setVisible(false);
                 CI_B_loginDash.setVisible(false);
-                CI_PI_loadLoginDash.setVisible(false);
                 CI_MB_SiCitt.setText(client.getUtenteLoggato().getUserid());
                 CI_MB_SiCitt.setVisible(true);
             });
@@ -153,10 +167,12 @@ public class CIDashboardController extends Controller {
         else {
             if (!result.getResultCentri().isEmpty()) {
                 Platform.runLater(() -> {
-                    ci_scrollpane.setVisible(true);
+                    //TODO si inserisce transizione
+                    //ci_scrollpane.setVisible(true);
                 });
-                for (CentroVaccinale cv: result.getResultCentri()) {
+                for (CentroVaccinale cv : result.getResultCentri()) {
                     System.out.println(cv);
+                    /*
                     FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/ItemList.fxml"));
                     try {
                         HBox itemList = fxmlLoader.load();
@@ -169,15 +185,17 @@ public class CIDashboardController extends Controller {
                         e.printStackTrace();
                     }
                 }
+                     */
+                }
             }
             else {
                 System.err.println("Nessun risultato");
-                CI_L_NessunRisultato.setVisible(true);
             }
         }
     }
 
-    public void cercaCentroVaccinale(Event actionEvent) {
+    public void cercaCentroVaccinale(CIRicercaHomeController controller) {
+        /*
         Object source = actionEvent.getSource();
         if(source.equals(CI_B_ricerca)){
             if(CI_TF_ricercaNomeCV.isVisible() && cp.testoSempliceSenzaNumeri(CI_TF_ricercaNomeCV, 6, 50)) {
@@ -205,8 +223,11 @@ public class CIDashboardController extends Controller {
                             TipologiaCentro tipologiaCV = TipologiaCentro.valueOf(CI_CB_ricercaTipologiaSearch.getValue().toUpperCase());
                             client.ricercaPerComuneTipologia(this, comuneCV, tipologiaCV);
                         }
+
+         */
     }
 
+    /*
     public void changeResearch(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(CI_CB_SceltaRicerca)) {
             if(CI_CB_SceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
@@ -226,6 +247,7 @@ public class CIDashboardController extends Controller {
         }
     }
 
+
     public void changeResearch2(ActionEvent actionEvent) {
         if(actionEvent.getSource().equals(CI_CB_SceltaRicerca2)) {
             if(CI_CB_SceltaRicerca2.getSelectionModel().getSelectedItem().equals("Per nome")) {
@@ -234,7 +256,7 @@ public class CIDashboardController extends Controller {
                 RicercaPerTipoCom();
             }
         }
-    }
+    } */
 
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
     }
@@ -248,7 +270,6 @@ public class CIDashboardController extends Controller {
         if (!CI_TF_userDash.getText().isBlank() && !CI_TF_passwordDash.getText().isBlank()) {
             String username = CI_TF_userDash.getText().trim();
             String password = CI_TF_passwordDash.getText().trim();
-            CI_PI_loadLoginDash.setVisible(true);
             client.loginUtente(this, username, password);
         }
     }
@@ -256,6 +277,7 @@ public class CIDashboardController extends Controller {
     public void loginMB(ActionEvent actionEvent) {
     }
 
+    /*
     private void RicercaPerNome()  {
         CI_TF_ricercaNomeCVSearch.setVisible(true);
         CI_FI_ricercaNomeCV2.setVisible(true);
@@ -270,7 +292,7 @@ public class CIDashboardController extends Controller {
         CI_TF_ricercaComuneSearch.setVisible(true);
         CI_CB_ricercaTipologiaSearch.setVisible(true);
         CI_FI_research2.setVisible(true);
-    }
+    } */
 
     public void tempEV() {
         CentriVaccinali.setRoot("fragments/F_CI_EA_root");
