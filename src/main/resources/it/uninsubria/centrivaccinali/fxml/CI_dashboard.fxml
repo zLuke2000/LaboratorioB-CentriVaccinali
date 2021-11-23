@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="default-bg">
       <opaqueInsets>
          <Insets />
@@ -68,18 +68,18 @@
             <Button fx:id="CI_B_loginDash1" mnemonicParsing="false" onAction="#loginDash" styleClass="transparent" text="Non hai un account?  Registrati" underline="true" />
          </children>
       </VBox>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+      <ImageView onMouseClicked="#chiudi" fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <image>
             <Image url="@../image/closeIcon.png" />
          </image>
       </ImageView>
    </AnchorPane>
-   <Pane layoutX="277.0" layoutY="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+   <HBox fx:id="ci_p_container" layoutX="277.0" layoutY="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <styleClass>
          <String fx:value="bordo-sotto" />
          <String fx:value="opaco-20" />
       </styleClass>
-   </Pane>
+   </HBox>
    <stylesheets>
       <URL value="@../style/style.css" />
       <URL value="@../style/dashboardStyle.css" />

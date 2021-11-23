@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIGraficiController">
+   <children>
+      <BarChart fx:id="ci_bc_prospetto" alternativeColumnFillVisible="true" layoutX="6.0" layoutY="5.0" prefHeight="592.0" prefWidth="771.0" title="Prospetto Riassuntivo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <xAxis>
+          <CategoryAxis fx:id="tipoEventoAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="gravitàAxis" autoRanging="false" side="LEFT" tickLabelGap="2.0" tickUnit="1.0" upperBound="5.0" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

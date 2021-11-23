@@ -2,63 +2,83 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIShowGeneralCVController">
    <children>
-      <AnchorPane layoutX="16.0" layoutY="14.0" prefWidth="370.0" styleClass="rootItem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Separator layoutX="313.0" layoutY="1.0" orientation="VERTICAL" prefHeight="244.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="820.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <Shadow blurType="GAUSSIAN" height="0.0" radius="12.8575" width="53.43" />
+         </effect>
+      </Separator>
+      <VBox alignment="TOP_CENTER" layoutX="137.0" layoutY="264.0" prefHeight="200.0" prefWidth="100.0" styleClass="panelSuperior" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="820.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="170.0" layoutY="35.0" styleClass="label-titleDashboard" text="INFORMAZIONI" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="85.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="100.0" />
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="270.0">
+            <AnchorPane prefHeight="54.0" prefWidth="380.0">
                <children>
-                  <Label styleClass="labelTargetInformazioniCV" text="Nome:">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="CI_L_NomeCVInfo" text="Label">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label styleClass="labelTargetInformazioniCV" text="Indirizzo:">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="CI_L_NomeCVInfo1" layoutX="178.0" layoutY="75.0" text="Label">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label styleClass="labelTargetInformazioniCV" text="Tipologia:">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="CI_L_NomeCVInfo11" layoutX="178.0" layoutY="139.0" text="Label">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Label>
+                  <FontIcon iconLiteral="subway-reply" layoutX="19.0" layoutY="40.0" styleClass="backIcon" />
+                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" styleClass="label-titleInfoProspetto" text="Informazioni Generali" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
-            </VBox>
-         </children></AnchorPane>
-      <AnchorPane layoutX="468.0" layoutY="92.0" prefHeight="200.0" prefWidth="200.0" styleClass="rootItem" AnchorPane.bottomAnchor="345.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" styleClass="label-titleDashboard" text="GRAFICO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+            </AnchorPane>
+            <Label styleClass="labelWelcome" text="Tipologia">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fx:id="CI_IV_imageProspetto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="CI_L_tipologiaProspetto" style="-fx-font-size: 18;" />
+            <Label styleClass="labelWelcome" text="Nome">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="CI_L_nomeCVProspetto" style="-fx-font-size: 18;">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label styleClass="labelWelcome" text="Indirizzo">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="CI_L_indirizzoCVProspetto" prefWidth="337.0" style="-fx-font-size: 18;" wrapText="true">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutX="497.0" layoutY="470.0" prefHeight="200.0" prefWidth="200.0" styleClass="rootItem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="445.0">
-         <children>
-            <Label alignment="CENTER" styleClass="label-titleDashboard" text="RIASSUNTO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
-         </children>
-      </AnchorPane>
+      </VBox>
+      <ToggleButton focusTraversable="false" layoutX="638.0" layoutY="85.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Segnalazioni" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="95.0">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.6052631735801697" green="0.5716374516487122" blue="0.5716374516487122" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <toggleGroup>
+            <ToggleGroup fx:id="ToogleGroup" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton focusTraversable="false" layoutX="813.0" layoutY="85.0" mnemonicParsing="false" onAction="#showProspetto" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Grafico" toggleGroup="$ToogleGroup" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="95.0">
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.6052631735801697" green="0.5716374516487122" blue="0.5716374516487122" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </ToggleButton>
+      <Label alignment="CENTER" layoutX="790.0" layoutY="20.0" styleClass="label-titleProspetto" text="Prospetto Riassuntivo" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="CI_AP_containerProspetto" layoutX="690.0" layoutY="219.0" prefHeight="200.0" prefWidth="200.0" styleClass="style-trasparent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </AnchorPane>

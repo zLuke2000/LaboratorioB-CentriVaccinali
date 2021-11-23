@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="505.0" prefWidth="900.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane prefHeight="505.0" prefWidth="900.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <children>
       <Label layoutX="300.0" layoutY="14.0" styleClass="labelWelcome" text="INFORMAZIONI " />
       <Label layoutX="347.0" layoutY="52.0" styleClass="labelTitleSezInfo" text="Dati account" AnchorPane.topAnchor="52.0">

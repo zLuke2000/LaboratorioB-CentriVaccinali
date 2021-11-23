@@ -40,4 +40,7 @@ public class AvvioController extends Controller {
     void chiudi() {
         super.closeApp();
     }
+    public void openEV() {
+        CentriVaccinali.setRoot("fragments/CI_F_showGeneralCV");
+    }
 }

@@ -15,7 +15,7 @@ public enum Vaccino {
     }
 
     public static Vaccino getValue(String str) {
-        for (Vaccino v : Vaccino.values()) {
+        for (Vaccino v : values()) {
             if (v.toString().equalsIgnoreCase(str)) {
                 return v;
             }

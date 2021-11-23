@@ -3,15 +3,12 @@ module it.uninsubria.centrivaccinali {
     requires javafx.fxml;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.ikonli.material;
-    requires org.kordamp.ikonli.material2;
-    requires org.kordamp.ikonli.materialdesign;
     requires org.kordamp.ikonli.materialdesign2;
-    requires com.jfoenix;
     requires json.simple;
     requires java.sql;
     requires java.rmi;
     requires javafx.base;
+    requires javafx.graphics;
 
     exports it.uninsubria.centrivaccinali;
     opens it.uninsubria.centrivaccinali to javafx.fxml;
