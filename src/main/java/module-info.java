@@ -3,14 +3,7 @@ module it.uninsubria.centrivaccinali {
     requires javafx.fxml;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.ikonli.bpmn;
-    requires org.kordamp.ikonli.carbonicons;
-    requires org.kordamp.ikonli.elusive;
-    requires org.kordamp.ikonli.subway;
-    requires org.kordamp.ikonli.fluentui;
-    requires org.kordamp.ikonli.boxicons;
-    requires org.kordamp.ikonli.fontawesome5;
-    requires com.jfoenix;
+    requires org.kordamp.ikonli.materialdesign2;
     requires json.simple;
     requires java.sql;
     requires java.rmi;

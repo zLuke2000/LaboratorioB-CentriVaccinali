@@ -32,9 +32,13 @@ public class CVChangeController extends Controller {
     /**
      * Metodo per tornare all'interfaccia precedente
      */
-    @FXML public void BackTo() {
-        System.out.println("Indietro");
+    @FXML public void backTo() {
         CentriVaccinali.setRoot("Avvio");
+    }
+
+    @FXML
+    void chiudi() {
+        super.closeApp();
     }
 
     @Override

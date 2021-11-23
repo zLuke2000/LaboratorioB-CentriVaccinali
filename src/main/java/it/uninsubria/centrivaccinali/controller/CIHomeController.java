@@ -70,14 +70,16 @@ public class CIHomeController extends Controller {
     /**
      * Metodo per entrare con l'accesso libero dentro all'applicazione
      */
-    @FXML public void toFreeAccess() {
+    @FXML
+    public void toFreeAccess() {
         CentriVaccinali.setRoot("CI_dashboard");
     }
 
     /**
      * Metodo per accedere con le credenziali del cittadino
      */
-    @FXML public void loginCittadino() {
+    @FXML
+    public void loginCittadino() {
         //effettuo login se username e password non sono vuoti
         //e sono state inserite credenziali valide
         if (cp.testoSempliceConNumeri(tf_ci_loginUsername,4, 16) & (cp.password(tf_ci_loginPassword) || cp.password(tf_ci_loginPasswordVisible))){
@@ -97,14 +99,16 @@ public class CIHomeController extends Controller {
     /**
      * Metodo per passare all'interfaccia di registrazione
      */
-    @FXML public void toRegistrazione() {
+    @FXML
+    public void toRegistrazione() {
         CentriVaccinali.setRoot("CI_registrazione");
     }
 
     /**
      * Metodo per nascondere la password
      */
-    @FXML public void hidePassword() {
+    @FXML
+    public void hidePassword() {
         //copia la password nel PasswordField
         //e cambia le visibilita' dei componenti
         String password = tf_ci_loginPasswordVisible.getText();
@@ -119,7 +123,8 @@ public class CIHomeController extends Controller {
     /**
      * Metodo per mostrare la password
      */
-    @FXML public void showPassword() {
+    @FXML
+    public void showPassword() {
         //copia la password nel TextField
         //e cambia le visibilita' dei componenti
         String password= tf_ci_loginPassword.getText();
@@ -130,8 +135,14 @@ public class CIHomeController extends Controller {
         fi_ci_hidePassword.setVisible(true);
     }
 
-    @FXML public void backTo() {
+    @FXML
+    public void backTo() {
         CentriVaccinali.setRoot("Avvio");
         client.stopOperation();
+    }
+
+    @FXML
+    void chiudi() {
+        super.closeApp();
     }
 }

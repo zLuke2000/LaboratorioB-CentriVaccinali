@@ -49,7 +49,8 @@ public class CVLoginController extends Controller {
         }
     }
 
-    @FXML void autenticazioneOperatore() {
+    @FXML
+    void autenticazioneOperatore() {
         String username = l_cv_username.getText().trim();
         String password = l_cv_password.getText().trim();
         boolean check = true;
@@ -74,13 +75,14 @@ public class CVLoginController extends Controller {
         }
     }
 
-    @FXML public void BackTo() {
-        System.out.println("Indietro");
+    @FXML
+    public void backTo() {
         client.stopOperation();
         CentriVaccinali.setRoot("Avvio");
     }
 
-    @FXML public void ShowInfo() {
+    @FXML
+    public void ShowInfo() {
         new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display(ap_root);
     }
 

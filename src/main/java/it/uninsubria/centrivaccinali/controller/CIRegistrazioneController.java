@@ -140,5 +140,14 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
-    @FXML public void backTo() { CentriVaccinali.setRoot("CI_home"); }
+    @FXML
+    public void backTo() {
+        CentriVaccinali.setRoot("CI_home");
+    }
+
+    @FXML
+    void chiudi() {
+        super.closeApp();
+    }
+
 }

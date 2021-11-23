@@ -23,26 +23,24 @@ import java.util.*;
 public class CVRegistraCittadinoController extends Controller {
 
     @FXML public AnchorPane ap_root;
+
     // TextFiled
-    @FXML private TextField tf_cv_selezionaProvincia;
-    @FXML private TextField tf_cv_nomeCittadino;
-    @FXML private TextField tf_cv_cognomeCittadino;
-    @FXML private TextField tf_cv_cfCittadino;
-    @FXML private TextField tf_cv_idVaccino;
+    @FXML private TextField tf_selezionaProvincia;
+    @FXML private TextField tf_nomeCittadino;
+    @FXML private TextField tf_cognomeCittadino;
+    @FXML private TextField tf_cfCittadino;
+    @FXML private TextField tf_idVaccino;
     // ComboBox
-    @FXML private ChoiceBox<String> cb_cv_selezionaComune;
-    @FXML private ChoiceBox<String> cb_cv_selezionaCentro;
+    @FXML private ComboBox<String> cb_selezionaComune;
+    @FXML private ComboBox<String> cb_selezionaCentro;
     // Label
-    @FXML private Label l_cv_infoCentro;
+    @FXML private Label l_infoCentro;
     // RadioButton
-    @FXML private RadioButton rb_cv_pfizer;
-    @FXML private RadioButton rb_cv_astrazeneca;
-    @FXML private RadioButton rb_cv_moderna;
-    @FXML private RadioButton rb_cv_jj;
+    @FXML private RadioButton rb_pfizer;
     // ToggleGroup (RadioButton)
     @FXML private ToggleGroup tg_vaccino;
     // DatePicker
-    @FXML private DatePicker dp_cv_datavaccino;
+    @FXML private DatePicker dp_datavaccino;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssHelper = CssHelper.getInstance();
@@ -60,7 +58,7 @@ public class CVRegistraCittadinoController extends Controller {
         String stringID = sdf.format(new java.util.Date());
         stringID=stringID.substring(0, 16);
         idVac = Long.parseLong(stringID);
-        tf_cv_idVaccino.setText(stringID);
+        tf_idVaccino.setText(stringID);
     }
 
     @Override
@@ -74,9 +72,9 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_COMUNI:
                 if (result.getResultComuni() != null) {
                     Platform.runLater(() -> {
-                        cb_cv_selezionaComune.getItems().clear();
-                        cb_cv_selezionaComune.getItems().addAll(result.getResultComuni());
-                        cb_cv_selezionaComune.getSelectionModel().selectFirst();
+                        cb_selezionaComune.getItems().clear();
+                        cb_selezionaComune.getItems().addAll(result.getResultComuni());
+                        cb_selezionaComune.getSelectionModel().selectFirst();
                     });
                 }
                 break;
@@ -85,10 +83,10 @@ public class CVRegistraCittadinoController extends Controller {
                     Platform.runLater(() -> {
                         listaCentri.clear();
                         listaCentri = result.getResultCentri();
-                        cb_cv_selezionaCentro.getItems().clear();
+                        cb_selezionaCentro.getItems().clear();
                         for (CentroVaccinale centro : listaCentri) {
-                            cb_cv_selezionaCentro.getItems().add(centro.getNome());
-                            cb_cv_selezionaCentro.getSelectionModel().selectFirst();
+                            cb_selezionaCentro.getItems().add(centro.getNome());
+                            cb_selezionaCentro.getSelectionModel().selectFirst();
                         }
                     });
                 }
@@ -99,21 +97,21 @@ public class CVRegistraCittadinoController extends Controller {
                     DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
                     dh.display(ap_root);
                     //reset interfaccia
-                    tf_cv_nomeCittadino.setText("");
-                    tf_cv_cognomeCittadino.setText("");
-                    tf_cv_cfCittadino.setText("");
-                    dp_cv_datavaccino.setValue(null);
-                    tg_vaccino.selectToggle(rb_cv_pfizer);
+                    tf_nomeCittadino.setText("");
+                    tf_cognomeCittadino.setText("");
+                    tf_cfCittadino.setText("");
+                    dp_datavaccino.setValue(null);
+                    tg_vaccino.selectToggle(rb_pfizer);
                     initializeIdVaccino();
                 } else {
                     DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Non e' stato possibile registrare correttamente il cittadino", DialogHelper.Type.ERROR);
                     dh.display(ap_root);
                     if(result.getExtendedResult().contains(Result.Error.CF_GIA_IN_USO)) {
-                        cssHelper.toError(tf_cv_cfCittadino, new Tooltip("Codice fiscale gia' associato ad un vaccinato"));
+                        cssHelper.toError(tf_cfCittadino, new Tooltip("Codice fiscale gia' associato ad un vaccinato"));
                         System.err.println("Codice fiscale gia' associato ad un vaccinato");
                     }
                     if(result.getExtendedResult().contains(Result.Error.IDVAC_GIA_IN_USO)) {
-                        cssHelper.toError(tf_cv_idVaccino, new Tooltip("Id vaccinazione gia' associato ad un vaccinato"));
+                        cssHelper.toError(tf_idVaccino, new Tooltip("Id vaccinazione gia' associato ad un vaccinato"));
                         System.err.println("Id vaccinazione gia' associato ad un vaccinato");
                     }
                 }
@@ -121,51 +119,59 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
-    @FXML void realtimeCheck(KeyEvent ke) {
-        if (ke.getSource().equals(tf_cv_selezionaProvincia)) {
-            if(cp.provincia(tf_cv_selezionaProvincia)) {
-                client.getComuni(this, tf_cv_selezionaProvincia.getText().trim());
+    @FXML
+    void realtimeCheck(KeyEvent ke) {
+        if (ke.getSource().equals(tf_selezionaProvincia)) {
+            if(cp.provincia(tf_selezionaProvincia)) {
+                client.getComuni(this, tf_selezionaProvincia.getText().trim());
             } else {
-                cb_cv_selezionaComune.getItems().clear();
-                cb_cv_selezionaCentro.getItems().clear();
+                cb_selezionaComune.getItems().clear();
+                cb_selezionaCentro.getItems().clear();
             }
-        } else if (ke.getSource().equals(tf_cv_nomeCittadino)) {
-            cp.testoSempliceSenzaNumeri(tf_cv_nomeCittadino,2, 50 );
-        } else if (ke.getSource().equals(tf_cv_cognomeCittadino)){
-            cp.testoSempliceSenzaNumeri(tf_cv_cognomeCittadino, 2, 50);
-        } else if (ke.getSource().equals(tf_cv_cfCittadino)){
-            cp.codiceFiscale(tf_cv_cfCittadino);
+        } else if (ke.getSource().equals(tf_nomeCittadino)) {
+            cp.testoSempliceSenzaNumeri(tf_nomeCittadino,2, 50 );
+        } else if (ke.getSource().equals(tf_cognomeCittadino)){
+            cp.testoSempliceSenzaNumeri(tf_cognomeCittadino, 2, 50);
+        } else if (ke.getSource().equals(tf_cfCittadino)){
+            cp.codiceFiscale(tf_cfCittadino);
         }
     }
 
-    @FXML void cbChange(Event e) {
+    @FXML
+    void cbChange(Event e) {
         System.out.println(e);
-        if(e.getSource().equals(cb_cv_selezionaComune)) {
-            if(cb_cv_selezionaComune.getSelectionModel().getSelectedItem() != null) {
-                client.getCentri(this, cb_cv_selezionaComune.getSelectionModel().getSelectedItem());
+        if(e.getSource().equals(cb_selezionaComune)) {
+            if(cb_selezionaComune.getSelectionModel().getSelectedItem() != null) {
+                client.getCentri(this, cb_selezionaComune.getSelectionModel().getSelectedItem());
             }
-        } else if(e.getSource().equals(cb_cv_selezionaCentro)) {
-            if(cb_cv_selezionaCentro.getSelectionModel().getSelectedItem() != null) {
-                selectedCV = listaCentri.get(cb_cv_selezionaCentro.getSelectionModel().getSelectedIndex());
-                l_cv_infoCentro.setText(selectedCV.toString());
-                l_cv_infoCentro.setVisible(true);
+        } else if(e.getSource().equals(cb_selezionaCentro)) {
+            if(cb_selezionaCentro.getSelectionModel().getSelectedItem() != null) {
+                selectedCV = listaCentri.get(cb_selezionaCentro.getSelectionModel().getSelectedIndex());
+                l_infoCentro.setText(selectedCV.toString());
+                l_infoCentro.setVisible(true);
                 statoSelezione();
             }
         }
     }
 
-    @FXML void BackTo() {
+    @FXML
+    void backTo() {
         CentriVaccinali.setRoot("CV_change");
         client.stopOperation();
     }
+    @FXML
+    void chiudi() {
+        super.closeApp();
+    }
 
-    @FXML void registraVaccinato() {
-        if(cp.testoSempliceSenzaNumeri(tf_cv_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(tf_cv_cognomeCittadino, 2, 50) & cp.codiceFiscale(tf_cv_cfCittadino) & cp.data(dp_cv_datavaccino) & statoSelezione()) {
-            String nomeCentro= cb_cv_selezionaCentro.getSelectionModel().getSelectedItem();
-            String nome= tf_cv_nomeCittadino.getText();
-            String cognome= tf_cv_cognomeCittadino.getText();
-            String cf= tf_cv_cfCittadino.getText();
-            java.sql.Date data=java.sql.Date.valueOf(dp_cv_datavaccino.getValue());
+    @FXML
+    void registraVaccinato() {
+        if(cp.testoSempliceSenzaNumeri(tf_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(tf_cognomeCittadino, 2, 50) & cp.codiceFiscale(tf_cfCittadino) & cp.data(dp_datavaccino) & statoSelezione()) {
+            String nomeCentro= cb_selezionaCentro.getSelectionModel().getSelectedItem();
+            String nome= tf_nomeCittadino.getText();
+            String cognome= tf_cognomeCittadino.getText();
+            String cf= tf_cfCittadino.getText();
+            java.sql.Date data=java.sql.Date.valueOf(dp_datavaccino.getValue());
             Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
             client.registraVaccinato(this, nuovoVaccinato);
@@ -174,14 +180,14 @@ public class CVRegistraCittadinoController extends Controller {
 
     private boolean statoSelezione() {
         if(selectedCV != null) {
-            cssHelper.toValid(tf_cv_selezionaProvincia);
-            cssHelper.toValid(cb_cv_selezionaComune);
-            cssHelper.toValid(cb_cv_selezionaCentro);
+            cssHelper.toValid(tf_selezionaProvincia);
+            cssHelper.toValid(cb_selezionaComune);
+            cssHelper.toValid(cb_selezionaCentro);
             return true;
         } else {
-            cssHelper.toError(tf_cv_selezionaProvincia, null);
-            cssHelper.toError(cb_cv_selezionaComune, null);
-            cssHelper.toError(cb_cv_selezionaCentro, null);
+            cssHelper.toError(tf_selezionaProvincia, null);
+            cssHelper.toError(cb_selezionaComune, null);
+            cssHelper.toError(cb_selezionaCentro, null);
             return false;
         }
     }
