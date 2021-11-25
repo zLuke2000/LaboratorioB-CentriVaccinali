@@ -84,7 +84,7 @@ public class EAController extends Controller{
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 

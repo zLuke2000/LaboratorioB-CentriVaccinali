@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 
 import java.nio.channels.ScatteringByteChannel;
+import java.util.Locale;
 import java.util.regex.Pattern;
 import java.sql.*;
 import java.util.ArrayList;
@@ -189,8 +190,8 @@ public class Database {
                 risultato.setCittadino(c);
 
                 // Ottengo nome_centro del cittadino
-                pstmt = conn.prepareStatement("SELECT nome_centro" +
-                                                  "FROM tabelle_cv.\"vaccinati\"" +
+                pstmt = conn.prepareStatement("SELECT nome_centro " +
+                                                  "FROM tabelle_cv.\"vaccinati\" " +
                                                   "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
                 pstmt.setLong(1, c.getId_vaccino());
                 pstmt.setString(2, c.getCodice_fiscale());
@@ -297,7 +298,7 @@ public class Database {
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_VACCINATO);
         try {
-            pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO tabelle_cv.\"vaccinati_" + nuovoVaccinato.getNomeCentro().toLowerCase(Locale.ROOT).replaceAll(" ", "_") + "\" VALUES (?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1, nuovoVaccinato.getNomeCentro());
             pstmt.setString(2, nuovoVaccinato.getNome());
             pstmt.setString(3, nuovoVaccinato.getCognome());
@@ -343,6 +344,7 @@ public class Database {
             pstmt.setString(1, provincia);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
+                System.err.println(rs.getString("comune"));
                 arrayComuni.add(rs.getString("comune"));
             }
             risultato.setResult(true);

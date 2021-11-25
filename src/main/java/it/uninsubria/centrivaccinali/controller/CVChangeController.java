@@ -38,11 +38,11 @@ public class CVChangeController extends Controller {
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(null);
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {  }
+    public void initParameter(ClientCV client) {  }
 
     @Override
     public void notifyController(Result result) {  }

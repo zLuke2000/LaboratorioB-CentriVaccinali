@@ -30,7 +30,7 @@ public class CentriVaccinali extends Application {
     private final static Double w_standard = 390.0;
     private final static Double h_standard = 565.0;
 
-    private static Scene scene;
+    public static Scene scene;
     private static Stage stage;
     private static Double width;
     private static Double height;
@@ -94,8 +94,8 @@ public class CentriVaccinali extends Application {
                 break;
             case "CV_registraVaccinato":
                 stage.setTitle("Registra un nuovo vaccinato");
-                width = 600.0;
-                height = 620.0;
+                width = 500.0;
+                height = 600.0;
                 break;
             case "CI_registrazione":
                 stage.setTitle("Registrazione cittadino");
@@ -122,7 +122,7 @@ public class CentriVaccinali extends Application {
                 break;
         }
         controller = fxmlLoader.getController();
-        controller.initParameter(client, scene);
+        controller.initParameter(client);
         stage.setWidth(width);
         stage.setHeight(height);
     }

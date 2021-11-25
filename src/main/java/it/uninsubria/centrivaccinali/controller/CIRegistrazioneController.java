@@ -40,7 +40,7 @@ public class CIRegistrazioneController extends Controller {
     private CssHelper cssh = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
@@ -72,7 +72,7 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML public void registraCittadino() {
         if (cp.testoSempliceSenzaNumeri(tf_ci_nomeRegistrazione, 2, 50) &
-            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 5) &
+            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 50) &
             cp.codiceFiscale(tf_ci_cfRegistrazione) &
             cp.email(tf_ci_emailRegistrazione) &
             cp.testoSempliceConNumeri(tf_ci_usernameRegistrazione, 4, 16) &
@@ -147,7 +147,7 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 
 }

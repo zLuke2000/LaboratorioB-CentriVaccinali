@@ -27,18 +27,16 @@ public class CVLoginController extends Controller {
     @FXML private PasswordField l_cv_password;
 
     private ClientCV client;
-    private Scene main_scene;
     private final CssHelper cssHelper = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
-        main_scene = scene;
     }
 
     @Override
     public void notifyController(Result result) {
-        main_scene.setCursor(Cursor.DEFAULT);
+        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
         b_accedi.setDisable(false);
         if(result.getResult()) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
@@ -69,7 +67,7 @@ public class CVLoginController extends Controller {
         }
 
         if(check) {
-            main_scene.setCursor(Cursor.WAIT);
+            CentriVaccinali.scene.setCursor(Cursor.WAIT);
             b_accedi.setDisable(true);
             client.autenticaOperatore(this, username, password);
         }
@@ -88,6 +86,6 @@ public class CVLoginController extends Controller {
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 }

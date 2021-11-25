@@ -21,7 +21,7 @@ public class CIShowGeneralCVController extends Controller{
     private AnchorPane CI_AP_containerProspetto;
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
 
     }
 

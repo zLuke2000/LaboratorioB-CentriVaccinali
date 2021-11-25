@@ -42,7 +42,7 @@ public class CVRegistraCentroVaccinale extends Controller {
         }
 
         @Override
-        public void initParameter(ClientCV client, Scene scene) {
+        public void initParameter(ClientCV client) {
                 this.client = client;
         }
 
@@ -114,6 +114,6 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML
         void chiudi() {
-                super.closeApp();
+                super.closeApp(client);
         }
 }

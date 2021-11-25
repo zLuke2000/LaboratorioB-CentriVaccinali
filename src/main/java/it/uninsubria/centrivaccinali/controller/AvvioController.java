@@ -9,8 +9,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class AvvioController extends Controller {
 
-    @FXML
-    public AnchorPane ap_root;
+    @FXML public AnchorPane ap_root;
+    private ClientCV client;
 
     /**
      * Metodo usato per accedere come operatore cittadino,
@@ -18,7 +18,11 @@ public class AvvioController extends Controller {
      */
     @FXML
     void accediCittadino() {
-        CentriVaccinali.setRoot("CI_home");
+        if(client != null && client.getUtenteLoggato() != null) {
+            CentriVaccinali.setRoot("CI_dashboard");
+        } else {
+            CentriVaccinali.setRoot("CI_home");
+        }
     }
 
     /**
@@ -31,14 +35,16 @@ public class AvvioController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) { }
+    public void initParameter(ClientCV client) {
+        this.client =  client;
+    }
 
     @Override
     public void notifyController(Result result) { }
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(null);
     }
     public void openEV() {
         CentriVaccinali.setRoot("fragments/CI_F_showGeneralCV");

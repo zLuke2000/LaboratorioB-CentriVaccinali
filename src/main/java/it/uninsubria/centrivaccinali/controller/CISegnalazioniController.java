@@ -9,7 +9,7 @@ public class CISegnalazioniController extends Controller{
     private ClientCV client;
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 

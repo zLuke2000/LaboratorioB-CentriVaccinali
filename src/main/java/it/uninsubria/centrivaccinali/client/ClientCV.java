@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController">
+<AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CVRegistraCittadinoController">
    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="8.0" styleClass="default-bg">
       <Label text="Dati Centro Vaccinale">
          <font>
@@ -24,7 +36,7 @@
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <Label text="Immettere provincia" textFill="#323232" GridPane.halignment="CENTER">
             <font>
@@ -41,7 +53,7 @@
                <Font name="Calibri" size="14.0" />
             </font>
          </Label>
-         <Label fx:id="l_infoCentro" visible="false" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+         <Label fx:id="l_infoCentro" textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          <TextField fx:id="tf_selezionaProvincia" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyTyped="#realtimeCheck" styleClass="field-preset-1" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets left="16.0" right="16.0" />
@@ -53,7 +65,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </TextField>
-         <ComboBox fx:id="cb_selezionaComune" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <ComboBox fx:id="cb_selezionaComune" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#cbChange" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets left="16.0" right="16.0" />
             </GridPane.margin>
@@ -61,7 +73,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </ComboBox>
-         <ComboBox fx:id="cb_selezionaCentro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <ComboBox fx:id="cb_selezionaCentro" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#cbChange" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <GridPane.margin>
                <Insets left="16.0" right="16.0" />
             </GridPane.margin>

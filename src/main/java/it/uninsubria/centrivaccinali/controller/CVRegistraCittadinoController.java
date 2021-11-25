@@ -62,7 +62,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
@@ -72,6 +72,7 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_COMUNI:
                 if (result.getResultComuni() != null) {
                     Platform.runLater(() -> {
+                        System.out.println("Risultato comuni: " + result.getResultComuni());
                         cb_selezionaComune.getItems().clear();
                         cb_selezionaComune.getItems().addAll(result.getResultComuni());
                         cb_selezionaComune.getSelectionModel().selectFirst();
@@ -81,6 +82,7 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_CENTRI:
                 if (result.getResultCentri() != null){
                     Platform.runLater(() -> {
+                        System.out.println("Risultato centri: " + result.getResultCentri());
                         listaCentri.clear();
                         listaCentri = result.getResultCentri();
                         cb_selezionaCentro.getItems().clear();
@@ -89,20 +91,24 @@ public class CVRegistraCittadinoController extends Controller {
                             cb_selezionaCentro.getSelectionModel().selectFirst();
                         }
                     });
+                } else {
+                    System.err.println("ERRORE");
                 }
                 break;
             case REGISTRAZIONE_VACCINATO:
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
-                    DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
-                    dh.display(ap_root);
-                    //reset interfaccia
-                    tf_nomeCittadino.setText("");
-                    tf_cognomeCittadino.setText("");
-                    tf_cfCittadino.setText("");
-                    dp_datavaccino.setValue(null);
-                    tg_vaccino.selectToggle(rb_pfizer);
-                    initializeIdVaccino();
+                        Platform.runLater(() -> {
+                        DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
+                        dh.display(ap_root);
+                        //reset interfaccia
+                        tf_nomeCittadino.setText("");
+                        tf_cognomeCittadino.setText("");
+                        tf_cfCittadino.setText("");
+                        dp_datavaccino.setValue(null);
+                        tg_vaccino.selectToggle(rb_pfizer);
+                        initializeIdVaccino();
+                    });
                 } else {
                     DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Non e' stato possibile registrare correttamente il cittadino", DialogHelper.Type.ERROR);
                     dh.display(ap_root);
@@ -154,6 +160,24 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+
+    @FXML
+    void cbChange(Event e) {
+        System.out.println(e);
+        if(e.getSource().equals(cb_selezionaComune)) {
+            if(cb_selezionaComune.getSelectionModel().getSelectedItem() != null) {
+                client.getCentri(this, cb_selezionaComune.getSelectionModel().getSelectedItem());
+            }
+        } else if(e.getSource().equals(cb_selezionaCentro)) {
+            if(cb_selezionaCentro.getSelectionModel().getSelectedItem() != null) {
+                selectedCV = listaCentri.get(cb_selezionaCentro.getSelectionModel().getSelectedIndex());
+                l_infoCentro.setText(selectedCV.toString());
+                l_infoCentro.setVisible(true);
+                statoSelezione();
+            }
+        }
+    }
+
     @FXML
     void backTo() {
         CentriVaccinali.setRoot("CV_change");
@@ -161,7 +185,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 
     @FXML

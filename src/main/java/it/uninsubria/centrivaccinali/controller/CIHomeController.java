@@ -143,6 +143,6 @@ public class CIHomeController extends Controller {
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 }

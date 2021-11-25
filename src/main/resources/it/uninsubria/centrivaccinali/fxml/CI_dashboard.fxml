@@ -10,7 +10,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
+<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIDashboardController">
    <AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="default-bg">
       <opaqueInsets>
          <Insets />
@@ -31,55 +30,53 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <MenuButton fx:id="CI_MB_SiCitt" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente di prova" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
+      <MenuButton fx:id="mb_utente" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente di prova" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
          <items>
             <MenuItem fx:id="ItemInfo" mnemonicParsing="false" onAction="#showInfoMB" text="Info" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="ItemLogout" mnemonicParsing="false" onAction="#logoutInfoMB" text="Logout" />
          </items>
          <graphic>
-            <FontIcon iconColor="#323232" iconLiteral="fas-user-alt" iconSize="12" styleClass="iconUserConnection" />
+            <FontIcon iconColor="#323232" iconLiteral="mdi2a-account" iconSize="22" styleClass="iconUserConnection" />
          </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
       </MenuButton>
-      <VBox alignment="CENTER" layoutX="913.0" layoutY="9.0" spacing="3.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="12.0">
-         <children>
-            <HBox spacing="16.0" styleClass="contorno-opaco-50">
-               <children>
-                  <TextField fx:id="CI_TF_userDash" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Username" styleClass="field-preset-1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField fx:id="CI_TF_passwordDash" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Password" styleClass="field-preset-1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </PasswordField>
-                  <Button fx:id="CI_B_loginDash" mnemonicParsing="false" onAction="#loginDash" styleClass="button-preset-1" text="Login">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </HBox>
-            <Button fx:id="CI_B_loginDash1" mnemonicParsing="false" onAction="#loginDash" styleClass="transparent" text="Non hai un account?  Registrati" underline="true" />
-         </children>
+      <VBox fx:id="vb_free" alignment="CENTER" layoutX="913.0" layoutY="9.0" spacing="3.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="12.0">
+         <HBox spacing="16.0" styleClass="contorno-opaco-50">
+            <padding>
+               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </padding>
+            <TextField fx:id="tf_loginUsername" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Username" styleClass="field-preset-1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="tf_loginPassword" focusTraversable="false" prefHeight="27.0" prefWidth="85.0" promptText="Password" styleClass="field-preset-1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="b_login" onAction="#loginDash" styleClass="button-preset-1" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </HBox>
+         <Button onAction="#loginDash" styleClass="transparent" text="Non hai un account?  Registrati" underline="true" />
       </VBox>
-      <ImageView onMouseClicked="#chiudi" fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
-         <image>
-            <Image url="@../image/closeIcon.png" />
-         </image>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" onMouseClicked="#chiudi" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
       </ImageView>
    </AnchorPane>
-   <HBox fx:id="ci_p_container" layoutX="277.0" layoutY="264.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+   <Pane fx:id="p_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <styleClass>
-         <String fx:value="bordo-sotto" />
          <String fx:value="opaco-20" />
+         <String fx:value="bordo-sotto" />
       </styleClass>
-   </HBox>
+   </Pane>
+   <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
+   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    <stylesheets>
       <URL value="@../style/style.css" />
       <URL value="@../style/dashboardStyle.css" />
