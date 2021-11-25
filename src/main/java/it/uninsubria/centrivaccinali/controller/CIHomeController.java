@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -42,12 +43,13 @@ public class CIHomeController extends Controller {
     private CssHelper cssh = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
     @Override
     public void notifyController(Result result) {
+        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
         if (result.getResult()) {
             Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
         }
@@ -91,6 +93,7 @@ public class CIHomeController extends Controller {
                 password= tf_ci_loginPassword.getText();
             }
             if (!username.isBlank() && !password.isBlank()){
+                CentriVaccinali.scene.setCursor(Cursor.WAIT);
                 client.loginUtente(this, username, password);
             }
         }

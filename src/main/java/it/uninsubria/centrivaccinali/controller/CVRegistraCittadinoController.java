@@ -12,6 +12,7 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -96,6 +97,7 @@ public class CVRegistraCittadinoController extends Controller {
                 }
                 break;
             case REGISTRAZIONE_VACCINATO:
+                CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
                         Platform.runLater(() -> {
@@ -143,23 +145,6 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
-    @FXML
-    void cbChange(Event e) {
-        System.out.println(e);
-        if(e.getSource().equals(cb_selezionaComune)) {
-            if(cb_selezionaComune.getSelectionModel().getSelectedItem() != null) {
-                client.getCentri(this, cb_selezionaComune.getSelectionModel().getSelectedItem());
-            }
-        } else if(e.getSource().equals(cb_selezionaCentro)) {
-            if(cb_selezionaCentro.getSelectionModel().getSelectedItem() != null) {
-                selectedCV = listaCentri.get(cb_selezionaCentro.getSelectionModel().getSelectedIndex());
-                l_infoCentro.setText(selectedCV.toString());
-                l_infoCentro.setVisible(true);
-                statoSelezione();
-            }
-        }
-    }
-
 
     @FXML
     void cbChange(Event e) {
@@ -198,6 +183,7 @@ public class CVRegistraCittadinoController extends Controller {
             java.sql.Date data=java.sql.Date.valueOf(dp_datavaccino.getValue());
             Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
+            CentriVaccinali.scene.setCursor(Cursor.WAIT);
             client.registraVaccinato(this, nuovoVaccinato);
         }
     }

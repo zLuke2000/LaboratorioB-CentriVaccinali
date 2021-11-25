@@ -10,6 +10,7 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -46,6 +47,7 @@ public class CIRegistrazioneController extends Controller {
 
     @Override
     public void notifyController(Result result) {
+        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
         if (result.getResult()) {
             System.out.println("Registrazione effettuato");
             Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
@@ -88,6 +90,7 @@ public class CIRegistrazioneController extends Controller {
                 long idVac = Long.parseLong(tf_ci_idvaccinazioneRegistrazione.getText());
                 Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
                 System.out.println("Registro cittadino");
+                CentriVaccinali.scene.setCursor(Cursor.WAIT);
                 client.registraCittadino(this, cittadino);
         }
     }

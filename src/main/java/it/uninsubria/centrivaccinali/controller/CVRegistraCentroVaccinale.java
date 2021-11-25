@@ -10,6 +10,7 @@ import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -48,6 +49,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         @Override
         public void notifyController(Result result) {
+                CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
                         DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Centro vaccinale registrato con successo", DialogHelper.Type.INFO);
@@ -102,6 +104,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 if(cp.testoSempliceConNumeri(tf_nome, 6, 50) & cp.testoSempliceSenzaNumeri(tf_indirizzo, 3, 50) & cp.numeroCivico(tf_civico) & cp.testoSempliceSenzaNumeri(tf_comune, 3, 50) & cp.provincia(tf_provincia) & cp.numeri(tf_cap, 5, 5)) {
                         TipologiaCentro tipologiaSelezionata = TipologiaCentro.getValue(((RadioButton) tg_tipologia.getSelectedToggle()).getText());
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(cb_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
+                        CentriVaccinali.scene.setCursor(Cursor.WAIT);
                         client.registraCentroVaccinale(this, centroVaccinale);
                 }
         }

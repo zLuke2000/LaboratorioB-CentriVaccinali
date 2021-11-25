@@ -337,7 +337,7 @@ public class Database {
         Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
         List<String> arrayComuni = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("SELECT comune " +
+            pstmt = conn.prepareStatement("SELECT DISTINCT comune " +
                                               "FROM public.\"IndirizzoCV\" " +
                                               "WHERE provincia = ? " +
                                               "ORDER BY comune");
@@ -376,7 +376,7 @@ public class Database {
                                 rs.getString("comune"),
                                 rs.getString("provincia"),
                                 rs.getInt("cap")),
-                        TipologiaCentro.valueOf(rs.getString("tipologia"))));
+                        TipologiaCentro.getValue(rs.getString("tipologia"))));
             }
             risultato.setResult(true);
             risultato.setResultCentri(arrayNomeCentri);

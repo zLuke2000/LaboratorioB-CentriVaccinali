@@ -19,11 +19,6 @@ public class CIRicercaHomeController extends Controller{
     private CssHelper css = CssHelper.getInstance();
     private CIDashboardController parent;
 
-    //Se falso vuol dire che non ha fatto nessuna ricerca e che quindi è nell'interffaccia di home,
-    //se vero vuol dire che ha fatto almeno una ricerca e cio vuol dire che si ritrova nell'interfaccia
-    //della seconda ricerca
-    private boolean interfaces = false;
-
     @FXML private AnchorPane ci_ap_tc;
     @FXML private TextField ci_tf_ricercaNomeCV;
     @FXML private ComboBox<String> ci_cb_sceltaRicerca;
@@ -71,16 +66,13 @@ public class CIRicercaHomeController extends Controller{
                 css.toError(ci_tf_ricercaNomeCV, new Tooltip("Immettere almeno un carattere"));
             }
         }
-        else if (ricerca.equals("Per comune e tipologia") && !ci_tf_ricercaComune.getText().isBlank()) {
-            client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(),
-                    TipologiaCentro.getValue((String) ci_cb_sceltaTipologia.getValue()));
+        else if (ricerca.equals("Per comune e tipologia")) {
+            if(!ci_tf_ricercaComune.getText().isBlank()) {
+                client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(), ci_cb_sceltaTipologia.getValue());
+            } else {
+                css.toError(ci_tf_ricercaComune, new Tooltip("Immettere almeno un carattere"));
+            }
         }
-
-        //TODO (idea) chiamare qua la ricerca dei centri vaccinali, e notifivare la dashboard
-        // con la notifyStatus facendo i divuti cambiamenti, così da non doverci preoccupare di
-        // dati e controller da portare in giro ( facendo fiventare il controller della dashboard
-        // un singleton )
-
     }
 
     public void setParent(Controller c) {
@@ -90,9 +82,4 @@ public class CIRicercaHomeController extends Controller{
     //TODO metodo per chiudere applicazione
 
     //TODO metodo per tornare indietro
-
-
-    public void switchIterfaces(boolean interfaces) {
-        this.interfaces = interfaces;
-    }
 }
