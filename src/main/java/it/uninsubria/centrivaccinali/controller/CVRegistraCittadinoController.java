@@ -12,6 +12,7 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -62,7 +63,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
@@ -72,6 +73,7 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_COMUNI:
                 if (result.getResultComuni() != null) {
                     Platform.runLater(() -> {
+                        System.out.println("Risultato comuni: " + result.getResultComuni());
                         cb_selezionaComune.getItems().clear();
                         cb_selezionaComune.getItems().addAll(result.getResultComuni());
                         cb_selezionaComune.getSelectionModel().selectFirst();
@@ -81,6 +83,7 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_CENTRI:
                 if (result.getResultCentri() != null){
                     Platform.runLater(() -> {
+                        System.out.println("Risultato centri: " + result.getResultCentri());
                         listaCentri.clear();
                         listaCentri = result.getResultCentri();
                         cb_selezionaCentro.getItems().clear();
@@ -89,20 +92,25 @@ public class CVRegistraCittadinoController extends Controller {
                             cb_selezionaCentro.getSelectionModel().selectFirst();
                         }
                     });
+                } else {
+                    System.err.println("ERRORE");
                 }
                 break;
             case REGISTRAZIONE_VACCINATO:
+                CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
-                    DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
-                    dh.display(ap_root);
-                    //reset interfaccia
-                    tf_nomeCittadino.setText("");
-                    tf_cognomeCittadino.setText("");
-                    tf_cfCittadino.setText("");
-                    dp_datavaccino.setValue(null);
-                    tg_vaccino.selectToggle(rb_pfizer);
-                    initializeIdVaccino();
+                        Platform.runLater(() -> {
+                        DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
+                        dh.display(ap_root);
+                        //reset interfaccia
+                        tf_nomeCittadino.setText("");
+                        tf_cognomeCittadino.setText("");
+                        tf_cfCittadino.setText("");
+                        dp_datavaccino.setValue(null);
+                        tg_vaccino.selectToggle(rb_pfizer);
+                        initializeIdVaccino();
+                    });
                 } else {
                     DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Non e' stato possibile registrare correttamente il cittadino", DialogHelper.Type.ERROR);
                     dh.display(ap_root);
@@ -137,6 +145,7 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+
     @FXML
     void cbChange(Event e) {
         System.out.println(e);
@@ -161,7 +170,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 
     @FXML
@@ -174,6 +183,7 @@ public class CVRegistraCittadinoController extends Controller {
             java.sql.Date data=java.sql.Date.valueOf(dp_datavaccino.getValue());
             Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
+            CentriVaccinali.scene.setCursor(Cursor.WAIT);
             client.registraVaccinato(this, nuovoVaccinato);
         }
     }

@@ -4,67 +4,45 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 
 public class CIRicercaHomeController extends Controller{
 
     private ClientCV client;
-    private ControlloParametri cp = ControlloParametri.getInstance();
+    private CssHelper css = CssHelper.getInstance();
     private CIDashboardController parent;
 
-    @FXML
-    private AnchorPane ci_ap_tc;
-
-    @FXML
-    private AnchorPane ci_ap_tcmini;
-
-    @FXML
-    private TextField ci_tf_ricercaNomeCV;
-
-    @FXML
-    private TextField ci_tf_ricercaNomeCVmini;
-
-    @FXML
-    private ComboBox ci_cb_sceltaRicerca;
-
-    @FXML
-    private ComboBox ci_cb_sceltaTipologia;
-
-    @FXML
-    private ComboBox ci_cb_sceltaTipologiamini;
-
-    @FXML
-    private TextField ci_tf_ricercaComune;
-
-    @FXML
-    private TextField ci_tf_ricercaComunemini;
-
-    @FXML
-    private ComboBox ci_cb_sceltaRicercamini;
+    @FXML private AnchorPane ci_ap_tc;
+    @FXML private TextField ci_tf_ricercaNomeCV;
+    @FXML private ComboBox<String> ci_cb_sceltaRicerca;
+    @FXML private ComboBox<TipologiaCentro> ci_cb_sceltaTipologia;
+    @FXML private TextField ci_tf_ricercaComune;
 
     @FXML void initialize () {
-        this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
-        this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
-        //ci_tf_ricercaNomeCV.setVisible(true);
-        this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
-        this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
+        // Popolo ComboBox con le possibili scelte
+        ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
+        ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
+        // Popolo ComboBox con i tipi di centri vaccinali
+        ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
+        ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
+        ci_tf_ricercaNomeCV.setVisible(true);
     }
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
-    public void notifyController(Result result) {
+    public void notifyController(Result result) { }
 
-    }
-
-    public void cambiaRicerca(Event e) {
+    public void cambiaRicerca() {
         if (ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem().equals("Per nome")) {
             ci_tf_ricercaNomeCV.clear();
             ci_tf_ricercaNomeCV.setVisible(true);
@@ -79,22 +57,22 @@ public class CIRicercaHomeController extends Controller{
 
     @FXML
     public void cercaCentroVaccinale() {
-        String ricerca = (String) ci_cb_sceltaRicerca.getValue();
-        if (ricerca.equals("Per nome") && !ci_tf_ricercaNomeCV.getText().isBlank()) {
-            System.out.println("Ric: " + client);
-            System.out.println(parent + ci_tf_ricercaNomeCV.getText());
-            client.ricercaPerNome(parent, ci_tf_ricercaNomeCV.getText());
+        String ricerca = ci_cb_sceltaRicerca.getValue();
+        if (ricerca.equals("Per nome")) {
+            if(!ci_tf_ricercaNomeCV.getText().isBlank()) {
+                client.ricercaPerNome(parent, ci_tf_ricercaNomeCV.getText());
+                css.toDefault(ci_tf_ricercaNomeCV);
+            } else {
+                css.toError(ci_tf_ricercaNomeCV, new Tooltip("Immettere almeno un carattere"));
+            }
         }
-        else if (ricerca.equals("Per comune e tipologia") && !ci_tf_ricercaComune.getText().isBlank()) {
-            client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(),
-                    TipologiaCentro.getValue((String) ci_cb_sceltaTipologia.getValue()));
+        else if (ricerca.equals("Per comune e tipologia")) {
+            if(!ci_tf_ricercaComune.getText().isBlank()) {
+                client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(), ci_cb_sceltaTipologia.getValue());
+            } else {
+                css.toError(ci_tf_ricercaComune, new Tooltip("Immettere almeno un carattere"));
+            }
         }
-
-        //TODO (idea) chiamare qua la ricerca dei centri vaccinali, e notifivare la dashboard
-        // con la notifyStatus facendo i divuti cambiamenti, così da non doverci preoccupare di
-        // dati e controller da portare in giro ( facendo fiventare il controller della dashboard
-        // un singleton )
-
     }
 
     public void setParent(Controller c) {
@@ -104,6 +82,4 @@ public class CIRicercaHomeController extends Controller{
     //TODO metodo per chiudere applicazione
 
     //TODO metodo per tornare indietro
-
-
 }

@@ -10,6 +10,7 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -40,12 +41,13 @@ public class CIRegistrazioneController extends Controller {
     private CssHelper cssh = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
+    public void initParameter(ClientCV client) {
         this.client = client;
     }
 
     @Override
     public void notifyController(Result result) {
+        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
         if (result.getResult()) {
             System.out.println("Registrazione effettuato");
             Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
@@ -72,7 +74,7 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML public void registraCittadino() {
         if (cp.testoSempliceSenzaNumeri(tf_ci_nomeRegistrazione, 2, 50) &
-            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 5) &
+            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 50) &
             cp.codiceFiscale(tf_ci_cfRegistrazione) &
             cp.email(tf_ci_emailRegistrazione) &
             cp.testoSempliceConNumeri(tf_ci_usernameRegistrazione, 4, 16) &
@@ -88,6 +90,7 @@ public class CIRegistrazioneController extends Controller {
                 long idVac = Long.parseLong(tf_ci_idvaccinazioneRegistrazione.getText());
                 Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
                 System.out.println("Registro cittadino");
+                CentriVaccinali.scene.setCursor(Cursor.WAIT);
                 client.registraCittadino(this, cittadino);
         }
     }
@@ -147,7 +150,7 @@ public class CIRegistrazioneController extends Controller {
 
     @FXML
     void chiudi() {
-        super.closeApp();
+        super.closeApp(client);
     }
 
 }

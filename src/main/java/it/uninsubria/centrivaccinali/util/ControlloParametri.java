@@ -179,7 +179,7 @@ public class ControlloParametri {
                 errTo0ltip = err3;
             }
         }
-        rPattern = Pattern.compile(".*[0-9].*$");
+        rPattern = Pattern.compile(".*[0-8].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
             res = false;
@@ -196,18 +196,6 @@ public class ControlloParametri {
             cssHelper.toError(tic, new Tooltip(errTo0ltip));
         }
         return res;
-        ///^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{8,})\S$/
-        /*
-        rPattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
-        rMatcher  = rPattern.matcher((tic.getText().trim()));
-        if(rMatcher.matches()) {
-            cssHelper.toValid(tic);
-            return true;
-        } else  {
-            cssHelper.toError(tic, new Tooltip("Password non valida"));
-            return false;
-        }
-         */
     }
 
     public boolean codiceFiscale(TextInputControl tic) {

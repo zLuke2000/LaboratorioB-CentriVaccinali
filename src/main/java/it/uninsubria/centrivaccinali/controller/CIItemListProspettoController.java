@@ -2,17 +2,12 @@ package it.uninsubria.centrivaccinali.controller;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.scene.Scene;
 
 public class CIItemListProspettoController extends Controller{
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
-
-    }
+    public void initParameter(ClientCV client) { }
 
     @Override
-    public void notifyController(Result result) {
-
-    }
+    public void notifyController(Result result) { }
 }

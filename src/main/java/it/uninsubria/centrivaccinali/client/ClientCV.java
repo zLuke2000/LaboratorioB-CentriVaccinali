@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -179,10 +180,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
         Button b = new Button("SI");
         b.setOnAction( eh -> {
+            //FIXME non chiude interfaccia
             if (connThread.isAlive()){
                 connThread.interrupt();
             }
             connThread = new ConnectionThread();
+            ((Stage)((Button) eh.getSource()).getScene().getWindow()).close();
         });
         dh.addButton(b);
         dh.display(null);

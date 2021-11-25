@@ -26,9 +26,7 @@ public class CIItemListController extends Controller{
     private Label ci_l_tipologiaItem;
 
     @Override
-    public void initParameter(ClientCV client, Scene scene) {
-
-    }
+    public void initParameter(ClientCV client) { }
 
     @Override
     public void notifyController(Result result) {
