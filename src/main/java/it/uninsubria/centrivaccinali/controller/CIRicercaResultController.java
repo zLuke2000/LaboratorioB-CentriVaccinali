@@ -1,6 +1,5 @@
 package it.uninsubria.centrivaccinali.controller;
 
-import com.jfoenix.controls.JFXComboBox;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -27,6 +26,7 @@ import java.util.List;
 public class CIRicercaResultController extends Controller{
 
     private ClientCV client;
+
     private CIDashboardController parent;
 
     @FXML
@@ -51,7 +51,7 @@ public class CIRicercaResultController extends Controller{
     @FXML void initialize () {
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
         this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
-        ci_tf_ricercaNomeCV.setVisible(true);
+        //ci_tf_ricercaNomeCV.setVisible(true);
         this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
         Label lbl = new Label();

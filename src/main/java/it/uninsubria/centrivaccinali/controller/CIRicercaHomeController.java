@@ -17,11 +17,6 @@ public class CIRicercaHomeController extends Controller{
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CIDashboardController parent;
 
-    //Se falso vuol dire che non ha fatto nessuna ricerca e che quindi è nell'interffaccia di home,
-    //se vero vuol dire che ha fatto almeno una ricerca e cio vuol dire che si ritrova nell'interfaccia
-    //della seconda ricerca
-    private boolean interfaces = false;
-
     @FXML
     private AnchorPane ci_ap_tc;
 
@@ -55,7 +50,7 @@ public class CIRicercaHomeController extends Controller{
     @FXML void initialize () {
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
         this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
-        ci_tf_ricercaNomeCV.setVisible(true);
+        //ci_tf_ricercaNomeCV.setVisible(true);
         this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
@@ -111,7 +106,4 @@ public class CIRicercaHomeController extends Controller{
     //TODO metodo per tornare indietro
 
 
-    public void switchIterfaces(boolean interfaces) {
-        this.interfaces = interfaces;
-    }
 }
