@@ -1,7 +1,8 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import java.io.IOException;
     Grafico su quanti hanno usato quale vaccino
  */
 
-public class CIShowGeneralCVController extends Controller{
+public class CIShowGeneralCVController extends Controller {
 
     @FXML
     private AnchorPane CI_AP_containerProspetto;

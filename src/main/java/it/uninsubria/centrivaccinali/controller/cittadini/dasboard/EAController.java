@@ -1,6 +1,7 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
@@ -12,7 +13,7 @@ import javafx.scene.control.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EAController extends Controller{
+public class EAController extends Controller {
 
     public RadioButton rb_ea1;
     public RadioButton rb_ea2;

@@ -1,6 +1,12 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.controller.*;
+import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
+import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
+import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
+import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;

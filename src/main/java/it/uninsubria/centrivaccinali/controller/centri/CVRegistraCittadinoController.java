@@ -1,7 +1,8 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;

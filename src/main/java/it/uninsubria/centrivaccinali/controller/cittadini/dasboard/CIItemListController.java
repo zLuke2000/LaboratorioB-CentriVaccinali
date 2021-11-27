@@ -1,7 +1,8 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 
-public class CIItemListController extends Controller{
+public class CIItemListController extends Controller {
 
     @FXML
     private ImageView ci_iv_imageItem;

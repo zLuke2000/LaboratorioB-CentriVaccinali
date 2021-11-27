@@ -1,6 +1,7 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

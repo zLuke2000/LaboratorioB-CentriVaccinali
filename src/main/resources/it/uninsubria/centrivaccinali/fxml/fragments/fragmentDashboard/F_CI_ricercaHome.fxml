@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane minWidth="600.0" prefHeight="705.0" prefWidth="1200.0" styleClass="trasparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.CIRicercaHomeController">
+<AnchorPane minWidth="600.0" prefHeight="705.0" prefWidth="1200.0" styleClass="trasparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIRicercaHomeController">
     <TextField fx:id="ci_tf_ricercaNomeCV" layoutY="275.0" promptText="Inserisci nome centro vaccinale" styleClass="textfield-RicercaCV" visible="false" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="275.0" />
     <Label text="Tipologia ricerca:" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="30.0" />
     <ComboBox fx:id="ci_cb_sceltaRicerca" layoutX="279.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="30.0" prefWidth="700.0" styleClass="combo-box" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="55.0" />

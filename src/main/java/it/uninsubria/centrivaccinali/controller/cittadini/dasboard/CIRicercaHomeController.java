@@ -1,16 +1,17 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.Result;
-import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 
-public class CIRicercaHomeController extends Controller{
+public class CIRicercaHomeController extends Controller {
 
     private ClientCV client;
     private CssHelper css = CssHelper.getInstance();

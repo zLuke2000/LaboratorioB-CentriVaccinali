@@ -1,7 +1,8 @@
-package it.uninsubria.centrivaccinali.controller;
+package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
@@ -101,8 +102,11 @@ public class CIDashboardController extends Controller {
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
     }
 
-    public void logoutInfoMB(ActionEvent actionEvent) {
-
+    public void logoutInfoMB() {
+        client.LogoutUtente();
+        System.out.println("L'utente ha eseguito il logout");
+        vb_free.setVisible(true);
+        mb_utente.setVisible(false);
     }
 
 
@@ -113,26 +117,6 @@ public class CIDashboardController extends Controller {
             client.loginUtente(this, username, password);
         }
     }
-
-    public void loginMB(ActionEvent actionEvent) {
-    }
-
-    /*
-    private void RicercaPerNome()  {
-        CI_TF_ricercaNomeCVSearch.setVisible(true);
-        CI_FI_ricercaNomeCV2.setVisible(true);
-        CI_TF_ricercaComuneSearch.setVisible(false);
-        CI_CB_ricercaTipologiaSearch.setVisible(false);
-        CI_FI_research2.setVisible(false);
-    }
-
-    private void RicercaPerTipoCom() {
-        CI_TF_ricercaNomeCVSearch.setVisible(false);
-        CI_FI_ricercaNomeCV2.setVisible(false);
-        CI_TF_ricercaComuneSearch.setVisible(true);
-        CI_CB_ricercaTipologiaSearch.setVisible(true);
-        CI_FI_research2.setVisible(true);
-    } */
 
     @FXML
     public void backTo() {
