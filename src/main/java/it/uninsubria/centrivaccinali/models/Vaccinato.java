@@ -186,4 +186,19 @@ public class Vaccinato implements Serializable {
     public void setIdVaccino(long idVaccino) {
         this.idVaccino = idVaccino;
     }
+
+    @Override
+    public String toString() {
+        return "Vaccinato{" +
+                "nomeCentro='" + nomeCentro + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", codiceFiscale='" + codiceFiscale + '\'' +
+                ", dataSomministrazione=" + dataSomministrazione +
+                ", vaccinoSomministrato=" + vaccinoSomministrato +
+                ", idVaccino=" + idVaccino +
+                '}';
+    }
 }
+
+

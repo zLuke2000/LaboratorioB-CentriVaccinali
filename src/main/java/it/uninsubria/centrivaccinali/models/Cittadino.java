@@ -184,4 +184,17 @@ public class Cittadino implements Serializable {
     public void setId_vaccino(long id_vaccino) {
         this.id_vaccino = id_vaccino;
     }
+
+    @Override
+    public String toString() {
+        return "Cittadino{" +
+                "nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", codice_fiscale='" + codice_fiscale + '\'' +
+                ", email='" + email + '\'' +
+                ", userid='" + userid + '\'' +
+                ", password='" + password + '\'' +
+                ", id_vaccino=" + id_vaccino +
+                '}';
+    }
 }

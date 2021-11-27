@@ -1,15 +1,49 @@
 package it.uninsubria.centrivaccinali.server;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.database.DBHelper;
+import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
+import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
+import it.uninsubria.centrivaccinali.enumerator.Vaccino;
+import it.uninsubria.centrivaccinali.models.CentroVaccinale;
+import it.uninsubria.centrivaccinali.models.Cittadino;
+import it.uninsubria.centrivaccinali.models.Indirizzo;
+import it.uninsubria.centrivaccinali.models.Vaccinato;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Uploader {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        /*
+    private static Database db;
+    private static Connection conn;
+
+    public static void main(String[] args) {
+        try {
+            conn = DBHelper.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        db = new Database();
+        db.connect("123abc", "123abc");
+
+        try {
+            registraCittadini();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void registraCentri() throws IOException {
         BufferedReader br = new BufferedReader( new FileReader("C:/Users/Luca/IdeaProjects/CentriVaccinali/src/main/resources/it/uninsubria/centrivaccinali/UML/centri_lombardia.csv"));
 
         String currentLine;
@@ -36,11 +70,13 @@ public class Uploader {
             System.out.println(cv);
             db.registraCentroVaccinale(cv);
         }
-        */
+    }
 
-        BufferedReader brNome = new BufferedReader(new FileReader("D:/SSD/Desktop/nomi.txt"));
-        BufferedReader brCognome = new BufferedReader(new FileReader("D:/SSD/Desktop/cognomi.txt"));
-        BufferedReader brComune = new BufferedReader(new FileReader("D:/SSD/Desktop/soloCC.txt"));
+    private static void registraVaccinatiRandom(int max) throws IOException {
+        BufferedReader brNome = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/nomi.txt"));
+        BufferedReader brCognome = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/cognomi.txt"));
+        BufferedReader brComune = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/soloCC.txt"));
+        BufferedReader brCentri = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/centri.txt"));
         String currentLine;
 
         HashMap<String, String> nomi_e_genere = new HashMap<>();
@@ -63,7 +99,12 @@ public class Uploader {
         }
         //System.out.println(comuni);
 
-        for (int j = 0; j < 232; j++) {
+        List<String> centri = new ArrayList<>();
+        while ((currentLine = brCentri.readLine()) != null) {
+            centri.add(currentLine.trim());
+        }
+
+        for (int j = 0; j < max; j++) {
 
             String codFis = "";
 
@@ -73,9 +114,9 @@ public class Uploader {
             String genere = nomi_e_genere.get(nomecf);
             String cognomecf = cognomi.get(ThreadLocalRandom.current().nextInt(cognomi.size() - 1));
 
-            //System.out.println("Scelto nome:\t" + nomecf);
-            //System.out.println("Scelto genere:\t" + genere);
-            //System.out.println("Scelto cognome:\t" + cognomecf);
+//            System.out.println("Scelto nome:\t" + nomecf);
+//            System.out.println("Scelto genere:\t" + genere);
+//            System.out.println("Scelto cognome:\t" + cognomecf);
 
             /*calcolo prime 3 lettere */
             int cont = 0;
@@ -130,7 +171,7 @@ public class Uploader {
                 }
             }
 
-            /* nel casoci siano meno di 3 consonanti*/
+            /* nel caso ci siano meno di 3 consonanti*/
             while (cont < 3) {
                 for (int i = 0; i < nomecf.length(); i++) {
                     if (cont == 3) break;
@@ -575,7 +616,78 @@ public class Uploader {
                 }
             }
             codFis += carattereControllo;
-            System.out.println(codFis);
+            //System.out.println(codFis);
+
+            Vaccinato vac = new Vaccinato();
+            vac.setNome(nomecf);
+            vac.setCognome(cognomecf);
+            vac.setCodiceFiscale(codFis);
+
+            // GENERATORE DATA
+            startMillis = new Date(2020 - 1900, Calendar.DECEMBER, 27).getTime();
+            endMillis = new Date(2021 - 1900, Calendar.NOVEMBER, 26).getTime();
+            randomMillisSinceEpoch = ThreadLocalRandom.current().nextLong(startMillis, endMillis);
+            data = new Date(randomMillisSinceEpoch);
+
+            vac.setDataSomministrazione(new java.sql.Date(data.getTime()));
+
+            // ID VAC
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
+            String stringID = sdf.format(data);
+            stringID=stringID.substring(0, 16);
+            vac.setIdVaccino(Long.parseLong(stringID));
+
+
+            vac.setVaccinoSomministrato(Vaccino.values()[ThreadLocalRandom.current().nextInt(0,4)]);
+
+            vac.setNomeCentro(centri.get(ThreadLocalRandom.current().nextInt(0,centri.size())));
+
+            //System.out.println(vac);
+
+            db.registraVaccinato(vac);
         }
     }
+
+    private static void registraCittadini() throws SQLException, IOException {
+
+        BufferedReader brTab = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/tabelleCentri.txt"));
+        BufferedReader brPwd = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/passwords.txt"));
+        String currentTab;
+        String currentPwd;
+
+        int count = 0;
+        List<String> listPwd = new ArrayList<>();
+
+        while ((currentPwd = brPwd.readLine()) != null) {
+            listPwd.add(currentPwd);
+        }
+
+        List<String> domini = new ArrayList<>();
+        domini.add("@gmail.com");
+        domini.add("@outlook.com");
+        domini.add("@yahoo.it");
+        domini.add("@hotmail.com");
+        domini.add("@mail.com");
+        domini.add("@libero.it");
+        domini.add("@virgilio.com");
+
+        while ((currentTab = brTab.readLine()) != null) {
+            PreparedStatement pstmt = conn.prepareStatement("SELECT *" +
+                                            "FROM tabelle_cv.\"" + currentTab.trim() + "\"");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Cittadino c = new Cittadino();
+                c.setNome(rs.getString("nome"));
+                c.setCognome(rs.getString("cognome"));
+                c.setCodice_fiscale(rs.getString("codice_fiscale"));
+                c.setId_vaccino(rs.getLong("id_vaccinazione"));
+                c.setEmail(c.getNome().toLowerCase() + "." + c.getCognome().toLowerCase() + domini.get(ThreadLocalRandom.current().nextInt(0, domini.size())));
+                c.setUserid(c.getNome().substring(0,1).toLowerCase() + c.getCognome().toLowerCase() + ThreadLocalRandom.current().nextInt(10,100));
+                c.setPassword(listPwd.get(count++));
+                //System.out.println(c);
+                db.registraCittadino(c);
+            }
+        }
+    }
+
 }
