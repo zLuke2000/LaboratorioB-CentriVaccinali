@@ -34,11 +34,34 @@ public class CIDashboardController extends Controller {
     // PasswordField
     @FXML private PasswordField tf_loginPassword;
 
-    @FXML void initialize() { }
+    @FXML void initialize() {
+        this.client = CentriVaccinali.client;
+        cittadinoConesso = client.getUtenteLoggato();
+        if(cittadinoConesso != null) {
+            mb_utente.setVisible(true);
+            vb_free.setVisible(false);
+            mb_utente.setText(cittadinoConesso.getUserid());
+        } else {
+            mb_utente.setVisible(false);
+            vb_free.setVisible(true);
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
+                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            p_container.getChildren().add(ap);
+            CIRicercaHomeController c = fxmlLoader.getController();
+            c.setParent(this);
+            c.initParameter(client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initParameter(ClientCV client) {
-        this.client =  client;
+        /*this.client =  client;
         cittadinoConesso = client.getUtenteLoggato();
         if(cittadinoConesso != null) {
             mb_utente.setVisible(true);
@@ -59,7 +82,7 @@ public class CIDashboardController extends Controller {
             c.initParameter(client);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
@@ -76,8 +99,6 @@ public class CIDashboardController extends Controller {
                 }
                 break;
             case RICERCA_CENTRO:
-                break;
-            default:
                 if (resultController == null) {
                     FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
                             .getResource("fxml/fragments/fragmentDashboard/Idea1Doppia.fxml"));
@@ -94,8 +115,10 @@ public class CIDashboardController extends Controller {
                         e.printStackTrace();
                     }
                 }
+                resultController.setData(result.getResultCentri());
                 break;
-            //resultController.setData(result.getResultCentri());
+            default:
+                break;
         }
     }
 
@@ -110,7 +133,8 @@ public class CIDashboardController extends Controller {
     }
 
 
-    public void loginDash(ActionEvent actionEvent) {
+    public void loginDash() {
+        //cp.testoSempliceConNumeri(tf_ci_loginUsername,4, 16) & (cp.password(tf_ci_loginPassword)
         if (!tf_loginUsername.getText().isBlank() && !tf_loginPassword.getText().isBlank()) {
             String username = tf_loginUsername.getText().trim();
             String password = tf_loginPassword.getText().trim();

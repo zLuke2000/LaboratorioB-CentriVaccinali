@@ -22,7 +22,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class CIHomeController extends Controller {
 
     @FXML public AnchorPane ap_root;
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
 
@@ -45,7 +45,7 @@ public class CIHomeController extends Controller {
 
     @Override
     public void initParameter(ClientCV client) {
-        this.client = client;
+        /*this.client = client;*/
     }
 
     @Override

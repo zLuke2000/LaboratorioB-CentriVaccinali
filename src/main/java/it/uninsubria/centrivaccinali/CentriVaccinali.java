@@ -34,7 +34,9 @@ public class CentriVaccinali extends Application {
     private static Stage stage;
     private static Double width;
     private static Double height;
-    private static ClientCV client;
+
+    //TODO rimuovere initParameter
+    public static ClientCV client;
     private static FXMLLoader fxmlLoader;
     private static Controller controller;
 

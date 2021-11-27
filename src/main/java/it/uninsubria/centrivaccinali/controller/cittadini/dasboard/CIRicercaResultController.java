@@ -14,7 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -47,21 +49,26 @@ public class CIRicercaResultController extends Controller {
     @FXML
     private TextField ci_tf_ricercaComune;
 
-
+    //TODO settare la giusta ricerca e il testo della ricerca
     @FXML void initialize () {
+        this.client = CentriVaccinali.client;
+
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
         this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
-        //ci_tf_ricercaNomeCV.setVisible(true);
         this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
-        Label lbl = new Label();
-        lbl.setText("Nessun risultato");
-        vb_risultati.getChildren().add(lbl);
+
+        //imgHub = new Image(new FileInputStream(Objects.requireNonNull(CentriVaccinali.class.getResource("image/Hub.png")).toString()));
+        imgHub = new Image(CentriVaccinali.class.getResourceAsStream("image/Hub.png"));
+        imgAziendale = new Image(CentriVaccinali.class.getResourceAsStream("image/Aziendale.jpeg"));
+        imgOspedaliero = new Image(CentriVaccinali.class.getResourceAsStream("image/Ospedaliero.png"));
+        //imgAziendale = new Image(new FileInputStream(Objects.requireNonNull(CentriVaccinali.class.getResource("image/Aziendale.jpeg")).toString()));
+        //imgOspedaliero = new Image(new FileInputStream(Objects.requireNonNull(CentriVaccinali.class.getResource("image/Ospedaliero.png")).toString()));
     }
 
     @Override
     public void initParameter(ClientCV client) {
-        this.client = client;
+        /*this.client = client;*/
     }
 
     @Override
@@ -85,15 +92,14 @@ public class CIRicercaResultController extends Controller {
         Platform.runLater(() -> {
             vb_risultati.getChildren().clear();
             if (list.isEmpty()) {
-                Label lbl = new Label();
-                lbl.setText("Nessun risultato");
-                vb_risultati.getChildren().add(lbl);
+                System.out.println("Nessun risultato");
+                //TODO label nessun risultato
             }
             else {
                 for (CentroVaccinale cv : list) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/ItemList.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/itemListResearch.fxml"));
                     try {
-                        HBox item = fxmlLoader.load();
+                        GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
                         itemController.setData(cv);
                         vb_risultati.getChildren().add(item);
@@ -107,7 +113,6 @@ public class CIRicercaResultController extends Controller {
 
     @FXML
     private void cambiaRicerca() {
-        //Object e = ci_cb_sceltaRicerca.getSelectionModel().getSelectedItem();
         if (ci_cb_sceltaRicerca.getValue().equals("Per nome")) {
             ci_tf_ricercaNomeCV.clear();
             ci_tf_ricercaNomeCV.setVisible(true);
