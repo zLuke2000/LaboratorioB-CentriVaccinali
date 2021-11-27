@@ -245,17 +245,17 @@ public class Database {
                 risultato.setResult(true);
                 risultato.setCittadino(c);
             } else {
-                System.err.println("[Database] id vaccinazione o codice fiscale non valido");
+                System.err.println("[Database] id vaccinazione o codice fiscale non valido: " + c.getId_vaccino() + "  ->  " + c.getCodice_fiscale());
                 risultato.setExtendedResult(Result.Error.CF_ID_NON_VALIDI);
             }
             return risultato;
         } catch (SQLException e) {
-            e.printStackTrace();
             String colonna = ((e.getMessage().split(Pattern.quote(")")))[0].split(Pattern.quote("("))[1]);
             try{
                 switch (colonna) {
                     case "codice_fiscale":
                         risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
+                        System.err.println("CITTADINO GIA REGISTRATO");
                     case "email":
                         pstmt = conn.prepareStatement("SELECT COUNT(*) " +
                                 "FROM public.\"Cittadini_Registrati\"" +
@@ -265,6 +265,7 @@ public class Database {
                         rs.next();
                         if(rs.getInt(1) == 1) {
                             risultato.setExtendedResult(Result.Error.EMAIL_GIA_IN_USO);
+                            System.err.println("EMAIL GIA' REGISTRATA");
                         }
                     case "userid":
                         pstmt = conn.prepareStatement("SELECT COUNT(*) " +
@@ -275,6 +276,7 @@ public class Database {
                         rs.next();
                         if(rs.getInt(1) == 1) {
                             risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
+                            System.err.println("USERID GIA REGISTRATO");
                         }
                     case "id_vaccino":
                         pstmt = conn.prepareStatement("SELECT COUNT(*) " +
@@ -285,6 +287,7 @@ public class Database {
                         rs.next();
                         if(rs.getInt(1) == 1) {
                             risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
+                            System.err.println("CITTADINO GIA REGISTRATO");
                         }
                         break;
                 }
