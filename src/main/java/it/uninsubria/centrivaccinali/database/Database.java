@@ -400,6 +400,7 @@ public class Database {
             pstmt.setString(1, "%" + nomeCentro + "%");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
+                System.out.println("trovato: " + rs.getString("nome_centro"));
                 risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
                                 rs.getString("nome"),

@@ -34,3 +34,13 @@
 .context-menu .separator:horizontal .line {
     -fx-border-color: #323232 transparent transparent transparent;
 }
+
+/* SCROLL-PANE */
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 0;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 20 0;
+}

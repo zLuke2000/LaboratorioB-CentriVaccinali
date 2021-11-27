@@ -32,18 +32,8 @@ public class CIItemListController extends Controller {
     @Override
     public void notifyController(Result result) {  }
 
-    public void setData(CentroVaccinale cv) {
-        switch (cv.getTipologia()){
-            case HUB:
-                ci_iv_imageItem.setImage(new Image(String.valueOf(CentriVaccinali.class.getResource("Image/Hub.png"))));
-                break;
-            case AZIENDALE:
-                ci_iv_imageItem.setImage(new Image(String.valueOf(CentriVaccinali.class.getResource("Image/Aziendale.png"))));
-                break;
-            case OSPEDALIERO:
-                ci_iv_imageItem.setImage(new Image(String.valueOf(CentriVaccinali.class.getResource("Image/Ospedaliero.png"))));
-                break;
-        }
+    public void setData(CentroVaccinale cv, Image img) {
+        ci_iv_imageItem.setImage(img);
         ci_tf_nomeCVItem.setText(cv.getNome());
         ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));
         ci_l_tipologiaItem.setText(String.valueOf(cv.getTipologia()));

@@ -24,6 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class CIRicercaResultController extends Controller {
 
@@ -31,23 +32,21 @@ public class CIRicercaResultController extends Controller {
 
     private CIDashboardController parent;
 
-    @FXML
-    public VBox vb_risultati;
+    @FXML public VBox vb_risultati;
 
-    @FXML
-    private TextField ci_tf_ricercaNomeCV;
+    @FXML private TextField ci_tf_ricercaNomeCV;
 
-    @FXML
-    private ComboBox ci_cb_sceltaRicerca;
+    @FXML private ComboBox<String> ci_cb_sceltaRicerca;
 
-    @FXML
-    private AnchorPane ci_ap_tc;
+    @FXML private AnchorPane ci_ap_tc;
 
-    @FXML
-    private ComboBox ci_cb_sceltaTipologia;
+    @FXML private ComboBox<TipologiaCentro> ci_cb_sceltaTipologia;
 
-    @FXML
-    private TextField ci_tf_ricercaComune;
+    @FXML private TextField ci_tf_ricercaComune;
+
+    private Image imgHub;
+    private Image imgAziendale;
+    private Image imgOspedaliero;
 
     //TODO settare la giusta ricerca e il testo della ricerca
     @FXML void initialize () {
@@ -101,7 +100,17 @@ public class CIRicercaResultController extends Controller {
                     try {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
-                        itemController.setData(cv);
+                        switch (cv.getTipologia()){
+                            case HUB:
+                                itemController.setData(cv, imgHub);
+                                break;
+                            case AZIENDALE:
+                                itemController.setData(cv, imgAziendale);
+                                break;
+                            case OSPEDALIERO:
+                                itemController.setData(cv, imgOspedaliero);
+                                break;
+                        }
                         vb_risultati.getChildren().add(item);
                     } catch (IOException e) {
                         e.printStackTrace();
