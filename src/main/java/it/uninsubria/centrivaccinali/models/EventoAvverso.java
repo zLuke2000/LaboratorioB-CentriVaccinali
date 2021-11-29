@@ -17,6 +17,11 @@ public class EventoAvverso implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * Rappresenta l'id del vaccino associato all'evento avverso
+     */
+    private long idVaccino;
+
+    /**
      * Descrive l'evento avverso avvenuto
      */
     private String evento;
@@ -34,17 +39,39 @@ public class EventoAvverso implements Serializable {
     private Vaccino tipoVac;
 
     /**
-     * Costruttore primario per EventoAvverso
+     * Costruttore primario per EventoAvverso (fase registrazione)
+     * @param idVaccino id univoco vaccinazione
      * @param evento la stringa che descrive l'evento
      * @param severita l'intero che rappresent&agrave l'intensita dell'evento
      * @param note note opzionali per descrivere l'evento
-     * @param vac mettere null durante inserimento
      */
-    public EventoAvverso(String evento, int severita, String note, Vaccino vac) {
+    public EventoAvverso(long idVaccino, String evento, int severita, String note) {
+        this.idVaccino = idVaccino;
         this.evento = evento;
         this.severita = severita;
         this.note = note;
-        this.vac = vac;
+    }
+
+    /**
+     * Costruttore primario per EventoAvverso (fase lettura)
+     * @param evento la stringa che descrive l'evento
+     * @param severita l'intero che rappresent&agrave l'intensita dell'evento
+     * @param note note opzionali per descrivere l'evento
+     * @param tipoVac tipologia di vaccino utilizzato
+     */
+    public EventoAvverso(String evento, int severita, String note, Vaccino tipoVac) {
+        this.evento = evento;
+        this.severita = severita;
+        this.note = note;
+        this.tipoVac=tipoVac;
+    }
+
+    public long getIdVaccino() {
+        return idVaccino;
+    }
+
+    public void setIdVaccino(long idVaccino) {
+        this.idVaccino = idVaccino;
     }
 
     /**
