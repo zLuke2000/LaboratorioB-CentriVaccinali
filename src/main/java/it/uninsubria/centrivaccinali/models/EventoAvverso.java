@@ -31,15 +31,7 @@ public class EventoAvverso implements Serializable {
      */
     private String note="";
 
-    /**
-     * VAccino utilizzato
-     */
-    private Vaccino vac = null;
-
-    /**
-     *
-     */
-    public EventoAvverso() {}
+    private Vaccino tipoVac;
 
     /**
      * Costruttore primario per EventoAvverso
@@ -105,8 +97,11 @@ public class EventoAvverso implements Serializable {
 
     @Override
     public String toString() {
-        return "Evento='" + evento + '\'' +
-                ", Severita=" + severita +
-                ", Note='" + note + '\'';
+        return "EventoAvverso{" +
+                "idVaccino=" + idVaccino +
+                ", evento='" + evento + '\'' +
+                ", severita=" + severita +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

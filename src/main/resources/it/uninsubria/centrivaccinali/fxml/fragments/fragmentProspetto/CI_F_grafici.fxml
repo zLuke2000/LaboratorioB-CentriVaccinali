@@ -12,7 +12,7 @@
           <CategoryAxis fx:id="tipoEventoAxis" side="BOTTOM"/>
       </xAxis>
       <yAxis>
-          <NumberAxis fx:id="gravitàAxis" autoRanging="false" side="LEFT" tickLabelGap="2.0" tickUnit="1.0" upperBound="5.0"/>
+          <NumberAxis fx:id="gravitaAxis" autoRanging="false" side="LEFT" tickLabelGap="2.0" tickUnit="1.0" upperBound="5.0"/>
       </yAxis>
     </BarChart>
 </AnchorPane>

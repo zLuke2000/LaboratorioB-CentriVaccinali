@@ -3,10 +3,7 @@ package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -24,12 +21,12 @@ public class CIGraficiController extends Controller {
     private CategoryAxis tipoEventoAxis;
 
     @FXML
-    private NumberAxis gravitàAxis;
+    private NumberAxis gravitaAxis;
 
     @FXML
     void initialize() {
         tipoEventoAxis.setLabel("Tipo evento avverso");
-        gravitàAxis.setLabel("Gravità");
+        gravitaAxis.setLabel("Gravità");
 
         XYChart.Series pfizer = new XYChart.Series();
         pfizer.setName("pfizer");

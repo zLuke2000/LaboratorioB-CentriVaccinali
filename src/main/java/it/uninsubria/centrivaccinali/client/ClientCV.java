@@ -165,7 +165,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     public void registraEventoAvverso(EAController eaController , EventoAvverso ea) {
         controller = eaController;
         try {
-            server.registraEventoAvverso(this, ea, cittadinoConnesso.getId_vaccino());
+            server.registraEventoAvverso(this, ea);
         } catch (RemoteException e) {
             printerr("Impossibile registrare l'evento");
             lanciaPopup();

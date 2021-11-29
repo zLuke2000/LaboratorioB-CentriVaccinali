@@ -6,10 +6,7 @@ import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Cittadino;
-import it.uninsubria.centrivaccinali.models.Indirizzo;
-import it.uninsubria.centrivaccinali.models.Vaccinato;
+import it.uninsubria.centrivaccinali.models.*;
 
 import java.io.*;
 import java.sql.Connection;
@@ -35,10 +32,8 @@ public class Uploader {
         db.connect("123abc", "123abc");
 
         try {
-            registraCittadini();
+            registraEventi();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -693,4 +688,31 @@ public class Uploader {
         brPwd.close();
     }
 
+    private static void registraEventi() throws SQLException {
+        List<String> eventi = new ArrayList<>();
+        eventi.add("mal di testa");
+        eventi.add("febbre");
+        eventi.add("dolori muscolari e articolari");
+        eventi.add("linfoadenopatia");
+        eventi.add("tachicardia");
+        eventi.add("crisi chipertensiva");
+        PreparedStatement pstmt = conn.prepareStatement("SELECT id_vaccino " +
+                                                            "FROM public.\"Cittadini_Registrati\"");
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            long id = rs.getLong(1);
+            if(ThreadLocalRandom.current().nextBoolean()) {
+                List<String> eventiRandom = new ArrayList<>();
+                eventiRandom.addAll(eventi);
+                int numeroEventi = ThreadLocalRandom.current().nextInt(eventi.size());
+                for(int i=0; i<numeroEventi; i++) {
+                    int eventoacaso = ThreadLocalRandom.current().nextInt(eventiRandom.size());
+                    EventoAvverso ea = new EventoAvverso(id, eventiRandom.get(eventoacaso),ThreadLocalRandom.current().nextInt(1, 6),"");
+                    eventiRandom.remove(eventoacaso);
+                    //System.out.println(ea);
+                    db.registraEA(ea);
+                }
+            }
+        }
+    }
 }
