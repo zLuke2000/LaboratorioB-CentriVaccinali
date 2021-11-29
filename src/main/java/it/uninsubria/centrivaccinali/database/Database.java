@@ -395,7 +395,7 @@ public class Database {
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                     "FROM public.\"InfoCV\" " +
-                    "WHERE nome_centro LIKE ? " +
+                    "WHERE nome_centro ILIKE ? " +
                     "ORDER BY nome_centro");
             pstmt.setString(1, "%" + nomeCentro + "%");
             ResultSet rs = pstmt.executeQuery();

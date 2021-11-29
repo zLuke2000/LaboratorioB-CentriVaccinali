@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="transparent" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIRicercaResultController">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIRicercaResultController">
    <AnchorPane layoutX="600.0" prefHeight="700.0" prefWidth="600.0" styleClass="transparent">
       <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="165.0" layoutY="104.0" pannable="true" prefHeight="710.0" prefWidth="600.0" styleClass="transparent" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <VBox fx:id="vb_risultati" prefHeight="694.0" prefWidth="588.0" spacing="4.0" styleClass="transparent">
@@ -44,12 +44,12 @@
       <Label fx:id="ci_l_noResult" alignment="CENTER" layoutX="-4.0" layoutY="331.0" style="-fx-font-size: 30; -fx-text-fill: #A4A1A1;" text="Nessun Risultato" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </AnchorPane>
    <AnchorPane minWidth="550.0" styleClass="trasparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="603.0" AnchorPane.topAnchor="0.0">
-      <TextField fx:id="ci_tf_ricercaNomeCV" layoutY="275.0" promptText="Inserisci nome centro vaccinale" styleClass="textfield-RicercaCV" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="275.0" />
+      <TextField fx:id="ci_tf_ricercaNomeCV" layoutY="275.0" promptText="Inserisci nome centro vaccinale" styleClass="field-preset-1" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="275.0" />
       <Label fx:id="target_Ricerca" text="Tipologia ricerca:" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="30.0" />
       <ComboBox fx:id="ci_cb_sceltaRicerca" layoutX="279.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="30.0" prefWidth="700.0" styleClass="combo-box" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="53.0" />
       <AnchorPane fx:id="ci_ap_tc" layoutX="100.0" layoutY="175.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <ComboBox fx:id="ci_cb_sceltaTipologia" prefWidth="150.0" styleClass="comboBoxTipologia" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
-         <TextField fx:id="ci_tf_ricercaComune" layoutY="100.0" promptText="Comune" styleClass="textfield-RicercaCV" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+         <TextField fx:id="ci_tf_ricercaComune" layoutY="100.0" promptText="Comune" styleClass="field-preset-1" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
       </AnchorPane>
       <Button fx:id="CI_B_ricerca" layoutX="200.0" layoutY="425.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cercaCentroVaccinale" prefHeight="33.0" prefWidth="200.0" styleClass="button-preset-1" text="Cerca" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="190.0">
          <graphic>

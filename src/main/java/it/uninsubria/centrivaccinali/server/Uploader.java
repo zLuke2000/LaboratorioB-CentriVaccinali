@@ -44,7 +44,7 @@ public class Uploader {
     }
 
     private static void registraCentri() throws IOException {
-        BufferedReader br = new BufferedReader( new FileReader("C:/Users/Luca/IdeaProjects/CentriVaccinali/src/main/resources/it/uninsubria/centrivaccinali/UML/centri_lombardia.csv"));
+        BufferedReader br = new BufferedReader( new FileReader(CentriVaccinali.class.getResource("UML/centri_lombardia.csv").getFile()));
 
         String currentLine;
         List<CentroVaccinale> listCV = new ArrayList<>();
@@ -68,15 +68,16 @@ public class Uploader {
         db.connect("123abc", "123abc");
         for(CentroVaccinale cv: listCV) {
             System.out.println(cv);
-            db.registraCentroVaccinale(cv);
+            //db.registraCentroVaccinale(cv);
         }
     }
 
     private static void registraVaccinatiRandom(int max) throws IOException {
-        BufferedReader brNome = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/nomi.txt"));
-        BufferedReader brCognome = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/cognomi.txt"));
-        BufferedReader brComune = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/soloCC.txt"));
-        BufferedReader brCentri = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/centri.txt"));
+
+        BufferedReader brNome = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/nomi.txt").getFile()));
+        BufferedReader brCognome = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/cognomi.txt").getFile()));
+        BufferedReader brComune = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/soloCC.txt").getFile()));
+        BufferedReader brCentri = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/centri.txt").getFile()));
         String currentLine;
 
         HashMap<String, String> nomi_e_genere = new HashMap<>();
@@ -113,10 +114,6 @@ public class Uploader {
             String nomecf = nomi_e_genere.keySet().toArray()[numero_a_caso].toString();
             String genere = nomi_e_genere.get(nomecf);
             String cognomecf = cognomi.get(ThreadLocalRandom.current().nextInt(cognomi.size() - 1));
-
-//            System.out.println("Scelto nome:\t" + nomecf);
-//            System.out.println("Scelto genere:\t" + genere);
-//            System.out.println("Scelto cognome:\t" + cognomecf);
 
             /*calcolo prime 3 lettere */
             int cont = 0;
@@ -616,7 +613,6 @@ public class Uploader {
                 }
             }
             codFis += carattereControllo;
-            //System.out.println(codFis);
 
             Vaccinato vac = new Vaccinato();
             vac.setNome(nomecf);
@@ -642,16 +638,20 @@ public class Uploader {
 
             vac.setNomeCentro(centri.get(ThreadLocalRandom.current().nextInt(0,centri.size())));
 
-            //System.out.println(vac);
 
-            db.registraVaccinato(vac);
+
+            //db.registraVaccinato(vac);
         }
+        brNome.close();
+        brCentri.close();
+        brCognome.close();
+        brComune.close();
     }
 
     private static void registraCittadini() throws SQLException, IOException {
 
-        BufferedReader brTab = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/tabelleCentri.txt"));
-        BufferedReader brPwd = new BufferedReader(new FileReader("C:/Users/chrip/IdeaProjects/LaboratorioB-CentriVaccinali/target/classes/it/uninsubria/centrivaccinali/UML/passwords.txt"));
+        BufferedReader brTab = new BufferedReader(new FileReader((CentriVaccinali.class.getResource("UML/tabelleCentri.txt").getFile())));
+        BufferedReader brPwd = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/passwords.txt").getFile()));
         String currentTab;
         String currentPwd;
 
@@ -684,10 +684,13 @@ public class Uploader {
                 c.setEmail(c.getNome().toLowerCase() + "." + c.getCognome().toLowerCase() + domini.get(ThreadLocalRandom.current().nextInt(0, domini.size())));
                 c.setUserid(c.getNome().substring(0,1).toLowerCase() + c.getCognome().toLowerCase() + ThreadLocalRandom.current().nextInt(10,100));
                 c.setPassword(listPwd.get(count++));
-                //System.out.println(c);
-                db.registraCittadino(c);
+                System.out.println(c);
+                //db.registraCittadino(c);
             }
         }
+
+        brTab.close();
+        brPwd.close();
     }
 
 }

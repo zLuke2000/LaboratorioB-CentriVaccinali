@@ -4,9 +4,11 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -56,10 +58,11 @@ public class CentriVaccinali extends Application {
             stage.setX(mouseEvent.getScreenX() - xOffset);
             stage.setY(mouseEvent.getScreenY() - yOffset);
         });
-        stage.setScene(scene);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Progetto LaboratorioB");
         stage.setResizable(false);
+        //stage.centerOnScreen();
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -127,6 +130,7 @@ public class CentriVaccinali extends Application {
         controller.initParameter(client);
         stage.setWidth(width);
         stage.setHeight(height);
+        stage.centerOnScreen();
     }
 
     /**

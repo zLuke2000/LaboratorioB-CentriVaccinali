@@ -6,6 +6,8 @@ import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.CssHelper;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ public class CIDashboardController extends Controller {
     private ClientCV client;
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CIRicercaResultController resultController = null;
+    private CssHelper cssh = CssHelper.getInstance();
 
     @FXML private MenuButton mb_utente;
     @FXML private VBox vb_free;
@@ -89,14 +92,31 @@ public class CIDashboardController extends Controller {
     public void notifyController(Result result) {
         switch (result.getOpType()) {
             case LOGIN_CITTADINO:
-                if(result.getResult()) {
-                    Platform.runLater(() -> {
-                        System.out.println("cambio un sacco di roba");
-                        vb_free.setVisible(false);
-                        mb_utente.setVisible(true);
-                        mb_utente.setText(client.getUtenteLoggato().getUserid());
-                    });
-                }
+                Platform.runLater(() -> {
+                    if(result.getResult()) {
+                        Platform.runLater(() -> {
+                            System.out.println("cambio un sacco di roba");
+                            vb_free.setVisible(false);
+                            mb_utente.setVisible(true);
+                            mb_utente.setText(client.getUtenteLoggato().getUserid());
+                            cittadinoConesso = client.getUtenteLoggato();
+                        });
+                    }
+                    else {
+                        System.out.println("Login fallito");
+                        cssh.toDefault(tf_loginPassword);
+                        if (result.getExtendedResult().contains(Result.Error.USERNAME_NON_TROVATO)) {
+                            System.out.println("Username non trovato");
+                            cssh.toError(tf_loginUsername, new Tooltip("Username non corretto"));
+                            cssh.toDefault(tf_loginPassword);
+                        }
+                        if (result.getExtendedResult().contains(Result.Error.PASSWORD_ERRATA)) {
+                            System.out.println("Password errata");
+                            cssh.toError(tf_loginPassword, new Tooltip("Password non corretta"));
+
+                        }
+                    }
+                });
                 break;
             case RICERCA_CENTRO:
                 if (resultController == null) {
@@ -134,8 +154,7 @@ public class CIDashboardController extends Controller {
 
 
     public void loginDash() {
-        //cp.testoSempliceConNumeri(tf_ci_loginUsername,4, 16) & (cp.password(tf_ci_loginPassword)
-        if (!tf_loginUsername.getText().isBlank() && !tf_loginPassword.getText().isBlank()) {
+        if (cp.testoSempliceConNumeri(tf_loginUsername,4, 16) & (cp.password(tf_loginPassword))) {
             String username = tf_loginUsername.getText().trim();
             String password = tf_loginPassword.getText().trim();
             client.loginUtente(this, username, password);
@@ -156,5 +175,7 @@ public class CIDashboardController extends Controller {
         super.closeApp(client);
     }
 
+    @FXML
+    public void toRegistrazione() { CentriVaccinali.setRoot("CI_registrazione"); }
 }
 

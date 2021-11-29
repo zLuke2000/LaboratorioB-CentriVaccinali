@@ -48,7 +48,7 @@
 	-fx-border-width: 1.5;
     -fx-background-color: rgba(255, 255, 255, 0.6);
 	-fx-background-radius: 10;
-	-fx-text-fill: black;
+	-fx-text-fill: #323232;
 }
 
 .redIcon:hover{
@@ -60,8 +60,18 @@
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 10;
 }
-.combo-box .combo-box-popup .list-view .list-cell {
-    -fx-background-color: rgba(255, 255, 255, 0.6);
+.combo-box-popup .list-view {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 10;
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #323232;
+}
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: rgba(105, 53, 251, 0.3);
+    -fx-background-radius: 10;
+    -fx-text-fill: #323232;
 }
 
 /* RADIO BUTTON */
