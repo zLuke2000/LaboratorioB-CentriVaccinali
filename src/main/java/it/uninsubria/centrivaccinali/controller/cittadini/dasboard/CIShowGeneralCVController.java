@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
 
 /*
     Grafico su quanti hanno usato quale vaccino
@@ -23,22 +24,53 @@ import java.io.IOException;
 
 public class CIShowGeneralCVController extends Controller {
 
+    private CentroVaccinale cv;
+    private CIDashboardController parent;
+
+    @FXML
+    private AnchorPane ap_info;
+
+    @FXML
+    private ImageView CI_IV_image;
+
+    @FXML
+    private Label CI_L_tipologia;
+
+    @FXML
+    private Label CI_L_nomeCV;
+
+    @FXML
+    private Label CI_L_indirizzoCV;
+
     @FXML
     private AnchorPane CI_AP_container;
 
     @FXML void initialize() {  }
 
     @Override
-    public void initParameter(ClientCV client) {
-
-    }
+    public void initParameter(ClientCV client) {  }
 
     @Override
-    public void notifyController(Result result) {
+    public void notifyController(Result result) {  }
 
+    public void setData(CentroVaccinale cv) {
+        this.cv = cv;
+        String tipologia =cv.getTipologia().toString();
+        String img = "";
+        if (tipologia.equals("ospedaliero"))
+            img = "Ospedaliero.png";
+        if (tipologia.equals("aziendale"))
+            img = "Aziendale.jpeg";
+        if (tipologia.equals("hub"))
+            img = "Hub";
+        CI_IV_image.setImage(new Image(CentriVaccinali.class.getResourceAsStream("image/" + img)));
+        this.CI_L_tipologia.setText(tipologia);
+        this.CI_L_nomeCV.setText(cv.getNome());
+        this.CI_L_indirizzoCV.setText(cv.getIndirizzo().toString());
     }
 
-    public void showProspetto(ActionEvent actionEvent) {
+    @FXML
+    public void showProspetto() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/Fragments/FragmentProspetto/CI_F_grafici.fxml"));
         try {
             AnchorPane ap_chart = fxmlLoader.load();

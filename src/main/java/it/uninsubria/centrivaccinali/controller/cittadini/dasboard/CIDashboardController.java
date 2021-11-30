@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
+import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
@@ -24,6 +25,7 @@ public class CIDashboardController extends Controller {
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CIRicercaResultController resultController = null;
     private CssHelper cssh = CssHelper.getInstance();
+    private Pane infoCV;
 
     @FXML private MenuButton mb_utente;
     @FXML private VBox vb_free;
@@ -140,9 +142,32 @@ public class CIDashboardController extends Controller {
         }
     }
 
+    public void visualizzaInfo(CentroVaccinale cv) {
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/CI_F_showGeneralCV.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            CIShowGeneralCVController controller = fxmlLoader.getController();
+            controller.setData(cv);
+            controller.setParent(this);
+            resultController.getPane().setVisible(false);
+            p_container.getChildren().add(ap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void rimuoviInfo(Pane p){
+        System.out.println("Ciao " + p);
+        //p_container.getChildren().remove(p);
+        resultController.getPane().setVisible(true);
+    }
+
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
     }
 
+    @FXML
     public void logoutInfoMB() {
         client.LogoutUtente();
         System.out.println("L'utente ha eseguito il logout");
@@ -150,7 +175,7 @@ public class CIDashboardController extends Controller {
         mb_utente.setVisible(false);
     }
 
-
+    @FXML
     public void loginDash() {
         if (cp.testoSempliceConNumeri(tf_loginUsername,4, 16) & (cp.password(tf_loginPassword))) {
             String username = tf_loginUsername.getText().trim();

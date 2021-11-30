@@ -29,6 +29,9 @@ public class CIRicercaResultController extends Controller {
 
     private CIDashboardController parent;
 
+    @FXML
+    public AnchorPane ap_result;
+
     @FXML public VBox vb_risultati;
 
     @FXML private TextField ci_tf_ricercaNomeCV;
@@ -97,6 +100,7 @@ public class CIRicercaResultController extends Controller {
                     try {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
+                        itemController.setParent(parent);
                         switch (cv.getTipologia()){
                             case HUB:
                                 itemController.setData(cv, imgHub);
@@ -130,4 +134,6 @@ public class CIRicercaResultController extends Controller {
             ci_ap_tc.setVisible(true);
         }
     }
+
+    public Pane getPane() { return ap_result;}
 }

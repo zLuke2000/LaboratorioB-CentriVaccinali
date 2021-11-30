@@ -14,6 +14,9 @@ import javafx.event.ActionEvent;
 
 public class CIItemListController extends Controller {
 
+    private CIDashboardController parent;
+    private CentroVaccinale item;
+
     @FXML
     private ImageView ci_iv_imageItem;
 
@@ -33,6 +36,7 @@ public class CIItemListController extends Controller {
     public void notifyController(Result result) {  }
 
     public void setData(CentroVaccinale cv, Image img) {
+        item = cv;
         ci_iv_imageItem.setImage(img);
         ci_tf_nomeCVItem.setText(cv.getNome());
         ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));
@@ -44,6 +48,12 @@ public class CIItemListController extends Controller {
 
     }
 
-    public void showInfo(ActionEvent actionEvent) {
+    @FXML
+    public void visualizzaInfo() {
+        parent.visualizzaInfo(item);
+    }
+
+    public void setParent(Controller c) {
+        parent = (CIDashboardController) c;
     }
 }

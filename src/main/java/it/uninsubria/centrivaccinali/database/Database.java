@@ -438,7 +438,7 @@ public class Database {
                                 rs.getString("comune"),
                                 rs.getString("provincia"),
                                 rs.getInt("cap")),
-                        TipologiaCentro.valueOf(rs.getString("tipologia"))));
+                        TipologiaCentro.getValue(rs.getString("tipologia"))));
             }
             risultato.setResult(true);
             risultato.setResultCentri(risultatoRicerca);
