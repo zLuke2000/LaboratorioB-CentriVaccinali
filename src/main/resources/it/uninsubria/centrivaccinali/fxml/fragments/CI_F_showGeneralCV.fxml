@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -24,35 +25,32 @@
          <children>
             <AnchorPane prefHeight="54.0" prefWidth="380.0">
                <children>
-                  <FontIcon iconLiteral="subway-reply" layoutX="19.0" layoutY="40.0" styleClass="backIcon" />
-                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" styleClass="label-titleInfoProspetto" text="Informazioni Generali" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" layoutX="211.0" layoutY="22.0" style="-fx-font-size: 30;" text="Informazioni Generali" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
-            <Label styleClass="labelWelcome" text="Tipologia">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </Label>
-            <ImageView fx:id="CI_IV_imageProspetto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="CI_L_tipologiaProspetto" style="-fx-font-size: 18;" />
-            <Label styleClass="labelWelcome" text="Nome">
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="CI_L_nomeCVProspetto" style="-fx-font-size: 18;">
+            <ImageView fx:id="CI_IV_image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets top="20.0" />
+               </VBox.margin></ImageView>
+            <Label fx:id="CI_L_tipologia" style="-fx-font-size: 18;" />
+            <Label style="-fx-font-size: 20;" text="Nome">
+               <VBox.margin>
+                  <Insets top="110.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="labelWelcome" text="Indirizzo">
+            <Label fx:id="CI_L_nomeCV" style="-fx-font-size: 18;">
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="CI_L_indirizzoCVProspetto" prefWidth="337.0" style="-fx-font-size: 18;" wrapText="true">
+            <Label style="-fx-font-size: 20;" text="Indirizzo">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="110.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="CI_L_indirizzoCV" prefWidth="337.0" style="-fx-font-size: 18;" wrapText="true">
+               <VBox.margin>
+                  <Insets top="25.0" />
                </VBox.margin>
             </Label>
          </children>
@@ -78,7 +76,12 @@
             </InnerShadow>
          </effect>
       </ToggleButton>
-      <Label alignment="CENTER" layoutX="790.0" layoutY="20.0" styleClass="label-titleProspetto" text="Prospetto Riassuntivo" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
-      <AnchorPane fx:id="CI_AP_containerProspetto" layoutX="690.0" layoutY="219.0" prefHeight="200.0" prefWidth="200.0" styleClass="style-trasparent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
+      <Label alignment="CENTER" layoutX="790.0" layoutY="20.0" style="-fx-font-size: 30;" text="Prospetto Riassuntivo" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
+      <AnchorPane fx:id="CI_AP_container" layoutX="690.0" layoutY="219.0" prefHeight="200.0" prefWidth="200.0" styleClass="style-trasparent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
+      <FontIcon iconLiteral="mdi2c-close-thick" iconSize="25" layoutX="1166.0" layoutY="33.0" onMouseClicked="#chiudiInfo" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    </children>
+   <stylesheets>
+      <URL value="@../../style/dashboardStyle.css" />
+      <URL value="@../../style/style.css" />
+   </stylesheets>
 </AnchorPane>

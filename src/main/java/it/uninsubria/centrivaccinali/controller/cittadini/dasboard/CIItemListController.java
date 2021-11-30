@@ -39,13 +39,9 @@ public class CIItemListController extends Controller {
         ci_l_tipologiaItem.setText(String.valueOf(cv.getTipologia()));
     }
 
-    public void addAdverseEvent(ActionEvent actionEvent) {
-    }
+    @FXML
+    public void aggiungiEvento() {
 
-    public void visualizzaInfoCentroVaccinale(ActionEvent actionEvent) {
-    }
-
-    public void addEvent(ActionEvent actionEvent) {
     }
 
     public void showInfo(ActionEvent actionEvent) {

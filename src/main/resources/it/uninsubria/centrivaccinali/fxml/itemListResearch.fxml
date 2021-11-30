@@ -37,7 +37,7 @@
       </Label>
    </VBox>
    <HBox fx:id="ci_accesibile" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-      <Button mnemonicParsing="false" onAction="#addEvent" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: green;" styleClass="button-actionItem">
+      <Button mnemonicParsing="false" onAction="#aggiungiEvento" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: green;" styleClass="button-actionItem">
          <HBox.margin>
             <Insets right="10.0" />
          </HBox.margin>
@@ -45,7 +45,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="mdi2c-clipboard-plus" iconSize="20" />
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" onAction="#showInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
+      <Button mnemonicParsing="false" onAction="#visualizzaInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin>
@@ -55,7 +55,7 @@
       </Button>
    </HBox>
    <HBox fx:id="ci_noAccessibile" alignment="CENTER" layoutX="422.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" visible="false" GridPane.columnIndex="2">
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#showInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#visualizzaInfo" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #F8E60D;" styleClass="button-actionItem">
          <graphic>
             <FontIcon iconColor="WHITE" iconLiteral="mdi2i-information" iconSize="20" />
          </graphic>
