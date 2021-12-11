@@ -3,15 +3,19 @@ package it.uninsubria.centrivaccinali.controller.centri;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
+import it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController;
 import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class CVChangeController extends Controller {
 
-    @FXML
-    public AnchorPane ap_root;
+    @FXML public AnchorPane ap_root;
 
     /**
      * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato
@@ -34,17 +38,22 @@ public class CVChangeController extends Controller {
      * Metodo per tornare all'interfaccia precedente
      */
     @FXML public void backTo() {
-        CentriVaccinali.setRoot("Avvio");
+        DialogHelper dh = new DialogHelper("ATTENZIONE","Vuoi eseguire il logout?", DialogHelper.Type.WARNING);
+        Button bs = new Button("SI");
+        bs.setOnAction(actionEvent -> {
+            CentriVaccinali.setRoot("Avvio");
+            dh.close();
+        });
+        dh.addButton(bs);
+        dh.display(ap_root);
+
     }
 
-    @FXML
-    void chiudi() {
+    @FXML void chiudi() {
         super.closeApp(null);
     }
 
-    @Override
-    public void initParameter(ClientCV client) {  }
+    @Override public void initParameter(ClientCV client) {  }
 
-    @Override
-    public void notifyController(Result result) {  }
+    @Override public void notifyController(Result result) {  }
 }

@@ -101,7 +101,7 @@ public class CVRegistraCittadinoController extends Controller {
                 CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
-                        Platform.runLater(() -> {
+                    Platform.runLater(() -> {
                         DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
                         dh.display(ap_root);
                         //reset interfaccia

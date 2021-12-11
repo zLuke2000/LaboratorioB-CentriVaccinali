@@ -26,21 +26,13 @@ public class Database {
     private ResultSet rs;
     private Result risultato;
 
-    public Database() {}
-
-    public Boolean connect(String utente, String password) {
-        if(this.utente.equals(utente) && this.password.equals(password)) {
-            try {
-                conn = DBHelper.getConnection();
-                System.out.println("Connessione stabilita: " + conn);
-                return true;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("Autenticazione fallita");
+    public Database() {
+        try {
+            conn = DBHelper.getConnection();
+            System.out.println("Connessione stabilita: " + conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return false;
     }
 
     /**
@@ -276,7 +268,7 @@ public class Database {
                         rs.next();
                         if(rs.getInt(1) == 1) {
                             risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
-                            System.err.println("USERID GIA REGISTRATO");
+                            System.err.println("USERID GIA' REGISTRATO");
                         }
                     case "id_vaccino":
                         pstmt = conn.prepareStatement("SELECT COUNT(*) " +
@@ -287,7 +279,7 @@ public class Database {
                         rs.next();
                         if(rs.getInt(1) == 1) {
                             risultato.setExtendedResult(Result.Error.CITTADINO_GIA_REGISTRATO);
-                            System.err.println("CITTADINO GIA REGISTRATO");
+                            System.err.println("CITTADINO GIA' REGISTRATO");
                         }
                         break;
                 }

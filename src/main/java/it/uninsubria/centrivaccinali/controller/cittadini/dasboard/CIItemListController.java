@@ -11,6 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class CIItemListController extends Controller {
 
@@ -18,7 +22,7 @@ public class CIItemListController extends Controller {
     private CentroVaccinale item;
 
     @FXML
-    private ImageView ci_iv_imageItem;
+    private FontIcon ci_fi_image;
 
     @FXML
     public Label ci_tf_nomeCVItem;
@@ -35,9 +39,10 @@ public class CIItemListController extends Controller {
     @Override
     public void notifyController(Result result) {  }
 
-    public void setData(CentroVaccinale cv, Image img) {
+    public void setData(CentroVaccinale cv, String iconLiteral, String color) {
         item = cv;
-        ci_iv_imageItem.setImage(img);
+        ci_fi_image.setIconLiteral(iconLiteral);
+        ci_fi_image.setIconColor(Paint.valueOf(color));
         ci_tf_nomeCVItem.setText(cv.getNome());
         ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));
         ci_l_tipologiaItem.setText(String.valueOf(cv.getTipologia()));

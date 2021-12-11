@@ -22,7 +22,7 @@ public class DialogHelper {
     private Double xOffset;
     private Double yOffset;
     private Stage stage;
-    private FadeTransition ft = new FadeTransition(Duration.millis(2000));
+    private FadeTransition ft = new FadeTransition(Duration.millis(500));
     private Pane rootPane;
     private GenericDialogController gdc;
 
@@ -94,6 +94,7 @@ public class DialogHelper {
     public void close() {
         stage.close();
         if(rootPane != null) {
+            ft.stop();
             ft.setNode(rootPane);
             ft.setFromValue(0.1);
             ft.setToValue(1.0);

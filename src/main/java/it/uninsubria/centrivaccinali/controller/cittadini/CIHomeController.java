@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -95,7 +97,7 @@ public class CIHomeController extends Controller {
             }
             if (!username.isBlank() && !password.isBlank()){
                 CentriVaccinali.scene.setCursor(Cursor.WAIT);
-                client.loginUtente(this, username, password);
+                client.loginUtente(this, username, cp.encryptPassword(password));
             }
         }
     }
@@ -148,5 +150,12 @@ public class CIHomeController extends Controller {
     @FXML
     void chiudi() {
         super.closeApp(client);
+    }
+
+    public void checkEnter(KeyEvent keyEvent) {
+        if(keyEvent.getCode().equals(KeyCode.ENTER)){
+            System.out.println("sono nell'if");
+            loginCittadino();
+        }
     }
 }
