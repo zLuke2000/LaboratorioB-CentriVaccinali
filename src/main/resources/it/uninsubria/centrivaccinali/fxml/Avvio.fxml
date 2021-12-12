@@ -21,10 +21,10 @@
                <Cursor fx:constant="HAND" />
             </cursor>
             <graphic>
-               <FontIcon iconColor="#323232" iconLiteral="mdi2a-account-circle-outline" iconSize="150" />
+               <FontIcon iconColor="#323232" iconLiteral="mdi2a-account-outline" iconSize="150" />
             </graphic>
             </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accedi come cittadino">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accesso Cittadino">
                 <font>
                     <Font name="Calibri" size="16.0" />
                 </font>
@@ -39,10 +39,10 @@
                <Cursor fx:constant="HAND" />
             </cursor>
             <graphic>
-               <FontIcon iconColor="#323232" iconLiteral="mdi2h-hospital-building" iconSize="135" />
+               <FontIcon iconColor="#323232" iconLiteral="mdi2b-badge-account-outline" iconSize="135" />
             </graphic>
             </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accedi come operatore" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accesso Operatore" textAlignment="CENTER">
                 <font>
                     <Font name="Calibri" size="16.0" />
                 </font>
