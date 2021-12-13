@@ -194,6 +194,18 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
+    public void leggiEA(ClientCVInterface client, String nomeCentro) {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.leggiEA(nomeCentro));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
     public void stopThread() {
         if (myThread != null) {
             myThread.interrupt();

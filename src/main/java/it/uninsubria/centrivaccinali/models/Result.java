@@ -16,6 +16,7 @@ public class Result implements Serializable {
     private List<String> resultComuni;
     private List<CentroVaccinale> resultCentri;
     private List<EventoAvverso> resultEA;
+    private Map<String, Double> map;
 
     public Result(boolean result, Operation opType) {
         this.result = result;

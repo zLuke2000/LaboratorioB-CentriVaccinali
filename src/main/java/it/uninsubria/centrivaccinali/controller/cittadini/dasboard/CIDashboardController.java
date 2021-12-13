@@ -174,6 +174,11 @@ public class CIDashboardController extends Controller {
         resultController.getPane().setVisible(true);
     }
 
+    public void rimuoviEA(Pane p) {
+        p_container.getChildren().remove(p);
+        resultController.getPane().setVisible(true);
+    }
+
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
 
     }

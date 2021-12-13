@@ -1,11 +1,13 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -140,5 +142,9 @@ public class CIGraficiController extends Controller {
     
     public void setData(CentroVaccinale cv) {
         client.leggiEA(this, cv.getNome());
+    }
+
+    public void setParent(Controller c) {
+        parent = (CIDashboardController) c;
     }
 }

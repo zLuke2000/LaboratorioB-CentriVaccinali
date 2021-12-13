@@ -32,6 +32,14 @@ public class CIItemListController extends Controller {
 
     public void setData(CentroVaccinale cv, Image img) {
         item = cv;
+        ci_accesibile.setVisible(true);
+        ci_noAccessibile.setVisible(false);
+        /*
+        if (item.getNome().equals(CentriVaccinali.client.getCentroCittadino())) {
+            ci_accesibile.setVisible(true);
+            ci_noAccessibile.setVisible(false);
+        }
+        */
         ci_iv_imageItem.setImage(img);
         ci_tf_nomeCVItem.setText(cv.getNome());
         ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));

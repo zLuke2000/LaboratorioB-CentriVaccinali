@@ -6,12 +6,9 @@ import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 
 import java.nio.channels.ScatteringByteChannel;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 /**
  *  TODO controllo sicurezza delle query
@@ -469,10 +466,19 @@ public class Database {
     public Result leggiEA(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
         try {
+            /*
             pstmt = conn.prepareStatement("SELECT DISTINCT evento, severita, note, vaccino " +
-                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + nomeCentro);
+                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + nomeCentro + "\"");
+
+             */
+            String centro = (nomeCentro.toLowerCase()).replaceAll("\\s", "_");
+            pstmt = conn.prepareStatement("SELECT vaccino, evento, AVG(severita) " +
+                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                                             "GROUP BY vaccino, evento " +
+                                             "ORDER BY vaccino");
             rs = pstmt.executeQuery();
-            List<EventoAvverso> listaEventi = new ArrayList<>();
+            //List<EventoAvverso> listaEventi = new ArrayList<>();
+            Map<String, Double> map = new HashMap<>();
             while(rs.next()) {
                 //listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
                 map.put(rs.getString("vaccino") + "/" + rs.getString("evento"), rs.getDouble("avg"));

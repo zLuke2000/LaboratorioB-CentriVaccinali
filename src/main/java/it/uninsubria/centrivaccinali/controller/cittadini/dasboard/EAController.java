@@ -10,25 +10,31 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EAController extends Controller {
 
-    public RadioButton rb_ea1;
-    public RadioButton rb_ea2;
-    public RadioButton rb_ea3;
-    public RadioButton rb_ea4;
-    public RadioButton rb_ea5;
-    public RadioButton rb_ea6;
-    public ToggleGroup tg_ea_gruppo;
-    public TextField tf_ea_altro;
-    public Slider s_severita;
-    public TextArea ta_ea_note;
-    public Label l_ea_caratteri;
+    @FXML private RadioButton rb_ea1;
+    @FXML private RadioButton rb_ea2;
+    @FXML private RadioButton rb_ea3;
+    @FXML private RadioButton rb_ea4;
+    @FXML private RadioButton rb_ea5;
+    @FXML private RadioButton rb_ea6;
+    @FXML private ToggleGroup tg_ea_gruppo;
+    @FXML private TextField tf_ea_altro;
+    @FXML private Slider s_severita;
+    @FXML private TextArea ta_ea_note;
+    @FXML private Label l_ea_caratteri;
+    @FXML private GridPane gp_EA;
 
+    private AnchorPane parentRoot;
     private DialogHelper dh;
     private ClientCV client;
+    private CIDashboardController parent;
 
     @FXML
     void initialize() {
@@ -110,5 +116,14 @@ public class EAController extends Controller {
             });
 
         }
+    }
+
+    @FXML public void chiudiEA() {
+        parent.rimuoviEA(gp_EA);
+    }
+
+    public void setParent(Controller c, AnchorPane ap_root) {
+        parent = (CIDashboardController) c;
+        parentRoot = ap_root;
     }
 }

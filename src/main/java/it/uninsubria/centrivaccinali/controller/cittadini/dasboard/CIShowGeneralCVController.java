@@ -5,18 +5,13 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
-import java.net.URL;
 
 /*
     Grafico su quanti hanno usato quale vaccino
@@ -64,7 +59,7 @@ public class CIShowGeneralCVController extends Controller {
         if (tipologia.equals("aziendale"))
             img = "Aziendale.jpeg";
         if (tipologia.equals("hub"))
-            img = "Hub";
+            img = "Hub.png";
         CI_IV_image.setImage(new Image(CentriVaccinali.class.getResourceAsStream("image/" + img)));
         this.CI_L_tipologia.setText(tipologia);
         this.CI_L_nomeCV.setText(cv.getNome());
@@ -76,6 +71,10 @@ public class CIShowGeneralCVController extends Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/Fragments/FragmentProspetto/CI_F_grafici.fxml"));
         try {
             AnchorPane ap_chart = fxmlLoader.load();
+            CIGraficiController controller = fxmlLoader.getController();
+            controller.setParent(parent);
+            System.out.println("set data");
+            controller.setData(cv);
             CI_AP_container.getChildren().add(ap_chart);
         } catch (IOException e) {
             e.printStackTrace();
