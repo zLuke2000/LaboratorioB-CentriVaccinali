@@ -33,8 +33,6 @@ public class CIRegistrazioneController extends Controller {
     //PasswordField per l'acquisizione della password
     @FXML private PasswordField pf_ci_password1;
     @FXML private PasswordField pf_ci_password2;
-    @FXML private ProgressIndicator pi_ci_loadIdVaccinazione;
-    @FXML private ProgressIndicator pi_ci_loadUsername;
 
     private ClientCV client;
     private FXMLLoader loader;
@@ -89,7 +87,7 @@ public class CIRegistrazioneController extends Controller {
                 String user = tf_ci_usernameRegistrazione.getText().trim();
                 String password = pf_ci_password1.getText().trim();
                 long idVac = Long.parseLong(tf_ci_idvaccinazioneRegistrazione.getText());
-                Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, password, idVac);
+                Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, cp.encryptPassword(password), idVac);
                 System.out.println("Registro cittadino");
                 CentriVaccinali.scene.setCursor(Cursor.WAIT);
                 client.registraCittadino(this, cittadino);

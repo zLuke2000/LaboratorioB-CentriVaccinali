@@ -1,6 +1,5 @@
 package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -34,45 +33,26 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         // Leggo nome utente
         // Da sistemare
         String utente = "123abc";
-        /*
-        System.out.print("utente: ");
-        try {
-            utente = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
-
         // Leggo password
         // Da sistemare
         String password = "123abc";
-        /*
-        System.out.print("password: ");
-        try {
-            password = reader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
 
         db = new Database();
-        if(db.connect(utente, password)) {
-            try {
-                obj = new ServerCV();
-                reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-                reg.rebind("server", obj);
-                System.out.println("Server pronto");
-            } catch (RemoteException e) {
-                System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
-                e.printStackTrace();
-                System.exit(-1);
-            }
-            db.getCentriVaccinali("");
+        try {
+            obj = new ServerCV();
+            reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+            reg.rebind("server", obj);
+            System.out.println("Server pronto");
+        } catch (RemoteException e) {
+            System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
+            e.printStackTrace();
+            System.exit(-1);
         }
+        db.getCentriVaccinali("");
     }
 
     @Override
-    public void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
+    public synchronized void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 // simulazione attesa
@@ -86,7 +66,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraCentro(ClientCVInterface client, CentroVaccinale cv) throws RemoteException {
+    public synchronized void registraCentro(ClientCVInterface client, CentroVaccinale cv) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraCentroVaccinale(cv));
@@ -98,7 +78,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraCittadino(ClientCVInterface client, Cittadino cittadino) {
+    public synchronized void registraCittadino(ClientCVInterface client, Cittadino cittadino) {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraCittadino(cittadino));
@@ -110,7 +90,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraVaccinato(ClientCVInterface client, Vaccinato vaccinato) throws RemoteException {
+    public synchronized void registraVaccinato(ClientCVInterface client, Vaccinato vaccinato) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraVaccinato( vaccinato));
@@ -122,7 +102,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException {
+    public synchronized void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.loginUtente(username, password));
@@ -134,7 +114,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException {
+    public synchronized void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.ricercaCentroPerNome(nomeCentro));
@@ -146,7 +126,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void ricercaCentroPerComuneTipologia(ClientCVInterface client, String comune, TipologiaCentro tipologia) {
+    public synchronized void ricercaCentroPerComuneTipologia(ClientCVInterface client, String comune, TipologiaCentro tipologia) {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.ricercaCentroPerComuneTipologia(comune, tipologia));
@@ -158,7 +138,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) throws RemoteException {
+    public synchronized void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraEA(ea));
@@ -170,7 +150,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void getCentri(ClientCVInterface client, String comuni) {
+    public synchronized void getCentri(ClientCVInterface client, String comuni) {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.getCentriVaccinali(comuni));
@@ -182,7 +162,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void getComuni(ClientCVInterface client, String provincia) {
+    public synchronized void getComuni(ClientCVInterface client, String provincia) {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.getComuni(provincia));
@@ -194,19 +174,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public void leggiEA(ClientCVInterface client, String nomeCentro) {
-        myThread = new Thread(() -> {
-            try {
-                client.notifyStatus(db.leggiEA(nomeCentro));
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        });
-        myThread.start();
-    }
-
-    @Override
-    public void stopThread() {
+    public synchronized void stopThread() {
         if (myThread != null) {
             myThread.interrupt();
         }

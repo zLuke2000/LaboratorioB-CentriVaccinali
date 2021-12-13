@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class CentriVaccinali extends Application {
@@ -64,7 +66,7 @@ public class CentriVaccinali extends Application {
         //stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
-    }
+}
 
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));

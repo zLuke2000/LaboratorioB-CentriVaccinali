@@ -38,7 +38,7 @@
                   </FontIcon>
                </children>
             </HBox>
-            <Button fx:id="b_accedi" onAction="#autenticazioneOperatore" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="ACCEDI" textFill="#323232">
+            <Button fx:id="b_accedi" defaultButton="true" onAction="#autenticazioneOperatore" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="ACCEDI" textFill="#323232">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

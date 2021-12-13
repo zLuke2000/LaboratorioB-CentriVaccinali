@@ -29,7 +29,6 @@ public class Uploader {
             e.printStackTrace();
         }
         db = new Database();
-        db.connect("123abc", "123abc");
 
         try {
             registraEventi();
@@ -60,7 +59,6 @@ public class Uploader {
         br.close();
 
         Database db = new Database();
-        db.connect("123abc", "123abc");
         for(CentroVaccinale cv: listCV) {
             System.out.println(cv);
             //db.registraCentroVaccinale(cv);

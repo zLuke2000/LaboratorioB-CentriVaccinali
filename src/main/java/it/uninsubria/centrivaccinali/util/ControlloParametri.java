@@ -9,6 +9,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -56,7 +58,7 @@ public class ControlloParametri {
     }
 
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[A-Za-z\\d]{" + minChar + "," + maxChar + "}");
+        rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -74,9 +76,7 @@ public class ControlloParametri {
             cssHelper.toValid(tic);
             return true;
         } else {
-            System.out.println("cp1");
             cssHelper.toError(tic, new Tooltip("immettere da " + minChar + " a " + maxChar + " caratteri"));
-            System.out.println("cp2");
             return false;
         }
     }
@@ -149,7 +149,7 @@ public class ControlloParametri {
     public boolean password(TextInputControl tic) {
         String errTo0ltip = null;
         boolean res = true;
-        if(tic.getText().trim().length() <= 8) {
+        if(tic.getText().trim().length() < 8) {
             //cssHelper.toError(tic, new Tooltip("Password troppo corta"));
             res = false;
             if(errTo0ltip != null) {
@@ -199,11 +199,13 @@ public class ControlloParametri {
     }
 
     public boolean codiceFiscale(TextInputControl tic) {
+        tic.setText(tic.getText().toUpperCase());
+        tic.positionCaret(tic.getText().length());
         if(tic.getText().trim().length() > 16) {
             cssHelper.toError(tic, new Tooltip("Codice fiscale non valido"));
             return false;
         }  else {
-            rPattern = Pattern.compile("^(([a-z]|[A-Z]){6})(\\d{2})([a-z]|[A-Z])(\\d{2})([a-z]|[A-Z])(\\d{3})([a-z]|[A-Z])$");
+            rPattern = Pattern.compile("^(([A-Z]){6})(\\d{2})([A-Z])(\\d{2})([A-Z])(\\d{3})([A-Z])$");
             rMatcher = rPattern.matcher(tic.getText().trim());
             if(rMatcher.matches()) {
                 cssHelper.toValid(tic);
@@ -250,5 +252,21 @@ public class ControlloParametri {
             cssHelper.toError(tic2, new Tooltip("Le password non coincidono"));
             return false;
         }
+    }
+
+    public String encryptPassword(String pwdPlain) {
+        StringBuilder sB = null;
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.update(pwdPlain.getBytes());
+            byte[] bytes = m.digest();
+            sB = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sB.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return sB.toString();
     }
 }
