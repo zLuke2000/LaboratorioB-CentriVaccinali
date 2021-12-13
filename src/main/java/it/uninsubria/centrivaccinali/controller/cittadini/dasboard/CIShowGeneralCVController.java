@@ -22,23 +22,12 @@ public class CIShowGeneralCVController extends Controller {
     private CentroVaccinale cv;
     private CIDashboardController parent;
 
-    @FXML
-    private AnchorPane ap_info;
-
-    @FXML
-    private ImageView CI_IV_image;
-
-    @FXML
-    private Label CI_L_tipologia;
-
-    @FXML
-    private Label CI_L_nomeCV;
-
-    @FXML
-    private Label CI_L_indirizzoCV;
-
-    @FXML
-    private AnchorPane CI_AP_container;
+    @FXML private AnchorPane ap_info;
+    @FXML private ImageView CI_IV_image;
+    @FXML private Label CI_L_tipologia;
+    @FXML private Label CI_L_nomeCV;
+    @FXML private Label CI_L_indirizzoCV;
+    @FXML private AnchorPane CI_AP_container;
 
     @FXML void initialize() {
 

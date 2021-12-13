@@ -82,7 +82,7 @@ public class EAController extends Controller {
             evento = tf_ea_altro.getText().trim();
         } else {
             dh = new DialogHelper("ERRORE", "E' necessario inserire un tipo di evento", DialogHelper.Type.ERROR);
-            dh.display(null); //TODO da sistemato con il root della dashboard
+            dh.display(parentRoot);
             return;
         }
         int severita = (int) s_severita.getValue();
@@ -100,7 +100,7 @@ public class EAController extends Controller {
         if (result.getResult()){
             Platform.runLater(() -> {
                 dh = new DialogHelper("EVENTO AVVERSO REGISTRATO", "L'evento avverso e' stato registrato", DialogHelper.Type.INFO);
-                dh.display(null); //TODO da sistemato con il root della dashboard
+                dh.display(parentRoot);
                 // RESET INTERFACCIA
                 tg_ea_gruppo.selectToggle(null);
                 tf_ea_altro.setText("");
@@ -112,7 +112,7 @@ public class EAController extends Controller {
         else{
             Platform.runLater(() -> {
                 dh = new DialogHelper("ATTENZIONE", "Registrazione fallita.\nQuesto evento avverso e' gia' stato inserito", DialogHelper.Type.ERROR);
-                dh.display(null); //TODO da sistemato con il root della dashboard
+                dh.display(parentRoot);
             });
 
         }

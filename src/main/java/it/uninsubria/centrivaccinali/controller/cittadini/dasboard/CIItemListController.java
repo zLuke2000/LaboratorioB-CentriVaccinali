@@ -6,11 +6,14 @@ import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.event.ActionEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+
+import java.io.IOException;
 
 public class CIItemListController extends Controller {
 
@@ -48,7 +51,7 @@ public class CIItemListController extends Controller {
 
     @FXML
     public void aggiungiEvento() {
-
+        parent.aggiungiEvento();
     }
 
     @FXML

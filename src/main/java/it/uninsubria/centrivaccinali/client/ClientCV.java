@@ -24,7 +24,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static ServerCVInterface server = null;
     private Cittadino cittadinoConnesso = null;
     private ConnectionThread connThread;
-
+    private String centroCittadino = "";
     private Controller controller;
 
     public ClientCV() throws RemoteException {
@@ -34,6 +34,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public Cittadino getUtenteLoggato() {
         return cittadinoConnesso;
+    }
+    public String getCentroCittadino() {
+        return centroCittadino;
     }
 
     public void LogoutUtente() {

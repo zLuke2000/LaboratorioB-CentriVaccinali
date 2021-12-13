@@ -48,8 +48,7 @@ public class CIDashboardController extends Controller {
             vb_free.setVisible(true);
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
-                .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
             p_container.getChildren().add(ap);
