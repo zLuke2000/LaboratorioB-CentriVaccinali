@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIShowGeneralCVController">
+<AnchorPane fx:id="ap_info" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIShowGeneralCVController">
    <children>
       <Separator layoutX="313.0" layoutY="1.0" orientation="VERTICAL" prefHeight="244.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="820.0" AnchorPane.topAnchor="0.0">
          <effect>
@@ -77,8 +77,8 @@
          </effect>
       </ToggleButton>
       <Label alignment="CENTER" layoutX="790.0" layoutY="20.0" style="-fx-font-size: 30;" text="Prospetto Riassuntivo" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="0.0" />
-      <AnchorPane fx:id="CI_AP_container" layoutX="690.0" layoutY="219.0" prefHeight="200.0" prefWidth="200.0" styleClass="style-trasparent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
-      <FontIcon iconLiteral="mdi2c-close-thick" iconSize="25" layoutX="1166.0" layoutY="33.0" onMouseClicked="#chiudiInfo" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+      <AnchorPane fx:id="CI_AP_container" layoutX="690.0" layoutY="219.0" styleClass="style-trasparent" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
+      <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="25" layoutX="1166.0" layoutY="33.0" onMouseClicked="#chiudiInfo" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    </children>
    <stylesheets>
       <URL value="@../../style/dashboardStyle.css" />

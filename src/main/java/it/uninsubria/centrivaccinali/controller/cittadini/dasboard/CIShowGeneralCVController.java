@@ -45,7 +45,9 @@ public class CIShowGeneralCVController extends Controller {
     @FXML
     private AnchorPane CI_AP_container;
 
-    @FXML void initialize() {  }
+    @FXML void initialize() {
+
+    }
 
     @Override
     public void initParameter(ClientCV client) {  }

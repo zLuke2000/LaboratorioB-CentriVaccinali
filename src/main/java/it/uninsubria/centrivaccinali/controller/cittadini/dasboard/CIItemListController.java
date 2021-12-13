@@ -17,17 +17,12 @@ public class CIItemListController extends Controller {
     private CIDashboardController parent;
     private CentroVaccinale item;
 
-    @FXML
-    private ImageView ci_iv_imageItem;
-
-    @FXML
-    public Label ci_tf_nomeCVItem;
-
-    @FXML
-    public Label ci_tf_indirizzoItem;
-
-    @FXML
-    private Label ci_l_tipologiaItem;
+    @FXML public HBox ci_accesibile;
+    @FXML public HBox ci_noAccessibile;
+    @FXML private ImageView ci_iv_imageItem;
+    @FXML public Label ci_tf_nomeCVItem;
+    @FXML public Label ci_tf_indirizzoItem;
+    @FXML private Label ci_l_tipologiaItem;
 
     @Override
     public void initParameter(ClientCV client) {  }

@@ -474,10 +474,13 @@ public class Database {
             rs = pstmt.executeQuery();
             List<EventoAvverso> listaEventi = new ArrayList<>();
             while(rs.next()) {
-                listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
+                //listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
+                map.put(rs.getString("vaccino") + "/" + rs.getString("evento"), rs.getDouble("avg"));
             }
             risultato.setResult(true);
-            risultato.setListaEA(listaEventi);
+            //risultato.setListaEA(listaEventi);
+            System.out.println(map);
+            risultato.setMap(map);
         } catch (SQLException e) {
             e.printStackTrace();
         }

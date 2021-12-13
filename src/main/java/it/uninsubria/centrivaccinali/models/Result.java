@@ -3,6 +3,7 @@ package it.uninsubria.centrivaccinali.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Result implements Serializable {
 
@@ -83,6 +84,14 @@ public class Result implements Serializable {
 
     public void setListaEA(List<EventoAvverso> resultEA) {
         this.resultEA = resultEA;
+    }
+
+    public Map<String, Double> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, Double> map) {
+        this.map = map;
     }
 
     public enum Error {

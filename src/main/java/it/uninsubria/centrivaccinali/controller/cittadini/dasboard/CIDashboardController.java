@@ -3,9 +3,7 @@ package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
-import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.Cittadino;
-import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
 import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
@@ -14,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
@@ -25,8 +24,8 @@ public class CIDashboardController extends Controller {
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CIRicercaResultController resultController = null;
     private CssHelper cssh = CssHelper.getInstance();
-    private Pane infoCV;
 
+    @FXML private AnchorPane ap_root;
     @FXML private MenuButton mb_utente;
     @FXML private VBox vb_free;
     @FXML private Button b_login;
@@ -121,7 +120,7 @@ public class CIDashboardController extends Controller {
             case RICERCA_CENTRO:
                 if (resultController == null) {
                     FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
-                            .getResource("fxml/fragments/fragmentDashboard/Idea1Doppia.fxml"));
+                            .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaResult.fxml"));
                     try {
                         AnchorPane ap = fxmlLoader.load();
                         Platform.runLater(() -> {
@@ -157,14 +156,26 @@ public class CIDashboardController extends Controller {
 
     }
 
-    @FXML
-    public void rimuoviInfo(Pane p){
-        System.out.println("Ciao " + p);
-        //p_container.getChildren().remove(p);
+    public void aggiungiEvento() {
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/F_CI_EA_root.fxml"));
+        try {
+            GridPane gp = fxmlLoader.load();
+            EAController controller = fxmlLoader.getController();
+            controller.setParent(this, ap_root);
+            resultController.getPane().setVisible(false);
+            p_container.getChildren().add(gp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void rimuoviInfo(Pane p) {
+        p_container.getChildren().remove(p);
         resultController.getPane().setVisible(true);
     }
 
     public void showInfoMB(ActionEvent actionEvent) throws IOException {
+
     }
 
     @FXML
