@@ -6,6 +6,7 @@ import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
 import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
@@ -205,4 +206,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         System.err.println("[CLIENT_CV] " + s);
     }
 
+    public void aggiornaPassword(CIInfoCittadinoController reference, String userid, String vecchiaPassword, String nuovaPassword) {
+        controller = reference;
+        try {
+            server.aggiornaPassword(this, userid, vecchiaPassword, nuovaPassword);
+        } catch (RemoteException e) {
+            printerr("Impossibile aggiornare la password");
+            lanciaPopup();
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.server;
 
+import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -128,6 +129,18 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraEA(ea));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
+    public synchronized void aggiornaPassword(ClientCVInterface client, String userid, String vecchiaPassword, String nuovaPassword) {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.aggiornaPSW(userid, vecchiaPassword, nuovaPassword));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

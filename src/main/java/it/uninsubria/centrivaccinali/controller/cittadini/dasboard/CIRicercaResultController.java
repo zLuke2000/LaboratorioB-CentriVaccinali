@@ -77,7 +77,7 @@ public class CIRicercaResultController extends Controller {
                 int countAziendale = 0;
                 l_noResult.setVisible(false);
                 for (CentroVaccinale cv : list) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/itemListRicerca.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ItemListRicerca.fxml"));
                     try {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();

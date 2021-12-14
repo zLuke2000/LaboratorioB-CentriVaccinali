@@ -26,7 +26,7 @@
             </Button>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accesso Cittadino">
                 <font>
-                    <Font name="Calibri" size="16.0" />
+                    <Font size="16.0" />
                 </font>
             </Label>
         </VBox>
@@ -44,7 +44,7 @@
             </Button>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Accesso Operatore" textAlignment="CENTER">
                 <font>
-                    <Font name="Calibri" size="16.0" />
+                    <Font size="16.0" />
                 </font>
             </Label>
         </VBox>

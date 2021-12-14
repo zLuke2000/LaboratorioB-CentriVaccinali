@@ -4,10 +4,12 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.ControlloParametri;
+import it.uninsubria.centrivaccinali.util.CssHelper;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
 public class CIInfoCittadinoController extends Controller {
@@ -17,15 +19,18 @@ public class CIInfoCittadinoController extends Controller {
     @FXML private Label l_cognome;
     @FXML private Label l_codicefiscale;
     @FXML private Label l_idvaccinazione;
-    @FXML private PasswordField pf_nuovaPassword2;
-    @FXML private PasswordField pf_nuovaPassword1;
-    @FXML private TextField tf_vecchiaPassword;
-    @FXML private HBox hb_textField;
     @FXML private PasswordField pf_vecchiaPassword;
+    @FXML private TextField tf_vecchiaPassword;
+    @FXML private PasswordField pf_nuovaPassword1;
+    @FXML private PasswordField pf_nuovaPassword2;
+    @FXML private HBox hb_textField;
     @FXML private HBox hb_passwordField;
 
     private ClientCV client;
     private CIDashboardController parent;
+    private ControlloParametri cp = ControlloParametri.getInstance();
+    private CssHelper css = CssHelper.getInstance();
+    private DialogHelper dh;
 
     @Override
     public void initParameter(ClientCV client) {
@@ -44,23 +49,38 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     @Override
-    public void notifyController(Result result) {}
-
-    public void close() {
-
+    public void notifyController(Result result) {
+        Platform.runLater(() -> {
+            if (result.getResult()) {
+                dh = new DialogHelper("Password aggiornata", "La tua password e' stata aggiornata correttamente", DialogHelper.Type.INFO);
+            } else {
+                dh = new DialogHelper("Attenzione", "La vecchia password immessa non e' corretta", DialogHelper.Type.WARNING);
+            }
+            dh.display(null);
+        });
     }
 
+    public void close() { }
+
     public void aggiornaPassword() {
+        if(hb_textField.isVisible()) {
+            nascondiPassword();
+        }
+        if(cp.password(pf_vecchiaPassword) && cp.password(pf_nuovaPassword1) && cp.password(pf_nuovaPassword2)) {
+            if(cp.checkSamePassword(pf_nuovaPassword1, pf_nuovaPassword2)) {
+                client.aggiornaPassword(this, client.getUtenteLoggato().getUserid(), cp.encryptPassword(pf_vecchiaPassword.getText().trim()), cp.encryptPassword(pf_nuovaPassword2.getText().trim()));
+            }
+        }
     }
 
     public void mostraPassword() {
-        System.out.println("nascondo password");
+        tf_vecchiaPassword.setText(pf_vecchiaPassword.getText());
         hb_textField.setVisible(true);
         hb_passwordField.setVisible(false);
     }
 
     public void nascondiPassword() {
-        System.out.println("mostro password");
+        pf_vecchiaPassword.setText(tf_vecchiaPassword.getText());
         hb_passwordField.setVisible(true);
         hb_textField.setVisible(false);
     }

@@ -32,9 +32,9 @@
       </Label>
       <MenuButton fx:id="mb_utente" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente di prova" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
          <items>
-            <MenuItem onAction="#mostraInfo" text="Info" />
+            <MenuItem mnemonicParsing="false" onAction="#mostraInfo" text="Info" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem onAction="#logoutInfoMB" text="Logout" />
+            <MenuItem mnemonicParsing="false" onAction="#logoutInfoMB" text="Logout" />
          </items>
          <graphic>
             <FontIcon iconColor="#323232" iconLiteral="mdi2a-account" iconSize="22" styleClass="iconUserConnection" />

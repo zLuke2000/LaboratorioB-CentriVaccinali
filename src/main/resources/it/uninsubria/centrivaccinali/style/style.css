@@ -26,7 +26,7 @@
 .field-preset-1 {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 10;
-    -fx-prompt-text-fill: #CCCCCC;
+    -fx-prompt-text-fill: #323232;
 }
 
 /* SEZIONE Tooltip e BORDO TextField */

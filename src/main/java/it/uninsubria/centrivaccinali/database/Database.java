@@ -475,4 +475,22 @@ public class Database {
         }
         return risultato;
     }
+
+    public Result aggiornaPSW(String userid, String vecchiaPassword, String nuovaPassword) {
+        Result risultato = new Result(false, Result.Operation.AGGIORNA_PASSWORD_CITTADINO);
+        try {
+            pstmt = conn.prepareStatement("UPDATE public.\"Cittadini_Registrati\" " +
+                                              "SET password = ? " +
+                                              "WHERE userid = ? AND password = ?");
+            pstmt.setString(1, nuovaPassword);
+            pstmt.setString(2, userid);
+            pstmt.setString(3, vecchiaPassword);
+            if(pstmt.executeUpdate() == 1) {
+                risultato.setResult(true);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return risultato;
+    }
 }

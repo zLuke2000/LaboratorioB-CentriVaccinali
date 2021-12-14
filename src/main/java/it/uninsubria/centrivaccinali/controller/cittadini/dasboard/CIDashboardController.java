@@ -49,7 +49,7 @@ public class CIDashboardController extends Controller {
             vb_free.setVisible(true);
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ricercaCentri.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RicercaCentri.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
             p_container.getChildren().add(ap);
@@ -119,7 +119,7 @@ public class CIDashboardController extends Controller {
                 break;
             case RICERCA_CENTRO:
                 if (resultController == null) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ricercaCentri.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RicercaCentri.fxml"));
                     try {
                         AnchorPane ap = fxmlLoader.load();
                         Platform.runLater(() -> {

@@ -114,8 +114,7 @@ public class CIHomeController extends Controller {
     public void hidePassword() {
         //copia la password nel PasswordField
         //e cambia le visibilita' dei componenti
-        String password = tf_ci_loginPasswordVisible.getText();
-        tf_ci_loginPassword.setText(password);
+        tf_ci_loginPassword.setText(tf_ci_loginPasswordVisible.getText());
         tf_ci_loginPasswordVisible.setVisible(false);
         tf_ci_loginPassword.setVisible(true);
         fi_ci_showPassword.setVisible(true);
@@ -130,8 +129,7 @@ public class CIHomeController extends Controller {
     public void showPassword() {
         //copia la password nel TextField
         //e cambia le visibilita' dei componenti
-        String password= tf_ci_loginPassword.getText();
-        tf_ci_loginPasswordVisible.setText(password);
+        tf_ci_loginPasswordVisible.setText(tf_ci_loginPassword.getText());
         tf_ci_loginPasswordVisible.setVisible(true);
         tf_ci_loginPassword.setVisible(false);
         fi_ci_showPassword.setVisible(false);
