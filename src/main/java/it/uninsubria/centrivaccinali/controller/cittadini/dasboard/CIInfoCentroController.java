@@ -1,16 +1,21 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.CssHelper;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.io.IOException;
 
 public class CIInfoCentroController extends Controller {
 
@@ -59,26 +64,38 @@ public class CIInfoCentroController extends Controller {
     @FXML
     public void mostraSegnalazioni() {
         css.toggle(b_segnalazioni, b_grafico);
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/SegnalazioniEventiAvversi.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            Platform.runLater(() -> {
+                ap_container.getChildren().clear();
+                ap_container.getChildren().add(ap);
+            });
+            CISegnalazioniController c = fxmlLoader.getController();
+            c.setParent(this);
+            c.setData(cv);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void mostraGrafico() {
         css.toggle(b_grafico, b_segnalazioni);
-    }
-
-    /*
-    @FXML
-    public void showProspetto() {
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/Fragments/FragmentProspetto/CI_F_grafici.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/GraficoEventiAvversi.fxml"));
         try {
-            AnchorPane ap_chart = fxmlLoader.load();
-            CI_AP_container.getChildren().add(ap_chart);
+            AnchorPane ap = fxmlLoader.load();
+            Platform.runLater(() -> {
+                ap_container.getChildren().clear();
+                ap_container.getChildren().add(ap);
+            });
+            CIGraficiController c = fxmlLoader.getController();
+            c.setParent(this);
+            c.setData(cv);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-    */
 
     @FXML public void chiudiInfo() {
         parent.rimuoviInfo(ap_root);

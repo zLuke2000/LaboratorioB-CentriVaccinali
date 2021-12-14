@@ -119,7 +119,7 @@ public class EAController extends Controller {
     }
 
     @FXML public void chiudiEA() {
-        parent.rimuoviEA(gp_EA);
+        //parent.rimuoviEA(gp_EA);
     }
 
     public void setParent(Controller c, AnchorPane ap_root) {

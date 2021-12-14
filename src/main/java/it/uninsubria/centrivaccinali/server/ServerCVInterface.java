@@ -22,7 +22,6 @@ public interface ServerCVInterface extends Remote{
     void ricercaCentroPerComuneTipologia(ClientCVInterface clientCV, String comune, TipologiaCentro tipologia) throws RemoteException;
     void registraEventoAvverso(ClientCVInterface clientCV, EventoAvverso ea) throws RemoteException;
     void aggiornaPassword(ClientCVInterface clientCV, String userid, String vecchiaPassword, String nuovaPassword) throws RemoteException;
-    void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) throws RemoteException;
     void leggiEA(ClientCVInterface client, String nomeCentro) throws  RemoteException;
     void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException;
     // Metodi in comune

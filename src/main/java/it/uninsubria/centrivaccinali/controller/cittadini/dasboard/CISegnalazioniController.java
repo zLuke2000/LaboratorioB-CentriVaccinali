@@ -19,7 +19,7 @@ import java.io.IOException;
 public class CISegnalazioniController extends Controller {
 
     private ClientCV client = CentriVaccinali.client;
-    private CIDashboardController parent;
+    private CIInfoCentroController parent;
 
     @FXML public VBox vb_lista_segnalazioni;
 
@@ -57,6 +57,6 @@ public class CISegnalazioniController extends Controller {
     }
 
     public void setParent(Controller c) {
-        parent = (CIDashboardController) c;
+        parent = (CIInfoCentroController) c;
     }
 }

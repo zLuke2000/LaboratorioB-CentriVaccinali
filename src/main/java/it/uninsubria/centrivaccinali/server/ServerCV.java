@@ -1,8 +1,6 @@
 package it.uninsubria.centrivaccinali.server;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
@@ -126,7 +124,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     @Override
-    public synchronized void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) throws RemoteException {
+    public synchronized void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.registraEA(ea));

@@ -21,7 +21,7 @@ public class CIGraficiController extends Controller {
 
     private ClientCV client = CentriVaccinali.client;
     private CentroVaccinale cv;
-    private CIDashboardController parent;
+    private CIInfoCentroController parent;
     private List<String> listaEA = new ArrayList<>();
 
     private XYChart.Series pfizer;
@@ -114,6 +114,6 @@ public class CIGraficiController extends Controller {
     }
 
     public void setParent(Controller c) {
-        parent = (CIDashboardController) c;
+        parent = (CIInfoCentroController) c;
     }
 }
