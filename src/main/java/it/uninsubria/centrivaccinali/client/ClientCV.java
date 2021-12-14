@@ -6,6 +6,8 @@ import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
 import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -24,7 +26,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static ServerCVInterface server = null;
     private Cittadino cittadinoConnesso = null;
     private ConnectionThread connThread;
-
+    private String centroCittadino = "";
     private Controller controller;
 
     public ClientCV() throws RemoteException {
@@ -34,6 +36,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     public Cittadino getUtenteLoggato() {
         return cittadinoConnesso;
+    }
+    public String getCentroCittadino() {
+        return centroCittadino;
     }
 
     public void LogoutUtente() {
@@ -71,6 +76,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
             if (ritorno.getResult())
                 cittadinoConnesso = ritorno.getCittadino();
+                centroCittadino = ritorno.getCentroCittadino();
         }
         controller.notifyController(ritorno);
     }
@@ -122,7 +128,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void ricercaPerComuneTipologia(CIDashboardController ciDashboardController, String comune, TipologiaCentro tipologia) {
-        controller=ciDashboardController;
+        controller = ciDashboardController;
         if (connectionStatus()) {
             try {
                 server.ricercaCentroPerComuneTipologia(this, comune, tipologia);
@@ -134,7 +140,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     public void registraVaccinato(CVRegistraCittadinoController cvRegistraCittadinoController, Vaccinato vaccinato) {
-        controller=cvRegistraCittadinoController;
+        controller = cvRegistraCittadinoController;
         try {
             server.registraVaccinato(this, vaccinato);
         } catch (RemoteException e) {
@@ -169,6 +175,26 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             server.registraEventoAvverso(this, ea);
         } catch (RemoteException e) {
             printerr("Impossibile registrare l'evento");
+            lanciaPopup();
+        }
+    }
+
+    public void leggiEA(CIGraficiController graficiController, String nomeCentro) {
+        controller = graficiController;
+        try {
+            server.leggiEA(this, nomeCentro);
+        } catch (RemoteException e) {
+            printerr("Impossibile recuperare gli eventi avversi per il centro");
+            lanciaPopup();
+        }
+    }
+
+    public void leggiSegnalazioni(CISegnalazioniController segnalazioniController, String nomeCentro, int limit, int offset) {
+        controller = segnalazioniController;
+        try {
+            server.leggiSegnalazioni(this, nomeCentro, limit, offset);
+        } catch (RemoteException e) {
+            printerr("Impossibile recuperare gli eventi avversi per il centro");
             lanciaPopup();
         }
     }

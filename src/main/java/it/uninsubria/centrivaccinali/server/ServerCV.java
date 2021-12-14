@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
@@ -141,6 +142,30 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.aggiornaPSW(userid, vecchiaPassword, nuovaPassword));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
+    public synchronized void leggiEA(ClientCVInterface client, String nomeCentro) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.leggiMediaEventiAvversi(nomeCentro));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        });
+        myThread.start();
+    }
+
+    @Override
+    public void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException {
+        myThread = new Thread(() -> {
+            try {
+                client.notifyStatus(db.leggiSegnalazioni(nomeCentro, limit, offset));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

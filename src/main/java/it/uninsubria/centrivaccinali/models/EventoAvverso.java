@@ -36,6 +36,7 @@ public class EventoAvverso implements Serializable {
      */
     private String note="";
 
+
     private Vaccino tipoVac;
 
     /**
@@ -121,6 +122,12 @@ public class EventoAvverso implements Serializable {
     public void setNote(String note) {
         this.note = note;
     }
+
+
+    public Vaccino getTipoVac() {
+        return tipoVac;
+    }
+
 
     @Override
     public String toString() {

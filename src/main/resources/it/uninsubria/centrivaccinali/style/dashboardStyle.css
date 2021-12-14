@@ -84,3 +84,12 @@
     -fx-background-radius: 0 20 0 20;
     -fx-prompt-text-fill: #CCCCCC;
 }
+
+/* TEXT AREA */
+.text-area {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-control-inner-background: transparent;
+    -fx-text-fill: #CCCCCC;
+    -fx-background-radius: 20;
+    -fx-prompt-text-fill: #CCCCCC;
+}

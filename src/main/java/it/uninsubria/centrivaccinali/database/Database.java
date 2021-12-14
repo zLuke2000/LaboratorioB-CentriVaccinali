@@ -6,12 +6,9 @@ import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 
 import java.nio.channels.ScatteringByteChannel;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 /**
  *  TODO controllo sicurezza delle query
@@ -458,18 +455,71 @@ public class Database {
         return risultato;
     }
 
-    public Result leggiEA(String nomeCentro) {
+    public Result leggiMediaEventiAvversi(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
         try {
-            pstmt = conn.prepareStatement("SELECT DISTINCT evento, severita, note, vaccino " +
-                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + nomeCentro);
+            String centro = (nomeCentro.toLowerCase()).replaceAll("\\s", "_");
+            List<String> eventi = new ArrayList<>();
+            eventi.add("mal di testa");
+            eventi.add("febbre");
+            eventi.add("dolori muscolari e articolari");
+            eventi.add("linfoadenopatia");
+            eventi.add("tachicardia");
+            eventi.add("crisi chipertensiva");
+
+            pstmt = conn.prepareStatement("SELECT vaccino, evento, AVG(severita) " +
+                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                                             "WHERE evento IN (?, ?, ?, ?, ?, ?)" +
+                                             "GROUP BY vaccino, evento " +
+                                             "ORDER BY vaccino");
+            for (int i = 0; i < eventi.size(); i++)
+                pstmt.setString(i + 1, eventi.get(i));
             rs = pstmt.executeQuery();
-            List<EventoAvverso> listaEventi = new ArrayList<>();
+            Map<String, Double> map = new HashMap<>();
             while(rs.next()) {
-                listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
+                map.put(rs.getString("vaccino") + "/" + rs.getString("evento"), rs.getDouble("avg"));
+            }
+            pstmt = conn.prepareStatement("SELECT vaccino, AVG(severita) " +
+                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "WHERE evento NOT IN (?, ?, ?, ?, ?, ?)" +
+                    "GROUP BY vaccinool" +
+                    "ORDER BY vaccino");
+            for (int i = 0; i < eventi.size(); i++)
+                pstmt.setString(i + 1, eventi.get(i));
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                map.put(rs.getString("vaccino") + "/altro", rs.getDouble("avg"));
             }
             risultato.setResult(true);
-            risultato.setListaEA(listaEventi);
+            risultato.setMap(map);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return risultato;
+    }
+
+    public Result leggiSegnalazioni(String nomeCentro, int limit, int offset) {
+        Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
+        try {
+            String centro = (nomeCentro.toLowerCase()).replaceAll("\\s", "_");
+
+            pstmt = conn.prepareStatement("SELECT vaccino, evento, severita, note " +
+                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "limit " + limit + " " +
+                    "offset " + offset);
+            rs = pstmt.executeQuery();
+            List<EventoAvverso> eventi = new ArrayList<>();
+            while(rs.next()) {
+                //(String evento, int severita, String note, Vaccino tipoVac)
+                String tipoEvento = rs.getString("evento");
+                int severita = rs.getInt("severita");
+                String note = rs.getString("note");
+                Vaccino vaccino = Vaccino.getValue(rs.getString("vaccino"));
+                EventoAvverso ea = new EventoAvverso(tipoEvento, severita, note, vaccino);
+                eventi.add(ea);
+            }
+            risultato.setResult(true);
+            risultato.setListaEA(eventi);
         } catch (SQLException e) {
             e.printStackTrace();
         }
