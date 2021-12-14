@@ -6,6 +6,12 @@ import it.uninsubria.centrivaccinali.models.Result;
 
 public class CIItemListProspettoController extends Controller {
 
+
+    @FXML public Text CI_noteOpzionaliItemProspetto;
+    @FXML public Label CI_eventoItemProspetto;
+    @FXML public Label CI_tipologiaItemProspetto;
+    @FXML public Label CI_severitaitemProspetto;
+
     @Override
     public void initParameter(ClientCV client) { }
 

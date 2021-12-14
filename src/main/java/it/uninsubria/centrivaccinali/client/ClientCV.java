@@ -187,6 +187,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    public void leggiSegnalazioni(CISegnalazioniController segnalazioniController, String nomeCentro, int limit, int offset) {
+        controller = segnalazioniController;
+        try {
+            server.leggiSegnalazioni(this, nomeCentro, limit, offset);
+        } catch (RemoteException e) {
+            printerr("Impossibile recuperare gli eventi avversi per il centro");
+            lanciaPopup();
+        }
+    }
+
     public void stopOperation() {
         if (server != null) {
             try {

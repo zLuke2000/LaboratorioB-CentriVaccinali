@@ -55,7 +55,7 @@
             </Label>
          </children>
       </VBox>
-      <ToggleButton focusTraversable="false" layoutX="638.0" layoutY="85.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Segnalazioni" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="95.0">
+      <ToggleButton focusTraversable="false" layoutX="638.0" layoutY="85.0" mnemonicParsing="false" onAction="#mostraSegnalazioni" prefHeight="40.0" prefWidth="150.0" styleClass="ToggleButton" text="Segnalazioni" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="95.0">
          <effect>
             <InnerShadow>
                <color>

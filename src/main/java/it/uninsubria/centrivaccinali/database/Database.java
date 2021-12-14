@@ -484,4 +484,32 @@ public class Database {
         }
         return risultato;
     }
+
+    public Result leggiSegnalazioni(String nomeCentro, int limit, int offset) {
+        Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
+        try {
+            String centro = (nomeCentro.toLowerCase()).replaceAll("\\s", "_");
+
+            pstmt = conn.prepareStatement("SELECT vaccino, evento, severita, note " +
+                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "limit " + limit + " " +
+                    "offset " + offset);
+            rs = pstmt.executeQuery();
+            List<EventoAvverso> eventi = new ArrayList<>();
+            while(rs.next()) {
+                //(String evento, int severita, String note, Vaccino tipoVac)
+                String tipoEvento = rs.getString("evento");
+                int severita = rs.getInt("severita");
+                String note = rs.getString("note");
+                Vaccino vaccino = Vaccino.getValue(rs.getString("vaccino"));
+                EventoAvverso ea = new EventoAvverso(tipoEvento, severita, note, vaccino);
+                eventi.add(ea);
+            }
+            risultato.setResult(true);
+            risultato.setListaEA(eventi);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return risultato;
+    }
 }

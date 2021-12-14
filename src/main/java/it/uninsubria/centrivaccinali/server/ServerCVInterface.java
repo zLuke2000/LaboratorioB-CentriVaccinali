@@ -2,6 +2,7 @@ package it.uninsubria.centrivaccinali.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Cittadino;
@@ -21,8 +22,9 @@ public interface ServerCVInterface extends Remote{
     void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException;
     void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException;
     void ricercaCentroPerComuneTipologia(ClientCVInterface clientCV, String comune, TipologiaCentro tipologia) throws RemoteException;
-    void registraEventoAvverso(ClientCVInterface clientCV, EventoAvverso ea) throws RemoteException;
-    void leggiEA(ClientCVInterface clientCV, String nomeCentro) throws  RemoteException;
+    void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) throws RemoteException;
+    void leggiEA(ClientCVInterface client, String nomeCentro) throws  RemoteException;
+    void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException;
     // Metodi in comune
     void getComuni(ClientCVInterface client, String provincia) throws RemoteException;
     void getCentri(ClientCVInterface client, String comune) throws RemoteException;

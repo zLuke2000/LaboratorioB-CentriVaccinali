@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -13,9 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
-/*
-    Grafico su quanti hanno usato quale vaccino
- */
 
 public class CIShowGeneralCVController extends Controller {
 
@@ -56,19 +54,42 @@ public class CIShowGeneralCVController extends Controller {
     }
 
     @FXML
-    public void showProspetto() {
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/Fragments/FragmentProspetto/CI_F_grafici.fxml"));
-        try {
-            AnchorPane ap_chart = fxmlLoader.load();
-            CIGraficiController controller = fxmlLoader.getController();
-            controller.setParent(parent);
-            System.out.println("set data");
-            controller.setData(cv);
-            CI_AP_container.getChildren().add(ap_chart);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void mostraGrafico() {
+        if (ap_segnalazioni != null)
+            ap_segnalazioni.setVisible(false);
+        if (ap_grafico == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/CI_F_grafici.fxml"));
+            try {
+                AnchorPane ap_grafico = fxmlLoader.load();
+                CIGraficiController controller = fxmlLoader.getController();
+                controller.setParent(parent);
+                controller.setData(cv);
+                this.ap_grafico = ap_grafico;
+                CI_AP_container.getChildren().add(ap_grafico);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else
+            ap_grafico.setVisible(true);
+    }
 
+    public void mostraSegnalazioni() {
+        if (ap_grafico != null)
+            ap_grafico.setVisible(false);
+        if (ap_segnalazioni == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/CI_F_segnalazioni.fxml"));
+            try {
+                AnchorPane ap_segnalazioni = fxmlLoader.load();
+                CISegnalazioniController controller = fxmlLoader.getController();
+                controller.setParent(parent);
+                controller.setData(cv);
+                this.ap_segnalazioni = ap_segnalazioni;
+                CI_AP_container.getChildren().add(ap_segnalazioni);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else
+            ap_segnalazioni.setVisible(true);
     }
 
     @FXML public void chiudiInfo() {
