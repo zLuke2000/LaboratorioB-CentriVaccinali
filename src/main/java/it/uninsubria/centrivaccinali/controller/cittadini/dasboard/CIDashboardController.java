@@ -21,8 +21,9 @@ public class CIDashboardController extends Controller {
 
     private Cittadino cittadinoConesso = null;
     private ClientCV client;
-    private ControlloParametri cp = ControlloParametri.getInstance();
+    private Controller c = null;
     private CIRicercaResultController resultController = null;
+    private ControlloParametri cp = ControlloParametri.getInstance();
     private CssHelper cssh = CssHelper.getInstance();
 
     @FXML private AnchorPane ap_root;
@@ -48,11 +49,11 @@ public class CIDashboardController extends Controller {
             vb_free.setVisible(true);
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaHome.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ricercaCentri.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
             p_container.getChildren().add(ap);
-            CIRicercaHomeController c = fxmlLoader.getController();
+            CIRicercaResultController c = fxmlLoader.getController();
             c.setParent(this);
             c.initParameter(client);
         } catch (IOException e) {
@@ -118,8 +119,7 @@ public class CIDashboardController extends Controller {
                 break;
             case RICERCA_CENTRO:
                 if (resultController == null) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class
-                            .getResource("fxml/fragments/fragmentDashboard/F_CI_ricercaResult.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ricercaCentri.fxml"));
                     try {
                         AnchorPane ap = fxmlLoader.load();
                         Platform.runLater(() -> {
@@ -141,10 +141,10 @@ public class CIDashboardController extends Controller {
     }
 
     public void visualizzaInfo(CentroVaccinale cv) {
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/CI_F_showGeneralCV.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
-            CIShowGeneralCVController controller = fxmlLoader.getController();
+            CIInfoCentroController controller = fxmlLoader.getController();
             controller.setData(cv);
             controller.setParent(this);
             resultController.getPane().setVisible(false);
@@ -168,26 +168,33 @@ public class CIDashboardController extends Controller {
         }
     }
 
-    public void rimuoviInfo(Pane p) {
+    @FXML
+    public void rimuoviInfo(AnchorPane p){
         p_container.getChildren().remove(p);
         resultController.getPane().setVisible(true);
     }
 
-    public void rimuoviEA(Pane p) {
-        p_container.getChildren().remove(p);
-        resultController.getPane().setVisible(true);
-    }
-
-    public void showInfoMB(ActionEvent actionEvent) throws IOException {
-
+    @FXML
+    public void mostraInfo() {
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCittadino.fxml"));
+        try {
+            AnchorPane ap = fxmlLoader.load();
+            Platform.runLater(() -> {
+                p_container.getChildren().clear();
+                p_container.getChildren().add(ap);
+            });
+            c = fxmlLoader.getController();
+            System.out.println(client);
+            c.initParameter(client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     public void logoutInfoMB() {
         client.LogoutUtente();
-        System.out.println("L'utente ha eseguito il logout");
-        vb_free.setVisible(true);
-        mb_utente.setVisible(false);
+        CentriVaccinali.setRoot("CI_home");
     }
 
     @FXML

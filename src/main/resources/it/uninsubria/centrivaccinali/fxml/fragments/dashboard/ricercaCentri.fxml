@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane fx:id="ap_result" prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIRicercaResultController">
+   <AnchorPane minWidth="550.0" styleClass="trasparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="target_Ricerca" layoutX="16.0" layoutY="36.0" text="Tipologia ricerca:" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0" />
+      <ComboBox fx:id="ci_cb_sceltaTipologia" layoutX="218.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
+      <TextField fx:id="ci_tf_ricercaNomeCV" layoutX="218.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="332.0" promptText="Inserisci nome centro vaccinale" styleClass="field-preset-1" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
+      <ComboBox fx:id="ci_cb_sceltaRicerca" layoutX="32.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="35.0" prefWidth="150.0" styleClass="combo-box" visibleRowCount="2" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="39.0" />
+      <TextField fx:id="ci_tf_ricercaComune" layoutX="400.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" promptText="Comune" styleClass="field-preset-1" visible="false" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="39.0" />
+      <AnchorPane layoutX="35.0" layoutY="109.0" styleClass="transparent" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="106.0">
+         <ScrollPane hbarPolicy="NEVER" layoutX="165.0" layoutY="104.0" pannable="true" styleClass="transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <padding>
+               <Insets left="6.0" />
+            </padding>
+            <VBox fx:id="vb_risultati" spacing="4.0" styleClass="transparent">
+               <padding>
+                  <Insets top="8.0" />
+               </padding>
+            </VBox>
+         </ScrollPane>
+         <GridPane layoutX="10.0" layoutY="10.0" prefHeight="20.0" styleClass="transparent" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+               <ColumnConstraints hgrow="SOMETIMES" />
+               <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="223.0" style="-fx-font-size: 15;" text="Tipologia" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="228.0" style="-fx-font-size: 15;" text="Generalità" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="240.0" style="-fx-font-size: 15;" text="Azioni" GridPane.columnIndex="2" />
+         </GridPane>
+         <Label fx:id="l_noResult" alignment="CENTER" layoutX="-4.0" layoutY="331.0" text="Nessun Risultato" textFill="#323232" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="206.0">
+            <font>
+               <Font size="30.0" />
+            </font></Label>
+      </AnchorPane>
+      <Button fx:id="CI_B_ricerca" layoutX="575.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cercaCentroVaccinale" prefHeight="35.0" prefWidth="110.0" styleClass="button-preset-1" text="Cerca" textAlignment="CENTER" textFill="#323232" AnchorPane.leftAnchor="546.0" AnchorPane.topAnchor="39.0">
+         <graphic>
+            <FontIcon iconColor="#323232" iconLiteral="mdi2t-text-search" iconSize="24" />
+         </graphic>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <GridPane hgap="4.0" layoutX="699.0" layoutY="12.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="41.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="27.0" minHeight="24.0" prefHeight="26.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+         </rowConstraints>
+         <FontIcon iconColor="#3456e3" iconLiteral="mdi2h-hospital-building" iconSize="25" />
+         <FontIcon iconColor="#c148eb" iconLiteral="mdi2h-hospital-marker" iconSize="25" GridPane.columnIndex="1" />
+         <FontIcon iconColor="#323232" iconLiteral="mdi2f-factory" iconSize="25" GridPane.columnIndex="2" />
+         <Label fx:id="l_countOspedaliero" text="0" textFill="#323232" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Label>
+         <Label fx:id="l_countHub" text="0" textFill="#323232" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Label>
+         <Label fx:id="l_countAziendale" text="0" textFill="#323232" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Label>
+      </GridPane>
+   </AnchorPane>
+   <stylesheets>
+      <URL value="@../../../style/dashboardStyle.css" />
+      <URL value="@../../../style/style.css" />
+   </stylesheets>
+</AnchorPane>

@@ -14,7 +14,7 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.CIHomeController">
-   <AnchorPane maxHeight="-Infinity" onKeyPressed="#checkEnter" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" styleClass="default-bg">
+   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#checkEnter" prefHeight="500.0" prefWidth="350.0" styleClass="default-bg">
    <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
    <Label alignment="CENTER" layoutX="180.0" layoutY="99.0" text="CITTADINO" textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <font>
@@ -50,7 +50,7 @@
                <FontIcon fx:id="fi_ci_showPassword" iconColor="#323232" iconLiteral="mdi2e-eye" iconSize="22" onMouseClicked="#showPassword" />
             </StackPane>
          </HBox>
-         <Button defaultButton="true" onAction="#loginCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accedi" />
+         <Button fx:id="b_accedi" defaultButton="true" onAction="#loginCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accedi" />
       </VBox>
       <Button layoutY="350.0" mnemonicParsing="false" onAction="#toFreeAccess" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accesso libero" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" />
       <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />

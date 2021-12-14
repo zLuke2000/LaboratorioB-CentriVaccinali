@@ -1,8 +1,10 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -36,7 +38,6 @@ public class ConnectionThread extends Thread{
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
                 Platform.runLater(() -> {
-                    //TODO aggiungere si/no per far ripartire il thread
                     DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
                     Button b = new Button("SI");
                     b.setOnAction( eh -> {

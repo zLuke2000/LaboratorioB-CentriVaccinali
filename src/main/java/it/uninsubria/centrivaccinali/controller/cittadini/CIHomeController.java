@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -24,10 +25,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class CIHomeController extends Controller {
 
     @FXML public AnchorPane ap_root;
-    private ClientCV client = CentriVaccinali.client;
-
-    private final ControlloParametri cp = ControlloParametri.getInstance();
-
     /**TextField per l'username del cittadino*/
     @FXML private TextField tf_ci_loginUsername;
 
@@ -43,12 +40,12 @@ public class CIHomeController extends Controller {
     /**FontIcon per mostrare la password*/
     @FXML private FontIcon fi_ci_showPassword;
 
-    private CssHelper cssh = CssHelper.getInstance();
+    private final ClientCV client = CentriVaccinali.client;
+    private final ControlloParametri cp = ControlloParametri.getInstance();
+    private final CssHelper cssh = CssHelper.getInstance();
 
     @Override
-    public void initParameter(ClientCV client) {
-        /*this.client = client;*/
-    }
+    public void initParameter(ClientCV client) { }
 
     @Override
     public void notifyController(Result result) {
@@ -154,7 +151,6 @@ public class CIHomeController extends Controller {
 
     public void checkEnter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
-            System.out.println("sono nell'if");
             loginCittadino();
         }
     }

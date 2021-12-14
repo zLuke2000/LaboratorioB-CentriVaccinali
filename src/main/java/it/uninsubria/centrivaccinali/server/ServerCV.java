@@ -5,9 +5,6 @@ import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazion
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -27,17 +24,6 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     }
 
     public static void main(String[] args) {
-        System.out.println("Inserire le credenziali di accesso");
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        // Leggo nome utente
-        // Da sistemare
-        String utente = "123abc";
-        // Leggo password
-        // Da sistemare
-        String password = "123abc";
-
         db = new Database();
         try {
             obj = new ServerCV();
