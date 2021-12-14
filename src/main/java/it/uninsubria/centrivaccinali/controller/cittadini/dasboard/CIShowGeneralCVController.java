@@ -26,6 +26,8 @@ public class CIShowGeneralCVController extends Controller {
     @FXML private Label CI_L_nomeCV;
     @FXML private Label CI_L_indirizzoCV;
     @FXML private AnchorPane CI_AP_container;
+    @FXML private AnchorPane ap_segnalazioni;
+    @FXML private AnchorPane ap_grafico;
 
     @FXML void initialize() {
 
@@ -40,6 +42,7 @@ public class CIShowGeneralCVController extends Controller {
     public void setData(CentroVaccinale cv) {
         this.cv = cv;
         String tipologia =cv.getTipologia().toString();
+        //TODO usare fonticon
         String img = "";
         if (tipologia.equals("ospedaliero"))
             img = "Ospedaliero.png";

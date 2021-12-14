@@ -13,9 +13,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +22,6 @@ public class CIGraficiController extends Controller {
     private ClientCV client = CentriVaccinali.client;
     private CentroVaccinale cv;
     private CIDashboardController parent;
-
-    //private HashMap<String, HashMap<Vaccino, List<Integer>>> mappaEventi = new HashMap<>();
     private List<String> listaEA = new ArrayList<>();
 
     private XYChart.Series pfizer;
@@ -42,30 +38,6 @@ public class CIGraficiController extends Controller {
 
     @FXML
     void initialize() {
-        /*
-        mappaEventi.put("mal di testa", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("mal di testa").put(v, new ArrayList<>());
-        mappaEventi.put("febbre", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("febbre").put(v, new ArrayList<>());
-        mappaEventi.put("dolori muscolari e articolari", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("dolori muscolari e articolari").put(v, new ArrayList<>());
-        mappaEventi.put("linfoadenopatia", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("linfoadenopatia").put(v, new ArrayList<>());
-        mappaEventi.put("tachicardia", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("tachicardia").put(v, new ArrayList<>());
-        mappaEventi.put("crisi chipertensiva", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("crisi chipertensiva").put(v, new ArrayList<>());
-        mappaEventi.put("altro", new HashMap<>());
-        for(Vaccino v: Vaccino.values())
-            mappaEventi.get("altro").put(v, new ArrayList<>());
-        */
-
         ci_bc_prospetto.setAnimated(false);
 
         tipoEventoAxis.setLabel("Tipo evento avverso");
@@ -77,10 +49,7 @@ public class CIGraficiController extends Controller {
         jnj = new XYChart.Series();
         jnj.setName("j&j");
         System.out.println(jnj);
-        /*
-        jnj.getData().add(new XYChart.Data("Mal di testa", 4));
-        jnj.getData().add(new XYChart.Data("Febbre", 2));
-         */
+
         astrazeneca = new XYChart.Series();
         astrazeneca.setName("astrazeneca");
         System.out.println(astrazeneca);
@@ -94,8 +63,6 @@ public class CIGraficiController extends Controller {
         listaEA.add("linfoadenopatia");
         listaEA.add("tachicardia");
         listaEA.add("crisi chipertensiva");
-
-        //setData(cv);
     }
 
     @Override
@@ -131,12 +98,14 @@ public class CIGraficiController extends Controller {
     private void aggiungiEvento(XYChart.Series series, String evento, Double x) {
         System.out.println("Entra");
         Platform.runLater(() -> {
-            if (listaEA.contains(evento)) {
-                System.out.println("aggiunto: " + series + " " + evento + " = " + x);
-                series.getData().add(new XYChart.Data(evento, x));
-            } else {
-                //series.getData().add(new XYChart.Data("altro", x));
-            }
+            System.out.println("aggiunto: " + series + " " + evento + " = " + x);
+            series.getData().add(new XYChart.Data(evento, x));
+//            if (listaEA.contains(evento)) {
+//                System.out.println("aggiunto: " + series + " " + evento + " = " + x);
+//                series.getData().add(new XYChart.Data(evento, x));
+//            } else {
+//                //series.getData().add(new XYChart.Data("altro", x));
+//            }
         });
     }
     

@@ -22,6 +22,13 @@ public class Uploader {
     private static Database db;
     private static Connection conn;
 
+    private static final int REGISTRA_CENTRI = 1;
+    private static final int REGISTRA_VACCINATI = 2;
+    private static final int REGISTRA_CITTADINI = 3;
+    private static final int REGISTRA_EVENTI = 4;
+
+    private static final int operation = -1;
+
     public static void main(String[] args) {
         try {
             conn = DBHelper.getConnection();
@@ -31,8 +38,23 @@ public class Uploader {
         db = new Database();
 
         try {
-            registraEventi();
-        } catch (SQLException e) {
+            switch (operation){
+                case REGISTRA_CENTRI:
+                    registraCentri();
+                    break;
+                case REGISTRA_VACCINATI:
+                    registraVaccinatiRandom(100);
+                    break;
+                case REGISTRA_CITTADINI:
+                    registraCittadini();
+                    break;
+                case REGISTRA_EVENTI:
+                    registraEventi();
+                    break;
+                default:
+                    break;
+            }
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -702,12 +724,12 @@ public class Uploader {
             if(ThreadLocalRandom.current().nextBoolean()) {
                 List<String> eventiRandom = new ArrayList<>();
                 eventiRandom.addAll(eventi);
+                int num = ThreadLocalRandom.current().nextInt(1, 6);
                 int numeroEventi = ThreadLocalRandom.current().nextInt(eventi.size());
                 for(int i=0; i<numeroEventi; i++) {
                     int eventoacaso = ThreadLocalRandom.current().nextInt(eventiRandom.size());
                     EventoAvverso ea = new EventoAvverso(id, eventiRandom.get(eventoacaso),ThreadLocalRandom.current().nextInt(1, 6),"");
                     eventiRandom.remove(eventoacaso);
-                    //System.out.println(ea);
                     db.registraEA(ea);
                 }
             }

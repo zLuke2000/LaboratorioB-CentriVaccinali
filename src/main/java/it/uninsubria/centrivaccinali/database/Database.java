@@ -455,29 +455,42 @@ public class Database {
         return risultato;
     }
 
-    public Result leggiEA(String nomeCentro) {
+    public Result leggiMediaEventiAvversi(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
         try {
-            /*
-            pstmt = conn.prepareStatement("SELECT DISTINCT evento, severita, note, vaccino " +
-                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + nomeCentro + "\"");
-
-             */
             String centro = (nomeCentro.toLowerCase()).replaceAll("\\s", "_");
+            List<String> eventi = new ArrayList<>();
+            eventi.add("mal di testa");
+            eventi.add("febbre");
+            eventi.add("dolori muscolari e articolari");
+            eventi.add("linfoadenopatia");
+            eventi.add("tachicardia");
+            eventi.add("crisi chipertensiva");
+
             pstmt = conn.prepareStatement("SELECT vaccino, evento, AVG(severita) " +
                                              "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                                             "WHERE evento IN (?, ?, ?, ?, ?, ?)" +
                                              "GROUP BY vaccino, evento " +
                                              "ORDER BY vaccino");
+            for (int i = 0; i < eventi.size(); i++)
+                pstmt.setString(i + 1, eventi.get(i));
             rs = pstmt.executeQuery();
-            //List<EventoAvverso> listaEventi = new ArrayList<>();
             Map<String, Double> map = new HashMap<>();
             while(rs.next()) {
-                //listaEventi.add(new EventoAvverso(rs.getString("evento"), rs.getInt("severita"), rs.getString("note"), Vaccino.valueOf(rs.getString("vaccino"))));
                 map.put(rs.getString("vaccino") + "/" + rs.getString("evento"), rs.getDouble("avg"));
             }
+            pstmt = conn.prepareStatement("SELECT vaccino, AVG(severita) " +
+                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "WHERE evento NOT IN (?, ?, ?, ?, ?, ?)" +
+                    "GROUP BY vaccinool" +
+                    "ORDER BY vaccino");
+            for (int i = 0; i < eventi.size(); i++)
+                pstmt.setString(i + 1, eventi.get(i));
+            rs = pstmt.executeQuery();
+            while(rs.next()) {
+                map.put(rs.getString("vaccino") + "/altro", rs.getDouble("avg"));
+            }
             risultato.setResult(true);
-            //risultato.setListaEA(listaEventi);
-            System.out.println(map);
             risultato.setMap(map);
         } catch (SQLException e) {
             e.printStackTrace();

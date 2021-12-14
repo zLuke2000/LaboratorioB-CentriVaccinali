@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoContro
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
 import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
