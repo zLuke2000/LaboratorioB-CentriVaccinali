@@ -31,7 +31,7 @@
     </rowConstraints>
     <Button mnemonicParsing="false" onAction="#salvaEA" text="SALVA" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
     <TextArea fx:id="ta_ea_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="Mal di testa" GridPane.columnIndex="1">
+    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="mal di testa" GridPane.columnIndex="1">
         <toggleGroup>
           <ToggleGroup fx:id="tg_ea_gruppo" />
         </toggleGroup>

@@ -28,8 +28,8 @@ public class CentriVaccinali extends Application {
     private final static Double w_ci_reg = 400.0;
     private final static Double h_ci_reg = 520.0;
 
-    private final static Double w_dashboard = 1200.0;
-    private final static Double h_dashboard = 800.0;
+    private final static Double w_dashboard = 800.0;
+    private final static Double h_dashboard = 700.0;
 
     private final static Double w_standard = 390.0;
     private final static Double h_standard = 565.0;
@@ -113,12 +113,6 @@ public class CentriVaccinali extends Application {
                 stage.setTitle("Area Cittadino");
                 height = h_dashboard;
                 width = w_dashboard;
-                break;
-                //TODO DA RIMUOVERE
-            case "fragments/F_CI_EA_root":
-                stage.setTitle("EVENTI AVVERSI");
-                height = 820.0;
-                width = 1200.0;
                 break;
             case "fragments/CI_F_showGeneralCV":
                 stage.setTitle("Info CV");

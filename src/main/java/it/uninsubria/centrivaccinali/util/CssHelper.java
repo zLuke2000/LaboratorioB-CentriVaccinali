@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.util;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
@@ -46,5 +47,17 @@ public class CssHelper {
         c.getStyleClass().remove("field-error");
         c.getStyleClass().remove("field-valid");
         c.setTooltip(null);
+    }
+
+    public void toggle(Button bSelected, Button bNotSelected) {
+        // Rimuovo tutte le classi
+        bSelected.getStyleClass().remove("bottone-info-centri-selected");
+        bSelected.getStyleClass().remove("bottone-info-centri-not-selected");
+        bNotSelected.getStyleClass().remove("bottone-info-centri-selected");
+        bNotSelected.getStyleClass().remove("bottone-info-centri-not-selected");
+
+        // Aggiungo solo la classe necessaria
+        bSelected.getStyleClass().add("bottone-info-centri-selected");
+        bNotSelected.getStyleClass().add("bottone-info-centri-not-selected");
     }
 }

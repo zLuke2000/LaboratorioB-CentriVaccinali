@@ -1,9 +1,21 @@
+.bordo-sotto {
+    -fx-background-radius: 0 0 20 20;
+}
+
 .opaco-20 {
     -fx-background-color: rgba(255, 255, 255, 0.2);
 }
 
-.bordo-sotto {
-    -fx-background-radius: 0 0 20 20;
+.pannello-info-centri {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 0 0 20 0;
+}
+
+.button-ea-add {
+    -fx-background-color: #e33434;
+}
+.button-ea-info {
+    -fx-background-color: #3456e3;
 }
 
 /* MENU BUTTON */
@@ -11,26 +23,21 @@
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 20;
 }
-
 .menu-button .arrow-button .arrow{
     -fx-background-color: #323232;
 }
-
 .menu-item:hover {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 5;
 }
-
 .menu-item:focused {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 5;
 }
-
 .context-menu {
     -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-background-radius: 5;
 }
-
 .context-menu .separator:horizontal .line {
     -fx-border-color: #323232 transparent transparent transparent;
 }
@@ -43,4 +50,37 @@
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 20 0;
+}
+.scroll-pane .scroll-bar:vertical,
+.scroll-pane .scroll-bar:vertical .track,
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .increment-button,
+.scroll-pane .scroll-bar:vertical .decrement-button .decrement-arrow,
+.scroll-pane .scroll-bar:vertical .increment-button .increment-arrow{
+    -fx-background-color: transparent;
+}
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Button grafico e segnalazione */
+.bottone-info-centri-not-selected {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 0 20 20 0;
+    -fx-prompt-text-fill: #CCCCCC;
+}
+
+.bottone-info-centri-selected {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 0 20 20 0;
+    -fx-border-width: 1 1 1 0;
+    -fx-prompt-text-fill: #CCCCCC;
+}
+
+.bottone-esci {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 0 20 0 20;
+    -fx-prompt-text-fill: #CCCCCC;
 }
