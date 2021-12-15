@@ -14,7 +14,6 @@ import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -166,7 +165,7 @@ public class CVRegistraCittadinoController extends Controller {
 
     @FXML
     void backTo() {
-        CentriVaccinali.setRoot("CV_change");
+        CentriVaccinali.setRoot("CV_home");
         client.stopOperation();
     }
     @FXML

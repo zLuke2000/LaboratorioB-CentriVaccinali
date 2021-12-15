@@ -111,7 +111,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML
         public void backTo() {
-                CentriVaccinali.setRoot("CV_change");
+                CentriVaccinali.setRoot("CV_home");
                 client.stopOperation();
         }
 

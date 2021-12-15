@@ -40,7 +40,7 @@ public class CVLoginController extends Controller {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
         b_accedi.setDisable(false);
         if(result.getResult()) {
-            Platform.runLater(() -> CentriVaccinali.setRoot("CV_change"));
+            Platform.runLater(() -> CentriVaccinali.setRoot("CV_home"));
         } else {
             System.err.println("[CVLogin] AUTH ERROR");
             DialogHelper dh = new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR);

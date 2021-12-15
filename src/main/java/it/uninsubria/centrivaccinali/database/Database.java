@@ -482,7 +482,7 @@ public class Database {
             pstmt = conn.prepareStatement("SELECT vaccino, AVG(severita) " +
                     "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
                     "WHERE evento NOT IN (?, ?, ?, ?, ?, ?)" +
-                    "GROUP BY vaccinool" +
+                    "GROUP BY vaccino" +
                     "ORDER BY vaccino");
             for (int i = 0; i < eventi.size(); i++)
                 pstmt.setString(i + 1, eventi.get(i));
