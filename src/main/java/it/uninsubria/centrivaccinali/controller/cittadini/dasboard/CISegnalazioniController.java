@@ -37,7 +37,7 @@ public class CISegnalazioniController extends Controller {
                     //TODO disabilita btn carica altro
                 }
                 for (EventoAvverso ea: result.getListaEA()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/itemListProspetto.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/itemListProspetto.fxml"));
                     try {
                         GridPane gp_item = fxmlLoader.load();
                         CIItemListProspettoController itemController = fxmlLoader.getController();

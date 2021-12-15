@@ -15,7 +15,7 @@ public class CIItemListProspettoController extends Controller {
     @FXML public Text CI_noteOpzionaliItemProspetto;
     @FXML public Label CI_eventoItemProspetto;
     @FXML public Label CI_tipologiaItemProspetto;
-    @FXML public Label CI_severitaitemProspetto;
+    @FXML public Label CI_severitaItemProspetto;
 
     @Override
     public void initParameter(ClientCV client) { }
@@ -26,7 +26,7 @@ public class CIItemListProspettoController extends Controller {
     public void setData(EventoAvverso ea) {
         this.CI_tipologiaItemProspetto.setText(ea.getTipoVac().toString());
         this.CI_eventoItemProspetto.setText(ea.getEvento());
-        this.CI_severitaitemProspetto.setText(String.valueOf(ea.getSeverita()));
+        this.CI_severitaItemProspetto.setText(String.valueOf(ea.getSeverita()));
         this.CI_noteOpzionaliItemProspetto.setText(ea.getNote());
     }
 }

@@ -10,12 +10,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController">
-    <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController">
+    <ScrollPane hbarPolicy="NEVER" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
         </padding>
-        <VBox prefHeight="555.0" prefWidth="760.0" />
+        <VBox fx:id="vb_lista_segnalazioni" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="485.0" prefWidth="580.0" spacing="10.0" />
     </ScrollPane>
       <GridPane fx:id="" alignment="TOP_CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <columnConstraints>

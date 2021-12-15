@@ -78,7 +78,6 @@ public class CIGraficiController extends Controller {
                 String vaccino = parts[0];
                 String evento = parts[1];
                 Double value = entry.getValue();
-                System.out.println(vaccino + " " + evento);
                 if (vaccino.equals("pfizer")) {
                      aggiungiEvento(pfizer, evento, value);
                 } else if (vaccino.equals("j&j")) {
