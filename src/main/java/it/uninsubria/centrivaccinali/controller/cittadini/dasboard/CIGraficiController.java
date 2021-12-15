@@ -48,11 +48,9 @@ public class CIGraficiController extends Controller {
 
         jnj = new XYChart.Series();
         jnj.setName("j&j");
-        System.out.println(jnj);
 
         astrazeneca = new XYChart.Series();
         astrazeneca.setName("astrazeneca");
-        System.out.println(astrazeneca);
 
         moderna = new XYChart.Series();
         moderna.setName("moderna");
@@ -95,16 +93,8 @@ public class CIGraficiController extends Controller {
     }
 
     private void aggiungiEvento(XYChart.Series series, String evento, Double x) {
-        System.out.println("Entra");
         Platform.runLater(() -> {
-            System.out.println("aggiunto: " + series + " " + evento + " = " + x);
             series.getData().add(new XYChart.Data(evento, x));
-//            if (listaEA.contains(evento)) {
-//                System.out.println("aggiunto: " + series + " " + evento + " = " + x);
-//                series.getData().add(new XYChart.Data(evento, x));
-//            } else {
-//                //series.getData().add(new XYChart.Data("altro", x));
-//            }
         });
     }
     

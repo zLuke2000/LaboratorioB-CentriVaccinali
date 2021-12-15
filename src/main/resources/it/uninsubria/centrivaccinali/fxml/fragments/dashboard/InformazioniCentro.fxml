@@ -54,7 +54,7 @@
    </Button>
    <Button layoutX="20.0" layoutY="20.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chiudiInfo" prefHeight="50.0" prefWidth="192.0" styleClass="bottone-esci" text="Esci            " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="550.0">
       <graphic>
-         <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" iconSize="32" />
+         <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" styleClass="redIcon" iconSize="32" />
       </graphic>
    </Button>
 </AnchorPane>

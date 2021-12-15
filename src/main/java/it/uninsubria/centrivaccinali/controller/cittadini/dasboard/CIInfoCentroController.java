@@ -28,6 +28,9 @@ public class CIInfoCentroController extends Controller {
     @FXML private Button b_segnalazioni;
     @FXML private Button b_grafico;
 
+    private AnchorPane ap_segnalazioni;
+    private AnchorPane ap_grafico;
+
     private CentroVaccinale cv;
     private CIDashboardController parent;
     private CssHelper css = CssHelper.getInstance();
@@ -59,41 +62,63 @@ public class CIInfoCentroController extends Controller {
         l_tipologia.setText(cv.getTipologia().toString());
         l_nome.setText(cv.getNome());
         l_indirizzo.setText(cv.getIndirizzo().toString());
+
+        mostraGrafico();
     }
 
     @FXML
     public void mostraSegnalazioni() {
         css.toggle(b_segnalazioni, b_grafico);
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/SegnalazioniEventiAvversi.fxml"));
-        try {
-            AnchorPane ap = fxmlLoader.load();
+        if (ap_segnalazioni != null) {
             Platform.runLater(() -> {
-                ap_container.getChildren().clear();
-                ap_container.getChildren().add(ap);
+                if (ap_grafico != null)
+                    ap_grafico.setVisible(false);
+                ap_segnalazioni.setVisible(true);
             });
-            CISegnalazioniController c = fxmlLoader.getController();
-            c.setParent(this);
-            c.setData(cv);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/SegnalazioniEventiAvversi.fxml"));
+            try {
+                AnchorPane ap = fxmlLoader.load();
+                ap_segnalazioni = ap;
+                Platform.runLater(() -> {
+                    if (ap_grafico != null)
+                        ap_grafico.setVisible(false);
+                    ap_container.getChildren().add(ap);
+                });
+                CISegnalazioniController c = fxmlLoader.getController();
+                c.setParent(this);
+                c.setData(cv);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @FXML
     public void mostraGrafico() {
         css.toggle(b_grafico, b_segnalazioni);
-        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/GraficoEventiAvversi.fxml"));
-        try {
-            AnchorPane ap = fxmlLoader.load();
+        if (ap_grafico != null) {
             Platform.runLater(() -> {
-                ap_container.getChildren().clear();
-                ap_container.getChildren().add(ap);
+                if (ap_segnalazioni != null)
+                    ap_segnalazioni.setVisible(false);
+                ap_grafico.setVisible(true);
             });
-            CIGraficiController c = fxmlLoader.getController();
-            c.setParent(this);
-            c.setData(cv);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/GraficoEventiAvversi.fxml"));
+            try {
+                AnchorPane ap = fxmlLoader.load();
+                ap_grafico = ap;
+                Platform.runLater(() -> {
+                    if (ap_segnalazioni != null)
+                        ap_segnalazioni.setVisible(false);
+                    ap_container.getChildren().add(ap);
+                });
+                CIGraficiController c = fxmlLoader.getController();
+                c.setParent(this);
+                c.setData(cv);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
