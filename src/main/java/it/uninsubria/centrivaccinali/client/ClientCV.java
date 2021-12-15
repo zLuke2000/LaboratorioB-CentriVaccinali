@@ -9,7 +9,7 @@ import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneControl
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
 import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.AggiungiEventoAvverso;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
@@ -37,9 +37,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     public Cittadino getUtenteLoggato() {
         return cittadinoConnesso;
     }
-    public String getCentroCittadino() {
-        return centroCittadino;
-    }
+    public String getCentroCittadino() { return centroCittadino; }
 
     public void LogoutUtente() {
         this.cittadinoConnesso = null;
@@ -74,9 +72,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
         if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
-            if (ritorno.getResult())
+            if (ritorno.getResult()) {
                 cittadinoConnesso = ritorno.getCittadino();
                 centroCittadino = ritorno.getCentroCittadino();
+            }
         }
         controller.notifyController(ritorno);
     }
@@ -169,7 +168,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void registraEventoAvverso(EAController eaController , EventoAvverso ea) {
+    public void registraEventoAvverso(AggiungiEventoAvverso eaController , EventoAvverso ea) {
         controller = eaController;
         try {
             server.registraEventoAvverso(this, ea);

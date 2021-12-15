@@ -60,7 +60,9 @@ public class CIInfoCittadinoController extends Controller {
         });
     }
 
-    public void close() { }
+    public void close() {
+
+    }
 
     public void aggiornaPassword() {
         if(hb_textField.isVisible()) {

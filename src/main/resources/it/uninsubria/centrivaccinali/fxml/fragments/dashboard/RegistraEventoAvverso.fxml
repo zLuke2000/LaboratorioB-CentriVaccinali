@@ -15,10 +15,8 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<GridPane fx:id="gp_EA" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="transparent" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.EAController">
+<GridPane fx:id="gp_EA" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.AggiungiEventoAvverso">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,20 +29,23 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
-    <Button mnemonicParsing="false" onAction="#salvaEA" styleClass="button-preset-1" text="SALVA" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-    <TextArea fx:id="ta_ea_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="mal di testa" GridPane.columnIndex="1">
+    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#salva" prefHeight="40.0" prefWidth="100.0" styleClass="button-preset-1" text="Salva" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+    <TextArea fx:id="ta_ea_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="Mal di testa">
         <toggleGroup>
           <ToggleGroup fx:id="tg_ea_gruppo" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="rb_ea2" onAction="#selezioneEvento" text="febbre" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <RadioButton fx:id="rb_ea3" onAction="#selezioneEvento" text="dolori muscolari e articolari" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" />
-    <RadioButton fx:id="rb_ea4" onAction="#selezioneEvento" text="linfoadenopatia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-    <RadioButton fx:id="rb_ea5" onAction="#selezioneEvento" text="tachicardia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" />
-    <RadioButton fx:id="rb_ea6" onAction="#selezioneEvento" text="crisi ipertensiva" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-    <TextField fx:id="tf_ea_altro" onKeyTyped="#controlloTestoEvento" onMouseClicked="#selezioneEvento" promptText="Altro..." styleClass="field-preset-1" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-    <Label fx:id="l_ea_caratteri" text="0/256" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+    <RadioButton fx:id="rb_ea2" onAction="#selezioneEvento" text="Febbre" toggleGroup="$tg_ea_gruppo" GridPane.rowIndex="1" />
+    <RadioButton fx:id="rb_ea3" onAction="#selezioneEvento" text="Dolori muscolari e articolari" toggleGroup="$tg_ea_gruppo" wrapText="true" GridPane.columnIndex="1" />
+    <RadioButton fx:id="rb_ea4" onAction="#selezioneEvento" text="Linfoadenopatia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton fx:id="rb_ea5" onAction="#selezioneEvento" text="Tachicardia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" />
+    <RadioButton fx:id="rb_ea6" onAction="#selezioneEvento" text="Crisi ipertensiva" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" />
+    <TextField fx:id="tf_ea_altro" onKeyTyped="#controlloTestoEvento" onMouseClicked="#selezioneEvento" prefHeight="25.0" promptText="Altro..." styleClass="field-preset-1" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+    <Label fx:id="l_ea_caratteri" text="0/256" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
         <font>
             <Font size="14.0" />
         </font>
@@ -52,14 +53,20 @@
          <Insets top="10.0" />
       </GridPane.margin>
     </Label>
-    <Slider fx:id="s_severita" blockIncrement="2.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" min="1.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" showTickLabels="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2" />
-   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="25" onMouseClicked="#chiudiEA" styleClass="redIcon" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-      <GridPane.margin>
-         <Insets right="16.0" top="16.0" />
-      </GridPane.margin>
-   </FontIcon>
+    <Slider fx:id="s_severita" blockIncrement="2.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" min="1.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" showTickLabels="true" snapToTicks="true" GridPane.columnSpan="4" GridPane.rowIndex="2" />
+   <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chiudi" prefHeight="40.0" prefWidth="100.0" styleClass="button-preset-1" text="Chiudi" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+      <graphic>
+         <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" iconSize="20" />
+      </graphic>
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Button>
    <stylesheets>
-      <URL value="@../../style/style.css" />
-      <URL value="@../../style/dashboardStyle.css" />
+      <URL value="@../../../style/dashboardStyle.css" />
+      <URL value="@../../../style/style.css" />
    </stylesheets>
+   <padding>
+      <Insets bottom="32.0" left="32.0" right="32.0" />
+   </padding>
 </GridPane>

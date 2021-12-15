@@ -82,6 +82,7 @@ public class CIRicercaResultController extends Controller {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
                         itemController.setParent(parent);
+                        itemController.initParameter(client);
                         switch (cv.getTipologia()){
                             case OSPEDALIERO:
                                 itemController.setData(cv, "mdi2h-hospital-building", "#3456e3");

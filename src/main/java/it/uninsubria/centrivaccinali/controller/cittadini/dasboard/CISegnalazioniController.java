@@ -9,11 +9,8 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.events.Event;
-
 import java.io.IOException;
 
 public class CISegnalazioniController extends Controller {
@@ -37,7 +34,7 @@ public class CISegnalazioniController extends Controller {
                     //TODO disabilita btn carica altro
                 }
                 for (EventoAvverso ea: result.getListaEA()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/itemListProspetto.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/itemListProspetto.fxml"));
                     try {
                         GridPane gp_item = fxmlLoader.load();
                         CIItemListProspettoController itemController = fxmlLoader.getController();
