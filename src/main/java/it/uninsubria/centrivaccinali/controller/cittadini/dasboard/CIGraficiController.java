@@ -77,13 +77,13 @@ public class CIGraficiController extends Controller {
                 String evento = parts[1];
                 Double value = entry.getValue();
                 if (vaccino.equals("pfizer")) {
-                     aggiungiEvento(pfizer, evento, value);
+                     aggiungiEvento(pfizer, evento.replace(" ", "\n"), value);
                 } else if (vaccino.equals("j&j")) {
-                    aggiungiEvento(jnj, evento, value);
+                    aggiungiEvento(jnj, evento.replace(" ", "\n"), value);
                 } else if (vaccino.equals("moderna")) {
-                    aggiungiEvento(moderna, evento, value);
+                    aggiungiEvento(moderna, evento.replace(" ", "\n"), value);
                 } else if (vaccino.equals("astrazeneca")) {
-                    aggiungiEvento(astrazeneca, evento, value);
+                    aggiungiEvento(astrazeneca, evento.replace(" ", "\n"), value);
                 }
             }
             Platform.runLater(() -> {
