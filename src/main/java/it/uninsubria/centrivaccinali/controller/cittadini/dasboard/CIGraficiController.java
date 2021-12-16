@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CIGraficiController extends Controller {
 
-    private ClientCV client = CentriVaccinali.client;
+    private final ClientCV client = CentriVaccinali.client;
     private CentroVaccinale cv;
     private CIInfoCentroController parent;
 
@@ -50,7 +50,7 @@ public class CIGraficiController extends Controller {
 
     @Override
     public void notifyController(Result result) {
-        if (result != null & result.getResult() & result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {
+        if (result != null && result.getResult() && result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {
             for (Map.Entry<String, Double> entry : result.getMap().entrySet()) {
                 String[] parts = entry.getKey().split("/");
                 String vaccino = parts[0];

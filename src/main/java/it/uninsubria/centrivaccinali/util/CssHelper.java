@@ -1,8 +1,6 @@
 package it.uninsubria.centrivaccinali.util;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.util.Duration;
 
 public class CssHelper {

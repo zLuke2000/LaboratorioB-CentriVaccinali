@@ -72,7 +72,7 @@ public class CIInfoCittadinoController extends Controller {
         if(hb_textField.isVisible()) {
             nascondiPassword();
         }
-        if(cp.password(pf_vecchiaPassword) && cp.password(pf_nuovaPassword1) && cp.password(pf_nuovaPassword2)) {
+        if((cp.password(pf_vecchiaPassword) || cp.password(tf_vecchiaPassword)) && cp.password(pf_nuovaPassword1) && cp.password(pf_nuovaPassword2)) {
             if(cp.checkSamePassword(pf_nuovaPassword1, pf_nuovaPassword2)) {
                 client.aggiornaPassword(this, client.getUtenteLoggato().getUserid(), cp.encryptPassword(pf_vecchiaPassword.getText().trim()), cp.encryptPassword(pf_nuovaPassword2.getText().trim()));
             }
