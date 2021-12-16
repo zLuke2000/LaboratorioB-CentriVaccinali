@@ -4,19 +4,18 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EAController extends Controller {
+public class AggiungiEventoAvverso extends Controller {
 
     @FXML private RadioButton rb_ea1;
     @FXML private RadioButton rb_ea2;
@@ -35,6 +34,7 @@ public class EAController extends Controller {
     private DialogHelper dh;
     private ClientCV client;
     private CIDashboardController parent;
+    private CssHelper css = CssHelper.getInstance();
 
     @FXML
     void initialize() {
@@ -71,13 +71,18 @@ public class EAController extends Controller {
             tf_ea_altro.setText(tf_ea_altro.getText().replaceAll("[^a-zA-Z\\s]", ""));
             tf_ea_altro.positionCaret(tf_ea_altro.getText().length());
         }
+        if(tf_ea_altro.getText().trim().length() > 30){
+            css.toError(tf_ea_altro, new Tooltip("Massimo 30 caratteri"));
+        }else{
+            css.toDefault(tf_ea_altro);
+        }
     }
 
     @FXML
-    private void salvaEA() {
+    private void salva() {
         String evento;
         if (tg_ea_gruppo.getSelectedToggle() != null) {
-            evento = ((RadioButton) tg_ea_gruppo.getSelectedToggle()).getText();
+            evento = ((RadioButton) tg_ea_gruppo.getSelectedToggle()).getText().toLowerCase();
         } else if (!tf_ea_altro.getText().isBlank()){
             evento = tf_ea_altro.getText().trim();
         } else {
@@ -118,8 +123,8 @@ public class EAController extends Controller {
         }
     }
 
-    @FXML public void chiudiEA() {
-        //parent.rimuoviEA(gp_EA);
+    @FXML public void chiudi() {
+        parent.rimuovi(gp_EA);
     }
 
     public void setParent(Controller c, AnchorPane ap_root) {

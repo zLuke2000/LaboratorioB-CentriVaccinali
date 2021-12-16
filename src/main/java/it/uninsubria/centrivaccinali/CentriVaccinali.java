@@ -4,17 +4,13 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class CentriVaccinali extends Application {
@@ -29,7 +25,7 @@ public class CentriVaccinali extends Application {
     private final static Double h_ci_reg = 520.0;
 
     private final static Double w_dashboard = 800.0;
-    private final static Double h_dashboard = 700.0;
+    private final static Double h_dashboard = 664.0;
 
     private final static Double w_standard = 390.0;
     private final static Double h_standard = 565.0;
@@ -124,6 +120,7 @@ public class CentriVaccinali extends Application {
         }
         controller = fxmlLoader.getController();
         controller.initParameter(client);
+        System.out.println("PROVA STAMPA CLIENTE " + client);
         stage.setWidth(width);
         stage.setHeight(height);
         stage.centerOnScreen();
