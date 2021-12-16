@@ -42,7 +42,7 @@ public class CISegnalazioniController extends Controller {
             if (!result.getListaEA().isEmpty()) {
                 Platform.runLater(() -> vb_lista_segnalazioni.getChildren().remove(btnCarica));
                 for (EventoAvverso ea: result.getListaEA()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/itemListProspetto.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/itemListProspetto.fxml"));
                     try {
                         GridPane gp_item = fxmlLoader.load();
                         CIItemListProspettoController itemController = fxmlLoader.getController();

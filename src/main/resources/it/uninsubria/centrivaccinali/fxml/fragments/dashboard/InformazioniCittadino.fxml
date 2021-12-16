@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController">
+<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController">
      <Label alignment="CENTER" styleClass="labelWelcome" text="INFORMAZIONI " textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
          <font>
            <Font name="System Bold" size="30.0" />
@@ -154,7 +154,7 @@
       </VBox>
      <Button mnemonicParsing="false" onAction="#close" prefHeight="45.0" styleClass="button-preset-1" text="Chiudi" textFill="#323232" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0">
        <graphic>
-           <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" iconSize="32" />
+           <FontIcon iconColor="#323232" styleClass="redIcon" iconLiteral="mdi2l-logout" iconSize="32" />
        </graphic>
      </Button>
    <stylesheets>

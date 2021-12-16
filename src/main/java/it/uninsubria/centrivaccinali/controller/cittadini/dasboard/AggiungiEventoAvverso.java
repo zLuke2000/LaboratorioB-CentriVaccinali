@@ -120,11 +120,11 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     @FXML public void chiudi() {
-        parent.rimuovi(gp_EA);
+        parent.rimuoviFragment(gp_EA);
     }
 
-    public void setParent(Controller c, AnchorPane ap_root) {
+    public void setParent(Controller c, AnchorPane ap_dashboard) {
         parent = (CIDashboardController) c;
-        parentRoot = ap_root;
+        parentRoot = ap_dashboard;
     }
 }

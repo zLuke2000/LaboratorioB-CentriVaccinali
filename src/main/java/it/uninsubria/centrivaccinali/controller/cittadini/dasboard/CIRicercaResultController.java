@@ -18,7 +18,7 @@ import java.util.List;
 
 public class CIRicercaResultController extends Controller {
 
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
     private CIDashboardController parent;
     @FXML private AnchorPane ap_result;
     @FXML private Label l_noResult;
@@ -40,10 +40,6 @@ public class CIRicercaResultController extends Controller {
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
 
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
-    }
 
     @Override
     public void notifyController(Result result) { }
@@ -126,5 +122,5 @@ public class CIRicercaResultController extends Controller {
         }
     }
 
-    public Pane getPane() { return ap_result;}
+//    public Pane getPane() { return ap_result;}
 }

@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;

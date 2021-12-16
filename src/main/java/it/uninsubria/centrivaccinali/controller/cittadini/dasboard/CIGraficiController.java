@@ -11,8 +11,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
 
 public class CIGraficiController extends Controller {
@@ -20,7 +19,6 @@ public class CIGraficiController extends Controller {
     private ClientCV client = CentriVaccinali.client;
     private CentroVaccinale cv;
     private CIInfoCentroController parent;
-    private List<String> listaEA = new ArrayList<>();
 
     private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
@@ -28,7 +26,7 @@ public class CIGraficiController extends Controller {
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
 
     @FXML
-    private BarChart<String, Integer> ci_bc_prospetto;
+    private BarChart<String, Double> barChart;
     @FXML
     private CategoryAxis tipoEventoAxis;
     @FXML
@@ -36,10 +34,10 @@ public class CIGraficiController extends Controller {
 
     @FXML
     void initialize() {
-        ci_bc_prospetto.setAnimated(false);
-
-        tipoEventoAxis.setLabel("Tipo evento avverso");
-        gravitaAxis.setLabel("Gravità");
+//        ci_bc_prospetto.setAnimated(false);
+//
+//        tipoEventoAxis.setLabel("Tipo evento avverso");
+//        gravitaAxis.setLabel("Gravità");
 
         pfizer.setName("pfizer");
 
@@ -48,13 +46,6 @@ public class CIGraficiController extends Controller {
         astrazeneca.setName("astrazeneca");
 
         moderna.setName("moderna");
-
-        listaEA.add("mal di testa");
-        listaEA.add("febbre");
-        listaEA.add("dolori muscolari e articolari");
-        listaEA.add("linfoadenopatia");
-        listaEA.add("tachicardia");
-        listaEA.add("crisi chipertensiva");
     }
 
     @Override
@@ -65,26 +56,27 @@ public class CIGraficiController extends Controller {
                 String vaccino = parts[0];
                 String evento = parts[1];
                 Double value = entry.getValue();
-                if (vaccino.equals("pfizer")) {
-                     aggiungiEvento(pfizer, evento.replace(" ", "\n"), value);
-                } else if (vaccino.equals("j&j")) {
-                    aggiungiEvento(jnj, evento.replace(" ", "\n"), value);
-                } else if (vaccino.equals("moderna")) {
-                    aggiungiEvento(moderna, evento.replace(" ", "\n"), value);
-                } else if (vaccino.equals("astrazeneca")) {
-                    aggiungiEvento(astrazeneca, evento.replace(" ", "\n"), value);
+                switch (vaccino) {
+                    case "pfizer":
+                        aggiungiEvento(pfizer, evento.replace(" ", "\n"), value);
+                        break;
+                    case "j&j":
+                        aggiungiEvento(jnj, evento.replace(" ", "\n"), value);
+                        break;
+                    case "moderna":
+                        aggiungiEvento(moderna, evento.replace(" ", "\n"), value);
+                        break;
+                    case "astrazeneca":
+                        aggiungiEvento(astrazeneca, evento.replace(" ", "\n"), value);
+                        break;
                 }
             }
-            Platform.runLater(() -> {
-                ci_bc_prospetto.getData().addAll(pfizer, jnj, astrazeneca, moderna);
-            });
+            Platform.runLater(() -> barChart.getData().addAll(pfizer, jnj, moderna, astrazeneca));
         }
     }
 
-    private void aggiungiEvento(XYChart.Series series, String evento, Double x) {
-        Platform.runLater(() -> {
-            series.getData().add(new XYChart.Data(evento, x));
-        });
+    private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double x) {
+        Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, x)));
     }
     
     public void setData(CentroVaccinale cv) {

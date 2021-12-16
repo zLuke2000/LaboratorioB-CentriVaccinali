@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
@@ -10,9 +11,12 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class CIInfoCittadinoController extends Controller {
+
+    @FXML private AnchorPane ap_root;
     @FXML private Label l_mail;
     @FXML private Label l_username;
     @FXML private Label l_nome;
@@ -26,15 +30,14 @@ public class CIInfoCittadinoController extends Controller {
     @FXML private HBox hb_textField;
     @FXML private HBox hb_passwordField;
 
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
     private CIDashboardController parent;
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CssHelper css = CssHelper.getInstance();
     private DialogHelper dh;
 
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
+    @FXML
+    private void initialize() {
         Cittadino c = this.client.getUtenteLoggato();
         l_mail.setText(c.getEmail());
         l_username.setText(c.getUserid());
@@ -61,7 +64,8 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     public void close() {
-
+        System.out.println("chiudi: " + parent);
+        parent.rimuoviFragment(ap_root);
     }
 
     public void aggiornaPassword() {

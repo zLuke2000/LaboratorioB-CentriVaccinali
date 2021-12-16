@@ -48,7 +48,7 @@ public class CIItemListController extends Controller {
 
     @FXML
     public void visualizzaInfo() {
-        parent.visualizzaInfo(item);
+        parent.visualizzaInfoCentro(item);
     }
 
     public void setParent(Controller c) {

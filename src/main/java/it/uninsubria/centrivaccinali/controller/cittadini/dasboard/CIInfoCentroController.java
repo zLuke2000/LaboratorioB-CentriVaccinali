@@ -120,7 +120,7 @@ public class CIInfoCentroController extends Controller {
     }
 
     @FXML public void chiudiInfo() {
-        parent.rimuoviInfo(ap_root);
+        parent.rimuoviFragment(ap_root);
     }
 
     public void setParent(Controller c) {
