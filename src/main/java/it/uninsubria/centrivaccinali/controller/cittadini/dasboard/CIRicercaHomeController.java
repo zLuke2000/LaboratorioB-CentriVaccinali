@@ -33,10 +33,6 @@ public class CIRicercaHomeController extends Controller {
         ci_tf_ricercaNomeCV.setVisible(true);
     }
 
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
-    }
 
     public void notifyController(Result result) { }
 

@@ -45,7 +45,7 @@ public class CVRegistraCittadinoController extends Controller {
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssHelper = CssHelper.getInstance();
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
     private List<CentroVaccinale> listaCentri = new ArrayList<>();
     private CentroVaccinale selectedCV;
     private long idVac = 0L;
@@ -62,10 +62,6 @@ public class CVRegistraCittadinoController extends Controller {
         tf_idVaccino.setText(stringID);
     }
 
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
-    }
 
     @Override
     public void notifyController(Result result) {

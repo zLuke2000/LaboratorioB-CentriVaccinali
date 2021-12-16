@@ -119,7 +119,6 @@ public class CentriVaccinali extends Application {
                 break;
         }
         controller = fxmlLoader.getController();
-        controller.initParameter(client);
         System.out.println("PROVA STAMPA CLIENTE " + client);
         stage.setWidth(width);
         stage.setHeight(height);

@@ -38,9 +38,6 @@ public class CIInfoCentroController extends Controller {
     @FXML void initialize() {  }
 
     @Override
-    public void initParameter(ClientCV client) {  }
-
-    @Override
     public void notifyController(Result result) {  }
 
     public void setData(CentroVaccinale cv) {

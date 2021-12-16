@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
@@ -32,7 +33,7 @@ public class AggiungiEventoAvverso extends Controller {
 
     private AnchorPane parentRoot;
     private DialogHelper dh;
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
     private CIDashboardController parent;
     private CssHelper css = CssHelper.getInstance();
 
@@ -93,11 +94,6 @@ public class AggiungiEventoAvverso extends Controller {
         int severita = (int) s_severita.getValue();
         String note = ta_ea_note.getText().trim();
         client.registraEventoAvverso(this, new EventoAvverso(client.getUtenteLoggato().getId_vaccino(), evento, severita, note));
-    }
-
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
     }
 
     @Override

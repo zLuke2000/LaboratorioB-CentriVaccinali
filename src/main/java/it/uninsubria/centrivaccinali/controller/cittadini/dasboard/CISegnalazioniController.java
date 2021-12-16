@@ -35,10 +35,6 @@ public class CISegnalazioniController extends Controller {
             client.leggiSegnalazioni(this, centro.getNome(), limit, offset);
         });
     }
-
-    @Override
-    public void initParameter(ClientCV client) {  }
-
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {

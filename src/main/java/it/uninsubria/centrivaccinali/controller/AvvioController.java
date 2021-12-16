@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 public class AvvioController extends Controller {
 
     @FXML public AnchorPane ap_root;
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
 
     /**
      * Metodo usato per accedere come operatore cittadino,
@@ -34,10 +34,6 @@ public class AvvioController extends Controller {
         CentriVaccinali.setRoot("CV_login");
     }
 
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client =  client;
-    }
 
     @Override
     public void notifyController(Result result) { }

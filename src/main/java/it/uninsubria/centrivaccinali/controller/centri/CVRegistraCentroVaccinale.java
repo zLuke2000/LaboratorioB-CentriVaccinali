@@ -35,7 +35,7 @@ public class CVRegistraCentroVaccinale extends Controller {
 
         private final ControlloParametri cp = ControlloParametri.getInstance();
         private final CssHelper cssHelper = CssHelper.getInstance();
-        private ClientCV client;
+        private ClientCV client = CentriVaccinali.client;
 
         /**
          *
@@ -45,10 +45,6 @@ public class CVRegistraCentroVaccinale extends Controller {
                 cb_qualificatore.setValue(Qualificatore.VIA);
         }
 
-        @Override
-        public void initParameter(ClientCV client) {
-                this.client = client;
-        }
 
         @Override
         public void notifyController(Result result) {

@@ -34,15 +34,10 @@ public class CIRegistrazioneController extends Controller {
     @FXML private PasswordField pf_ci_password1;
     @FXML private PasswordField pf_ci_password2;
 
-    private ClientCV client;
+    private ClientCV client = CentriVaccinali.client;
     private FXMLLoader loader;
     private ControlloParametri cp = ControlloParametri.getInstance();
     private CssHelper cssh = CssHelper.getInstance();
-
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
-    }
 
     @Override
     public void notifyController(Result result) {

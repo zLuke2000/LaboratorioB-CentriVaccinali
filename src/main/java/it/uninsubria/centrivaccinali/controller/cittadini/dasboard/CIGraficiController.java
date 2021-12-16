@@ -3,9 +3,7 @@ package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
-import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
-import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -24,10 +22,10 @@ public class CIGraficiController extends Controller {
     private CIInfoCentroController parent;
     private List<String> listaEA = new ArrayList<>();
 
-    private XYChart.Series pfizer;
-    private XYChart.Series jnj;
-    private XYChart.Series astrazeneca;
-    private XYChart.Series moderna;
+    private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
+    private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
+    private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
+    private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
 
     @FXML
     private BarChart<String, Integer> ci_bc_prospetto;
@@ -43,16 +41,12 @@ public class CIGraficiController extends Controller {
         tipoEventoAxis.setLabel("Tipo evento avverso");
         gravitaAxis.setLabel("Gravità");
 
-        pfizer = new XYChart.Series();
         pfizer.setName("pfizer");
 
-        jnj = new XYChart.Series();
         jnj.setName("j&j");
 
-        astrazeneca = new XYChart.Series();
         astrazeneca.setName("astrazeneca");
 
-        moderna = new XYChart.Series();
         moderna.setName("moderna");
 
         listaEA.add("mal di testa");
@@ -61,11 +55,6 @@ public class CIGraficiController extends Controller {
         listaEA.add("linfoadenopatia");
         listaEA.add("tachicardia");
         listaEA.add("crisi chipertensiva");
-    }
-
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
     }
 
     @Override

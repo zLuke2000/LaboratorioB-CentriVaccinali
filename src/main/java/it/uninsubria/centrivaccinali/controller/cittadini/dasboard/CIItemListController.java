@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
@@ -21,12 +22,7 @@ public class CIItemListController extends Controller {
 
     private CIDashboardController parent;
     private CentroVaccinale item;
-    private ClientCV client;
-
-    @Override
-    public void initParameter(ClientCV client) {
-        this.client = client;
-    }
+    private ClientCV client = CentriVaccinali.client;
 
     @Override
     public void notifyController(Result result) {  }

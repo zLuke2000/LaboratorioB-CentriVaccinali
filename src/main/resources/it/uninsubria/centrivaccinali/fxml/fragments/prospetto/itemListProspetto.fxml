@@ -5,22 +5,21 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" styleClass="opaco-20" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIItemListProspettoController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="27.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="27.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="17.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
    </rowConstraints>
-   <Label fx:id="CI_tipologiaItemProspetto" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="221.0" text="Template" />
-   <Label fx:id="CI_eventoItemProspetto" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="218.0" text="Template" GridPane.columnIndex="1" />
-   <Text fx:id="CI_noteOpzionaliItemProspetto" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="377.0" GridPane.columnIndex="3" />
-   <Label fx:id="CI_severitaItemProspetto" alignment="CENTER" prefHeight="17.0" prefWidth="116.0" text="Template" GridPane.columnIndex="2" />
+   <Label fx:id="l_tipologia" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="221.0" text="Template" />
+   <Label fx:id="l_evento" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="218.0" text="Template" GridPane.columnIndex="1" />
+   <Label fx:id="l_severita" alignment="CENTER" prefHeight="17.0" prefWidth="116.0" text="Template" GridPane.columnIndex="2" />
+   <Label fx:id="l_note" alignment="CENTER" onMouseClicked="#apri" prefHeight="17.0" prefWidth="170.0" text="Mostra note ..." underline="true" GridPane.columnIndex="3" />
    <stylesheets>
       <URL value="@../../../style/style.css" />
       <URL value="@../../../style/dashboardStyle.css" />

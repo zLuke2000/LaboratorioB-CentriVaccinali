@@ -44,8 +44,6 @@ public class CIHomeController extends Controller {
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssh = CssHelper.getInstance();
 
-    @Override
-    public void initParameter(ClientCV client) { }
 
     @Override
     public void notifyController(Result result) {

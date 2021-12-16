@@ -53,7 +53,6 @@ public class CVChangeController extends Controller {
         super.closeApp(null);
     }
 
-    @Override public void initParameter(ClientCV client) {  }
 
     @Override public void notifyController(Result result) {  }
 }
