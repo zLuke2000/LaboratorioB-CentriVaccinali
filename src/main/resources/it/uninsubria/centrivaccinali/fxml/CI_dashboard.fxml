@@ -27,9 +27,9 @@
       </Label>
       <MenuButton fx:id="mb_utente" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente non loggato" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#visualizzaInfoCittadino" text="Info" />
+            <MenuItem mnemonicParsing="false" onAction="#infoCittadino" text="Info" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#logoutInfoMB" text="Logout" />
+            <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
          </items>
          <graphic>
             <FontIcon iconColor="#323232" iconLiteral="mdi2a-account" iconSize="22" styleClass="iconUserConnection" />

@@ -47,7 +47,7 @@ public class Cittadino implements Serializable {
     /**
      * Rappresenta l'id ricevuto al momento della vaccinazione
      */
-    private long id_vaccino;
+    private long id_vaccinazione;
 
     /**
      *
@@ -71,7 +71,7 @@ public class Cittadino implements Serializable {
         this.email = email;
         this.userid = userid;
         this.password = password;
-        this.id_vaccino = id_vaccino;
+        this.id_vaccinazione = id_vaccino;
     }
 
     /**
@@ -174,16 +174,16 @@ public class Cittadino implements Serializable {
      *  Metodo getter per l'id del vaccino associato al cittadino
      * @return l'id del vaccino
      */
-    public long getId_vaccino() {
-        return id_vaccino;
+    public long getId_vaccinazione() {
+        return id_vaccinazione;
     }
 
     /**
      *  Metodo setter per l'id del vaccino associato al cittadino
-     * @param id_vaccino il nuovo id del vaccino
+     * @param id_vaccinazione il nuovo id del vaccino
      */
-    public void setId_vaccino(long id_vaccino) {
-        this.id_vaccino = id_vaccino;
+    public void setId_vaccinazione(long id_vaccinazione) {
+        this.id_vaccinazione = id_vaccinazione;
     }
 
     @Override
@@ -195,7 +195,7 @@ public class Cittadino implements Serializable {
                 ", email='" + email + '\'' +
                 ", userid='" + userid + '\'' +
                 ", password='" + password + '\'' +
-                ", id_vaccino=" + id_vaccino +
+                ", id_vaccinazione=" + id_vaccinazione +
                 '}';
     }
 }

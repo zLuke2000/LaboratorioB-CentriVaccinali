@@ -5,14 +5,18 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController">
+<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController">
     <BarChart fx:id="barChart" alternativeColumnFillVisible="true" animated="false" layoutX="6.0" layoutY="5.0" title="Prospetto Riassuntivo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <xAxis>
           <CategoryAxis fx:id="tipoEventoAxis" label="Eventi Avversi" side="BOTTOM" tickLength="5.0" />
       </xAxis>
       <yAxis>
-          <NumberAxis fx:id="gravitaAxis" autoRanging="false" label="Severità" side="LEFT" tickLabelGap="2.0" tickUnit="1.0" upperBound="5.0" />
+          <NumberAxis fx:id="gravitaAxis" autoRanging="false" label="Severità" side="LEFT" tickLabelFill="#323232" tickLabelGap="2.0" tickUnit="1.0" upperBound="5.0">
+            <tickLabelFont>
+               <Font size="10.0" />
+            </tickLabelFont></NumberAxis>
       </yAxis>
     </BarChart>
    <stylesheets>

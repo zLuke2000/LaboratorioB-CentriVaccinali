@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.*;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -48,11 +49,7 @@ public class CIDashboardController extends Controller {
     }
 
     @Override
-    public void notifyController(Result result) {
-        if (result.getOpType() == Result.Operation.RICERCA_CENTRO) {
-            ricercaController.setData(result.getResultCentri());
-        }
-    }
+    public void notifyController(Result result) { }
 
     public void visualizzaInfoCentro(CentroVaccinale cv) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
@@ -83,7 +80,7 @@ public class CIDashboardController extends Controller {
     }
 
     @FXML
-    public void visualizzaInfoCittadino() {
+    public void infoCittadino() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCittadino.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
@@ -97,14 +94,14 @@ public class CIDashboardController extends Controller {
         }
     }
 
-    public void rimuoviFragment(Pane p){
+    public void rimuoviFragment(Pane p) {
         p_container.getChildren().remove(p);
         p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(true);
-        //ap_ricerca.setVisible(true);
     }
 
     @FXML
-    public void logoutInfoMB() {
+    public void logout() {
+        mb_utente.hide();
         CentriVaccinali.setRoot("CI_home");
         client.LogoutUtente();
     }

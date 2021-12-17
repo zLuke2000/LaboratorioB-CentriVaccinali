@@ -8,43 +8,26 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 import java.util.Map;
 
 public class CIGraficiController extends Controller {
 
-    private final ClientCV client = CentriVaccinali.client;
-    private CentroVaccinale cv;
-    private CIInfoCentroController parent;
+    @FXML private BarChart<String, Double> barChart;
 
     private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
     private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
 
-    @FXML
-    private BarChart<String, Double> barChart;
-    @FXML
-    private CategoryAxis tipoEventoAxis;
-    @FXML
-    private NumberAxis gravitaAxis;
+    private final ClientCV client = CentriVaccinali.client;
 
     @FXML
     void initialize() {
-//        ci_bc_prospetto.setAnimated(false);
-//
-//        tipoEventoAxis.setLabel("Tipo evento avverso");
-//        gravitaAxis.setLabel("Gravità");
-
         pfizer.setName("pfizer");
-
         jnj.setName("j&j");
-
         astrazeneca.setName("astrazeneca");
-
         moderna.setName("moderna");
     }
 
@@ -81,9 +64,5 @@ public class CIGraficiController extends Controller {
     
     public void setData(CentroVaccinale cv) {
         client.leggiEA(this, cv.getNome());
-    }
-
-    public void setParent(Controller c) {
-        parent = (CIInfoCentroController) c;
     }
 }

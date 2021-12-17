@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
@@ -65,58 +64,54 @@ public class CentriVaccinali extends Application {
 
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
-        switch(fxml) {
-            case "Avvio":
-                stage.setTitle("Progetto LaboratorioB");
-                height = h_avvio;
-                width = w_avvio;
-                break;
-            case "CI_home":
-                stage.setTitle("Progetto LaboratorioB");
-                width = w_standard;
-                height = h_standard;
-                break;
-            case "CV_login":
-                System.out.println("[CV_MAIN] selezionato: CV_login");
-                stage.setTitle("Login operatore");
-                height = h_cv_login;
-                width = w_cv_login;
-                break;
-            case "CV_home":
-                System.out.println("[CV_MAIN] selezionato: CV_home");
-                stage.setTitle("Seleziona azione");
-                width = w_avvio;
-                height = h_avvio;
-                break;
-            case "CV_registraCentroVaccinale":
-                System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
-                stage.setTitle("Registra nuovo centro vaccinale");
-                width = 800.0;
-                height = 350.0;
-                break;
-            case "CV_registraVaccinato":
-                stage.setTitle("Registra un nuovo vaccinato");
-                width = 500.0;
-                height = 600.0;
-                break;
-            case "CI_registrazione":
-                stage.setTitle("Registrazione cittadino");
-                width = w_ci_reg;
-                height = h_ci_reg;
-                break;
-            case "CI_dashboard":
-                stage.setTitle("Area Cittadino");
-                height = h_dashboard;
-                width = w_dashboard;
-                break;
-            case "fragments/CI_F_showGeneralCV":
-                stage.setTitle("Info CV");
-                height = 800.0;
-                width = 1200.0;
-            default:
-                System.err.println("[ATTENZIONE] NOME FXML ERRATO");
-                break;
-        }
+            switch (fxml) {
+                case "Avvio":
+                    stage.setTitle("Progetto LaboratorioB");
+                    height = h_avvio;
+                    width = w_avvio;
+                    break;
+                case "CI_home":
+                    stage.setTitle("Progetto LaboratorioB");
+                    width = w_standard;
+                    height = h_standard;
+                    break;
+                case "CV_login":
+                    System.out.println("[CV_MAIN] selezionato: CV_login");
+                    stage.setTitle("Login operatore");
+                    height = h_cv_login;
+                    width = w_cv_login;
+                    break;
+                case "CV_home":
+                    System.out.println("[CV_MAIN] selezionato: CV_home");
+                    stage.setTitle("Seleziona azione");
+                    width = w_avvio;
+                    height = h_avvio;
+                    break;
+                case "CV_registraCentroVaccinale":
+                    System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
+                    stage.setTitle("Registra nuovo centro vaccinale");
+                    width = 800.0;
+                    height = 350.0;
+                    break;
+                case "CV_registraVaccinato":
+                    stage.setTitle("Registra un nuovo vaccinato");
+                    width = 500.0;
+                    height = 600.0;
+                    break;
+                case "CI_registrazione":
+                    stage.setTitle("Registrazione cittadino");
+                    width = w_ci_reg;
+                    height = h_ci_reg;
+                    break;
+                case "CI_dashboard":
+                    stage.setTitle("Area Cittadino");
+                    height = h_dashboard;
+                    width = w_dashboard;
+                    break;
+                default:
+                    System.err.println("[ATTENZIONE] NOME FXML ERRATO");
+                    break;
+            }
         System.out.println("PROVA STAMPA CLIENTE " + client);
         stage.setWidth(width);
         stage.setHeight(height);

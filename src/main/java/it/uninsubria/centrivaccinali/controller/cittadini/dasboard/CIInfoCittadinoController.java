@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 public class CIInfoCittadinoController extends Controller {
 
@@ -44,7 +45,7 @@ public class CIInfoCittadinoController extends Controller {
         l_nome.setText(c.getNome());
         l_cognome.setText(c.getCognome());
         l_codicefiscale.setText(c.getCodice_fiscale());
-        l_idvaccinazione.setText(String.valueOf(c.getId_vaccino()));
+        l_idvaccinazione.setText(String.valueOf(c.getId_vaccinazione()));
     }
 
     public void setParent(Controller c) {
@@ -59,7 +60,7 @@ public class CIInfoCittadinoController extends Controller {
             } else {
                 dh = new DialogHelper("Attenzione", "La vecchia password immessa non e' corretta", DialogHelper.Type.WARNING);
             }
-            dh.display(null);
+            dh.display((Pane) CentriVaccinali.scene.getRoot());
         });
     }
 

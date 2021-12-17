@@ -52,7 +52,6 @@ public class CISegnalazioniController extends Controller {
                         e.printStackTrace();
                     }
                 }
-                //TODO dopo prima lettura, metto limit 20
                 if (result.getListaEA().size() < limit) {
                     Platform.runLater(() -> vb_lista_segnalazioni.getChildren().remove(btnCarica));
                 } else {

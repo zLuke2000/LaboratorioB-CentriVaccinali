@@ -5,7 +5,6 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 
-import java.nio.channels.ScatteringByteChannel;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.sql.*;
@@ -173,7 +172,7 @@ public class Database {
                         rs.getString("email"),
                         rs.getString("userid"),
                         rs.getString("password"),
-                        rs.getLong("id_vaccino")
+                        rs.getLong("id_vaccinazione")
                 );
                 risultato.setResult(true);
                 risultato.setCittadino(c);
@@ -182,7 +181,7 @@ public class Database {
                 pstmt = conn.prepareStatement("SELECT nome_centro " +
                                                   "FROM tabelle_cv.\"vaccinati\" " +
                                                   "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
-                pstmt.setLong(1, c.getId_vaccino());
+                pstmt.setLong(1, c.getId_vaccinazione());
                 pstmt.setString(2, c.getCodice_fiscale());
                 rs = pstmt.executeQuery();
                 if (rs.next()) {
@@ -215,7 +214,7 @@ public class Database {
             pstmt = conn.prepareStatement("SELECT * " +
                                         "FROM tabelle_cv.\"vaccinati\" " +
                                         "WHERE id_vaccinazione = ? AND codice_fiscale = ?");
-            pstmt.setLong(1, c.getId_vaccino());
+            pstmt.setLong(1, c.getId_vaccinazione());
             pstmt.setString(2, c.getCodice_fiscale());
             rs = pstmt.executeQuery();
             //vaccinato e' presente nel db dei centri vaccinali
@@ -228,13 +227,13 @@ public class Database {
                 pstmt.setString(4, c.getEmail());
                 pstmt.setString(5, c.getUserid());
                 pstmt.setString(6, c.getPassword());
-                pstmt.setLong(7, c.getId_vaccino());
+                pstmt.setLong(7, c.getId_vaccinazione());
                 pstmt.executeUpdate();
                 System.out.println("[Database] registrato nuovo cittadino");
                 risultato.setResult(true);
                 risultato.setCittadino(c);
             } else {
-                System.err.println("[Database] id vaccinazione o codice fiscale non valido: " + c.getId_vaccino() + "  ->  " + c.getCodice_fiscale());
+                System.err.println("[Database] id vaccinazione o codice fiscale non valido: " + c.getId_vaccinazione() + "  ->  " + c.getCodice_fiscale());
                 risultato.setExtendedResult(Result.Error.CF_ID_NON_VALIDI);
             }
             return risultato;
@@ -267,11 +266,11 @@ public class Database {
                             risultato.setExtendedResult(Result.Error.USERID_GIA_IN_USO);
                             System.err.println("USERID GIA' REGISTRATO");
                         }
-                    case "id_vaccino":
+                    case "id_vaccinazione":
                         pstmt = conn.prepareStatement("SELECT COUNT(*) " +
                                 "FROM public.\"Cittadini_Registrati\"" +
-                                "WHERE id_vaccino = ?");
-                        pstmt.setLong(1, c.getId_vaccino());
+                                "WHERE id_vaccinazione = ?");
+                        pstmt.setLong(1, c.getId_vaccinazione());
                         rs = pstmt.executeQuery();
                         rs.next();
                         if(rs.getInt(1) == 1) {
@@ -468,10 +467,10 @@ public class Database {
             eventi.add("crisi chipertensiva");
 
             pstmt = conn.prepareStatement("SELECT vaccino, evento, AVG(severita) " +
-                                             "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
-                                             "WHERE evento IN (?, ?, ?, ?, ?, ?) " +
-                                             "GROUP BY vaccino, evento " +
-                                             "ORDER BY vaccino");
+                                              "FROM public.\"EventiAvversi\" JOIN tabelle_cv.\"vaccinati_" + centro + "\" USING (id_vaccinazione) " +
+                                              "WHERE evento IN (?, ?, ?, ?, ?, ?) " +
+                                              "GROUP BY vaccino, evento " +
+                                              "ORDER BY vaccino");
             for (int i = 0; i < eventi.size(); i++)
                 pstmt.setString(i + 1, eventi.get(i));
             rs = pstmt.executeQuery();
@@ -479,8 +478,9 @@ public class Database {
             while(rs.next()) {
                 map.put(rs.getString("vaccino") + "/" + rs.getString("evento"), rs.getDouble("avg"));
             }
+
             pstmt = conn.prepareStatement("SELECT vaccino, AVG(severita) " +
-                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "FROM public.\"EventiAvversi\" JOIN tabelle_cv.\"vaccinati_" + centro + "\" USING (id_vaccinazione) " +
                     "WHERE evento NOT IN (?, ?, ?, ?, ?, ?) " +
                     "GROUP BY vaccino " +
                     "ORDER BY vaccino");
@@ -510,7 +510,6 @@ public class Database {
             rs = pstmt.executeQuery();
             List<EventoAvverso> eventi = new ArrayList<>();
             while(rs.next()) {
-                //(String evento, int severita, String note, Vaccino tipoVac)
                 String tipoEvento = rs.getString("evento");
                 int severita = rs.getInt("severita");
                 String note = rs.getString("note");

@@ -69,7 +69,6 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_COMUNI:
                 if (result.getResultComuni() != null) {
                     Platform.runLater(() -> {
-                        System.out.println("Risultato comuni: " + result.getResultComuni());
                         cb_selezionaComune.getItems().clear();
                         cb_selezionaComune.getItems().addAll(result.getResultComuni());
                         cb_selezionaComune.getSelectionModel().selectFirst();
@@ -79,7 +78,6 @@ public class CVRegistraCittadinoController extends Controller {
             case RISULTATO_CENTRI:
                 if (result.getResultCentri() != null){
                     Platform.runLater(() -> {
-                        System.out.println("Risultato centri: " + result.getResultCentri());
                         listaCentri.clear();
                         listaCentri = result.getResultCentri();
                         cb_selezionaCentro.getItems().clear();
@@ -144,7 +142,6 @@ public class CVRegistraCittadinoController extends Controller {
 
     @FXML
     void cbChange(Event e) {
-        System.out.println(e);
         if(e.getSource().equals(cb_selezionaComune)) {
             if(cb_selezionaComune.getSelectionModel().getSelectedItem() != null) {
                 client.getCentri(this, cb_selezionaComune.getSelectionModel().getSelectedItem());

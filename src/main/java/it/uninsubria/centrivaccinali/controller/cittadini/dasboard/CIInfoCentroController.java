@@ -110,9 +110,7 @@ public class CIInfoCentroController extends Controller {
                         ap_segnalazioni.setVisible(false);
                     ap_container.getChildren().add(ap);
                 });
-                CIGraficiController c = fxmlLoader.getController();
-                c.setParent(this);
-                c.setData(cv);
+                ((CIGraficiController) fxmlLoader.getController()).setData(cv);
             } catch (IOException e) {
                 e.printStackTrace();
             }

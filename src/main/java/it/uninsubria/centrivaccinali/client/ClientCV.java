@@ -1,20 +1,18 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.*;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController;
+import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.*;
 import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIGraficiController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CISegnalazioniController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCittadinoController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.AggiungiEventoAvverso;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -57,8 +55,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         return true;
     }
 
-    public void autenticaOperatore(CVLoginController cvLoginController, String username, String password) {
-        controller=cvLoginController;
+    public void autenticaOperatore(CVLoginController controller, String username, String password) {
+        this.controller = controller;
         if(connectionStatus()) {
             try {
                 server.authOperatore(this, username, password);
@@ -81,8 +79,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         controller.notifyController(ritorno);
     }
 
-    public void registraCentroVaccinale(CVRegistraCentroVaccinale cvRegistraCentroVaccinale, CentroVaccinale cv) {
-        controller=cvRegistraCentroVaccinale;
+    public void registraCentroVaccinale(CVRegistraCentroVaccinale controller, CentroVaccinale cv) {
+        this.controller = controller;
         try {
             server.registraCentro(this, cv);
         } catch (RemoteException e) {
@@ -91,8 +89,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void registraCittadino(CIRegistrazioneController ciRegistrazioneController, Cittadino cittadino) {
-        controller=ciRegistrazioneController;
+    public void registraCittadino(CIRegistrazioneController controller, Cittadino cittadino) {
+        this.controller = controller;
         if (connectionStatus()) {
             try {
                 server.registraCittadino(this, cittadino);
@@ -115,8 +113,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void ricercaPerNome(CIDashboardController ciDashboardController, String nome) {
-        controller=ciDashboardController;
+    public void ricercaPerNome(CIRicercaResultController controller, String nome) {
+        this.controller = controller;
         if (connectionStatus()) {
             try {
                 server.ricercaCentroPerNome(this, nome);
@@ -127,8 +125,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void ricercaPerComuneTipologia(CIDashboardController ciDashboardController, String comune, TipologiaCentro tipologia) {
-        controller = ciDashboardController;
+    public void ricercaPerComuneTipologia(CIRicercaResultController controller, String comune, TipologiaCentro tipologia) {
+        this.controller = controller;
         if (connectionStatus()) {
             try {
                 server.ricercaCentroPerComuneTipologia(this, comune, tipologia);
@@ -139,8 +137,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void registraVaccinato(CVRegistraCittadinoController cvRegistraCittadinoController, Vaccinato vaccinato) {
-        controller = cvRegistraCittadinoController;
+    public void registraVaccinato(CVRegistraCittadinoController controller, Vaccinato vaccinato) {
+        this.controller = controller;
         try {
             server.registraVaccinato(this, vaccinato);
         } catch (RemoteException e) {
@@ -149,8 +147,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void getComuni(CVRegistraCittadinoController cvRegistraCittadinoController, String provincia) {
-        controller = cvRegistraCittadinoController;
+    public void getComuni(CVRegistraCittadinoController controller, String provincia) {
+        this.controller = controller;
         try {
             server.getComuni(this, provincia);
         } catch (RemoteException e) {
@@ -159,8 +157,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void getCentri(CVRegistraCittadinoController cvRegistraCittadinoController, String comune) {
-        controller = cvRegistraCittadinoController;
+    public void getCentri(CVRegistraCittadinoController controller, String comune) {
+        this.controller = controller;
         try {
             server.getCentri(this, comune);
         } catch (RemoteException e) {
@@ -169,8 +167,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void registraEventoAvverso(AggiungiEventoAvverso eaController , EventoAvverso ea) {
-        controller = eaController;
+    public void registraEventoAvverso(AggiungiEventoAvverso controller , EventoAvverso ea) {
+        this.controller = controller;
         try {
             server.registraEventoAvverso(this, ea);
         } catch (RemoteException e) {
@@ -179,8 +177,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void leggiEA(CIGraficiController graficiController, String nomeCentro) {
-        controller = graficiController;
+    public void leggiEA(CIGraficiController controller, String nomeCentro) {
+        this.controller = controller;
         try {
             server.leggiEA(this, nomeCentro);
         } catch (RemoteException e) {
@@ -189,8 +187,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
-    public void leggiSegnalazioni(CISegnalazioniController segnalazioniController, String nomeCentro, int limit, int offset) {
-        controller = segnalazioniController;
+    public void leggiSegnalazioni(CISegnalazioniController controller, String nomeCentro, int limit, int offset) {
+        this.controller = controller;
         try {
             server.leggiSegnalazioni(this, nomeCentro, limit, offset);
         } catch (RemoteException e) {
@@ -221,7 +219,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             ((Stage)((Button) eh.getSource()).getScene().getWindow()).close();
         });
         dh.addButton(b);
-        dh.display(null);
+        dh.display((Pane) CentriVaccinali.scene.getRoot());
     }
 
     private void printout(String s) {
@@ -232,8 +230,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         System.err.println("[CLIENT_CV] " + s);
     }
 
-    public void aggiornaPassword(CIInfoCittadinoController reference, String userid, String vecchiaPassword, String nuovaPassword) {
-        controller = reference;
+    public void aggiornaPassword(CIInfoCittadinoController controller, String userid, String vecchiaPassword, String nuovaPassword) {
+        this.controller = controller;
         try {
             server.aggiornaPassword(this, userid, vecchiaPassword, nuovaPassword);
         } catch (RemoteException e) {
