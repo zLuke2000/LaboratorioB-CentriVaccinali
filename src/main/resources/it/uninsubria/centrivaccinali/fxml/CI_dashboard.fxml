@@ -7,13 +7,12 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIDashboardController">
+<AnchorPane styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dashboard.CIDashboardController">
    <AnchorPane prefHeight="664.0" prefWidth="800.0" styleClass="default-bg">
       <opaqueInsets>
          <Insets />
@@ -25,11 +24,11 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <MenuButton fx:id="mb_utente" layoutX="836.0" layoutY="15.0" mnemonicParsing="false" styleClass="MenuButton" text="utente non loggato" visible="false" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
+      <MenuButton fx:id="mb_utente" layoutX="836.0" layoutY="15.0"  styleClass="MenuButton" text="utente non autenticato" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="16.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#infoCittadino" text="Info" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
+            <MenuItem  onAction="#infoCittadino" text="Info" />
+            <SeparatorMenuItem  />
+            <MenuItem  onAction="#logout" text="Logout" />
          </items>
          <graphic>
             <FontIcon iconColor="#323232" iconLiteral="mdi2a-account" iconSize="22" styleClass="iconUserConnection" />
@@ -38,8 +37,6 @@
             <Font size="14.0" />
          </font>
       </MenuButton>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1058.0" layoutY="-36.0" onMouseClicked="#chiudi" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
-      </ImageView>
    </AnchorPane>
    <Pane fx:id="p_container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
       <styleClass>
@@ -48,7 +45,7 @@
       </styleClass>
    </Pane>
    <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
-   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    <stylesheets>
       <URL value="@../style/style.css" />
       <URL value="@../style/dashboardStyle.css" />

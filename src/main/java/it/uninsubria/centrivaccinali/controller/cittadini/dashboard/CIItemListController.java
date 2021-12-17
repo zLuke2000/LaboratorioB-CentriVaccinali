@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
@@ -15,25 +15,25 @@ public class CIItemListController extends Controller {
 
     @FXML private HBox hb_aggiungi_e_visualizza;
     @FXML private HBox hb_visualizza;
-    @FXML private FontIcon ci_fi_image;
-    @FXML private Label ci_tf_nomeCVItem;
-    @FXML private Label ci_tf_indirizzoItem;
-    @FXML private Label ci_l_tipologiaItem;
+    @FXML private FontIcon fi_iconaCentro;
+    @FXML private Label l_nomeCentro;
+    @FXML private Label l_indirizzoCentro;
+    @FXML private Label l_tipologiaCentro;
 
+    private final ClientCV client = CentriVaccinali.client;
     private CIDashboardController parent;
     private CentroVaccinale item;
-    private ClientCV client = CentriVaccinali.client;
 
     @Override
     public void notifyController(Result result) {  }
 
     public void setData(CentroVaccinale cv, String iconLiteral, String color) {
         item = cv;
-        ci_fi_image.setIconLiteral(iconLiteral);
-        ci_fi_image.setIconColor(Paint.valueOf(color));
-        ci_tf_nomeCVItem.setText(cv.getNome());
-        ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));
-        ci_l_tipologiaItem.setText(String.valueOf(cv.getTipologia()));
+        fi_iconaCentro.setIconLiteral(iconLiteral);
+        fi_iconaCentro.setIconColor(Paint.valueOf(color));
+        l_nomeCentro.setText(cv.getNome());
+        l_indirizzoCentro.setText(String.valueOf(cv.getIndirizzo()));
+        l_tipologiaCentro.setText(String.valueOf(cv.getTipologia()));
          if(client.getCentroCittadino().equals(cv.getNome())) {
              hb_aggiungi_e_visualizza.setVisible(true);
              hb_visualizza.setVisible(false);
@@ -41,12 +41,12 @@ public class CIItemListController extends Controller {
     }
 
     @FXML
-    public void aggiungiEvento() {
+    private void aggiungiEvento() {
         parent.aggiungiEvento();
     }
 
     @FXML
-    public void visualizzaInfo() {
+    private void visualizzaInfo() {
         parent.visualizzaInfoCentro(item);
     }
 

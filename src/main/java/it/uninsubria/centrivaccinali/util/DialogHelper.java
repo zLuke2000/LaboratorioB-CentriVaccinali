@@ -18,13 +18,13 @@ import java.io.IOException;
 
 public class DialogHelper {
 
+    private final Stage stage;
+    private final FadeTransition ft = new FadeTransition(Duration.millis(500));
+    private final Pane rootPane = (Pane) CentriVaccinali.scene.getRoot();
+    private final GenericDialogController gdc;
     private Parent parent;
     private Double xOffset;
     private Double yOffset;
-    private Stage stage;
-    private FadeTransition ft = new FadeTransition(Duration.millis(500));
-    private Pane rootPane;
-    private GenericDialogController gdc;
 
     public DialogHelper(String titolo, String descrizione, Type tipo) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
@@ -76,14 +76,11 @@ public class DialogHelper {
     /**
      * @param rootPane can be null
      */
-    public void display(Pane rootPane) {
-        this.rootPane = rootPane;
-        if(rootPane != null) {
-            ft.setNode(rootPane);
-            ft.setFromValue(1.0);
-            ft.setToValue(0.1);
-            ft.play();
-        }
+    public void display() {
+        ft.setNode(rootPane);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.1);
+        ft.play();
         stage.showAndWait();
     }
 
@@ -93,13 +90,11 @@ public class DialogHelper {
 
     public void close() {
         stage.close();
-        if(rootPane != null) {
-            ft.stop();
-            ft.setNode(rootPane);
-            ft.setFromValue(0.1);
-            ft.setToValue(1.0);
-            ft.play();
-        }
+        ft.stop();
+        ft.setNode(rootPane);
+        ft.setFromValue(0.1);
+        ft.setToValue(1.0);
+        ft.play();
     }
 
     public enum Type {

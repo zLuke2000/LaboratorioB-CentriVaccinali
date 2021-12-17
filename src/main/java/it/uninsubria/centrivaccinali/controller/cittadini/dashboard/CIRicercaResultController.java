@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
@@ -15,31 +15,29 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CIRicercaResultController extends Controller {
 
-    @FXML private AnchorPane ap_result;
     @FXML private Label l_noResult;
     @FXML private VBox vb_risultati;
-    @FXML private TextField ci_tf_ricercaNomeCV;
-    @FXML private ComboBox<String> ci_cb_sceltaRicerca;
-    @FXML private ComboBox<TipologiaCentro> ci_cb_sceltaTipologia;
-    @FXML private TextField ci_tf_ricercaComune;
+    @FXML private TextField tf_ricercaNomeCentro;
+    @FXML private ComboBox<String> cb_sceltaRicerca;
+    @FXML private ComboBox<TipologiaCentro> cb_sceltaTipologia;
+    @FXML private TextField tf_ricercaComune;
     @FXML private Label l_countOspedaliero;
     @FXML private Label l_countHub;
     @FXML private Label l_countAziendale;
 
-    private ClientCV client = CentriVaccinali.client;
+    private final ClientCV client = CentriVaccinali.client;
     private CIDashboardController parent;
 
     @FXML
     private void initialize () {
-        this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
-        this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
-        this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
-        this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
+        this.cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
+        this.cb_sceltaRicerca.getSelectionModel().selectFirst();
+        this.cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
+        this.cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
 
     @Override
@@ -57,11 +55,11 @@ public class CIRicercaResultController extends Controller {
     @FXML
     private void cercaCentroVaccinale() {
         CentriVaccinali.scene.setCursor(Cursor.WAIT);
-        if (ci_cb_sceltaRicerca.getValue().equals("Per nome") && !ci_tf_ricercaNomeCV.getText().isBlank()) {
-            client.ricercaPerNome(this, ci_tf_ricercaNomeCV.getText());
+        if (cb_sceltaRicerca.getValue().equals("Per nome") && !tf_ricercaNomeCentro.getText().isBlank()) {
+            client.ricercaPerNome(this, tf_ricercaNomeCentro.getText());
         }
-        else if (ci_cb_sceltaRicerca.getValue().equals("Per comune e tipologia") && !ci_tf_ricercaComune.getText().isBlank()) {
-            client.ricercaPerComuneTipologia(this, ci_tf_ricercaComune.getText(), ci_cb_sceltaTipologia.getValue());
+        else if (cb_sceltaRicerca.getValue().equals("Per comune e tipologia") && !tf_ricercaComune.getText().isBlank()) {
+            client.ricercaPerComuneTipologia(this, tf_ricercaComune.getText(), cb_sceltaTipologia.getValue());
         }
     }
 
@@ -115,17 +113,17 @@ public class CIRicercaResultController extends Controller {
 
     @FXML
     private void cambiaRicerca() {
-        if (ci_cb_sceltaRicerca.getValue().equals("Per nome")) {
-            ci_tf_ricercaNomeCV.clear();
-            ci_tf_ricercaNomeCV.setVisible(true);
-            ci_cb_sceltaTipologia.setVisible(false);
-            ci_tf_ricercaComune.setVisible(false);
-        } else if (ci_cb_sceltaRicerca.getValue().equals("Per comune e tipologia")) {
-            ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
-            ci_tf_ricercaComune.clear();
-            ci_tf_ricercaNomeCV.setVisible(false);
-            ci_cb_sceltaTipologia.setVisible(true);
-            ci_tf_ricercaComune.setVisible(true);
+        if (cb_sceltaRicerca.getValue().equals("Per nome")) {
+            tf_ricercaNomeCentro.clear();
+            tf_ricercaNomeCentro.setVisible(true);
+            cb_sceltaTipologia.setVisible(false);
+            tf_ricercaComune.setVisible(false);
+        } else if (cb_sceltaRicerca.getValue().equals("Per comune e tipologia")) {
+            cb_sceltaTipologia.getSelectionModel().selectFirst();
+            tf_ricercaComune.clear();
+            tf_ricercaNomeCentro.setVisible(false);
+            cb_sceltaTipologia.setVisible(true);
+            tf_ricercaComune.setVisible(true);
         }
     }
 }

@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
@@ -9,7 +9,6 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -18,16 +17,15 @@ import java.util.List;
 
 public class CISegnalazioniController extends Controller {
 
-    private ClientCV client = CentriVaccinali.client;
-    private CIInfoCentroController parent;
+    @FXML private VBox vb_lista_segnalazioni;
+
+    private final ClientCV client = CentriVaccinali.client;
+    private final Button btnCarica = new Button("Carica altro");
+    private CentroVaccinale centro;
     private int limit;
     private int offset;
-    private CentroVaccinale centro;
-
-    @FXML public VBox vb_lista_segnalazioni;
-    private Button btnCarica = new Button("Carica altro");
-
-    @FXML void initialize() {
+    @FXML
+    private void initialize() {
         limit = 50;
         offset = 0;
         btnCarica.getStyleClass().add("button-preset-1");
@@ -69,9 +67,5 @@ public class CISegnalazioniController extends Controller {
     public void setData(CentroVaccinale cv) {
         client.leggiSegnalazioni(this, cv.getNome(), limit, offset);
         centro = cv;
-    }
-
-    public void setParent(Controller c) {
-        parent = (CIInfoCentroController) c;
     }
 }

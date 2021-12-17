@@ -19,18 +19,11 @@ import java.util.regex.Pattern;
 
 public class ControlloParametri {
 
+    private static final ArrayList<String> listaProvince = new ArrayList<>();
     private final CssHelper cssHelper = CssHelper.getInstance();
     private static ControlloParametri instance = null;
-
     private Pattern rPattern;
     private Matcher rMatcher;
-    private static final ArrayList<String> listaProvince = new ArrayList<>();
-
-    //Stringhe errore password
-    private final String err1 = "Password troppo corta (almeno 8 caratteri)";
-    private final String err2 = "Deve contenere almeno una lettera minuscola";
-    private final String err3 = "Deve contenere almeno una lettera maiuscola";
-    private final String err4 = "Deve contenere almeno un numero";
 
     private ControlloParametri() {}
 
@@ -98,7 +91,7 @@ public class ControlloParametri {
     }
 
     public boolean numeroCivico(TextInputControl tic) {
-        // Controllo numero civico (minimo UN numero ed eventualmente UNA lettera alla fine e massimo 5 caratteri)
+        // Controllo numero civico (minimo UN numero ed eventualmente UNA lettera alla fine e massimo CINQUE caratteri)
         if(tic.getText().trim().length() <= 0) {
             cssHelper.toError(tic, new Tooltip("Inserire almeno UN numero"));
         } else if(tic.getText().trim().length() > 5) {
@@ -143,52 +136,41 @@ public class ControlloParametri {
     }
 
     public boolean password(TextInputControl tic) {
-        String errTo0ltip ="";
+        String err ="";
         boolean res = true;
         if(tic.getText().trim().length() < 8) {
             //cssHelper.toError(tic, new Tooltip("Password troppo corta"));
             res = false;
-            if(errTo0ltip != null) {
-                errTo0ltip = errTo0ltip + "\n" + err1;
-            } else {
-                errTo0ltip = err1;
-            }
+            //Stringhe errore password
+            String err1 = "Password troppo corta (almeno 8 caratteri)";
+            err = err + "\n" + err1;
         }
         rPattern = Pattern.compile(".*[a-z].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
             res = false;
-            if(errTo0ltip != null) {
-                errTo0ltip = errTo0ltip + "\n" + err2;
-            } else {
-                errTo0ltip = err2;
-            }
+            String err2 = "Deve contenere almeno una lettera minuscola";
+            err = err + "\n" + err2;
         }
         rPattern = Pattern.compile(".*[A-Z].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
             res = false;
-            if(errTo0ltip != null) {
-                errTo0ltip = errTo0ltip + "\n" + err3;
-            } else {
-                errTo0ltip = err3;
-            }
+            String err3 = "Deve contenere almeno una lettera maiuscola";
+            err = err + "\n" + err3;
         }
         rPattern = Pattern.compile(".*[0-8].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(!rMatcher.matches()) {
             res = false;
-            if(errTo0ltip != null) {
-                errTo0ltip = errTo0ltip + "\n" + err4;
-            } else {
-                errTo0ltip = err4;
-            }
+            String err4 = "Deve contenere almeno un numero";
+            err = err + "\n" + err4;
         }
 
         if(res) {
             cssHelper.toValid(tic);
         } else {
-            cssHelper.toError(tic, new Tooltip(errTo0ltip));
+            cssHelper.toError(tic, new Tooltip(err));
         }
         return res;
     }

@@ -20,7 +20,7 @@
       </center>
       <bottom>
          <FlowPane fx:id="fp_buttons" alignment="CENTER" hgap="50.0" BorderPane.alignment="CENTER">
-            <Button fx:id="b_d_close" mnemonicParsing="false" onAction="#indietro" text="OK"/>
+            <Button fx:id="b_d_close"  onAction="#indietro" text="OK"/>
          </FlowPane>
       </bottom>
    </BorderPane>

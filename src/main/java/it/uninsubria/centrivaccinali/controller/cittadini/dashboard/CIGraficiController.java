@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
@@ -9,7 +9,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-
 import java.util.Map;
 
 public class CIGraficiController extends Controller {
@@ -20,11 +19,10 @@ public class CIGraficiController extends Controller {
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
     private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
-
     private final ClientCV client = CentriVaccinali.client;
 
     @FXML
-    void initialize() {
+    private void initialize() {
         pfizer.setName("pfizer");
         jnj.setName("j&j");
         astrazeneca.setName("astrazeneca");
@@ -54,12 +52,17 @@ public class CIGraficiController extends Controller {
                         break;
                 }
             }
-            Platform.runLater(() -> barChart.getData().addAll(pfizer, jnj, moderna, astrazeneca));
+            Platform.runLater(() -> {
+                barChart.getData().add(pfizer);
+                barChart.getData().add(jnj);
+                barChart.getData().add(moderna);
+                barChart.getData().add(astrazeneca);
+            });
         }
     }
 
-    private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double x) {
-        Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, x)));
+    private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double media) {
+        Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, media)));
     }
     
     public void setData(CentroVaccinale cv) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIInfoCentroController">
+<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dashboard.CIInfoCentroController">
    <stylesheets>
       <URL value="@../../../style/dashboardStyle.css" />
       <URL value="@../../../style/style.css" />
@@ -41,13 +41,13 @@
       </font>
    </Label>
    <Label alignment="CENTER" layoutX="189.0" layoutY="19.0" style="-fx-font-size: 30;" text="Informazioni centro" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-   <AnchorPane fx:id="ap_container" styleClass="style-trasparent" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="64.0" />
-   <Button fx:id="b_segnalazioni" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostraSegnalazioni" prefHeight="50.0" prefWidth="192.0" styleClass="bottone-info-centri-not-selected" text="Segnalazioni" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="430.0">
+   <AnchorPane fx:id="ap_container" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="64.0" />
+   <Button fx:id="b_segnalazioni" maxWidth="-Infinity" minWidth="-Infinity"  onAction="#mostraSegnalazioni" prefHeight="50.0" prefWidth="192.0" styleClass="bottone-info-centri-not-selected" text="Segnalazioni" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="430.0">
       <graphic>
          <FontIcon iconColor="#323232" iconLiteral="mdi2m-message-text" iconSize="32" />
       </graphic>
    </Button>
-   <Button fx:id="b_grafico" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostraGrafico" prefHeight="50.0" prefWidth="192.0" styleClass="bottone-info-centri-not-selected" text="Grafico        " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
+   <Button fx:id="b_grafico" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity"  onAction="#mostraGrafico" prefHeight="50.0" prefWidth="192.0" styleClass="bottone-info-centri-not-selected" text="Grafico        " AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="490.0">
       <graphic>
          <FontIcon iconColor="#323232" iconLiteral="mdi2c-chart-box" iconSize="32" />
       </graphic>

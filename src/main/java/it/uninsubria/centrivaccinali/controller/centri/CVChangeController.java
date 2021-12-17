@@ -1,26 +1,20 @@
 package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
-import it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class CVChangeController extends Controller {
 
-    @FXML public AnchorPane ap_root;
-
     /**
      * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato
      */
-    @FXML public void RegistraVaccinato() {
+    @FXML
+    private void RegistraVaccinato() {
         System.out.println("Interfaccia per registrazione di un vaccinato");
         CentriVaccinali.setRoot("CV_registraVaccinato");
     }
@@ -29,7 +23,8 @@ public class CVChangeController extends Controller {
      * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale
      *
      */
-    @FXML public void RegistraCentroVaccinale() {
+    @FXML
+    private void RegistraCentroVaccinale() {
         System.out.println("Interfaccia per registrazione di centro vaccinale");
         CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }
@@ -37,7 +32,8 @@ public class CVChangeController extends Controller {
     /**
      * Metodo per tornare all'interfaccia precedente
      */
-    @FXML public void backTo() {
+    @FXML
+    private void backTo() {
         DialogHelper dh = new DialogHelper("ATTENZIONE","Vuoi eseguire il logout?", DialogHelper.Type.WARNING);
         Button bs = new Button("SI");
         bs.setOnAction(actionEvent -> {
@@ -45,7 +41,7 @@ public class CVChangeController extends Controller {
             dh.close();
         });
         dh.addButton(bs);
-        dh.display(ap_root);
+        dh.display();
 
     }
 
@@ -54,5 +50,6 @@ public class CVChangeController extends Controller {
     }
 
 
-    @Override public void notifyController(Result result) {  }
+    @Override
+    public void notifyController(Result result) {  }
 }

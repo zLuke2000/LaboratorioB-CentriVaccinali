@@ -119,8 +119,8 @@ public class CentriVaccinali extends Application {
     }
 
     /**
-     * @param fxml
-     * @return
+     * @param fxml path
+     * @return fxml
      */
     public static Parent loadFXML(String fxml) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
@@ -133,7 +133,7 @@ public class CentriVaccinali extends Application {
     }
 
     /**
-     * @param args
+     * @param args baseArgs
      */
     public static void main(String[] args) {
         // Avvio Thread separato per ClientCV

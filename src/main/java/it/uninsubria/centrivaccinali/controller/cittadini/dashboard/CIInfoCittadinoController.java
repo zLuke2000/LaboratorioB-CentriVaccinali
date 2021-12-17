@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
@@ -6,15 +6,12 @@ import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
-import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
@@ -25,19 +22,18 @@ public class CIInfoCittadinoController extends Controller {
     @FXML private Label l_username;
     @FXML private Label l_nome;
     @FXML private Label l_cognome;
-    @FXML private Label l_codicefiscale;
-    @FXML private Label l_idvaccinazione;
+    @FXML private Label l_codiceFiscale;
+    @FXML private Label l_idVaccinazione;
     @FXML private PasswordField pf_vecchiaPassword;
     @FXML private TextField tf_vecchiaPassword;
-    @FXML private PasswordField pf_nuovaPassword1;
-    @FXML private PasswordField pf_nuovaPassword2;
+    @FXML private PasswordField pf_nuovaPassword;
+    @FXML private PasswordField pf_confNuovaPassword;
     @FXML private HBox hb_textField;
     @FXML private HBox hb_passwordField;
 
-    private ClientCV client = CentriVaccinali.client;
+    private final ClientCV client = CentriVaccinali.client;
+    private final ControlloParametri cp = ControlloParametri.getInstance();
     private CIDashboardController parent;
-    private ControlloParametri cp = ControlloParametri.getInstance();
-    private CssHelper css = CssHelper.getInstance();
     private DialogHelper dh;
 
     @FXML
@@ -47,8 +43,8 @@ public class CIInfoCittadinoController extends Controller {
         l_username.setText(c.getUserid());
         l_nome.setText(c.getNome());
         l_cognome.setText(c.getCognome());
-        l_codicefiscale.setText(c.getCodice_fiscale());
-        l_idvaccinazione.setText(String.valueOf(c.getId_vaccinazione()));
+        l_codiceFiscale.setText(c.getCodice_fiscale());
+        l_idVaccinazione.setText(String.valueOf(c.getId_vaccinazione()));
     }
 
     public void setParent(Controller c) {
@@ -63,33 +59,36 @@ public class CIInfoCittadinoController extends Controller {
             } else {
                 dh = new DialogHelper("Attenzione", "La vecchia password immessa non e' corretta", DialogHelper.Type.WARNING);
             }
-            dh.display((Pane) CentriVaccinali.scene.getRoot());
+            dh.display();
         });
     }
 
-    public void close() {
-        System.out.println("chiudi: " + parent);
+    @FXML
+    private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
 
-    public void aggiornaPassword() {
+    @FXML
+    private void aggiornaPassword() {
         if(hb_textField.isVisible()) {
             nascondiPassword();
         }
-        if((cp.password(pf_vecchiaPassword) || cp.password(tf_vecchiaPassword)) && cp.password(pf_nuovaPassword1) && cp.password(pf_nuovaPassword2)) {
-            if(cp.checkSamePassword(pf_nuovaPassword1, pf_nuovaPassword2)) {
-                client.aggiornaPassword(this, client.getUtenteLoggato().getUserid(), cp.encryptPassword(pf_vecchiaPassword.getText().trim()), cp.encryptPassword(pf_nuovaPassword2.getText().trim()));
+        if((cp.password(pf_vecchiaPassword) || cp.password(tf_vecchiaPassword)) && cp.password(pf_nuovaPassword) && cp.password(pf_confNuovaPassword)) {
+            if(cp.checkSamePassword(pf_nuovaPassword, pf_confNuovaPassword)) {
+                client.aggiornaPassword(this, client.getUtenteLoggato().getUserid(), cp.encryptPassword(pf_vecchiaPassword.getText().trim()), cp.encryptPassword(pf_confNuovaPassword.getText().trim()));
             }
         }
     }
 
-    public void mostraPassword() {
+    @FXML
+    private void mostraPassword() {
         tf_vecchiaPassword.setText(pf_vecchiaPassword.getText());
         hb_textField.setVisible(true);
         hb_passwordField.setVisible(false);
     }
 
-    public void nascondiPassword() {
+    @FXML
+    private void nascondiPassword() {
         pf_vecchiaPassword.setText(tf_vecchiaPassword.getText());
         hb_passwordField.setVisible(true);
         hb_textField.setVisible(false);

@@ -16,7 +16,7 @@
             <HBox.margin>
                 <Insets right="25.0" />
             </HBox.margin>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#accediCittadino" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -34,7 +34,7 @@
             <HBox.margin>
                 <Insets left="25.0" />
             </HBox.margin>
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#accediOperatore" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
+            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"  onAction="#accediOperatore" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -52,5 +52,5 @@
          <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
       </padding>
     </HBox>
-   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
 </AnchorPane>

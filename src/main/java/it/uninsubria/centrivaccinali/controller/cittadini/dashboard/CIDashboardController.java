@@ -1,11 +1,10 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.*;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -16,22 +15,17 @@ import java.io.IOException;
 
 public class CIDashboardController extends Controller {
 
-    private Cittadino cittadinoConesso = null;
-    private ClientCV client;
-    private CIRicercaResultController ricercaController = null;
-
-    @FXML private AnchorPane ap_root;
     @FXML private MenuButton mb_utente;
     @FXML private Pane p_container;
 
     private AnchorPane ap_ricerca;
 
-    @FXML void initialize() {
-        this.client = CentriVaccinali.client;
-        cittadinoConesso = client.getUtenteLoggato();
-        if(cittadinoConesso != null) {
+    @FXML
+    private void initialize() {
+        cittadinoConnesso = client.getUtenteLoggato();
+        if(cittadinoConnesso != null) {
             mb_utente.setVisible(true);
-            mb_utente.setText(cittadinoConesso.getUserid());
+            mb_utente.setText(cittadinoConnesso.getUserid());
         } else {
             mb_utente.setVisible(false);
         }
@@ -41,7 +35,7 @@ public class CIDashboardController extends Controller {
             AnchorPane ap = fxmlLoader.load();
             ap_ricerca = ap;
             p_container.getChildren().add(ap);
-            ricercaController = fxmlLoader.getController();
+            CIRicercaResultController ricercaController = fxmlLoader.getController();
             ricercaController.setParent(this);
         } catch (IOException e) {
             e.printStackTrace();
@@ -71,8 +65,8 @@ public class CIDashboardController extends Controller {
         try {
             GridPane gp = fxmlLoader.load();
             AggiungiEventoAvverso controller = fxmlLoader.getController();
-            controller.setParent(this, ap_root);
-            ap_ricerca.setVisible(false);
+            controller.setParent(this);
+
             p_container.getChildren().add(gp);
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,8 +101,8 @@ public class CIDashboardController extends Controller {
     }
 
     @FXML
-    public void backTo() {
-        if (cittadinoConesso != null) {
+    private void backTo() {
+        if (cittadinoConnesso != null) {
             CentriVaccinali.setRoot("Avvio");
         } else {
             CentriVaccinali.setRoot("CI_home");
@@ -116,8 +110,9 @@ public class CIDashboardController extends Controller {
         client.stopOperation();
     }
 
-    public void chiudi() {
-        super.closeApp(client);
+    @FXML
+    private void chiudiApp() {
+        super.closeApp();
     }
 
 }

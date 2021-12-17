@@ -1,29 +1,26 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 
 public class CIItemListProspettoController extends Controller {
-    
-    private EventoAvverso ea;
 
-    @FXML public Label l_evento;
-    @FXML public Label l_tipologia;
-    @FXML public Label l_severita;
-    @FXML public Label l_note;
+    @FXML private Label l_evento;
+    @FXML private Label l_tipologia;
+    @FXML private Label l_severita;
+    @FXML private Label l_note;
 
+    private EventoAvverso evento;
 
     @Override
     public void notifyController(Result result) { }
 
     public void setData(EventoAvverso ea) {
-        this.ea = ea;
+        this.evento = ea;
         l_tipologia.setText(ea.getTipoVac().toString());
         l_evento.setText(ea.getEvento());
         l_severita.setText(String.valueOf(ea.getSeverita()));
@@ -32,8 +29,8 @@ public class CIItemListProspettoController extends Controller {
         }
     }
 
-    public void apri() {
-        DialogHelper dh = new DialogHelper("NOTE OPZIONALI", ea.getNote(), DialogHelper.Type.INFO);
-        dh.display((Pane) CentriVaccinali.scene.getRoot());
+    @FXML
+    private void apri() {
+        new DialogHelper("NOTE OPZIONALI", evento.getNote(), DialogHelper.Type.INFO).display();
     }
 }

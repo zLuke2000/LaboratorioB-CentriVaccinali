@@ -51,7 +51,7 @@ public class Indirizzo implements Serializable {
     public Indirizzo() {}
 
     /**
-     * Costruttore dell'oggetto <code>CentroVAccinale</code>
+     * Costruttore dell'oggetto <code>CentroVaccinale</code>
      *
      * @param qualificatore qualificatore dell'indirizzo
      * @param nome nome dell'indirizzo

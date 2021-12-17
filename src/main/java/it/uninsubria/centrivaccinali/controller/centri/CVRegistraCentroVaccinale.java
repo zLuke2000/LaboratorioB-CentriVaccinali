@@ -9,20 +9,19 @@ import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Indirizzo;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.ControlloParametri;
-import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 
 public class CVRegistraCentroVaccinale extends Controller {
 
-        @FXML public AnchorPane ap_root;
         @FXML private TextField tf_nome;
-        @FXML private ComboBox<Qualificatore> cb_qualificatore;
         @FXML private TextField tf_indirizzo;
         @FXML private TextField tf_civico;
         @FXML private TextField tf_comune;
@@ -40,7 +39,8 @@ public class CVRegistraCentroVaccinale extends Controller {
         /**
          *
          */
-        @FXML public void initialize() {
+        @FXML
+        private void initialize() {
                 cb_qualificatore.getItems().addAll(Qualificatore.values());
                 cb_qualificatore.setValue(Qualificatore.VIA);
         }
@@ -52,8 +52,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
                         Platform.runLater(() -> {
-                                DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Centro vaccinale registrato con successo", DialogHelper.Type.INFO);
-                                dh.display(ap_root);
+                                new DialogHelper("REGISTRAZIONE EFFETTUATA", "Centro vaccinale registrato con successo", DialogHelper.Type.INFO).display();
                                 CentriVaccinali.setRoot("CV_registraCentroVaccinale");
                         });
                 } else {
@@ -61,14 +60,14 @@ public class CVRegistraCentroVaccinale extends Controller {
                                 System.err.println("Registrazione fallita - Centro vaccinale gia' registrato");
                                 Platform.runLater(() -> {
                                         DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Centro vaccinale gia' registrato", DialogHelper.Type.ERROR);
-                                        dh.display(ap_root);
+                                        dh.display();
                                 });
                         }
                 }
         }
 
         @FXML
-        void realtimeCheck(KeyEvent ke) {
+        private void realtimeCheck(KeyEvent ke) {
                 if(ke.getSource().equals(tf_nome)) {
                         cp.testoSempliceConNumeri(tf_nome, 6, 50);
                 } else if(ke.getSource().equals(tf_indirizzo)) {
@@ -87,7 +86,7 @@ public class CVRegistraCentroVaccinale extends Controller {
         }
 
         @FXML
-        void salvaCentro() {
+        private void salvaCentro() {
                 // Definizione e inizializzazione variabili
                 String nomeCentro = tf_nome.getText().trim();
                 String nomeIndirizzo = tf_indirizzo.getText().trim();
@@ -106,13 +105,13 @@ public class CVRegistraCentroVaccinale extends Controller {
         }
 
         @FXML
-        public void backTo() {
+        private void backTo() {
                 CentriVaccinali.setRoot("CV_home");
                 client.stopOperation();
         }
 
         @FXML
-        void chiudi() {
-                super.closeApp(client);
+        private void chiudiApp() {
+                super.closeApp();
         }
 }

@@ -4,7 +4,6 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
 
 public class AvvioController extends Controller {
 
@@ -16,7 +15,7 @@ public class AvvioController extends Controller {
      * aprendo l'interfaccia di login
      */
     @FXML
-    void accediCittadino() {
+    private void accediCittadino() {
         if(client != null && client.getUtenteLoggato() != null) {
             CentriVaccinali.setRoot("CI_dashboard");
         } else {
@@ -29,7 +28,7 @@ public class AvvioController extends Controller {
      * aprendo l'interfaccia di login
      */
     @FXML
-    void accediOperatore() {
+    private void accediOperatore() {
         CentriVaccinali.setRoot("CV_login");
     }
 
@@ -38,8 +37,8 @@ public class AvvioController extends Controller {
     public void notifyController(Result result) { }
 
     @FXML
-    void chiudi() {
-        super.closeApp(null);
+    private void chiudiApp() {
+        super.closeApp();
     }
     
 }

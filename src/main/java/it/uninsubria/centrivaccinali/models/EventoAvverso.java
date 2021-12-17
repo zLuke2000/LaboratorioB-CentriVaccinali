@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali.models;
 
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
-
 import java.io.Serializable;
 
 /**
@@ -72,6 +71,7 @@ public class EventoAvverso implements Serializable {
         return idVaccino;
     }
 
+    @SuppressWarnings("unused")
     public void setIdVaccino(long idVaccino) {
         this.idVaccino = idVaccino;
     }
@@ -88,6 +88,7 @@ public class EventoAvverso implements Serializable {
      * Metodo setter per il tipo di evento
      * @param evento la stringa che rappresenta il nuovo tipo di evento
      */
+    @SuppressWarnings("unused")
     public void setEvento(String evento) {
         this.evento = evento;
     }
@@ -104,6 +105,7 @@ public class EventoAvverso implements Serializable {
      * Metodo setter per la severit&agrave dell'evento
      * @param severita l'intero che rappresenta la severit&agrave dell'evento
      */
+    @SuppressWarnings("unused")
     public void setSeverita(int severita) {
         this.severita = severita;
     }
@@ -120,6 +122,7 @@ public class EventoAvverso implements Serializable {
      * Metodo setter per le note opzionali
      * @param note le nuove note da inserire
      */
+    @SuppressWarnings("unused")
     public void setNote(String note) {
         this.note = note;
     }

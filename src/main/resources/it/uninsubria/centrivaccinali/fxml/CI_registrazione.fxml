@@ -23,7 +23,7 @@
          </font>
       </Label>
       <HBox alignment="TOP_CENTER" spacing="16.0">
-         <TextField fx:id="tf_ci_nomeRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="176.0" promptText="Nome" styleClass="field-preset-1">
+         <TextField fx:id="tf_nome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="176.0" promptText="Nome" styleClass="field-preset-1">
             <HBox.margin>
                <Insets/>
             </HBox.margin>
@@ -88,7 +88,7 @@
             <Insets top="5.0"/>
          </padding>
       </Separator>
-      <Button mnemonicParsing="false" onAction="#registraCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Registra"/>
+      <Button  onAction="#registraCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Registra"/>
    </VBox>
    <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
    <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />

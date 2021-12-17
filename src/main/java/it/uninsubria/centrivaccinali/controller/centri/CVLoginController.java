@@ -9,9 +9,10 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 
 /**
  * Controller per l'interfaccia di autenticazione degli operatori vaccinali
@@ -22,10 +23,9 @@ import javafx.scene.layout.AnchorPane;
  */
 public class CVLoginController extends Controller {
 
-    @FXML public AnchorPane ap_root;
     @FXML public Button b_accedi;
-    @FXML private TextField l_cv_username;
-    @FXML private PasswordField l_cv_password;
+    @FXML private TextField l_username;
+    @FXML private PasswordField l_password;
 
     private ClientCV client = CentriVaccinali.client;;
     private final CssHelper cssHelper = CssHelper.getInstance();
@@ -40,28 +40,27 @@ public class CVLoginController extends Controller {
             Platform.runLater(() -> CentriVaccinali.setRoot("CV_home"));
         } else {
             System.err.println("[CVLogin] AUTH ERROR");
-            DialogHelper dh = new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR);
-            dh.display(ap_root);
+            new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR).display();
         }
     }
 
     @FXML
-    void autenticazioneOperatore() {
-        String username = l_cv_username.getText().trim();
-        String password = l_cv_password.getText().trim();
+    private void autenticazioneOperatore() {
+        String username = l_username.getText().trim();
+        String password = l_password.getText().trim();
         boolean check = true;
 
         if(username.length() == 0) {
-            cssHelper.toError(l_cv_username, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(l_username, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(l_cv_username);
+            cssHelper.toDefault(l_username);
         }
         if(password.length() == 0) {
-            cssHelper.toError(l_cv_password, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(l_password, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(l_cv_password);
+            cssHelper.toDefault(l_password);
         }
 
         if(check) {
@@ -72,18 +71,18 @@ public class CVLoginController extends Controller {
     }
 
     @FXML
-    public void backTo() {
+    private void backTo() {
         client.stopOperation();
         CentriVaccinali.setRoot("Avvio");
     }
 
     @FXML
-    public void ShowInfo() {
-        new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display(ap_root);
+    private void ShowInfo() {
+        new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display();
     }
 
     @FXML
-    void chiudi() {
-        super.closeApp(client);
+    private void chiudiApp() {
+        super.closeApp();
     }
 }

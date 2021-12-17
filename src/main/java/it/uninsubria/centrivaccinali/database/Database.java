@@ -16,17 +16,16 @@ public class Database {
 
     private static Connection conn;
     private static PreparedStatement pstmt;
-    private static Statement stmt;
     private ResultSet rs;
     private Result risultato;
 
     public Database() {
-        try {
-            conn = DBHelper.getConnection();
-            System.out.println("Connessione stabilita: " + conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        conn = DBHelper.getConnection();
+        System.out.println("Connessione stabilita: " + conn);
+    }
+
+    public void disconnettiDB() {
+        DBHelper.closeConnection();
     }
 
     /**
@@ -135,7 +134,7 @@ public class Database {
 
         // Creo la nuova tabella
         try {
-            stmt = conn.createStatement();
+            Statement stmt = conn.createStatement();
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tabelle_cv.Vaccinati_" + cv.getNome().replaceAll(" ", "_") + " ( " +
                     "nome_centro varchar(50) NOT NULL, " +
                     "nome varchar(50) NOT NULL, " +

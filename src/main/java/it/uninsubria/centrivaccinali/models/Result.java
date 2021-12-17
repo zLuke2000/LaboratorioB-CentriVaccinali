@@ -6,13 +6,13 @@ import java.util.*;
 public class Result implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Operation opType;
-    private boolean result;
     private final List<Error> extendedResult = new ArrayList<>();
-    private Cittadino cittadino;
-    private String centroCittadino;
     private List<Object> list;
     private Map<String, Double> map;
+    private Operation opType;
+    private boolean result;
+    private Cittadino cittadino;
+    private String centroCittadino;
 
     public Result(boolean result, Operation opType) {
         this.result = result;
@@ -39,6 +39,7 @@ public class Result implements Serializable {
         return opType;
     }
 
+    @SuppressWarnings("unused")
     public void setOpType(Operation opType) {
         this.opType = opType;
     }
@@ -59,6 +60,7 @@ public class Result implements Serializable {
         this.centroCittadino = centroCittadino;
     }
 
+    @SuppressWarnings({"unused", "unchecked"})
     public <T> List<T> getList(Class<T> customClass) {
         List<T> lista = new ArrayList<>();
         for(Object o: list) {

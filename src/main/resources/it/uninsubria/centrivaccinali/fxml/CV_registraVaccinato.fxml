@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController">
+<AnchorPane styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController">
    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" spacing="8.0" styleClass="default-bg">
       <Label text="Dati Centro Vaccinale">
          <font>
@@ -149,7 +149,7 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <DatePicker fx:id="dp_datavaccino" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="207.0" promptText="Inserisci data">
+         <DatePicker fx:id="dp_dataVaccino" editable="false" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="207.0" promptText="Inserisci data">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
@@ -207,7 +207,7 @@
          <VBox.margin>
             <Insets />
          </VBox.margin>
-         <Label id="L_CV_targetIDvaccino" text="ID univoco:" textFill="#323232">
+         <Label text="ID univoco:" textFill="#323232">
             <HBox.margin>
                <Insets />
             </HBox.margin>

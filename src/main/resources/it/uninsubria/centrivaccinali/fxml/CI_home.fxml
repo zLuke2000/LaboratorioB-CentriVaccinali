@@ -27,7 +27,7 @@
          </padding>
          <HBox alignment="CENTER" spacing="16.0">
             <FontIcon iconColor="#323232" iconLiteral="mdi2a-account" iconSize="30" styleClass="IconTarghet" />
-            <TextField fx:id="tf_ci_loginUsername" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="field-preset-1">
+            <TextField fx:id="tf_loginUsername" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="field-preset-1">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -36,23 +36,23 @@
          <HBox alignment="CENTER" spacing="16.0">
             <FontIcon iconColor="#323232" iconLiteral="mdi2k-key" iconSize="25" styleClass="IconTarghet" />
             <StackPane>
-               <TextField fx:id="tf_ci_loginPasswordVisible" promptText="Password" styleClass="field-preset-1" visible="false">
+               <TextField fx:id="tf_loginPasswordVisible" promptText="Password" styleClass="field-preset-1" visible="false">
                   <font>
                      <Font size="14.0" />
                   </font></TextField>
-               <PasswordField fx:id="tf_ci_loginPassword" prefHeight="30.0" prefWidth="200.0" promptText="Password" styleClass="field-preset-1">
+               <PasswordField fx:id="tf_loginPassword" prefHeight="30.0" prefWidth="200.0" promptText="Password" styleClass="field-preset-1">
                   <font>
                      <Font size="14.0" />
                   </font></PasswordField>
             </StackPane>
             <StackPane>
-               <FontIcon fx:id="fi_ci_hidePassword" iconColor="#323232" iconLiteral="mdi2e-eye-off" iconSize="22" onMouseClicked="#hidePassword" visible="false" />
-               <FontIcon fx:id="fi_ci_showPassword" iconColor="#323232" iconLiteral="mdi2e-eye" iconSize="22" onMouseClicked="#showPassword" />
+               <FontIcon fx:id="fi_nascondiPassword" iconColor="#323232" iconLiteral="mdi2e-eye-off" iconSize="22" onMouseClicked="#nascondiPassword" visible="false" />
+               <FontIcon fx:id="fi_mostraPassword" iconColor="#323232" iconLiteral="mdi2e-eye" iconSize="22" onMouseClicked="#mostraPassword" />
             </StackPane>
          </HBox>
          <Button fx:id="b_accedi" defaultButton="true" onAction="#loginCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accedi" />
       </VBox>
-      <Button layoutY="350.0" mnemonicParsing="false" onAction="#toFreeAccess" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accesso libero" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" />
-      <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+      <Button layoutY="350.0"  onAction="#toFreeAccess" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Accesso libero" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" />
+      <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
    </AnchorPane>
 </AnchorPane>

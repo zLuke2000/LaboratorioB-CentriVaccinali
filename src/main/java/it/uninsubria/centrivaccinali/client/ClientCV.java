@@ -1,19 +1,17 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.*;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dasboard.*;
+import it.uninsubria.centrivaccinali.controller.cittadini.dashboard.*;
 import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -23,7 +21,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static ServerCVInterface server = null;
     private ConnectionThread connThread;
     private Controller controller;
-
     private Cittadino cittadinoConnesso = null;
     private String centroCittadino = "";
 
@@ -206,6 +203,23 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             }
         }
     }
+    public void disconnetti() {
+        if (server != null) {
+            try {
+                server.disconnettiDB();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        if (connThread.isAlive()){
+            connThread.interrupt();
+        }
+        try {
+            UnicastRemoteObject.unexportObject(this, true);
+        } catch (NoSuchObjectException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void lanciaPopup() {
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
@@ -216,7 +230,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
                 connThread.interrupt();
             }
             connThread = new ConnectionThread();
-            ((Stage)((Button) eh.getSource()).getScene().getWindow()).close();
+            dh.close();
         });
         dh.addButton(b);
         dh.display((Pane) CentriVaccinali.scene.getRoot());

@@ -28,6 +28,8 @@ module it.uninsubria.centrivaccinali {
     opens it.uninsubria.centrivaccinali.controller.centri to javafx.fxml;
     exports it.uninsubria.centrivaccinali.controller.cittadini;
     opens it.uninsubria.centrivaccinali.controller.cittadini to javafx.fxml;
-    exports it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
-    opens it.uninsubria.centrivaccinali.controller.cittadini.dasboard to javafx.fxml;
+    exports it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
+    opens it.uninsubria.centrivaccinali.controller.cittadini.dashboard to javafx.fxml;
+    exports it.uninsubria.centrivaccinali.util;
+    opens it.uninsubria.centrivaccinali.util to javafx.fxml;
 }

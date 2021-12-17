@@ -16,13 +16,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class CVRegistraCittadinoController extends Controller {
-
-    @FXML public AnchorPane ap_root;
     // TextFiled
     @FXML private TextField tf_selezionaProvincia;
     @FXML private TextField tf_nomeCittadino;
@@ -39,7 +37,7 @@ public class CVRegistraCittadinoController extends Controller {
     // ToggleGroup (RadioButton)
     @FXML private ToggleGroup tg_vaccino;
     // DatePicker
-    @FXML private DatePicker dp_datavaccino;
+    @FXML private DatePicker dp_dataVaccino;
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssHelper = CssHelper.getInstance();
@@ -48,11 +46,12 @@ public class CVRegistraCittadinoController extends Controller {
     private CentroVaccinale selectedCV;
     private long idVac = 0L;
 
-    @FXML void initialize() {
-        initializeIdVaccino();
+    @FXML
+    private void initialize() {
+        generaIdVaccino();
     }
 
-    private void initializeIdVaccino () {
+    private void generaIdVaccino() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
         String stringID = sdf.format(new java.util.Date());
         stringID=stringID.substring(0, 16);
@@ -94,18 +93,18 @@ public class CVRegistraCittadinoController extends Controller {
                     System.out.println("Registrazione effettuata");
                     Platform.runLater(() -> {
                         DialogHelper dh = new DialogHelper("REGISTRAZIONE EFFETTUATA", "Il cittadino vaccinato e' stato registrato con successo", DialogHelper.Type.INFO);
-                        dh.display(ap_root);
+                        dh.display();
                         //reset interfaccia
                         tf_nomeCittadino.setText("");
                         tf_cognomeCittadino.setText("");
                         tf_cfCittadino.setText("");
-                        dp_datavaccino.setValue(null);
+                        dp_dataVaccino.setValue(null);
                         tg_vaccino.selectToggle(rb_pfizer);
-                        initializeIdVaccino();
+                        generaIdVaccino();
                     });
                 } else {
                     DialogHelper dh = new DialogHelper("REGISTRAZIONE FALLITA", "Non e' stato possibile registrare correttamente il cittadino", DialogHelper.Type.ERROR);
-                    dh.display(ap_root);
+                    dh.display();
                     if(result.getExtendedResult().contains(Result.Error.CF_GIA_IN_USO)) {
                         cssHelper.toError(tf_cfCittadino, new Tooltip("Codice fiscale gia' associato ad un vaccinato"));
                         System.err.println("Codice fiscale gia' associato ad un vaccinato");
@@ -160,18 +159,18 @@ public class CVRegistraCittadinoController extends Controller {
         client.stopOperation();
     }
     @FXML
-    void chiudi() {
-        super.closeApp(client);
+    private void chiudiApp() {
+        super.closeApp();
     }
 
     @FXML
-    void registraVaccinato() {
-        if(cp.testoSempliceSenzaNumeri(tf_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(tf_cognomeCittadino, 2, 50) & cp.codiceFiscale(tf_cfCittadino) & cp.data(dp_datavaccino) & statoSelezione()) {
+    private void registraVaccinato() {
+        if(cp.testoSempliceSenzaNumeri(tf_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(tf_cognomeCittadino, 2, 50) & cp.codiceFiscale(tf_cfCittadino) & cp.data(dp_dataVaccino) & statoSelezione()) {
             String nomeCentro= cb_selezionaCentro.getSelectionModel().getSelectedItem();
             String nome= tf_nomeCittadino.getText();
             String cognome= tf_cognomeCittadino.getText();
             String cf= tf_cfCittadino.getText();
-            java.sql.Date data=java.sql.Date.valueOf(dp_datavaccino.getValue());
+            java.sql.Date data=java.sql.Date.valueOf(dp_dataVaccino.getValue());
             Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
             CentriVaccinali.scene.setCursor(Cursor.WAIT);

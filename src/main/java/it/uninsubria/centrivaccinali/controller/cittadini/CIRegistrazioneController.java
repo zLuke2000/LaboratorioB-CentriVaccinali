@@ -53,8 +53,7 @@ public class CIRegistrazioneController extends Controller {
                 cssh.toError(tf_ci_idvaccinazioneRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
             }
             if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)) {
-                DialogHelper dh = new DialogHelper("ERRORE", "Il cittadino corrispondente a questo codice fiscale e a questo id vaccinazione e' gia' stato registrato", DialogHelper.Type.ERROR);
-                dh.display(ap_root);
+                new DialogHelper("ERRORE", "Il cittadino corrispondente a questo codice fiscale e a questo id vaccinazione e' gia' stato registrato", DialogHelper.Type.ERROR).display();
                 System.err.println("Cittadino gia' registrato");
             }
             if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)) {
@@ -89,21 +88,21 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
-    @FXML public void showInfoUsername() throws IOException {
-        DialogHelper dh = new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
-                "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO);
-        dh.display(ap_root);
+    @FXML
+    private void mostraInfoUsername() {
+        new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
+                "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO).display();
     }
 
-    @FXML public void showInfoPassword() throws IOException {
-        DialogHelper dh = new DialogHelper("INFO PASSWORD", "La password deve avere almeno: " +
-                "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO);
-        dh.display(ap_root);
+    @FXML
+    private void mostraInfoPassword() {
+        new DialogHelper("INFO PASSWORD", "La password deve avere almeno: " +
+                "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO).display();
     }
 
-    @FXML void showInfoVaccinazione() throws IOException {
-        DialogHelper dh = new DialogHelper("INFO ID", "L'ID della vaccinazione è stato fornito al momento della somministrazione", DialogHelper.Type.INFO);
-        dh.display(ap_root);
+    @FXML
+    private void mostraInfoVaccinazione() {
+        new DialogHelper("INFO ID", "L'ID della vaccinazione è stato fornito al momento della somministrazione", DialogHelper.Type.INFO).display();
     }
 
     @FXML public void realtimeCheck(KeyEvent keyEvent) {
@@ -143,8 +142,8 @@ public class CIRegistrazioneController extends Controller {
     }
 
     @FXML
-    void chiudi() {
-        super.closeApp(client);
+    private void chiudiApp() {
+        super.closeApp();
     }
 
 }

@@ -27,4 +27,5 @@ public interface ServerCVInterface extends Remote{
     void getComuni(ClientCVInterface client, String provincia) throws RemoteException;
     void getCentri(ClientCVInterface client, String comune) throws RemoteException;
     void stopThread() throws RemoteException;
+    void disconnettiDB() throws RemoteException;
 }

@@ -15,13 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_result" prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dasboard.CIRicercaResultController">
-   <AnchorPane minWidth="550.0" styleClass="trasparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Label fx:id="target_Ricerca" layoutX="16.0" layoutY="36.0" text="Tipologia ricerca:" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0" />
-      <ComboBox fx:id="ci_cb_sceltaTipologia" layoutX="218.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
-      <TextField fx:id="ci_tf_ricercaNomeCV" layoutX="218.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="332.0" promptText="Inserisci nome centro vaccinale" styleClass="field-preset-1" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
-      <ComboBox fx:id="ci_cb_sceltaRicerca" layoutX="32.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="35.0" prefWidth="150.0" styleClass="combo-box" visibleRowCount="2" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="39.0" />
-      <TextField fx:id="ci_tf_ricercaComune" layoutX="400.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" promptText="Comune" styleClass="field-preset-1" visible="false" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="39.0" />
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dashboard.CIRicercaResultController">
+   <AnchorPane minWidth="550.0" styleClass="transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label layoutX="16.0" layoutY="36.0" text="Tipologia ricerca:" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0" />
+      <ComboBox fx:id="cb_sceltaTipologia" layoutX="218.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
+      <TextField fx:id="tf_ricercaNomeCentro" layoutX="218.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="332.0" promptText="Inserisci nome centro vaccinale" styleClass="field-preset-1" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />
+      <ComboBox fx:id="cb_sceltaRicerca" layoutX="32.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#cambiaRicerca" prefHeight="35.0" prefWidth="150.0" styleClass="combo-box" visibleRowCount="2" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="39.0" />
+      <TextField fx:id="tf_ricercaComune" layoutX="400.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" promptText="Comune" styleClass="field-preset-1" visible="false" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="39.0" />
       <AnchorPane layoutX="35.0" layoutY="109.0" styleClass="transparent" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="106.0">
          <ScrollPane hbarPolicy="NEVER" layoutX="165.0" layoutY="104.0" pannable="true" styleClass="transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
             <padding>
@@ -51,7 +51,7 @@
                <Font size="30.0" />
             </font></Label>
       </AnchorPane>
-      <Button fx:id="CI_B_ricerca" layoutX="575.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cercaCentroVaccinale" prefHeight="35.0" prefWidth="110.0" styleClass="button-preset-1" text="Cerca" textAlignment="CENTER" textFill="#323232" AnchorPane.leftAnchor="546.0" AnchorPane.topAnchor="39.0">
+      <Button layoutX="575.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#cercaCentroVaccinale" prefHeight="35.0" prefWidth="110.0" styleClass="button-preset-1" text="Cerca" textAlignment="CENTER" textFill="#323232" AnchorPane.leftAnchor="546.0" AnchorPane.topAnchor="39.0">
          <graphic>
             <FontIcon iconColor="#323232" iconLiteral="mdi2t-text-search" iconSize="24" />
          </graphic>

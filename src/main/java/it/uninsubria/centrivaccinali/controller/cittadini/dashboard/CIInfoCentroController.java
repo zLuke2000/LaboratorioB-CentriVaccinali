@@ -1,7 +1,6 @@
-package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
+package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
@@ -28,14 +27,11 @@ public class CIInfoCentroController extends Controller {
     @FXML private Button b_segnalazioni;
     @FXML private Button b_grafico;
 
+    private final CssHelper css = CssHelper.getInstance();
     private AnchorPane ap_segnalazioni;
     private AnchorPane ap_grafico;
-
     private CentroVaccinale cv;
     private CIDashboardController parent;
-    private CssHelper css = CssHelper.getInstance();
-
-    @FXML void initialize() {  }
 
     @Override
     public void notifyController(Result result) {  }
@@ -64,7 +60,7 @@ public class CIInfoCentroController extends Controller {
     }
 
     @FXML
-    public void mostraSegnalazioni() {
+    private void mostraSegnalazioni() {
         css.toggle(b_segnalazioni, b_grafico);
         if (ap_segnalazioni != null) {
             Platform.runLater(() -> {
@@ -83,7 +79,6 @@ public class CIInfoCentroController extends Controller {
                     ap_container.getChildren().add(ap);
                 });
                 CISegnalazioniController c = fxmlLoader.getController();
-                c.setParent(this);
                 c.setData(cv);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -92,7 +87,7 @@ public class CIInfoCentroController extends Controller {
     }
 
     @FXML
-    public void mostraGrafico() {
+    private void mostraGrafico() {
         css.toggle(b_grafico, b_segnalazioni);
         if (ap_grafico != null) {
             Platform.runLater(() -> {
@@ -117,7 +112,8 @@ public class CIInfoCentroController extends Controller {
         }
     }
 
-    @FXML public void chiudiInfo() {
+    @FXML
+    private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
 

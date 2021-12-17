@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+@SuppressWarnings("all")
 public class Uploader {
 
     private static Database db;
@@ -30,11 +31,7 @@ public class Uploader {
     private static final int operation = 4;
 
     public static void main(String[] args) {
-        try {
-            conn = DBHelper.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        conn = DBHelper.getConnection();
         db = new Database();
 
         try {
@@ -61,7 +58,7 @@ public class Uploader {
     }
 
     private static void registraCentri() throws IOException {
-        BufferedReader br = new BufferedReader( new FileReader(CentriVaccinali.class.getResource("UML/centri_lombardia.csv").getFile()));
+        BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("UML/centri_lombardia.csv")).getFile()));
 
         String currentLine;
         List<CentroVaccinale> listCV = new ArrayList<>();

@@ -9,14 +9,11 @@ import it.uninsubria.centrivaccinali.util.CssHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
@@ -24,25 +21,24 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class CIHomeController extends Controller {
 
-    @FXML public AnchorPane ap_root;
     /**TextField per l'username del cittadino*/
-    @FXML private TextField tf_ci_loginUsername;
+    @FXML private TextField tf_loginUsername;
 
     /**PasswordField per la password di autenticazione del cittadino*/
-    @FXML private PasswordField tf_ci_loginPassword;
+    @FXML private PasswordField tf_loginPassword;
 
     /**TextField per mostrare la password del cittadino*/
-    @FXML private TextField tf_ci_loginPasswordVisible;
+    @FXML private TextField tf_loginPasswordVisible;
 
     /**FontIcon per nascondere la password*/
-    @FXML private FontIcon fi_ci_hidePassword;
+    @FXML private FontIcon fi_nascondiPassword;
 
     /**FontIcon per mostrare la password*/
-    @FXML private FontIcon fi_ci_showPassword;
+    @FXML private FontIcon fi_mostraPassword;
 
     private final ClientCV client = CentriVaccinali.client;
     private final ControlloParametri cp = ControlloParametri.getInstance();
-    private final CssHelper cssh = CssHelper.getInstance();
+    private final CssHelper css = CssHelper.getInstance();
 
 
     @Override
@@ -55,14 +51,14 @@ public class CIHomeController extends Controller {
             System.out.println("Login fallito");
             if (result.getExtendedResult().contains(Result.Error.USERNAME_NON_TROVATO)) {
                 System.out.println("Username non trovato");
-                cssh.toError(tf_ci_loginUsername, new Tooltip("Username non corretto"));
-                cssh.toDefault(tf_ci_loginPasswordVisible);
-                cssh.toDefault(tf_ci_loginPassword);
+                css.toError(tf_loginUsername, new Tooltip("Username non corretto"));
+                css.toDefault(tf_loginPasswordVisible);
+                css.toDefault(tf_loginPassword);
             }
             if (result.getExtendedResult().contains(Result.Error.PASSWORD_ERRATA)) {
                 System.out.println("Password errata");
-                cssh.toError(tf_ci_loginPassword, new Tooltip("Password non corretta"));
-                cssh.toError(tf_ci_loginPasswordVisible, new Tooltip("Password non corretta"));
+                css.toError(tf_loginPassword, new Tooltip("Password non corretta"));
+                css.toError(tf_loginPasswordVisible, new Tooltip("Password non corretta"));
             }
         }
     }
@@ -71,7 +67,7 @@ public class CIHomeController extends Controller {
      * Metodo per entrare con l'accesso libero dentro all'applicazione
      */
     @FXML
-    public void toFreeAccess() {
+    private void toFreeAccess() {
         CentriVaccinali.setRoot("CI_dashboard");
     }
 
@@ -79,16 +75,16 @@ public class CIHomeController extends Controller {
      * Metodo per accedere con le credenziali del cittadino
      */
     @FXML
-    public void loginCittadino() {
+    private void loginCittadino() {
         //effettuo login se username e password non sono vuoti
         //e sono state inserite credenziali valide
-        if (cp.testoSempliceConNumeri(tf_ci_loginUsername,4, 16) & (cp.password(tf_ci_loginPassword) || cp.password(tf_ci_loginPasswordVisible))){
-            String username= tf_ci_loginUsername.getText();
+        if (cp.testoSempliceConNumeri(tf_loginUsername,4, 16) & (cp.password(tf_loginPassword) || cp.password(tf_loginPasswordVisible))){
+            String username= tf_loginUsername.getText();
             String password;
-            if (!tf_ci_loginPassword.isVisible()){
-                password= tf_ci_loginPasswordVisible.getText();
+            if (!tf_loginPassword.isVisible()){
+                password= tf_loginPasswordVisible.getText();
             } else {
-                password= tf_ci_loginPassword.getText();
+                password= tf_loginPassword.getText();
             }
             if (!username.isBlank() && !password.isBlank()){
                 CentriVaccinali.scene.setCursor(Cursor.WAIT);
@@ -101,7 +97,7 @@ public class CIHomeController extends Controller {
      * Metodo per passare all'interfaccia di registrazione
      */
     @FXML
-    public void toRegistrazione() {
+    private void toRegistrazione() {
         CentriVaccinali.setRoot("CI_registrazione");
     }
 
@@ -109,14 +105,14 @@ public class CIHomeController extends Controller {
      * Metodo per nascondere la password
      */
     @FXML
-    public void hidePassword() {
+    private void nascondiPassword() {
         //copia la password nel PasswordField
         //e cambia le visibilita' dei componenti
-        tf_ci_loginPassword.setText(tf_ci_loginPasswordVisible.getText());
-        tf_ci_loginPasswordVisible.setVisible(false);
-        tf_ci_loginPassword.setVisible(true);
-        fi_ci_showPassword.setVisible(true);
-        fi_ci_hidePassword.setVisible(false);
+        tf_loginPassword.setText(tf_loginPasswordVisible.getText());
+        tf_loginPasswordVisible.setVisible(false);
+        tf_loginPassword.setVisible(true);
+        fi_mostraPassword.setVisible(true);
+        fi_nascondiPassword.setVisible(false);
     }
 
 
@@ -124,28 +120,29 @@ public class CIHomeController extends Controller {
      * Metodo per mostrare la password
      */
     @FXML
-    public void showPassword() {
+    private void mostraPassword() {
         //copia la password nel TextField
         //e cambia le visibilita' dei componenti
-        tf_ci_loginPasswordVisible.setText(tf_ci_loginPassword.getText());
-        tf_ci_loginPasswordVisible.setVisible(true);
-        tf_ci_loginPassword.setVisible(false);
-        fi_ci_showPassword.setVisible(false);
-        fi_ci_hidePassword.setVisible(true);
+        tf_loginPasswordVisible.setText(tf_loginPassword.getText());
+        tf_loginPasswordVisible.setVisible(true);
+        tf_loginPassword.setVisible(false);
+        fi_mostraPassword.setVisible(false);
+        fi_nascondiPassword.setVisible(true);
     }
 
     @FXML
-    public void backTo() {
+    private void backTo() {
         CentriVaccinali.setRoot("Avvio");
         client.stopOperation();
     }
 
     @FXML
-    void chiudi() {
-        super.closeApp(client);
+    private void chiudiApp() {
+        super.closeApp();
     }
 
-    public void checkEnter(KeyEvent keyEvent) {
+    @FXML
+    private void checkEnter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
             loginCittadino();
         }
