@@ -480,7 +480,7 @@ public class Database {
             }
 
             pstmt = conn.prepareStatement("SELECT vaccino, AVG(severita) " +
-                    "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
+                    "FROM public.\"EventiAvversi\" JOIN tabelle_cv.\"vaccinati_" + centro + "\" USING (id_vaccinazione) " +
                     "WHERE evento NOT IN (?, ?, ?, ?, ?, ?) " +
                     "GROUP BY vaccino " +
                     "ORDER BY vaccino");
@@ -510,7 +510,6 @@ public class Database {
             rs = pstmt.executeQuery();
             List<EventoAvverso> eventi = new ArrayList<>();
             while(rs.next()) {
-                //(String evento, int severita, String note, Vaccino tipoVac)
                 String tipoEvento = rs.getString("evento");
                 int severita = rs.getInt("severita");
                 String note = rs.getString("note");

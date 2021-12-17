@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.*;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
@@ -11,6 +12,7 @@ import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.rmi.RemoteException;
@@ -216,7 +218,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             ((Stage)((Button) eh.getSource()).getScene().getWindow()).close();
         });
         dh.addButton(b);
-        dh.display(null);
+        dh.display((Pane) CentriVaccinali.scene.getRoot());
     }
 
     private void printout(String s) {

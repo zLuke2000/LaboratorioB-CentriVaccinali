@@ -6,6 +6,8 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -44,7 +46,7 @@ public class ConnectionThread extends Thread{
                         this.start();
                     });
                     dh.addButton(b);
-                    dh.display(null);
+                    dh.display((Pane) CentriVaccinali.scene.getRoot());
                 });
             }
     }

@@ -38,7 +38,7 @@ public class Uploader {
         db = new Database();
 
         try {
-            switch (operation){
+            switch (operation) {
                 case REGISTRA_CENTRI:
                     registraCentri();
                     break;
@@ -725,7 +725,7 @@ public class Uploader {
             if(ThreadLocalRandom.current().nextBoolean()) {
                 List<String> eventiRandom = new ArrayList<>(eventi);
                 int numeroEventi = ThreadLocalRandom.current().nextInt(eventi.size());
-                for(int i=0; i<numeroEventi; i++) {
+                for(int i=0; i < numeroEventi; i++) {
                     int eventoacaso = ThreadLocalRandom.current().nextInt(eventiRandom.size());
                     int severita = 0;
                     switch (eventoacaso) {

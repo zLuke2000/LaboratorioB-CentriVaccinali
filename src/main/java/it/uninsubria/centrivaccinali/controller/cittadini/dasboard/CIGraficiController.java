@@ -26,11 +26,8 @@ public class CIGraficiController extends Controller {
     @FXML
     void initialize() {
         pfizer.setName("pfizer");
-
         jnj.setName("j&j");
-
         astrazeneca.setName("astrazeneca");
-
         moderna.setName("moderna");
     }
 
@@ -67,9 +64,5 @@ public class CIGraficiController extends Controller {
     
     public void setData(CentroVaccinale cv) {
         client.leggiEA(this, cv.getNome());
-    }
-
-    public void setParent(Controller c) {
-        parent = (CIInfoCentroController) c;
     }
 }

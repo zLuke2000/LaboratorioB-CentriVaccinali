@@ -60,7 +60,7 @@ public class CIInfoCittadinoController extends Controller {
             } else {
                 dh = new DialogHelper("Attenzione", "La vecchia password immessa non e' corretta", DialogHelper.Type.WARNING);
             }
-            dh.display(null);
+            dh.display((Pane) CentriVaccinali.scene.getRoot());
         });
     }
 

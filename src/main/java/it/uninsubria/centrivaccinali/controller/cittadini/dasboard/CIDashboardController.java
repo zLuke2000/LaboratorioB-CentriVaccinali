@@ -5,6 +5,7 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.*;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -93,14 +94,14 @@ public class CIDashboardController extends Controller {
         }
     }
 
-    public void rimuoviFragment(Pane p){
+    public void rimuoviFragment(Pane p) {
         p_container.getChildren().remove(p);
         p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(true);
-        //ap_ricerca.setVisible(true);
     }
 
     @FXML
-    public void logoutInfoMB() {
+    public void logout() {
+        mb_utente.hide();
         CentriVaccinali.setRoot("CI_home");
         client.LogoutUtente();
     }
