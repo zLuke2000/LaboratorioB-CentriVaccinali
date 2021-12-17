@@ -24,7 +24,6 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         db = new Database();
         try {
             ServerCV obj = new ServerCV();
-            System.setProperty("java.rmi.server.hostname", "192.168.1.50");
             Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
             reg.rebind("server", obj);
             System.out.println("Server pronto");
