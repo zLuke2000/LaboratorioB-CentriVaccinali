@@ -1,15 +1,13 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dasboard;
 
-import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.Controller;
-import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.EventoAvverso;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
+import javafx.scene.layout.Pane;
 
 public class CIItemListProspettoController extends Controller {
     
@@ -36,6 +34,6 @@ public class CIItemListProspettoController extends Controller {
 
     public void apri() {
         DialogHelper dh = new DialogHelper("NOTE OPZIONALI", ea.getNote(), DialogHelper.Type.INFO);
-        dh.display(null);
+        dh.display((Pane) CentriVaccinali.scene.getRoot());
     }
 }

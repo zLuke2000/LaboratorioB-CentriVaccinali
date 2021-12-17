@@ -27,7 +27,7 @@ public class Uploader {
     private static final int REGISTRA_CITTADINI = 3;
     private static final int REGISTRA_EVENTI = 4;
 
-    private static final int operation = -1;
+    private static final int operation = 4;
 
     public static void main(String[] args) {
         try {
@@ -52,6 +52,7 @@ public class Uploader {
                     registraEventi();
                     break;
                 default:
+                    System.err.println("Numero selezione errato");
                     break;
             }
         } catch (SQLException | IOException e) {
@@ -695,7 +696,7 @@ public class Uploader {
                 c.setNome(rs.getString("nome"));
                 c.setCognome(rs.getString("cognome"));
                 c.setCodice_fiscale(rs.getString("codice_fiscale"));
-                c.setId_vaccino(rs.getLong("id_vaccinazione"));
+                c.setId_vaccinazione(rs.getLong("id_vaccinazione"));
                 c.setEmail(c.getNome().toLowerCase() + "." + c.getCognome().toLowerCase() + domini.get(ThreadLocalRandom.current().nextInt(0, domini.size())));
                 c.setUserid(c.getNome().substring(0,1).toLowerCase() + c.getCognome().toLowerCase() + ThreadLocalRandom.current().nextInt(10,100));
                 c.setPassword(listPwd.get(count++));
@@ -722,13 +723,52 @@ public class Uploader {
         while (rs.next()) {
             long id = rs.getLong(1);
             if(ThreadLocalRandom.current().nextBoolean()) {
-                List<String> eventiRandom = new ArrayList<>();
-                eventiRandom.addAll(eventi);
-                int num = ThreadLocalRandom.current().nextInt(1, 6);
+                List<String> eventiRandom = new ArrayList<>(eventi);
                 int numeroEventi = ThreadLocalRandom.current().nextInt(eventi.size());
                 for(int i=0; i<numeroEventi; i++) {
                     int eventoacaso = ThreadLocalRandom.current().nextInt(eventiRandom.size());
-                    EventoAvverso ea = new EventoAvverso(id, eventiRandom.get(eventoacaso),ThreadLocalRandom.current().nextInt(1, 6),"");
+                    int severita = 0;
+                    switch (eventoacaso) {
+                        case 0:
+                            severita = ThreadLocalRandom.current().nextInt(1, 3);
+                            break;
+                        case 1:
+                            severita = ThreadLocalRandom.current().nextInt(5, 6);
+                            break;
+                        case 2:
+                            severita = ThreadLocalRandom.current().nextInt(3, 5);
+                            break;
+                        case 3:
+                            severita = ThreadLocalRandom.current().nextInt(3, 4);
+                            break;
+                        case 4:
+                            severita = ThreadLocalRandom.current().nextInt(2, 5);
+                            break;
+                        case 5:
+                            severita = ThreadLocalRandom.current().nextInt(1, 2);
+                            break;
+                    }
+                    String nota = "";
+                    if(ThreadLocalRandom.current().nextInt(100) > 70) {
+                        switch (ThreadLocalRandom.current().nextInt(5)) {
+                            case 0:
+                                nota = "Tutto apposto";
+                                break;
+                            case 1:
+                                nota = "Me la sono vista brutta";
+                                break;
+                            case 2:
+                                nota = "Tapposto Fra";
+                                break;
+                            case 3:
+                                nota = "Mi è salito un sonno pazzesco";
+                                break;
+                            case 4:
+                                nota = "Ora si che posso fare il colpo su GTAV";
+                                break;
+                        }
+                    }
+                    EventoAvverso ea = new EventoAvverso(id, eventiRandom.get(eventoacaso), severita, nota);
                     eventiRandom.remove(eventoacaso);
                     db.registraEA(ea);
                 }

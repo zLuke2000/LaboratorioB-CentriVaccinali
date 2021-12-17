@@ -34,7 +34,6 @@ public class CIItemListController extends Controller {
         ci_tf_nomeCVItem.setText(cv.getNome());
         ci_tf_indirizzoItem.setText(String.valueOf(cv.getIndirizzo()));
         ci_l_tipologiaItem.setText(String.valueOf(cv.getTipologia()));
-        System.out.println(cv.getNome());
          if(client.getCentroCittadino().equals(cv.getNome())) {
              hb_aggiungi_e_visualizza.setVisible(true);
              hb_visualizza.setVisible(false);
