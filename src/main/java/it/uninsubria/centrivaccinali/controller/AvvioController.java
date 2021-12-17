@@ -4,7 +4,6 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class AvvioController extends Controller {
@@ -42,7 +41,5 @@ public class AvvioController extends Controller {
     void chiudi() {
         super.closeApp(null);
     }
-    public void openEV() {
-        CentriVaccinali.setRoot("fragments/CI_F_showGeneralCV");
-    }
+    
 }

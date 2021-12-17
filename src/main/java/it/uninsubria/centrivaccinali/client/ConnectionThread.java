@@ -28,7 +28,6 @@ public class ConnectionThread extends Thread{
             for (int i = 0; i < 12; i++) {
                 status = getRegistry() && getServerStub();
                 if (status) {
-                    //setta nel client il registry e il server
                     ClientCV.setServer(server);
                     System.out.println("[ConnectionThread] Connessione al server eseguita");
                     break;
@@ -39,9 +38,7 @@ public class ConnectionThread extends Thread{
                 Platform.runLater(() -> {
                     DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
                     Button b = new Button("SI");
-                    b.setOnAction( eh -> {
-                        this.start();
-                    });
+                    b.setOnAction( eh -> this.start());
                     dh.addButton(b);
                     dh.display((Pane) CentriVaccinali.scene.getRoot());
                 });
