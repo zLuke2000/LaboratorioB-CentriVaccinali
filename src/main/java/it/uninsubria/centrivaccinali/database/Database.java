@@ -337,7 +337,7 @@ public class Database {
                 arrayComuni.add(rs.getString("comune"));
             }
             risultato.setResult(true);
-            risultato.setResultComuni(arrayComuni);
+            risultato.setList(arrayComuni);
         } catch (SQLException e) {
             e.printStackTrace();
         }

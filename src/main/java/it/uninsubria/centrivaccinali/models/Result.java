@@ -11,9 +11,7 @@ public class Result implements Serializable {
     private final List<Error> extendedResult = new ArrayList<>();
     private Cittadino cittadino;
     private String centroCittadino;
-    private List<String> resultComuni;
-    private List<CentroVaccinale> resultCentri;
-    private List<EventoAvverso> resultEA;
+    private List<Object> list;
     private Map<String, Double> map;
 
     public Result(boolean result, Operation opType) {
@@ -77,13 +75,17 @@ public class Result implements Serializable {
         this.map = map;
     }
 
+    public void setList(List<Object> list) {
+        this.list = list;
+    }
+
     public enum Error {
         // Login utente
         USERNAME_NON_TROVATO, PASSWORD_ERRATA,
         //Registrazione eventi avversi
         EVENTO_GIA_INSERITO,
         //Registrazione utente
-        CF_NON_VALIDO, IDVAC_NON_VALIDO, CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
+        CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
         //Registrazione vaccinato
         CF_GIA_IN_USO, IDVAC_GIA_IN_USO,
         // Generico

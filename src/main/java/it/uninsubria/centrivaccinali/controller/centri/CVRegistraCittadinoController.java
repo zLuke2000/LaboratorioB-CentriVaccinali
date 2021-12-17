@@ -43,7 +43,7 @@ public class CVRegistraCittadinoController extends Controller {
 
     private final ControlloParametri cp = ControlloParametri.getInstance();
     private final CssHelper cssHelper = CssHelper.getInstance();
-    private ClientCV client = CentriVaccinali.client;
+    private final ClientCV client = CentriVaccinali.client;
     private List<CentroVaccinale> listaCentri = new ArrayList<>();
     private CentroVaccinale selectedCV;
     private long idVac = 0L;
@@ -68,20 +68,19 @@ public class CVRegistraCittadinoController extends Controller {
                 if (result.getList(String.class) != null) {
                     Platform.runLater(() -> {
                         cb_selezionaComune.getItems().clear();
-                        cb_selezionaComune.getItems().addAll(result.getResultComuni());
+                        cb_selezionaComune.getItems().addAll(result.getList(String.class));
                         cb_selezionaComune.getSelectionModel().selectFirst();
                     });
                 }
                 break;
             case RISULTATO_CENTRI:
-                if (result.getResultCentri() != null){
+                if (result.getList(CentroVaccinale.class) != null){
                     Platform.runLater(() -> {
                         listaCentri.clear();
                         listaCentri = result.getList(CentroVaccinale.class);
                         cb_selezionaCentro.getItems().clear();
-                        for (CentroVaccinale centro : listaCentri) {
-                            cb_selezionaCentro.getItems().add(centro.getNome());
-                            cb_selezionaCentro.getSelectionModel().selectFirst();
+                        for (CentroVaccinale cv : listaCentri) {
+                            cb_selezionaCentro.getItems().add(cv.getNome());
                         }
                         cb_selezionaCentro.getSelectionModel().selectFirst();
                     });
