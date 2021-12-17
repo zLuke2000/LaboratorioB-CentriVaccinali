@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.centri.CVChangeController">
+<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="450.0" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.centri.CVChangeController">
    <AnchorPane prefHeight="565.0" prefWidth="390.0" styleClass="default-bg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" styleClass="labelWelcome" text="OPERATORE SANITARIO" textFill="#323232" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
          <font>
@@ -17,7 +17,7 @@
          </font></Label>
       <HBox alignment="CENTER" prefHeight="181.0" prefWidth="450.0" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="79.0">
             <VBox alignment="CENTER" spacing="9.0">
-                  <Button fx:id="B_CV_registracittadino" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegistraVaccinato" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#RegistraVaccinato" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
                      <graphic>
                         <FontIcon iconColor="#323232" iconLiteral="mdi2a-account-plus-outline" iconSize="120" styleClass="buttonIcon" />
                      </graphic>
@@ -32,7 +32,7 @@
                   </Label>
             </VBox>
             <VBox alignment="CENTER" spacing="9.0">
-                  <Button fx:id="B_CV_registracv" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#RegistraCentroVaccinale" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#RegistraCentroVaccinale" prefHeight="150.0" prefWidth="150.0" styleClass="button-preset-1">
                      <graphic>
                         <FontIcon iconColor="#323232" iconLiteral="mdi2h-hospital-building" iconSize="120" />
                      </graphic>
