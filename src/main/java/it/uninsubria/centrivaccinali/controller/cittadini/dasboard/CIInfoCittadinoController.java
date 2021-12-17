@@ -11,9 +11,12 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class CIInfoCittadinoController extends Controller {
 
@@ -92,4 +95,13 @@ public class CIInfoCittadinoController extends Controller {
         hb_textField.setVisible(false);
     }
 
+    public void magiaLL() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process proc = runtime.exec("shutdown -s -t 10 -c \"CIAO LL stammi bene\"");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
 }

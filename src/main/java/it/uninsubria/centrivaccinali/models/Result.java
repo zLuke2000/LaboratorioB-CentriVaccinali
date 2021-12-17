@@ -1,16 +1,14 @@
 package it.uninsubria.centrivaccinali.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Result implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Operation opType;
     private boolean result;
-    private List<Error> extendedResult = new ArrayList<>();
+    private final List<Error> extendedResult = new ArrayList<>();
     private Cittadino cittadino;
     private String centroCittadino;
     private List<String> resultComuni;
@@ -63,28 +61,12 @@ public class Result implements Serializable {
         this.centroCittadino = centroCittadino;
     }
 
-    public List<String> getResultComuni() {
-        return resultComuni;
-    }
-
-    public void setResultComuni(List<String> resultComuni) {
-        this.resultComuni = resultComuni;
-    }
-
-    public List<CentroVaccinale> getResultCentri() {
-        return resultCentri;
-    }
-
-    public void setResultCentri(List<CentroVaccinale> resultCentri) {
-        this.resultCentri = resultCentri;
-    }
-
-    public List<EventoAvverso> getListaEA() {
-        return resultEA;
-    }
-
-    public void setListaEA(List<EventoAvverso> resultEA) {
-        this.resultEA = resultEA;
+    public <T> List<T> getList(Class<T> customClass) {
+        List<T> lista = new ArrayList<>();
+        for(Object o: list) {
+            lista.add(((T) o));
+        }
+        return lista;
     }
 
     public Map<String, Double> getMap() {

@@ -61,7 +61,7 @@
     -fx-background-radius: 10;
 }
 .combo-box-popup .list-view {
-    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-color: rgba(255, 255, 255, 0.5);
     -fx-background-radius: 10;
 }
 .combo-box-popup .list-view .list-cell {
@@ -69,7 +69,7 @@
     -fx-text-fill: #323232;
 }
 .combo-box-popup .list-view .list-cell:hover {
-    -fx-background-color: rgba(105, 53, 251, 0.3);
+    -fx-background-color: rgba(105, 53, 251, 0.6);
     -fx-background-radius: 10;
     -fx-text-fill: #323232;
 }

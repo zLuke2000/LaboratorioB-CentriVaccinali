@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
+import java.util.List;
 
 public class CISegnalazioniController extends Controller {
 
@@ -38,10 +39,10 @@ public class CISegnalazioniController extends Controller {
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {
-            System.out.println(result.getListaEA().isEmpty());
-            if (!result.getListaEA().isEmpty()) {
+            List<EventoAvverso> listaEA = result.getList(EventoAvverso.class);
+            if (!listaEA.isEmpty()) {
                 Platform.runLater(() -> vb_lista_segnalazioni.getChildren().remove(btnCarica));
-                for (EventoAvverso ea: result.getListaEA()) {
+                for (EventoAvverso ea: listaEA) {
                     FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/prospetto/itemListProspetto.fxml"));
                     try {
                         GridPane gp_item = fxmlLoader.load();
@@ -52,13 +53,13 @@ public class CISegnalazioniController extends Controller {
                         e.printStackTrace();
                     }
                 }
-                if (result.getListaEA().size() < limit) {
+                if (listaEA.size() < limit) {
                     Platform.runLater(() -> vb_lista_segnalazioni.getChildren().remove(btnCarica));
                 } else {
                     Platform.runLater(() -> vb_lista_segnalazioni.getChildren().add(btnCarica));
                     limit = 20;
                 }
-                offset += result.getListaEA().size();
+                offset += listaEA.size();
             } else {
                 Platform.runLater(() -> vb_lista_segnalazioni.getChildren().remove(btnCarica));
             }

@@ -17,14 +17,12 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class CVRegistraCittadinoController extends Controller {
 
     @FXML public AnchorPane ap_root;
-
     // TextFiled
     @FXML private TextField tf_selezionaProvincia;
     @FXML private TextField tf_nomeCittadino;
@@ -67,7 +65,7 @@ public class CVRegistraCittadinoController extends Controller {
     public void notifyController(Result result) {
         switch (result.getOpType()){
             case RISULTATO_COMUNI:
-                if (result.getResultComuni() != null) {
+                if (result.getList(String.class) != null) {
                     Platform.runLater(() -> {
                         cb_selezionaComune.getItems().clear();
                         cb_selezionaComune.getItems().addAll(result.getResultComuni());
@@ -79,12 +77,13 @@ public class CVRegistraCittadinoController extends Controller {
                 if (result.getResultCentri() != null){
                     Platform.runLater(() -> {
                         listaCentri.clear();
-                        listaCentri = result.getResultCentri();
+                        listaCentri = result.getList(CentroVaccinale.class);
                         cb_selezionaCentro.getItems().clear();
                         for (CentroVaccinale centro : listaCentri) {
                             cb_selezionaCentro.getItems().add(centro.getNome());
                             cb_selezionaCentro.getSelectionModel().selectFirst();
                         }
+                        cb_selezionaCentro.getSelectionModel().selectFirst();
                     });
                 } else {
                     System.err.println("ERRORE");

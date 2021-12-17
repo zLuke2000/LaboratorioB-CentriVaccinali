@@ -14,8 +14,6 @@ import java.sql.*;
  */
 public class Database {
 
-    private final String utente = "123abc";
-    private final String password = "123abc";
     private static Connection conn;
     private static PreparedStatement pstmt;
     private static Statement stmt;
@@ -326,7 +324,7 @@ public class Database {
      */
     public Result getComuni(String provincia){
         Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
-        List<String> arrayComuni = new ArrayList<>();
+        List<Object> arrayComuni = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT DISTINCT comune " +
                                               "FROM public.\"IndirizzoCV\" " +
@@ -351,7 +349,7 @@ public class Database {
      */
     public Result getCentriVaccinali(String comune){
         Result risultato = new Result(false, Result.Operation.RISULTATO_CENTRI);
-        List<CentroVaccinale> arrayNomeCentri = new ArrayList<>();
+        List<Object> listaCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                     "FROM public.\"InfoCV\" " +
@@ -360,7 +358,7 @@ public class Database {
             pstmt.setString(1, comune);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                arrayNomeCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
+                listaCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
                                 rs.getString("nome"),
                                 rs.getString("civico"),
@@ -370,7 +368,7 @@ public class Database {
                         TipologiaCentro.getValue(rs.getString("tipologia"))));
             }
             risultato.setResult(true);
-            risultato.setResultCentri(arrayNomeCentri);
+            risultato.setList(listaCentri);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -379,7 +377,7 @@ public class Database {
 
     public Result ricercaCentroPerNome(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
-        List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
+        List<Object> listaCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                     "FROM public.\"InfoCV\" " +
@@ -389,7 +387,7 @@ public class Database {
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
                 System.out.println("trovato: " + rs.getString("nome_centro"));
-                risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
+                listaCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
                                 rs.getString("nome"),
                                 rs.getString("civico"),
@@ -399,7 +397,7 @@ public class Database {
                         TipologiaCentro.getValue(rs.getString("tipologia"))));
             }
             risultato.setResult(true);
-            risultato.setResultCentri(risultatoRicerca);
+            risultato.setList(listaCentri);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -408,7 +406,7 @@ public class Database {
 
     public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
-        List<CentroVaccinale> risultatoRicerca = new ArrayList<>();
+        List<Object> listaCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +
                     "FROM public.\"InfoCV\" " +
@@ -419,7 +417,7 @@ public class Database {
             pstmt.setString(2, tipologia.toString());
             rs = pstmt.executeQuery();
             while(rs.next()) {
-                risultatoRicerca.add(new CentroVaccinale(rs.getString("nome_centro"),
+                listaCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
                                 rs.getString("nome"),
                                 rs.getString("civico"),
@@ -429,7 +427,7 @@ public class Database {
                         TipologiaCentro.getValue(rs.getString("tipologia"))));
             }
             risultato.setResult(true);
-            risultato.setResultCentri(risultatoRicerca);
+            risultato.setList(listaCentri);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -508,17 +506,17 @@ public class Database {
                     "limit " + limit + " " +
                     "offset " + offset);
             rs = pstmt.executeQuery();
-            List<EventoAvverso> eventi = new ArrayList<>();
+            List<Object> listEventi = new ArrayList<>();
             while(rs.next()) {
                 String tipoEvento = rs.getString("evento");
                 int severita = rs.getInt("severita");
                 String note = rs.getString("note");
                 Vaccino vaccino = Vaccino.getValue(rs.getString("vaccino"));
                 EventoAvverso ea = new EventoAvverso(tipoEvento, severita, note, vaccino);
-                eventi.add(ea);
+                listEventi.add(ea);
             }
             risultato.setResult(true);
-            risultato.setListaEA(eventi);
+            risultato.setList(listEventi);
         } catch (SQLException e) {
             e.printStackTrace();
         }

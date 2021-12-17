@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CIRicercaResultController extends Controller {
@@ -44,7 +45,7 @@ public class CIRicercaResultController extends Controller {
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.RICERCA_CENTRO) {
-            setData(result.getResultCentri());
+            setData(result.getList(CentroVaccinale.class));
         }
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
     }
