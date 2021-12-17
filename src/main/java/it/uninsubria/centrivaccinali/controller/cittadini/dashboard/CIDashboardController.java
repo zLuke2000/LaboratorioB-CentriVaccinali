@@ -18,7 +18,8 @@ public class CIDashboardController extends Controller {
     @FXML private MenuButton mb_utente;
     @FXML private Pane p_container;
 
-    private AnchorPane ap_ricerca;
+    private final ClientCV client = CentriVaccinali.client;
+    private Cittadino cittadinoConnesso = null;
 
     @FXML
     private void initialize() {
@@ -33,7 +34,6 @@ public class CIDashboardController extends Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RicercaCentri.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
-            ap_ricerca = ap;
             p_container.getChildren().add(ap);
             CIRicercaResultController ricercaController = fxmlLoader.getController();
             ricercaController.setParent(this);
@@ -43,7 +43,7 @@ public class CIDashboardController extends Controller {
     }
 
     @Override
-    public void notifyController(Result result) { }
+    public void notifyController(Result result) {  }
 
     public void visualizzaInfoCentro(CentroVaccinale cv) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
@@ -52,7 +52,7 @@ public class CIDashboardController extends Controller {
             CIInfoCentroController controller = fxmlLoader.getController();
             controller.setData(cv);
             controller.setParent(this);
-            ap_ricerca.setVisible(false);
+            p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(false);
             p_container.getChildren().add(ap);
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class CIDashboardController extends Controller {
     }
 
     @FXML
-    public void infoCittadino() {
+    private void infoCittadino() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCittadino.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();
@@ -94,7 +94,7 @@ public class CIDashboardController extends Controller {
     }
 
     @FXML
-    public void logout() {
+    private void logout() {
         mb_utente.hide();
         CentriVaccinali.setRoot("CI_home");
         client.LogoutUtente();

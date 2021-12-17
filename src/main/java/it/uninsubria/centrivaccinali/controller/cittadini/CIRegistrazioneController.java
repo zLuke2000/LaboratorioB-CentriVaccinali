@@ -10,34 +10,29 @@ import it.uninsubria.centrivaccinali.util.CssHelper;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 public class CIRegistrazioneController extends Controller {
-
-    @FXML private AnchorPane ap_root;
+    
     // TextField per l'acquisizione dei dati
-    @FXML private TextField tf_ci_nomeRegistrazione;
-    @FXML private TextField tf_ci_cognomeRegistrazione;
-    @FXML private TextField tf_ci_cfRegistrazione;
-    @FXML private TextField tf_ci_usernameRegistrazione;
-    @FXML private TextField tf_ci_emailRegistrazione;
-    @FXML private TextField tf_ci_idvaccinazioneRegistrazione;
+    @FXML private TextField tf_nome;
+    @FXML private TextField tf_cognome;
+    @FXML private TextField tf_codiceFiscale;
+    @FXML private TextField tf_username;
+    @FXML private TextField tf_email;
+    @FXML private TextField tf_idVaccinazione;
 
     //PasswordField per l'acquisizione della password
-    @FXML private PasswordField pf_ci_password1;
-    @FXML private PasswordField pf_ci_password2;
+    @FXML private PasswordField pf_password1;
+    @FXML private PasswordField pf_password2;
 
-    private ClientCV client = CentriVaccinali.client;
-    private FXMLLoader loader;
-    private ControlloParametri cp = ControlloParametri.getInstance();
-    private CssHelper cssh = CssHelper.getInstance();
+    private final ClientCV client = CentriVaccinali.client;
+    private final ControlloParametri cp = ControlloParametri.getInstance();
+    private final CssHelper css = CssHelper.getInstance();
 
     @Override
     public void notifyController(Result result) {
@@ -49,38 +44,39 @@ public class CIRegistrazioneController extends Controller {
             System.err.println("Registrazione fallita");
 
             if (result.getExtendedResult().contains(Result.Error.CF_ID_NON_VALIDI)) {
-                cssh.toError(tf_ci_cfRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
-                cssh.toError(tf_ci_idvaccinazioneRegistrazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
+                css.toError(tf_codiceFiscale, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
+                css.toError(tf_idVaccinazione, new Tooltip("ID vaccinazione e codice fiscale non associati ad alcun vaccinato"));
             }
             if (result.getExtendedResult().contains(Result.Error.CITTADINO_GIA_REGISTRATO)) {
                 new DialogHelper("ERRORE", "Il cittadino corrispondente a questo codice fiscale e a questo id vaccinazione e' gia' stato registrato", DialogHelper.Type.ERROR).display();
                 System.err.println("Cittadino gia' registrato");
             }
             if (result.getExtendedResult().contains(Result.Error.EMAIL_GIA_IN_USO)) {
-                cssh.toError(tf_ci_emailRegistrazione, new Tooltip("Email gia' registrata"));
+                css.toError(tf_email, new Tooltip("Email gia' registrata"));
             }
             if (result.getExtendedResult().contains(Result.Error.USERID_GIA_IN_USO)) {
-                cssh.toError(tf_ci_usernameRegistrazione, new Tooltip("Username gia' registrato"));
+                css.toError(tf_username, new Tooltip("Username gia' registrato"));
             }
         }
     }
 
-    @FXML public void registraCittadino() {
-        if (cp.testoSempliceSenzaNumeri(tf_ci_nomeRegistrazione, 2, 50) &
-            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 50) &
-            cp.codiceFiscale(tf_ci_cfRegistrazione) &
-            cp.email(tf_ci_emailRegistrazione) &
-            cp.testoSempliceConNumeri(tf_ci_usernameRegistrazione, 4, 16) &
-            cp.password(pf_ci_password1) &&
-            cp.checkSamePassword(pf_ci_password1, pf_ci_password2) &
-            cp.numeri(tf_ci_idvaccinazioneRegistrazione, 16, 16)) {
-                String nome = tf_ci_nomeRegistrazione.getText().trim();
-                String cognome = tf_ci_cognomeRegistrazione.getText().trim();
-                String cf = tf_ci_cfRegistrazione.getText().trim();
-                String email = tf_ci_emailRegistrazione.getText().trim();
-                String user = tf_ci_usernameRegistrazione.getText().trim();
-                String password = pf_ci_password1.getText().trim();
-                long idVac = Long.parseLong(tf_ci_idvaccinazioneRegistrazione.getText());
+    @FXML
+    private void registraCittadino() {
+        if (cp.testoSempliceSenzaNumeri(tf_nome, 2, 50) &
+            cp.testoSempliceSenzaNumeri(tf_cognome, 2, 50) &
+            cp.codiceFiscale(tf_codiceFiscale) &
+            cp.email(tf_email) &
+            cp.testoSempliceConNumeri(tf_username, 4, 16) &
+            cp.password(pf_password1) &&
+            cp.checkSamePassword(pf_password1, pf_password2) &
+            cp.numeri(tf_idVaccinazione, 16, 16)) {
+                String nome = tf_nome.getText().trim();
+                String cognome = tf_cognome.getText().trim();
+                String cf = tf_codiceFiscale.getText().trim();
+                String email = tf_email.getText().trim();
+                String user = tf_username.getText().trim();
+                String password = pf_password1.getText().trim();
+                long idVac = Long.parseLong(tf_idVaccinazione.getText());
                 Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, cp.encryptPassword(password), idVac);
                 System.out.println("Registro cittadino");
                 CentriVaccinali.scene.setCursor(Cursor.WAIT);
@@ -105,39 +101,40 @@ public class CIRegistrazioneController extends Controller {
         new DialogHelper("INFO ID", "L'ID della vaccinazione è stato fornito al momento della somministrazione", DialogHelper.Type.INFO).display();
     }
 
-    @FXML public void realtimeCheck(KeyEvent keyEvent) {
+    @FXML
+    private void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
-        if (tf_ci_nomeRegistrazione.equals(key)) {
-            cp.testoSempliceConNumeri(tf_ci_nomeRegistrazione, 2, 50);
+        if (tf_nome.equals(key)) {
+            cp.testoSempliceConNumeri(tf_nome, 2, 50);
         }
-        if (tf_ci_cognomeRegistrazione.equals(key)) {
-            cp.testoSempliceSenzaNumeri(tf_ci_cognomeRegistrazione, 2, 50);
+        if (tf_cognome.equals(key)) {
+            cp.testoSempliceSenzaNumeri(tf_cognome, 2, 50);
         }
-        if(tf_ci_cfRegistrazione.equals(key)) {
-            cp.codiceFiscale(tf_ci_cfRegistrazione);
+        if(tf_codiceFiscale.equals(key)) {
+            cp.codiceFiscale(tf_codiceFiscale);
         }
-        if(tf_ci_emailRegistrazione.equals(key)) {
-            cp.email(tf_ci_emailRegistrazione);
+        if(tf_email.equals(key)) {
+            cp.email(tf_email);
         }
-        if(pf_ci_password1.equals(key)) {
-            cp.password(pf_ci_password1);
-            if(!pf_ci_password2.getText().isBlank()) {
-                cp.checkSamePassword(pf_ci_password1, pf_ci_password2);
+        if(pf_password1.equals(key)) {
+            cp.password(pf_password1);
+            if(!pf_password2.getText().isBlank()) {
+                cp.checkSamePassword(pf_password1, pf_password2);
             }
         }
-        if(pf_ci_password2.equals(key)) {
-            cp.checkSamePassword(pf_ci_password1, pf_ci_password2);
+        if(pf_password2.equals(key)) {
+            cp.checkSamePassword(pf_password1, pf_password2);
         }
-        if(tf_ci_usernameRegistrazione.equals(key)) {
-            cp.testoSempliceConNumeri(tf_ci_usernameRegistrazione, 4, 16);
+        if(tf_username.equals(key)) {
+            cp.testoSempliceConNumeri(tf_username, 4, 16);
         }
-        if(tf_ci_idvaccinazioneRegistrazione.equals(key)) {
-            cp.numeri(tf_ci_idvaccinazioneRegistrazione, 16, 16);
+        if(tf_idVaccinazione.equals(key)) {
+            cp.numeri(tf_idVaccinazione, 16, 16);
         }
     }
 
     @FXML
-    public void backTo() {
+    private void backTo() {
         CentriVaccinali.setRoot("CI_home");
     }
 

@@ -47,5 +47,5 @@
       </VBox>
    </AnchorPane>
    <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" layoutX="10.0" layoutY="10.0" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
-   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" layoutX="10.0" layoutY="10.0" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" layoutX="10.0" layoutY="10.0" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
 </AnchorPane>

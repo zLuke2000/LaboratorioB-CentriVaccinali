@@ -119,7 +119,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     @FXML
-    void realtimeCheck(KeyEvent ke) {
+    private void realtimeCheck(KeyEvent ke) {
         if (ke.getSource().equals(tf_selezionaProvincia)) {
             if(cp.provincia(tf_selezionaProvincia)) {
                 client.getComuni(this, tf_selezionaProvincia.getText().trim());
@@ -138,7 +138,7 @@ public class CVRegistraCittadinoController extends Controller {
 
 
     @FXML
-    void cbChange(Event e) {
+    private void cbChange(Event e) {
         if(e.getSource().equals(cb_selezionaComune)) {
             if(cb_selezionaComune.getSelectionModel().getSelectedItem() != null) {
                 client.getCentri(this, cb_selezionaComune.getSelectionModel().getSelectedItem());
@@ -154,10 +154,11 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     @FXML
-    void backTo() {
+    private void backTo() {
         CentriVaccinali.setRoot("CV_home");
         client.stopOperation();
     }
+
     @FXML
     private void chiudiApp() {
         super.closeApp();

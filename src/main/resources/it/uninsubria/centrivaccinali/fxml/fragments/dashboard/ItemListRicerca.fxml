@@ -22,8 +22,8 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-      <FontIcon fx:id="ci_fi_image" iconSize="32" />
-      <Label fx:id="ci_l_tipologiaItem" style="-fx-font-size: 10;" text="template" textFill="#323232">
+      <FontIcon fx:id="fi_iconaCentro" iconSize="32" />
+      <Label fx:id="l_tipologiaCentro" style="-fx-font-size: 10;" text="template" textFill="#323232">
          <font>
             <Font size="18.0" />
          </font></Label>
@@ -32,11 +32,11 @@
       <GridPane.margin>
          <Insets left="10.0" />
       </GridPane.margin>
-      <Label fx:id="ci_tf_nomeCVItem" alignment="CENTER" text="template" textFill="#323232" wrapText="true">
+      <Label fx:id="l_nomeCentro" alignment="CENTER" text="template" textFill="#323232" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label fx:id="ci_tf_indirizzoItem" alignment="CENTER" text="template" textFill="#323232" wrapText="true">
+      <Label fx:id="l_indirizzoCentro" alignment="CENTER" text="template" textFill="#323232" wrapText="true">
          <VBox.margin>
             <Insets />
          </VBox.margin>

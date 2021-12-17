@@ -7,8 +7,7 @@ import javafx.fxml.FXML;
 
 public class AvvioController extends Controller {
 
-    @FXML public AnchorPane ap_root;
-    private ClientCV client = CentriVaccinali.client;
+    private final ClientCV client = CentriVaccinali.client;
 
     /**
      * Metodo usato per accedere come operatore cittadino,

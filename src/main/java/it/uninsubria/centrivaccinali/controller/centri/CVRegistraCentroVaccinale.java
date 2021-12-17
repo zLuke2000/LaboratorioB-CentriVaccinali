@@ -28,13 +28,10 @@ public class CVRegistraCentroVaccinale extends Controller {
         @FXML private TextField tf_provincia;
         @FXML private TextField tf_cap;
         @FXML private ToggleGroup tg_tipologia;
-        @FXML private RadioButton rb_aziendale;
-        @FXML private RadioButton rb_ospedaliero;
-        @FXML private RadioButton rb_hub;
+        @FXML private ComboBox<Qualificatore> cb_qualificatore;
 
         private final ControlloParametri cp = ControlloParametri.getInstance();
-        private final CssHelper cssHelper = CssHelper.getInstance();
-        private ClientCV client = CentriVaccinali.client;
+        private final ClientCV client = CentriVaccinali.client;
 
         /**
          *

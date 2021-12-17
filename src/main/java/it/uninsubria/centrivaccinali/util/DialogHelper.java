@@ -74,7 +74,7 @@ public class DialogHelper {
     }
 
     /**
-     * @param rootPane can be null
+     *
      */
     public void display() {
         ft.setNode(rootPane);

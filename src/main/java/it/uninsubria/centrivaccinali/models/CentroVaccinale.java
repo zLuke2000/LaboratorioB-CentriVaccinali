@@ -78,6 +78,7 @@ public class CentroVaccinale implements Serializable {
      * Metodo setter per il campo <code>Indirizzo</code>
      * @param indirizzo il nuovo indirizzo per il centro
      */
+    @SuppressWarnings("unused")
     public void setIndirizzo(Indirizzo indirizzo) {
         this.indirizzo = indirizzo;
     }

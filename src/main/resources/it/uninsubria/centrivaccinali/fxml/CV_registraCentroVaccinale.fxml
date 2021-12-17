@@ -78,7 +78,7 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-    <RadioButton fx:id="rb_ospedaliero" mnemonicParsing="false" selected="true" text="Ospedaliero" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+    <RadioButton selected="true" text="Ospedaliero" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6">
         <toggleGroup>
           <ToggleGroup fx:id="tg_tipologia" />
         </toggleGroup>
@@ -89,7 +89,7 @@
             <Font size="14.0" />
          </font>
     </RadioButton>
-    <RadioButton fx:id="rb_aziendale" mnemonicParsing="false" text="Aziendale" toggleGroup="$tg_tipologia" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+    <RadioButton text="Aziendale" toggleGroup="$tg_tipologia" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
         <GridPane.margin>
           <Insets />
         </GridPane.margin>
@@ -97,7 +97,7 @@
             <Font size="14.0" />
          </font>
     </RadioButton>
-    <RadioButton fx:id="rb_hub" mnemonicParsing="false" text="Hub" toggleGroup="$tg_tipologia" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+    <RadioButton text="Hub" toggleGroup="$tg_tipologia" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="6">
         <GridPane.margin>
           <Insets left="8.0" />
         </GridPane.margin>
@@ -105,7 +105,7 @@
             <Font size="14.0" />
          </font>
     </RadioButton>
-    <Button fx:id="B_conferma" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#salvaCentro" styleClass="button-preset-1" text="Conferma" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#salvaCentro" styleClass="button-preset-1" text="Conferma" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets right="8.0" />
          </GridPane.margin>
@@ -122,5 +122,5 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </FontIcon>
-    <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+    <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
 </AnchorPane>

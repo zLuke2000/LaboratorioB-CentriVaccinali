@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane fx:id="ap_root" styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController">
+<AnchorPane styleClass="transparent" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController">
    <VBox alignment="TOP_CENTER" prefHeight="520.0" prefWidth="400.0" spacing="16.0" styleClass="default-bg" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <padding>
          <Insets top="16.0"/>
@@ -28,13 +28,13 @@
                <Insets/>
             </HBox.margin>
          </TextField>
-         <TextField fx:id="tf_ci_cognomeRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="176.0" promptText="Cognome" styleClass="field-preset-1">
+         <TextField fx:id="tf_cognome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="176.0" promptText="Cognome" styleClass="field-preset-1">
             <HBox.margin>
                <Insets/>
             </HBox.margin>
          </TextField>
       </HBox>
-      <TextField fx:id="tf_ci_cfRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="368.0" promptText="Codice Fiscale" styleClass="field-preset-1">
+      <TextField fx:id="tf_codiceFiscale" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="368.0" promptText="Codice Fiscale" styleClass="field-preset-1">
          <VBox.margin>
             <Insets/>
          </VBox.margin>
@@ -53,18 +53,18 @@
          <VBox.margin>
             <Insets/>
          </VBox.margin>
-         <TextField fx:id="tf_ci_usernameRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Username" styleClass="field-preset-1"/>
-         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#showInfoUsername" styleClass="iconInfo">
+         <TextField fx:id="tf_username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Username" styleClass="field-preset-1"/>
+         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#mostraInfoUsername" styleClass="iconInfo">
             <HBox.margin>
                <Insets/>
             </HBox.margin>
          </FontIcon>
-         <TextField fx:id="tf_ci_emailRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Email" styleClass="field-preset-1"/>
+         <TextField fx:id="tf_email" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Email" styleClass="field-preset-1"/>
       </HBox>
       <HBox alignment="CENTER" spacing="16.0">
-         <PasswordField fx:id="pf_ci_password1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Password" styleClass="field-preset-1"/>
-         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#showInfoPassword" styleClass="iconInfo"/>
-         <PasswordField fx:id="pf_ci_password2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Reinserisci Password" styleClass="field-preset-1"/>
+         <PasswordField fx:id="pf_password1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Password" styleClass="field-preset-1"/>
+         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#mostraInfoPassword" styleClass="iconInfo"/>
+         <PasswordField fx:id="pf_password2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="157.0" promptText="Reinserisci Password" styleClass="field-preset-1"/>
       </HBox>
       <Separator opacity="0.2">
          <effect>
@@ -77,8 +77,8 @@
          </font>
       </Label>
       <HBox alignment="CENTER" spacing="16.0">
-         <TextField fx:id="tf_ci_idvaccinazioneRegistrazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="330.0" promptText="Id Vaccinazione" styleClass="field-preset-1"/>
-         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#showInfoVaccinazione"/>
+         <TextField fx:id="tf_idVaccinazione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#realtimeCheck" prefWidth="330.0" promptText="Id Vaccinazione" styleClass="field-preset-1"/>
+         <FontIcon iconColor="#323232" iconLiteral="mdi2c-comment-question" iconSize="22" onMouseClicked="#mostraInfoVaccinazione"/>
       </HBox>
       <Separator opacity="0.2">
          <effect>
@@ -91,5 +91,5 @@
       <Button  onAction="#registraCittadino" prefHeight="45.0" prefWidth="120.0" styleClass="button-preset-1" text="Registra"/>
    </VBox>
    <FontIcon iconColor="#323232" iconLiteral="mdi2r-reply" iconSize="30" onMouseClicked="#backTo" styleClass="redIcon" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0" />
-   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudi" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
+   <FontIcon iconColor="#323232" iconLiteral="mdi2c-close-thick" iconSize="30" onMouseClicked="#chiudiApp" styleClass="redIcon" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0" />
 </AnchorPane>

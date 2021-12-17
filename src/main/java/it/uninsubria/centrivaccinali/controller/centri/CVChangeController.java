@@ -45,8 +45,9 @@ public class CVChangeController extends Controller {
 
     }
 
-    @FXML void chiudi() {
-        super.closeApp(null);
+    @FXML
+    private void chiudiApp() {
+        super.closeApp();
     }
 
 

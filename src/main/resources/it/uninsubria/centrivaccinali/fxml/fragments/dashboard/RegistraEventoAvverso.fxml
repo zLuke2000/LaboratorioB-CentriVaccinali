@@ -33,19 +33,19 @@
       <font>
          <Font size="14.0" />
       </font></Button>
-    <TextArea fx:id="ta_ea_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnSpan="4" GridPane.rowIndex="3" />
-    <RadioButton fx:id="rb_ea1" mnemonicParsing="false" onAction="#selezioneEvento" text="Mal di testa">
+    <TextArea fx:id="ta_note" onKeyTyped="#controlloLunghezza" promptText="Inserire eventuali note (OPZIONALE)" wrapText="true" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+    <RadioButton  onAction="#selezioneEvento" text="Mal di testa">
         <toggleGroup>
-          <ToggleGroup fx:id="tg_ea_gruppo" />
+          <ToggleGroup fx:id="tg_eventiAvversi" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="rb_ea2" onAction="#selezioneEvento" text="Febbre" toggleGroup="$tg_ea_gruppo" GridPane.rowIndex="1" />
-    <RadioButton fx:id="rb_ea3" onAction="#selezioneEvento" text="Dolori muscolari e articolari" toggleGroup="$tg_ea_gruppo" wrapText="true" GridPane.columnIndex="1" />
-    <RadioButton fx:id="rb_ea4" onAction="#selezioneEvento" text="Linfoadenopatia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <RadioButton fx:id="rb_ea5" onAction="#selezioneEvento" text="Tachicardia" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="2" />
-    <RadioButton fx:id="rb_ea6" onAction="#selezioneEvento" text="Crisi ipertensiva" toggleGroup="$tg_ea_gruppo" GridPane.columnIndex="3" />
-    <TextField fx:id="tf_ea_altro" onKeyTyped="#controlloTestoEvento" onMouseClicked="#selezioneEvento" prefHeight="25.0" promptText="Altro..." styleClass="field-preset-1" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-    <Label fx:id="l_ea_caratteri" text="0/256" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+    <RadioButton onAction="#selezioneEvento" text="Febbre" toggleGroup="$tg_eventiAvversi" GridPane.rowIndex="1" />
+    <RadioButton onAction="#selezioneEvento" text="Dolori muscolari e articolari" toggleGroup="$tg_eventiAvversi" wrapText="true" GridPane.columnIndex="1" />
+    <RadioButton onAction="#selezioneEvento" text="Linfoadenopatia" toggleGroup="$tg_eventiAvversi" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <RadioButton onAction="#selezioneEvento" text="Tachicardia" toggleGroup="$tg_eventiAvversi" GridPane.columnIndex="2" />
+    <RadioButton onAction="#selezioneEvento" text="Crisi ipertensiva" toggleGroup="$tg_eventiAvversi" GridPane.columnIndex="3" />
+    <TextField fx:id="tf_altro" onKeyTyped="#controlloTestoEvento" onMouseClicked="#selezioneEvento" prefHeight="25.0" promptText="Altro..." styleClass="field-preset-1" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+    <Label fx:id="l_caratteri" text="0/256" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
         <font>
             <Font size="14.0" />
         </font>
@@ -54,7 +54,7 @@
       </GridPane.margin>
     </Label>
     <Slider fx:id="s_severita" blockIncrement="2.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" min="1.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" showTickLabels="true" snapToTicks="true" GridPane.columnSpan="4" GridPane.rowIndex="2" />
-   <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chiudi" prefHeight="40.0" prefWidth="100.0" styleClass="button-preset-1" text="Chiudi" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+   <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#chiudiFragment" prefHeight="40.0" prefWidth="100.0" styleClass="button-preset-1" text="Chiudi" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
       <graphic>
          <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" iconSize="20" />
       </graphic>

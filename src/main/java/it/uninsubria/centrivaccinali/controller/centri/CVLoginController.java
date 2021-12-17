@@ -27,10 +27,8 @@ public class CVLoginController extends Controller {
     @FXML private TextField l_username;
     @FXML private PasswordField l_password;
 
-    private ClientCV client = CentriVaccinali.client;;
+    private final ClientCV client = CentriVaccinali.client;
     private final CssHelper cssHelper = CssHelper.getInstance();
-
-
 
     @Override
     public void notifyController(Result result) {
