@@ -1,11 +1,9 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -40,14 +38,14 @@ public class ConnectionThread extends Thread{
                     Button b = new Button("SI");
                     b.setOnAction( eh -> this.start());
                     dh.addButton(b);
-                    dh.display((Pane) CentriVaccinali.scene.getRoot());
+                    dh.display();
                 });
             }
     }
 
     private boolean getRegistry(){
         try {
-            reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
+            reg = LocateRegistry.getRegistry("192.168.1.50", Registry.REGISTRY_PORT);
             return true;
         } catch (RemoteException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");

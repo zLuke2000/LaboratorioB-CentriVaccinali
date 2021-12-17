@@ -16,8 +16,6 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     private final String passwordOperatore = "123";
     private static Database db;
     private Thread myThread;
-    private static Registry reg;
-    private static ServerCV obj;
 
     protected ServerCV() throws RemoteException {
     }
@@ -25,8 +23,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
     public static void main(String[] args) {
         db = new Database();
         try {
-            obj = new ServerCV();
-            reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+            ServerCV obj = new ServerCV();
+            System.setProperty("java.rmi.server.hostname", "192.168.1.50");
+            Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
             reg.rebind("server", obj);
             System.out.println("Server pronto");
         } catch (RemoteException e) {
@@ -200,5 +199,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         if (myThread != null) {
             myThread.interrupt();
         }
+    }
+
+    @Override
+    public void disconnettiDB() throws RemoteException {
+        db.disconnettiDB();
     }
 }
