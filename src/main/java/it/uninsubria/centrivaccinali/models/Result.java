@@ -101,7 +101,7 @@ public class Result implements Serializable {
         //Registrazione eventi avversi
         EVENTO_GIA_INSERITO,
         //Registrazione utente
-        CF_NON_VALIDO, IDVAC_NON_VALIDO, CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
+        CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
         //Registrazione vaccinato
         CF_GIA_IN_USO, IDVAC_GIA_IN_USO,
         // Generico
