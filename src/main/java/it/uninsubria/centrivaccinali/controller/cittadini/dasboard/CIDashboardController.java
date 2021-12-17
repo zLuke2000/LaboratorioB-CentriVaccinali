@@ -48,11 +48,7 @@ public class CIDashboardController extends Controller {
     }
 
     @Override
-    public void notifyController(Result result) {
-        if (result.getOpType() == Result.Operation.RICERCA_CENTRO) {
-            ricercaController.setData(result.getResultCentri());
-        }
-    }
+    public void notifyController(Result result) { }
 
     public void visualizzaInfoCentro(CentroVaccinale cv) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
@@ -83,7 +79,7 @@ public class CIDashboardController extends Controller {
     }
 
     @FXML
-    public void visualizzaInfoCittadino() {
+    public void infoCittadino() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCittadino.fxml"));
         try {
             AnchorPane ap = fxmlLoader.load();

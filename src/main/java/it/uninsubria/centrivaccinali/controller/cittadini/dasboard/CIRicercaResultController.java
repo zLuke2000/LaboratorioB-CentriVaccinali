@@ -9,6 +9,7 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,8 +19,6 @@ import java.util.List;
 
 public class CIRicercaResultController extends Controller {
 
-    private ClientCV client = CentriVaccinali.client;
-    private CIDashboardController parent;
     @FXML private AnchorPane ap_result;
     @FXML private Label l_noResult;
     @FXML private VBox vb_risultati;
@@ -31,34 +30,41 @@ public class CIRicercaResultController extends Controller {
     @FXML private Label l_countHub;
     @FXML private Label l_countAziendale;
 
-    //TODO settare la giusta ricerca e il testo della ricerca
-    @FXML void initialize () {
-        this.client = CentriVaccinali.client;
+    private ClientCV client = CentriVaccinali.client;
+    private CIDashboardController parent;
+
+    @FXML
+    private void initialize () {
         this.ci_cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
         this.ci_cb_sceltaRicerca.getSelectionModel().selectFirst();
         this.ci_cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.ci_cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
 
-
     @Override
-    public void notifyController(Result result) { }
+    public void notifyController(Result result) {
+        if (result != null && result.getResult() && result.getOpType() == Result.Operation.RICERCA_CENTRO) {
+            setData(result.getResultCentri());
+        }
+        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+    }
 
-    public void setParent(Controller c) {
-        parent = (CIDashboardController) c;
+    public void setParent(CIDashboardController parent) {
+        this.parent = parent;
     }
 
     @FXML
-    public void cercaCentroVaccinale() {
+    private void cercaCentroVaccinale() {
+        CentriVaccinali.scene.setCursor(Cursor.WAIT);
         if (ci_cb_sceltaRicerca.getValue().equals("Per nome") && !ci_tf_ricercaNomeCV.getText().isBlank()) {
-            client.ricercaPerNome(parent, ci_tf_ricercaNomeCV.getText());
+            client.ricercaPerNome(this, ci_tf_ricercaNomeCV.getText());
         }
         else if (ci_cb_sceltaRicerca.getValue().equals("Per comune e tipologia") && !ci_tf_ricercaComune.getText().isBlank()) {
-            client.ricercaPerComuneTipologia(parent, ci_tf_ricercaComune.getText(), ci_cb_sceltaTipologia.getValue());
+            client.ricercaPerComuneTipologia(this, ci_tf_ricercaComune.getText(), ci_cb_sceltaTipologia.getValue());
         }
     }
 
-    public void setData(List<CentroVaccinale> list) {
+    private void setData(List<CentroVaccinale> list) {
         Platform.runLater(() -> {
             vb_risultati.getChildren().clear();
             if (list.isEmpty()) {
@@ -73,8 +79,8 @@ public class CIRicercaResultController extends Controller {
                 int countAziendale = 0;
                 l_noResult.setVisible(false);
                 for (CentroVaccinale cv : list) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ItemListRicerca.fxml"));
                     try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/ItemListRicerca.fxml"));
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
                         itemController.setParent(parent);
@@ -121,6 +127,4 @@ public class CIRicercaResultController extends Controller {
             ci_tf_ricercaComune.setVisible(true);
         }
     }
-
-//    public Pane getPane() { return ap_result;}
 }
