@@ -93,7 +93,7 @@ public class AggiungiEventoAvverso extends Controller {
         }
         int severita = (int) s_severita.getValue();
         String note = ta_ea_note.getText().trim();
-        client.registraEventoAvverso(this, new EventoAvverso(client.getUtenteLoggato().getId_vaccino(), evento, severita, note));
+        client.registraEventoAvverso(this, new EventoAvverso(client.getUtenteLoggato().getId_vaccinazione(), evento, severita, note));
     }
 
     @Override
