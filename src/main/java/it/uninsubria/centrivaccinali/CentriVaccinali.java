@@ -1,7 +1,6 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
-import it.uninsubria.centrivaccinali.controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
+/**
+ *
+ */
 public class CentriVaccinali extends Application {
 
     private final static Double w_avvio = 450.0;
@@ -36,9 +39,6 @@ public class CentriVaccinali extends Application {
     private static Double height;
 
     public static ClientCV client;
-    private static FXMLLoader fxmlLoader;
-    //FIXME non usato
-    private static Controller controller;
 
     private double xOffset;
     private double yOffset;
@@ -59,7 +59,6 @@ public class CentriVaccinali extends Application {
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Progetto LaboratorioB");
         stage.setResizable(false);
-        //stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
 }
@@ -118,7 +117,6 @@ public class CentriVaccinali extends Application {
                 System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                 break;
         }
-        controller = fxmlLoader.getController();
         System.out.println("PROVA STAMPA CLIENTE " + client);
         stage.setWidth(width);
         stage.setHeight(height);
@@ -130,7 +128,7 @@ public class CentriVaccinali extends Application {
      * @return
      */
     public static Parent loadFXML(String fxml) {
-        fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
         try {
             return fxmlLoader.load();
         } catch (IOException e) {

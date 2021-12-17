@@ -16,7 +16,6 @@ import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -24,10 +23,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     private static final long serialVersionUID = 1L;
     private static ServerCVInterface server = null;
-    private Cittadino cittadinoConnesso = null;
     private ConnectionThread connThread;
-    private String centroCittadino = "";
     private Controller controller;
+
+    private Cittadino cittadinoConnesso = null;
+    private String centroCittadino = "";
 
     public ClientCV() throws RemoteException {
         //si occupa il thread di ottenere la connessione
@@ -37,6 +37,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     public Cittadino getUtenteLoggato() {
         return cittadinoConnesso;
     }
+
     public String getCentroCittadino() { return centroCittadino; }
 
     public void LogoutUtente() {
