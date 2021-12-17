@@ -43,9 +43,9 @@ public class ConnectionThread extends Thread{
             }
     }
 
-    private boolean getRegistry(){
+    private boolean getRegistry() {
         try {
-            reg = LocateRegistry.getRegistry("192.168.1.50", Registry.REGISTRY_PORT);
+            reg = LocateRegistry.getRegistry("82.48.86.51", Registry.REGISTRY_PORT);
             return true;
         } catch (RemoteException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");

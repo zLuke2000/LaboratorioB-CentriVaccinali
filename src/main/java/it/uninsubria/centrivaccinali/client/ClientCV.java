@@ -204,13 +204,6 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
     public void disconnetti() {
-        if (server != null) {
-            try {
-                server.disconnettiDB();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
         if (connThread.isAlive()){
             connThread.interrupt();
         }

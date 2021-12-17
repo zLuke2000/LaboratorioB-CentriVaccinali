@@ -4,12 +4,16 @@ import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
+public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
     private static final long serialVersionUID = 1L;
     private final String usernameOperatore = "123";
@@ -24,10 +28,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface{
         db = new Database();
         try {
             ServerCV obj = new ServerCV();
-            System.setProperty("java.rmi.server.hostname", "192.168.1.50");
             Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
             reg.rebind("server", obj);
-            System.out.println("Server pronto");
+            System.out.println("Server pronto: " + reg);
         } catch (RemoteException e) {
             System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
             e.printStackTrace();
