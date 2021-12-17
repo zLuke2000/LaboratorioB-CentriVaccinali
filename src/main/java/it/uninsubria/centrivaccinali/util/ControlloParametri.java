@@ -53,10 +53,6 @@ public class ControlloParametri {
         return instance;
     }
 
-    public ArrayList<String> getProvince() {
-        return  listaProvince;
-    }
-
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
@@ -147,7 +143,7 @@ public class ControlloParametri {
     }
 
     public boolean password(TextInputControl tic) {
-        String errTo0ltip = null;
+        String errTo0ltip ="";
         boolean res = true;
         if(tic.getText().trim().length() < 8) {
             //cssHelper.toError(tic, new Tooltip("Password troppo corta"));
@@ -157,7 +153,6 @@ public class ControlloParametri {
             } else {
                 errTo0ltip = err1;
             }
-            //return false;
         }
         rPattern = Pattern.compile(".*[a-z].*$");
         rMatcher = rPattern.matcher(tic.getText().trim());
@@ -255,14 +250,13 @@ public class ControlloParametri {
     }
 
     public String encryptPassword(String pwdPlain) {
-        StringBuilder sB = null;
+        StringBuilder sB = new StringBuilder();
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
             m.update(pwdPlain.getBytes());
             byte[] bytes = m.digest();
-            sB = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++) {
-                sB.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                sB.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
