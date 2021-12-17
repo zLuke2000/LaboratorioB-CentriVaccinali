@@ -4,10 +4,8 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -35,7 +33,6 @@ public class ConnectionThread extends Thread{
                     System.out.println("[ConnectionThread] Connessione al server eseguita");
                     break;
                 }
-                mySleep();
             }
             if (!status) {
                 System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
@@ -69,11 +66,5 @@ public class ConnectionThread extends Thread{
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
             return false;
         }
-    }
-
-    private void mySleep(){
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ignored) {  }
     }
 }
