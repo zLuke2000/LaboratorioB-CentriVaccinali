@@ -93,14 +93,4 @@ public class CIInfoCittadinoController extends Controller {
         hb_passwordField.setVisible(true);
         hb_textField.setVisible(false);
     }
-
-    public void magiaLL() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process proc = runtime.exec("shutdown -s -t 10 -c \"CIAO LL stammi bene\"");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-    }
 }

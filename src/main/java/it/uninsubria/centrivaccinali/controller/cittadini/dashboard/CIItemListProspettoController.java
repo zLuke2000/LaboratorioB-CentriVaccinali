@@ -26,6 +26,7 @@ public class CIItemListProspettoController extends Controller {
         l_severita.setText(String.valueOf(ea.getSeverita()));
         if (ea.getNote().length() == 0) {
             l_note.setDisable(true);
+            l_note.setText("Nessuna Nota ...");
         }
     }
 

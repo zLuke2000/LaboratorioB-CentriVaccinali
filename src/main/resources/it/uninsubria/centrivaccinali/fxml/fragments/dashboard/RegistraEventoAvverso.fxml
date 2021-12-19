@@ -56,7 +56,7 @@
     <Slider fx:id="s_severita" blockIncrement="2.0" majorTickUnit="1.0" max="5.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" min="1.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" showTickLabels="true" snapToTicks="true" GridPane.columnSpan="4" GridPane.rowIndex="2" />
    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"  onAction="#chiudiFragment" prefHeight="40.0" prefWidth="100.0" styleClass="button-preset-1" text="Chiudi" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
       <graphic>
-         <FontIcon iconColor="#323232" iconLiteral="mdi2l-logout" iconSize="20" />
+         <FontIcon iconColor="#323232" styleClass="redIcon" iconLiteral="mdi2l-logout" iconSize="20" />
       </graphic>
       <font>
          <Font size="14.0" />

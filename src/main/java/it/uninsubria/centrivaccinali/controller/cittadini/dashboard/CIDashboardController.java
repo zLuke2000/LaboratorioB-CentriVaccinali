@@ -66,7 +66,7 @@ public class CIDashboardController extends Controller {
             GridPane gp = fxmlLoader.load();
             AggiungiEventoAvverso controller = fxmlLoader.getController();
             controller.setParent(this);
-
+            p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(false);
             p_container.getChildren().add(gp);
         } catch (IOException e) {
             e.printStackTrace();
