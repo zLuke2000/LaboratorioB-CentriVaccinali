@@ -333,7 +333,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         Button b = new Button("SI");
         b.setOnAction( eh -> {
             if (connThread.isAlive()){
-                connThread.interrupt();
+                connThread.stopThread();
             }
             connThread = new ConnectionThread();
             dh.close();

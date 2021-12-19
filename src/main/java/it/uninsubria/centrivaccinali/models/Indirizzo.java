@@ -4,6 +4,8 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import java.io.Serializable;
 
 /**
+ * Rappresenta un indirizzo civico
+ *
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
@@ -17,7 +19,7 @@ public class Indirizzo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Rappresenta il tipo enumerativo <code>Qualificatore</code>
+     * Rappresenta il qualificatore della via tramite la classe <code>Qualificatore</code>
      * @see Qualificatore
      */
     private Qualificatore qualificatore;
@@ -168,6 +170,10 @@ public class Indirizzo implements Serializable {
         this.cap = cap;
     }
 
+    /**
+     * Ritorna la stringa che rappresenta l'indirizzo civico
+     * @return la stringa che rappresenta l'indirizzo civico
+     */
     @Override
     public String toString() {
         return (String.join(" ", qualificatore.toString(), nome, civico) + ", " + String.join(" ", comune, String.valueOf(cap), ("(" + provincia + ")")));

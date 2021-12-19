@@ -14,6 +14,9 @@ import java.io.Serializable;
  */
 public class EventoAvverso implements Serializable {
 
+    /**
+     *
+     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -36,7 +39,9 @@ public class EventoAvverso implements Serializable {
      */
     private String note;
 
-
+    /**
+     *
+     */
     private Vaccino tipoVac;
 
     /**
@@ -67,10 +72,18 @@ public class EventoAvverso implements Serializable {
         this.tipoVac=tipoVac;
     }
 
+    /**
+     *
+     * @return
+     */
     public long getIdVaccino() {
         return idVaccino;
     }
 
+    /**
+     *
+     * @param idVaccino
+     */
     @SuppressWarnings("unused")
     public void setIdVaccino(long idVaccino) {
         this.idVaccino = idVaccino;
@@ -127,12 +140,18 @@ public class EventoAvverso implements Serializable {
         this.note = note;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public Vaccino getTipoVac() {
         return tipoVac;
     }
 
-
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "EventoAvverso{" +

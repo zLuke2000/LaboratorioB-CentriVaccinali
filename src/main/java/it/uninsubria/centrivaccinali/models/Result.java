@@ -3,13 +3,26 @@ package it.uninsubria.centrivaccinali.models;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * Rappresenta l'esito delle operazioni effettuate sul database
+ * @author ...
+ */
 public class Result implements Serializable {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+    /**
+     * Lista contenente tutte le informazioni riguardanti l'esito delle operazioni
+     */
     private final List<Error> extendedResult = new ArrayList<>();
+    /**
+     * Lista contenente gli oggetti da inviare al client
+     */
     private List<Object> list;
+    /**
+     * Mappa da inviare al client che conterr&agrave gli eventi avversi e la loro severit&agrave
+     */
     private Map<String, Double> map;
     private Operation opType;
     private boolean result;

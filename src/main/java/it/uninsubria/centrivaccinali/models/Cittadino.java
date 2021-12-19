@@ -3,12 +3,12 @@ package it.uninsubria.centrivaccinali.models;
 import java.io.Serializable;
 
 /**
+ * Classe per salvare le informazioni del cittadino registrato
+ *
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
  * @author Pintonello Christian 741112
- *
- * Classe per salvare le informazioni del cittadino registrato
  */
 public class Cittadino implements Serializable {
 
@@ -53,7 +53,7 @@ public class Cittadino implements Serializable {
     private long id_vaccinazione;
 
     /**
-     *
+     * Costruttore vuoto dell'oggetto <code>Cittadino</code>
      */
     public Cittadino() {}
 
@@ -189,6 +189,10 @@ public class Cittadino implements Serializable {
         this.id_vaccinazione = id_vaccinazione;
     }
 
+    /**
+     * Ritorna la stringa corrispondete al cittadino
+     * @return la stringa che rappresenta il cittadino
+     */
     @Override
     public String toString() {
         return "Cittadino{" +

@@ -1,8 +1,16 @@
 package it.uninsubria.centrivaccinali.enumerator;
 
+/**
+ * Rappresenta le diverse tipologie di vaccino
+ * @author ...
+ */
 public enum Vaccino {
     PFIZER, ASTRAZENECA, MODERNA, JNJ;
 
+    /**
+     * Ritorna la stringa rappresentante la tipologia di vaccino
+     * @return la stringa che rappresenta la tipologia di vaccino
+     */
     @Override
     public String toString() {
         switch (this) {
@@ -14,6 +22,12 @@ public enum Vaccino {
         }
     }
 
+    /**
+     * Ritorna la tipologia di vaccino corrispondete alla stringa fornita
+     * @param str la stringa da cui si vuole ottnere la corrispondente tipologia di vaccino
+     * @return la tipologia di vaccino corrispondete alla stringa fornita come parametro
+     * @throws IllegalArgumentException se la stringa fornita non corrisponde ad alcuna tipologia di vaccino
+     */
     public static Vaccino getValue(String str) {
         for (Vaccino v : values()) {
             if (v.toString().equalsIgnoreCase(str)) {

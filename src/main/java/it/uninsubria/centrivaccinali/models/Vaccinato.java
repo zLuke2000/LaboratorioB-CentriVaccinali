@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
+ * Rappresenta il cittadino vaccinato
+ *
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
@@ -54,7 +56,7 @@ public class Vaccinato implements Serializable {
     private long idVaccino;
 
     /**
-     *
+     * Costruttore vuoto per la classe <code>Vaccinato</code>
      */
     public Vaccinato() {}
 
@@ -190,6 +192,10 @@ public class Vaccinato implements Serializable {
         this.idVaccino = idVaccino;
     }
 
+    /**
+     * Ritorna la stringa corrispondente al cittadino vaccinato
+     * @return la stringa che rappresenta il cittadino vaccinato
+     */
     @Override
     public String toString() {
         return "Vaccinato{" +

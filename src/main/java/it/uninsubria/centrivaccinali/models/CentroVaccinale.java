@@ -5,6 +5,8 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import java.io.Serializable;
 
 /**
+ * Rappresenta i centri vaccinali in base al loro nome, indirizzo e tipologia
+ *
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
@@ -17,17 +19,17 @@ public class CentroVaccinale implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    /**  Rappresenta il nome del centro */
+    /**
+     * Rappresenta il nome del centro
+     */
     private String nome;
     /**
      * Rappresenta il modello <code>Indirizzo</code>
-     *
      * @see Indirizzo
      */
     private Indirizzo indirizzo;
     /**
-     * Rappresenta il tipo enumerativo <code>TipologiaCentro</code>
-     *
+     * Rappresenta la tipologia di centro vaccinale tramite la classe enumerativa <code>TipologiaCentro</code>
      * @see TipologiaCentro
      */
     private TipologiaCentro tipologia;
