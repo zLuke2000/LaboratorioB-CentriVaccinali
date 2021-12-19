@@ -18,14 +18,41 @@ import java.io.IOException;
 
 public class DialogHelper {
 
+    /**
+     *
+     */
     private final Stage stage;
+    /**
+     *
+     */
     private final FadeTransition ft = new FadeTransition(Duration.millis(500));
+    /**
+     *
+     */
     private final Pane rootPane = (Pane) CentriVaccinali.scene.getRoot();
+    /**
+     *
+     */
     private final GenericDialogController gdc;
+    /**
+     *
+     */
     private Parent parent;
+    /**
+     *
+     */
     private Double xOffset;
+    /**
+     *
+     */
     private Double yOffset;
 
+    /**
+     *
+     * @param titolo
+     * @param descrizione
+     * @param tipo
+     */
     public DialogHelper(String titolo, String descrizione, Type tipo) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
         System.out.println();
@@ -84,10 +111,17 @@ public class DialogHelper {
         stage.showAndWait();
     }
 
+    /**
+     *
+     * @param b
+     */
     public void addButton(Button b) {
         gdc.addButton(b);
     }
 
+    /**
+     *
+     */
     public void close() {
         stage.close();
         ft.stop();
@@ -97,6 +131,9 @@ public class DialogHelper {
         ft.play();
     }
 
+    /**
+     *
+     */
     public enum Type {
         INFO, WARNING, ERROR
     }

@@ -24,9 +24,21 @@ public class Result implements Serializable {
      * Mappa da inviare al client che conterr&agrave gli eventi avversi e la loro severit&agrave
      */
     private Map<String, Double> map;
+    /**
+     * Rappresenta il tipo di operazione da effettuare
+     */
     private Operation opType;
+    /**
+     * Rappresenta l'esito dell'operazione
+     */
     private boolean result;
+    /**
+     * Rappresenta il cittadino che effettuer&agrave il login
+     */
     private Cittadino cittadino;
+    /**
+     * Rappresenta il centro presso cui &egrave stato vaccinato il cittadino loggato
+     */
     private String centroCittadino;
 
     /**

@@ -23,17 +23,45 @@ import javafx.scene.input.KeyEvent;
  *
  */
 public class CVRegistraCentroVaccinale extends Controller {
-
+        /**
+         *
+         */
         @FXML private TextField tf_nome;
+        /**
+         *
+         */
         @FXML private TextField tf_indirizzo;
+        /**
+         *
+         */
         @FXML private TextField tf_civico;
+        /**
+         *
+         */
         @FXML private TextField tf_comune;
+        /**
+         *
+         */
         @FXML private TextField tf_provincia;
+        /**
+         *
+         */
         @FXML private TextField tf_cap;
+        /**
+         *
+         */
         @FXML private ToggleGroup tg_tipologia;
+        /**
+         *
+         */
         @FXML private ComboBox<Qualificatore> cb_qualificatore;
-
+        /**
+         *
+         */
         private final ControlloParametri cp = ControlloParametri.getInstance();
+        /**
+         *
+         */
         private final ClientCV client = CentriVaccinali.client;
 
         /**
@@ -45,7 +73,10 @@ public class CVRegistraCentroVaccinale extends Controller {
                 cb_qualificatore.setValue(Qualificatore.VIA);
         }
 
-
+        /**
+         *
+         * @param result
+         */
         @Override
         public void notifyController(Result result) {
                 CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
@@ -66,6 +97,10 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+        /**
+         *
+         * @param ke
+         */
         @FXML
         private void realtimeCheck(KeyEvent ke) {
                 if(ke.getSource().equals(tf_nome)) {
@@ -85,6 +120,9 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+        /**
+         *
+         */
         @FXML
         private void salvaCentro() {
                 // Definizione e inizializzazione variabili
@@ -104,12 +142,18 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+        /**
+         *
+         */
         @FXML
         private void backTo() {
                 CentriVaccinali.setRoot("CV_home");
                 client.stopOperation();
         }
 
+        /**
+         *
+         */
         @FXML
         private void chiudiApp() {
                 super.closeApp();

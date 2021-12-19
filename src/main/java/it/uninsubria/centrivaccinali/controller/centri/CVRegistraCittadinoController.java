@@ -22,30 +22,83 @@ import java.util.*;
 
 public class CVRegistraCittadinoController extends Controller {
     // TextFiled
+    /**
+     *
+     */
     @FXML private TextField tf_selezionaProvincia;
+    /**
+     *
+     */
     @FXML private TextField tf_nomeCittadino;
+    /**
+     *
+     */
     @FXML private TextField tf_cognomeCittadino;
+    /**
+     *
+     */
     @FXML private TextField tf_cfCittadino;
+    /**
+     *
+     */
     @FXML private TextField tf_idVaccino;
     // ComboBox
+    /**
+     *
+     */
     @FXML private ComboBox<String> cb_selezionaComune;
+    /**
+     *
+     */
     @FXML private ComboBox<String> cb_selezionaCentro;
     // Label
+    /**
+     *
+     */
     @FXML private Label l_infoCentro;
     // RadioButton
+    /**
+     *
+     */
     @FXML private RadioButton rb_pfizer;
     // ToggleGroup (RadioButton)
+    /**
+     *
+     */
     @FXML private ToggleGroup tg_vaccino;
     // DatePicker
+    /**
+     *
+     */
     @FXML private DatePicker dp_dataVaccino;
-
+    /**
+     *
+     */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+    /**
+     *
+     */
     private final CssHelper cssHelper = CssHelper.getInstance();
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private List<CentroVaccinale> listaCentri = new ArrayList<>();
+    /**
+     *
+     */
     private CentroVaccinale selectedCV;
+    /**
+     *
+     */
     private long idVac = 0L;
 
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         generaIdVaccino();

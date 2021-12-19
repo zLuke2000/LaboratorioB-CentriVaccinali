@@ -94,7 +94,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per il cognome del cittadino
+     * Metodo getter per il cognome del cittadino
      * @return il <code>cognome</code> del cittadino
      */
     public String getCognome() {
@@ -110,7 +110,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per il codice fiscale del cittadino
+     * Metodo getter per il codice fiscale del cittadino
      * @return  il <code>codice fiscale</code> del cittadino
      */
     public String getCodice_fiscale() {
@@ -118,7 +118,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo setter per il codice fiscale del cittadino
+     * Metodo setter per il codice fiscale del cittadino
      * @param codice_fiscale il nuovo codice fiscale del cittadino
      */
     public void setCodice_fiscale(String codice_fiscale) {
@@ -126,7 +126,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per la mail del cittadino
+     * Metodo getter per la mail del cittadino
      * @return la <code>mail</code> del cittadino
      */
     public String getEmail() {
@@ -134,7 +134,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo setter per la mail del cittadino
+     * Metodo setter per la mail del cittadino
      * @param email la nuova mail del cittadino
      */
     public void setEmail(String email) {
@@ -142,7 +142,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per l'userid del cittadino
+     * Metodo getter per l'userid del cittadino
      * @return l'<code>userid</code> del cittadino
      */
     public String getUserid() {
@@ -150,7 +150,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo setter per l'userid del cittadino
+     * Metodo setter per l'userid del cittadino
      * @param userid il nuovo userid del cittadino
      */
     public void setUserid(String userid) {
@@ -158,7 +158,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per la password del cittadino
+     * Metodo getter per la password del cittadino
      * @return la <code>password</code> del cittadino
      */
     public String getPassword() {
@@ -166,7 +166,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo setter per la password del cittadino
+     * Metodo setter per la password del cittadino
      * @param password la nuova password del cittadino
      */
     public void setPassword(String password) {
@@ -174,7 +174,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo getter per l'id del vaccino associato al cittadino
+     * Metodo getter per l'id del vaccino associato al cittadino
      * @return l'id del vaccino
      */
     public long getId_vaccinazione() {
@@ -182,7 +182,7 @@ public class Cittadino implements Serializable {
     }
 
     /**
-     *  Metodo setter per l'id del vaccino associato al cittadino
+     * Metodo setter per l'id del vaccino associato al cittadino
      * @param id_vaccinazione il nuovo id del vaccino
      */
     public void setId_vaccinazione(long id_vaccinazione) {

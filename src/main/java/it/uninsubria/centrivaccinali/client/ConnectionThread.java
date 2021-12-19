@@ -14,13 +14,24 @@ import java.rmi.registry.Registry;
  */
 public class ConnectionThread extends Thread{
 
+    /**
+     *
+     */
     private Registry reg;
+    /**
+     *
+     */
     private ServerCVInterface server;
-
+    /**
+     *
+     */
     public ConnectionThread(){
         start();
     }
 
+    /**
+     *
+     */
     public void run(){
         boolean status = false;
         for (int i = 0; i < 12; i++) {
@@ -53,6 +64,10 @@ public class ConnectionThread extends Thread{
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean getRegistry() {
         try {
             reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
@@ -63,6 +78,10 @@ public class ConnectionThread extends Thread{
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean getServerStub(){
         try {
             server = (ServerCVInterface) reg.lookup("server");

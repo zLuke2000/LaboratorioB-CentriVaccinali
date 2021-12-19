@@ -4,11 +4,20 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 
 public class CssHelper {
-
+    /**
+     *
+     */
     private static CssHelper instance=null;
 
+    /**
+     *
+     */
     private CssHelper(){ }
 
+    /**
+     *
+     * @return
+     */
     public static CssHelper getInstance(){
         if(instance == null){
             instance = new CssHelper();
@@ -16,6 +25,11 @@ public class CssHelper {
         return instance;
     }
 
+    /**
+     *
+     * @param c
+     * @param tooltip
+     */
     public void toError(Control c, Tooltip tooltip) {
         toDefault(c);
         c.getStyleClass().add("field-error");
@@ -47,6 +61,11 @@ public class CssHelper {
         c.setTooltip(null);
     }
 
+    /**
+     *
+     * @param bSelected
+     * @param bNotSelected
+     */
     public void toggle(Button bSelected, Button bNotSelected) {
         // Rimuovo tutte le classi
         bSelected.getStyleClass().remove("bottone-info-centri-selected");

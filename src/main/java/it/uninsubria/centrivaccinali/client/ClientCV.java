@@ -280,6 +280,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param nomeCentro
+     */
     public void leggiEA(CIGraficiController controller, String nomeCentro) {
         this.controller = controller;
         try {
@@ -290,6 +295,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param nomeCentro
+     * @param limit
+     * @param offset
+     */
     public void leggiSegnalazioni(CISegnalazioniController controller, String nomeCentro, int limit, int offset) {
         this.controller = controller;
         try {
@@ -300,6 +312,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     */
     public void stopOperation() {
         if (server != null) {
             try {
@@ -309,6 +324,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             }
         }
     }
+
+    /**
+     *
+     */
     public void disconnetti() {
         if (connThread.isAlive()){
             connThread.interrupt();
@@ -341,7 +360,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         dh.addButton(b);
         dh.display();
     }
-    @SuppressWarnings("unused")
+
+    /**
+     *
+     * @param s
+     */
     private void printout(String s) {
         System.out.println("[CLIENT_CV] " + s);
     }

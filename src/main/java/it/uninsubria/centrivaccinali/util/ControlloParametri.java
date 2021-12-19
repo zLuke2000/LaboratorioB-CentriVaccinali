@@ -19,10 +19,25 @@ import java.util.regex.Pattern;
 
 public class ControlloParametri {
 
+    /**
+     *
+     */
     private static final ArrayList<String> listaProvince = new ArrayList<>();
+    /**
+     *
+     */
     private final CssHelper cssHelper = CssHelper.getInstance();
+    /**
+     *
+     */
     private static ControlloParametri instance = null;
+    /**
+     *
+     */
     private Pattern rPattern;
+    /**
+     *
+     */
     private Matcher rMatcher;
     /**
      *
@@ -52,6 +67,13 @@ public class ControlloParametri {
         return instance;
     }
 
+    /**
+     *
+     * @param tic
+     * @param minChar
+     * @param maxChar
+     * @return
+     */
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
@@ -64,6 +86,13 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param tic
+     * @param minChar
+     * @param maxChar
+     * @return
+     */
     public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
@@ -76,6 +105,13 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param tic
+     * @param minChar
+     * @param maxChar
+     * @return
+     */
     public boolean numeri(TextInputControl tic, int minChar, int maxChar) {
         if(minChar == maxChar) {
             rPattern = Pattern.compile("[\\d]{" + minChar + "}");
@@ -96,6 +132,11 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param tic
+     * @return
+     */
     public boolean numeroCivico(TextInputControl tic) {
         // Controllo numero civico (minimo UN numero ed eventualmente UNA lettera alla fine e massimo CINQUE caratteri)
         if(tic.getText().trim().length() <= 0) {
@@ -122,6 +163,11 @@ public class ControlloParametri {
         return false;
     }
 
+    /**
+     *
+     * @param tic
+     * @return
+     */
     public boolean provincia(TextInputControl tic) {
         rPattern = Pattern.compile("[A-Za-z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
@@ -141,6 +187,11 @@ public class ControlloParametri {
         return false;
     }
 
+    /**
+     *
+     * @param tic
+     * @return
+     */
     public boolean password(TextInputControl tic) {
         String err ="";
         boolean res = true;
@@ -181,6 +232,11 @@ public class ControlloParametri {
         return res;
     }
 
+    /**
+     *
+     * @param tic
+     * @return
+     */
     public boolean codiceFiscale(TextInputControl tic) {
         tic.setText(tic.getText().toUpperCase());
         tic.positionCaret(tic.getText().length());
@@ -200,6 +256,11 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param dp
+     * @return
+     */
     public boolean data(DatePicker dp) {
         if(dp.getEditor().getText().isBlank()) {
             cssHelper.toError(dp, new Tooltip("Selezionare la data"));
@@ -210,6 +271,11 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param tic
+     * @return
+     */
     public boolean email(TextInputControl tic) {
         if(tic.getText().trim().length() <= 0) {
             cssHelper.toError(tic, new Tooltip("Inserire email"));
@@ -227,6 +293,12 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param tic1
+     * @param tic2
+     * @return
+     */
     public boolean checkSamePassword(TextInputControl tic1, TextInputControl tic2) {
         if(tic1.getText().trim().equals(tic2.getText().trim())) {
             cssHelper.toValid(tic2);
@@ -237,6 +309,11 @@ public class ControlloParametri {
         }
     }
 
+    /**
+     *
+     * @param pwdPlain
+     * @return
+     */
     public String encryptPassword(String pwdPlain) {
         StringBuilder sB = new StringBuilder();
         try {

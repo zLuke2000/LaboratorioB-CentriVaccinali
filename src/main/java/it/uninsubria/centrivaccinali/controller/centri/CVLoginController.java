@@ -22,14 +22,31 @@ import javafx.scene.control.Tooltip;
  * - Registrare un cittadino che si è vaccinato nel proprio sito
  */
 public class CVLoginController extends Controller {
-
+    /**
+     *
+     */
     @FXML public Button b_accedi;
+    /**
+     *
+     */
     @FXML private TextField l_username;
+    /**
+     *
+     */
     @FXML private PasswordField l_password;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final CssHelper cssHelper = CssHelper.getInstance();
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
@@ -42,6 +59,9 @@ public class CVLoginController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void autenticazioneOperatore() {
         String username = l_username.getText().trim();
@@ -67,17 +87,26 @@ public class CVLoginController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void backTo() {
         client.stopOperation();
         CentriVaccinali.setRoot("Avvio");
     }
 
+    /**
+     *
+     */
     @FXML
     private void ShowInfo() {
         new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display();
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
