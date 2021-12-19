@@ -9,8 +9,10 @@ public abstract class Controller {
     public abstract void notifyController(Result result);
 
     public void closeApp() {
-        CentriVaccinali.client.stopOperation();
-        CentriVaccinali.client.disconnetti();
-        System.exit(0);
+        new Thread(() -> {
+            CentriVaccinali.client.stopOperation();
+            CentriVaccinali.client.disconnetti();
+            System.exit(0);
+        }).start();
     }
 }

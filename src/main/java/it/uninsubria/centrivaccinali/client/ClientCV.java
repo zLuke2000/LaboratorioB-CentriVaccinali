@@ -227,7 +227,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         dh.addButton(b);
         dh.display();
     }
-
+    @SuppressWarnings("unused")
     private void printout(String s) {
         System.out.println("[CLIENT_CV] " + s);
     }
