@@ -1,5 +1,5 @@
 /**
- * Scrivere cosa contiene questo package
+ * Fornisce le funzionalita' lato server dell'applicazione
  *
  * @since 1.0.0
  * @author Centore Luca 740951

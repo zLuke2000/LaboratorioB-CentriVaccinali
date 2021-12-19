@@ -1,5 +1,6 @@
 /**
- * Scrivere cosa contiene questo package
+ * Contiene le classi enumerative principali per l'applicazione
+ * @s
  *
  * @since 1.0.0
  * @author Centore Luca 740951
