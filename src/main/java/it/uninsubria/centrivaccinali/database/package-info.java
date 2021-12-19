@@ -1,5 +1,6 @@
 /**
- * Scrivere cosa contiene questo package
+ * Fornisce le classi per l'interfacciamento con database 
+ * 
  *
  * @since 1.0.0
  * @author Centore Luca 740951
