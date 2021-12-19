@@ -15,15 +15,38 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ */
 public class CISegnalazioniController extends Controller {
-
+    /**
+     *
+     */
     @FXML private VBox vb_lista_segnalazioni;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final Button btnCarica = new Button("Carica altro");
+    /**
+     *
+     */
     private CentroVaccinale centro;
+    /**
+     *
+     */
     private int limit;
+    /**
+     *
+     */
     private int offset;
+
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         limit = 50;
@@ -34,6 +57,11 @@ public class CISegnalazioniController extends Controller {
             client.leggiSegnalazioni(this, centro.getNome(), limit, offset);
         });
     }
+
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {
@@ -64,6 +92,10 @@ public class CISegnalazioniController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param cv
+     */
     public void setData(CentroVaccinale cv) {
         client.leggiSegnalazioni(this, cv.getNome(), limit, offset);
         centro = cv;

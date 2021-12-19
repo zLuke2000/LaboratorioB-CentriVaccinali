@@ -16,26 +16,74 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class CIInfoCentroController extends Controller {
-
+    /**
+     *
+     */
     @FXML private AnchorPane ap_root;
+    /**
+     *
+     */
     @FXML private FontIcon fi_iconaCentro;
+    /**
+     *
+     */
     @FXML private Label l_tipologia;
+    /**
+     *
+     */
     @FXML private Label l_nome;
+    /**
+     *
+     */
     @FXML private Label l_indirizzo;
+    /**
+     *
+     */
     @FXML private AnchorPane ap_container;
+    /**
+     *
+     */
     @FXML private Button b_segnalazioni;
+    /**
+     *
+     */
     @FXML private Button b_grafico;
-
+    /**
+     *
+      */
     private final CssHelper css = CssHelper.getInstance();
+    /**
+     *
+     */
     private AnchorPane ap_segnalazioni;
+    /**
+     *
+     */
     private AnchorPane ap_grafico;
+    /**
+     *
+     */
     private CentroVaccinale cv;
+    /**
+     *
+     */
     private CIDashboardController parent;
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {  }
 
+    /**
+     *
+     * @param cv
+     */
     public void setData(CentroVaccinale cv) {
         this.cv = cv;
         switch(cv.getTipologia()) {
@@ -59,6 +107,9 @@ public class CIInfoCentroController extends Controller {
         mostraGrafico();
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraSegnalazioni() {
         css.toggle(b_segnalazioni, b_grafico);
@@ -86,6 +137,9 @@ public class CIInfoCentroController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraGrafico() {
         css.toggle(b_grafico, b_segnalazioni);
@@ -112,11 +166,18 @@ public class CIInfoCentroController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }

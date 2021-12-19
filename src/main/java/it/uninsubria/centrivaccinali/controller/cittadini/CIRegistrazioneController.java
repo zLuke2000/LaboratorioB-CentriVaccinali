@@ -16,24 +16,63 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 
+/**
+ *
+ */
 public class CIRegistrazioneController extends Controller {
     
     // TextField per l'acquisizione dei dati
+    /**
+     *
+     */
     @FXML private TextField tf_nome;
+    /**
+     *
+     */
     @FXML private TextField tf_cognome;
+    /**
+     *
+     */
     @FXML private TextField tf_codiceFiscale;
+    /**
+     *
+     */
     @FXML private TextField tf_username;
+    /**
+     *
+     */
     @FXML private TextField tf_email;
+    /**
+     *
+     */
     @FXML private TextField tf_idVaccinazione;
 
     //PasswordField per l'acquisizione della password
+    /**
+     *
+     */
     @FXML private PasswordField pf_password1;
+    /**
+     *
+     */
     @FXML private PasswordField pf_password2;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+    /**
+     *
+     */
     private final CssHelper css = CssHelper.getInstance();
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
@@ -60,6 +99,9 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void registraCittadino() {
         if (cp.testoSempliceSenzaNumeri(tf_nome, 2, 50) &
@@ -84,23 +126,36 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraInfoUsername() {
         new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
                 "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO).display();
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraInfoPassword() {
         new DialogHelper("INFO PASSWORD", "La password deve avere almeno: " +
                 "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO).display();
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraInfoVaccinazione() {
         new DialogHelper("INFO ID", "L'ID della vaccinazione è stato fornito al momento della somministrazione", DialogHelper.Type.INFO).display();
     }
 
+    /**
+     *
+     * @param keyEvent
+     */
     @FXML
     private void realtimeCheck(KeyEvent keyEvent) {
         Object key = keyEvent.getSource();
@@ -133,11 +188,17 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void backTo() {
         CentriVaccinali.setRoot("CI_home");
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();

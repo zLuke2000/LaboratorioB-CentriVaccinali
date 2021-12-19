@@ -13,14 +13,30 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import java.io.IOException;
 
+/**
+ *
+ */
 public class CIDashboardController extends Controller {
-
+    /**
+     *
+     */
     @FXML private MenuButton mb_utente;
+    /**
+     *
+     */
     @FXML private Pane p_container;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private Cittadino cittadinoConnesso = null;
 
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         cittadinoConnesso = client.getUtenteLoggato();
@@ -42,9 +58,17 @@ public class CIDashboardController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {  }
 
+    /**
+     *
+     * @param cv
+     */
     public void visualizzaInfoCentro(CentroVaccinale cv) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
         try {
@@ -60,6 +84,9 @@ public class CIDashboardController extends Controller {
 
     }
 
+    /**
+     *
+     */
     public void aggiungiEvento() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RegistraEventoAvverso.fxml"));
         try {
@@ -73,6 +100,9 @@ public class CIDashboardController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void infoCittadino() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCittadino.fxml"));
@@ -88,11 +118,18 @@ public class CIDashboardController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param p
+     */
     public void rimuoviFragment(Pane p) {
         p_container.getChildren().remove(p);
         p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(true);
     }
 
+    /**
+     *
+     */
     @FXML
     private void logout() {
         mb_utente.hide();
@@ -100,6 +137,9 @@ public class CIDashboardController extends Controller {
         client.LogoutUtente();
     }
 
+    /**
+     *
+     */
     @FXML
     private void backTo() {
         if (cittadinoConnesso != null) {
@@ -110,10 +150,12 @@ public class CIDashboardController extends Controller {
         client.stopOperation();
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
     }
 
 }
-

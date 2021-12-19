@@ -99,6 +99,10 @@ public class CentroVaccinale implements Serializable {
         this.tipologia = tipologia;
     }
 
+    /**
+     * Ritorna la stringa corrispondente al centro vaccinale
+     * @return la stringa che rappresenta il centro vaccinale
+     */
     @Override
     public String toString() {
         return nome + "\n" + indirizzo + " - " + tipologia;

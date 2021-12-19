@@ -12,36 +12,83 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
-/**
- *
- */
 public class CentriVaccinali extends Application {
 
+    /**
+     *
+     */
     private final static Double w_avvio = 450.0;
+    /**
+     *
+     */
     private final static Double h_avvio = 280.0;
-
+    /**
+     *
+     */
     private final static Double w_cv_login = 390.0;
+    /**
+     *
+     */
     private final static Double h_cv_login = 420.0;
-
+    /**
+     *
+     */
     private final static Double w_ci_reg = 400.0;
+    /**
+     *
+     */
     private final static Double h_ci_reg = 520.0;
-
+    /**
+     *
+     */
     private final static Double w_dashboard = 800.0;
+    /**
+     *
+     */
     private final static Double h_dashboard = 664.0;
-
+    /**
+     *
+     */
     private final static Double w_standard = 390.0;
+    /**
+     *
+     */
     private final static Double h_standard = 565.0;
 
+    /**
+     *
+     */
     public static Scene scene;
-    private static Stage stage;
+    /**
+     *
+     */
+    public static Stage stage;
+    /**
+     *
+     */
     private static Double width;
+    /**
+     *
+     */
     private static Double height;
 
+    /**
+     *
+     */
     public static ClientCV client;
-
+    /**
+     *
+     */
     private double xOffset;
+    /**
+     *
+     */
     private double yOffset;
 
+    /**
+     *
+     * @param s
+     */
     @Override
     public void start(Stage s) {
         CentriVaccinali.stage = s;
@@ -60,8 +107,12 @@ public class CentriVaccinali extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-}
+    }
 
+    /**
+     *
+     * @param fxml
+     */
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
             switch (fxml) {

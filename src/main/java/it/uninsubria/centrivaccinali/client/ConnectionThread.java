@@ -22,30 +22,40 @@ public class ConnectionThread extends Thread{
     }
 
     public void run(){
-        boolean status=false;
-            for (int i = 0; i < 12; i++) {
-                status = getRegistry() && getServerStub();
-                if (status) {
-                    ClientCV.setServer(server);
-                    System.out.println("[ConnectionThread] Connessione al server eseguita");
-                    break;
-                }
+        boolean status = false;
+        for (int i = 0; i < 12; i++) {
+            status = getRegistry() && getServerStub();
+            if (status) {
+                //setta nel client il registry e il server
+                ClientCV.setServer(server);
+                System.out.println("[ConnectionThread] Connessione al server eseguita");
+                break;
+            } else {
+                System.err.println("[ConnectionThread] Tentativo di connessione n." + (i+1));
             }
-            if (!status) {
-                System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
-                Platform.runLater(() -> {
-                    DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
-                    Button b = new Button("SI");
-                    b.setOnAction( eh -> this.start());
-                    dh.addButton(b);
-                    dh.display();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                break;
+            }
+        }
+        if (!status) {
+            System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
+            Platform.runLater(() -> {
+                DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE dentro al thread", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
+                Button b = new Button("SI");
+                b.setOnAction( eh -> {
+                    this.start();
                 });
-            }
+                dh.addButton(b);
+                dh.display();
+            });
+        }
     }
 
     private boolean getRegistry() {
         try {
-            reg = LocateRegistry.getRegistry("127.0.0.1" , Registry.REGISTRY_PORT);
+            reg = LocateRegistry.getRegistry(Registry.REGISTRY_PORT);
             return true;
         } catch (RemoteException e) {
             System.err.println("[ConnectionThread] non e' stato possibile trovare il registro RMI");
@@ -61,5 +71,12 @@ public class ConnectionThread extends Thread{
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
             return false;
         }
+    }
+
+    /**
+     *
+     */
+    public void stopThread() {
+        stop();
     }
 }

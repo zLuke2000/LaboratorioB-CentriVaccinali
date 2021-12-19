@@ -13,17 +13,34 @@ import java.sql.*;
  *  TODO controllo sicurezza delle query
  */
 public class Database {
-
+    /**
+     *
+     */
     private static Connection conn;
+    /**
+     *
+     */
     private static PreparedStatement pstmt;
+    /**
+     *
+     */
     private ResultSet rs;
+    /**
+     *
+     */
     private Result risultato;
 
+    /**
+     *
+     */
     public Database() {
         conn = DBHelper.getConnection();
         System.out.println("Connessione stabilita: " + conn);
     }
 
+    /**
+     *
+     */
     public void disconnettiDB() {
         DBHelper.closeConnection();
     }
@@ -151,6 +168,12 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public Result loginUtente(String username, String password) {
         risultato = new Result(false, Result.Operation.LOGIN_CITTADINO);
         //Verifico corrispondenza userid e password
@@ -205,6 +228,11 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public Result registraCittadino(Cittadino c) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_CITTADINO);
         try {
@@ -283,6 +311,11 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param nuovoVaccinato
+     * @return
+     */
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_VACCINATO);
         try {
@@ -374,6 +407,11 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param nomeCentro
+     * @return
+     */
     public Result ricercaCentroPerNome(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
         List<Object> listaCentri = new ArrayList<>();
@@ -385,7 +423,6 @@ public class Database {
             pstmt.setString(1, "%" + nomeCentro + "%");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                System.out.println("trovato: " + rs.getString("nome_centro"));
                 listaCentri.add(new CentroVaccinale(rs.getString("nome_centro"),
                         new Indirizzo(Qualificatore.valueOf(rs.getString("qualificatore")),
                                 rs.getString("nome"),
@@ -403,6 +440,12 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param comune
+     * @param tipologia
+     * @return
+     */
     public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
         List<Object> listaCentri = new ArrayList<>();
@@ -433,6 +476,11 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param ea
+     * @return
+     */
     public Result registraEA(EventoAvverso ea) {
         Result risultato = new Result(false, Result.Operation.REGISTRA_EVENTO_AVVERSO);
         try {
@@ -451,6 +499,11 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param nomeCentro
+     * @return
+     */
     public Result leggiMediaEventiAvversi(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
         try {
@@ -495,6 +548,13 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param nomeCentro
+     * @param limit
+     * @param offset
+     * @return
+     */
     public Result leggiSegnalazioni(String nomeCentro, int limit, int offset) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
         try {
@@ -522,6 +582,13 @@ public class Database {
         return risultato;
     }
 
+    /**
+     *
+     * @param userid
+     * @param vecchiaPassword
+     * @param nuovaPassword
+     * @return
+     */
     public Result aggiornaPSW(String userid, String vecchiaPassword, String nuovaPassword) {
         Result risultato = new Result(false, Result.Operation.AGGIORNA_PASSWORD_CITTADINO);
         try {

@@ -24,9 +24,15 @@ public class ControlloParametri {
     private static ControlloParametri instance = null;
     private Pattern rPattern;
     private Matcher rMatcher;
-
+    /**
+     *
+     */
     private ControlloParametri() {}
 
+    /**
+     *
+     * @return
+     */
     public static ControlloParametri getInstance(){
         if(instance == null){
             instance = new ControlloParametri();

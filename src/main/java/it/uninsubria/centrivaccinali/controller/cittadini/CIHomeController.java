@@ -21,26 +21,43 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class CIHomeController extends Controller {
 
-    /**TextField per l'username del cittadino*/
+    /**
+     * TextField per l'username del cittadino
+     */
     @FXML private TextField tf_loginUsername;
-
-    /**PasswordField per la password di autenticazione del cittadino*/
+    /**
+     * PasswordField per la password di autenticazione del cittadino
+     */
     @FXML private PasswordField tf_loginPassword;
-
-    /**TextField per mostrare la password del cittadino*/
+    /**
+     * TextField per mostrare la password del cittadino
+     */
     @FXML private TextField tf_loginPasswordVisible;
-
-    /**FontIcon per nascondere la password*/
+    /**
+     * FontIcon per nascondere la password
+     */
     @FXML private FontIcon fi_nascondiPassword;
-
-    /**FontIcon per mostrare la password*/
+    /**
+     * FontIcon per mostrare la password
+     */
     @FXML private FontIcon fi_mostraPassword;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+    /**
+     *
+     */
     private final CssHelper css = CssHelper.getInstance();
 
-
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
@@ -115,7 +132,6 @@ public class CIHomeController extends Controller {
         fi_nascondiPassword.setVisible(false);
     }
 
-
     /**
      * Metodo per mostrare la password
      */
@@ -130,17 +146,27 @@ public class CIHomeController extends Controller {
         fi_nascondiPassword.setVisible(true);
     }
 
+    /**
+     *
+     */
     @FXML
     private void backTo() {
         CentriVaccinali.setRoot("Avvio");
         client.stopOperation();
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
     }
 
+    /**
+     *
+     * @param keyEvent
+     */
     @FXML
     private void checkEnter(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){

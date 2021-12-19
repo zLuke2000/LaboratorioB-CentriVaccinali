@@ -8,5 +8,10 @@ import java.rmi.RemoteException;
  *
  */
 public interface ClientCVInterface extends Remote {
+    /**
+     *
+     * @param ritorno
+     * @throws RemoteException
+     */
     void notifyStatus(Result ritorno) throws RemoteException;
 }

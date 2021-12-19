@@ -9,25 +9,55 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
+/**
+ *
+ */
 public class GenericDialogController {
-
+    /**
+     *
+     */
     @FXML public AnchorPane ap_root;
+    /**
+     *
+     */
     @FXML public Label l_d_title;
+    /**
+     *
+     */
     @FXML public Label l_d_description;
+    /**
+     *
+     */
     @FXML public Button b_d_close;
+    /**
+     *
+     */
     @FXML public FlowPane fp_buttons;
-
+    /**
+     *
+     */
     private DialogHelper dh;
 
+    /**
+     *
+     */
     @FXML public void indietro() {
         dh.close();
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
     }
 
+    /**
+     *
+     * @param dh
+     */
     public void setDH(DialogHelper dh) {
         this.dh = dh;
     }
 
+    /**
+     *
+     * @param b
+     */
     public void addButton(Button b){
         fp_buttons.getChildren().add(b);
         b_d_close.setText("NO");

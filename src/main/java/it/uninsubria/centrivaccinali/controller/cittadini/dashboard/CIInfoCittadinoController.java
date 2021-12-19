@@ -15,27 +15,82 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
+/**
+ *
+ */
 public class CIInfoCittadinoController extends Controller {
-
+    /**
+     *
+     */
     @FXML private AnchorPane ap_root;
+    /**
+     *
+     */
     @FXML private Label l_mail;
+    /**
+     *
+     */
     @FXML private Label l_username;
+    /**
+     *
+     */
     @FXML private Label l_nome;
+    /**
+     *
+     */
     @FXML private Label l_cognome;
+    /**
+     *
+     */
     @FXML private Label l_codiceFiscale;
+    /**
+     *
+     */
     @FXML private Label l_idVaccinazione;
+    /**
+     *
+     */
     @FXML private PasswordField pf_vecchiaPassword;
+    /**
+     *
+     */
     @FXML private TextField tf_vecchiaPassword;
+    /**
+     *
+     */
     @FXML private PasswordField pf_nuovaPassword;
+    /**
+     *
+     */
     @FXML private PasswordField pf_confNuovaPassword;
+    /**
+     *
+     */
     @FXML private HBox hb_textField;
+    /**
+     *
+     */
     @FXML private HBox hb_passwordField;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+    /**
+     *
+     */
     private CIDashboardController parent;
+    /**
+     *
+     */
     private DialogHelper dh;
 
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         Cittadino c = this.client.getUtenteLoggato();
@@ -47,10 +102,18 @@ public class CIInfoCittadinoController extends Controller {
         l_idVaccinazione.setText(String.valueOf(c.getId_vaccinazione()));
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         Platform.runLater(() -> {
@@ -63,11 +126,17 @@ public class CIInfoCittadinoController extends Controller {
         });
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
 
+    /**
+     *
+     */
     @FXML
     private void aggiornaPassword() {
         if(hb_textField.isVisible()) {
@@ -80,6 +149,9 @@ public class CIInfoCittadinoController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void mostraPassword() {
         tf_vecchiaPassword.setText(pf_vecchiaPassword.getText());
@@ -87,6 +159,9 @@ public class CIInfoCittadinoController extends Controller {
         hb_passwordField.setVisible(false);
     }
 
+    /**
+     *
+     */
     @FXML
     private void nascondiPassword() {
         pf_vecchiaPassword.setText(tf_vecchiaPassword.getText());

@@ -11,16 +11,38 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import java.util.Map;
 
+/**
+ *
+ */
 public class CIGraficiController extends Controller {
-
+    /**
+     *
+     */
     @FXML private BarChart<String, Double> barChart;
-
+    /**
+     *
+     */
     private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
+    /**
+     *
+     */
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
+    /**
+     *
+     */
     private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
+    /**
+     *
+     */
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
 
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         pfizer.setName("pfizer");
@@ -29,6 +51,10 @@ public class CIGraficiController extends Controller {
         moderna.setName("moderna");
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.LEGGI_EVENTI_AVVERSI) {
@@ -61,10 +87,20 @@ public class CIGraficiController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param series
+     * @param evento
+     * @param media
+     */
     private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double media) {
         Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, media)));
     }
-    
+
+    /**
+     *
+     * @param cv
+     */
     public void setData(CentroVaccinale cv) {
         client.leggiEA(this, cv.getNome());
     }

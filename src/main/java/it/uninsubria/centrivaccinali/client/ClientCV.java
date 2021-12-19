@@ -1,5 +1,6 @@
 package it.uninsubria.centrivaccinali.client;
 
+import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.controller.*;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
@@ -10,39 +11,86 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ *
+ */
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
-
+    /**
+     * Varabile per identificare serial version RMI.
+     */
     private static final long serialVersionUID = 1L;
+    /**
+     * Riferimento all'oggetto remoto server.
+     */
     private static ServerCVInterface server = null;
+    /**
+     * @see ConnectionThread
+     */
     private ConnectionThread connThread;
+    /**
+     * Riferimento classe astratta Controller.
+     * @see Controller
+     */
     private Controller controller;
+    /**
+     * Oggetto cittadino connesso al server dopo la login con successol.
+     */
     private Cittadino cittadinoConnesso = null;
+    /**
+     * Nome del centro vaccinale corrispondente a <code>cittadinoConnesso</code>.
+     */
     private String centroCittadino = "";
 
+    /**
+     * Costruttore oggetto ClientCV.
+     * Crea un'istanza di un oggetto <code>ConnectionThread</code>.
+     * @see ConnectionThread
+     * @throws RemoteException
+     */
     public ClientCV() throws RemoteException {
-        //si occupa il thread di ottenere la connessione
         connThread = new ConnectionThread();
     }
 
+    /**
+     * Metodo getter per dell'attributo <code>cittadinoConnesso</code>.
+     * @return cittadino attualmente connesso.
+     */
     public Cittadino getUtenteLoggato() {
         return cittadinoConnesso;
     }
 
+    /**
+     * Metodo getter per dell'attributo <code>centroCittadino</code>.
+     * @return centro vaccinale di appartenenza del cittadino connesso.
+     */
     public String getCentroCittadino() { return centroCittadino; }
 
+    /**
+     * Metodo per effettuare il logout dell'utente dall'applicazione
+     */
     public void LogoutUtente() {
         this.cittadinoConnesso = null;
     }
 
+    /**
+     * Imposta il server nella classe attuale, previa avvenuta successione
+     * @param server
+     */
     public static void setServer(ServerCVInterface server) {
         ClientCV.server = server;
     }
 
+    /**
+     * Metodo per verificare la connessione con il server RMI.
+     * @return true se la connessione è presente,
+     * false se la connessione risulta assente.
+     */
     private boolean connectionStatus() {
         if (server == null) {
             printerr("connessione al server assente");
@@ -52,6 +100,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         return true;
     }
 
+    /**
+     * Metodo che effettua l'autenticazione dell'operatore sanitario.
+     * @param controller controller padre da cui arriva l'operazione, necessaria per la risposta.
+     * @param username input dell'utente per effettuare autenticazione.
+     * @param password input dell'utente per effettuare autenticazione.
+     */
     public void autenticaOperatore(CVLoginController controller, String username, String password) {
         this.controller = controller;
         if(connectionStatus()) {
@@ -65,6 +119,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param ritorno
+     * @throws RemoteException
+     */
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
         if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
@@ -76,6 +135,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         controller.notifyController(ritorno);
     }
 
+    /**
+     *
+     * @param controller
+     * @param cv
+     */
     public void registraCentroVaccinale(CVRegistraCentroVaccinale controller, CentroVaccinale cv) {
         this.controller = controller;
         try {
@@ -86,6 +150,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param cittadino
+     */
     public void registraCittadino(CIRegistrazioneController controller, Cittadino cittadino) {
         this.controller = controller;
         if (connectionStatus()) {
@@ -98,6 +167,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param username
+     * @param password
+     */
     public void loginUtente(Controller controller,String username, String password){
         this.controller = controller;
         if (connectionStatus()) {
@@ -110,6 +185,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param nome
+     */
     public void ricercaPerNome(CIRicercaResultController controller, String nome) {
         this.controller = controller;
         if (connectionStatus()) {
@@ -122,6 +202,12 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param comune
+     * @param tipologia
+     */
     public void ricercaPerComuneTipologia(CIRicercaResultController controller, String comune, TipologiaCentro tipologia) {
         this.controller = controller;
         if (connectionStatus()) {
@@ -134,6 +220,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param vaccinato
+     */
     public void registraVaccinato(CVRegistraCittadinoController controller, Vaccinato vaccinato) {
         this.controller = controller;
         try {
@@ -144,6 +235,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param provincia
+     */
     public void getComuni(CVRegistraCittadinoController controller, String provincia) {
         this.controller = controller;
         try {
@@ -154,6 +250,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param comune
+     */
     public void getCentri(CVRegistraCittadinoController controller, String comune) {
         this.controller = controller;
         try {
@@ -164,6 +265,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+    /**
+     *
+     * @param controller
+     * @param ea
+     */
     public void registraEventoAvverso(AggiungiEventoAvverso controller , EventoAvverso ea) {
         this.controller = controller;
         try {
@@ -212,8 +318,16 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         } catch (NoSuchObjectException e) {
             e.printStackTrace();
         }
+        Platform.runLater(() -> {
+            CentriVaccinali.stage.close();
+            Platform.exit();
+        });
+
     }
 
+    /**
+     *
+     */
     private void lanciaPopup() {
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
         Button b = new Button("SI");
@@ -232,10 +346,21 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         System.out.println("[CLIENT_CV] " + s);
     }
 
+    /**
+     *
+     * @param s
+     */
     private void printerr(String s) {
         System.err.println("[CLIENT_CV] " + s);
     }
 
+    /**
+     *
+     * @param controller
+     * @param userid
+     * @param vecchiaPassword
+     * @param nuovaPassword
+     */
     public void aggiornaPassword(CIInfoCittadinoController controller, String userid, String vecchiaPassword, String nuovaPassword) {
         this.controller = controller;
         try {

@@ -63,7 +63,6 @@ public class CVLoginController extends Controller {
 
         if(check) {
             CentriVaccinali.scene.setCursor(Cursor.WAIT);
-            b_accedi.setDisable(true);
             client.autenticaOperatore(this, username, password);
         }
     }

@@ -17,21 +17,58 @@ import javafx.scene.layout.*;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ */
 public class CIRicercaResultController extends Controller {
-
+    /**
+     *
+     */
     @FXML private Label l_noResult;
+    /**
+     *
+     */
     @FXML private VBox vb_risultati;
+    /**
+     *
+     */
     @FXML private TextField tf_ricercaNomeCentro;
+    /**
+     *
+     */
     @FXML private ComboBox<String> cb_sceltaRicerca;
+    /**
+     *
+     */
     @FXML private ComboBox<TipologiaCentro> cb_sceltaTipologia;
+    /**
+     *
+     */
     @FXML private TextField tf_ricercaComune;
+    /**
+     *
+     */
     @FXML private Label l_countOspedaliero;
+    /**
+     *
+     */
     @FXML private Label l_countHub;
+    /**
+     *
+     */
     @FXML private Label l_countAziendale;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private CIDashboardController parent;
 
+    /**
+     *
+     */
     @FXML
     private void initialize () {
         this.cb_sceltaRicerca.getItems().addAll("Per nome", "Per comune e tipologia");
@@ -40,6 +77,10 @@ public class CIRicercaResultController extends Controller {
         this.cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.RICERCA_CENTRO) {
@@ -48,10 +89,17 @@ public class CIRicercaResultController extends Controller {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
     }
 
+    /**
+     *
+     * @param parent
+     */
     public void setParent(CIDashboardController parent) {
         this.parent = parent;
     }
 
+    /**
+     *
+     */
     @FXML
     private void cercaCentroVaccinale() {
         CentriVaccinali.scene.setCursor(Cursor.WAIT);
@@ -63,6 +111,10 @@ public class CIRicercaResultController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param list
+     */
     private void setData(List<CentroVaccinale> list) {
         Platform.runLater(() -> {
             vb_risultati.getChildren().clear();
@@ -111,6 +163,9 @@ public class CIRicercaResultController extends Controller {
         });
     }
 
+    /**
+     *
+     */
     @FXML
     private void cambiaRicerca() {
         if (cb_sceltaRicerca.getValue().equals("Per nome")) {

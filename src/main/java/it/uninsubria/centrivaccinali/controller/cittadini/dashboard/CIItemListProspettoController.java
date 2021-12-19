@@ -7,18 +7,42 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ *
+ */
 public class CIItemListProspettoController extends Controller {
-
+    /**
+     *
+     */
     @FXML private Label l_evento;
+    /**
+     *
+     */
     @FXML private Label l_tipologia;
+    /**
+     *
+     */
     @FXML private Label l_severita;
+    /**
+     *
+     */
     @FXML private Label l_note;
-
+    /**
+     *
+     */
     private EventoAvverso evento;
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) { }
 
+    /**
+     *
+     * @param ea
+     */
     public void setData(EventoAvverso ea) {
         this.evento = ea;
         l_tipologia.setText(ea.getTipoVac().toString());
@@ -30,6 +54,9 @@ public class CIItemListProspettoController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void apri() {
         new DialogHelper("NOTE OPZIONALI", evento.getNote(), DialogHelper.Type.INFO).display();

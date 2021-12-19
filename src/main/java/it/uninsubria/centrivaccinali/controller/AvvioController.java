@@ -5,8 +5,13 @@ import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
 
+/**
+ *
+ */
 public class AvvioController extends Controller {
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
 
     /**
@@ -31,13 +36,19 @@ public class AvvioController extends Controller {
         CentriVaccinali.setRoot("CV_login");
     }
 
-
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) { }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
     }
-    
+
 }

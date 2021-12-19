@@ -51,6 +51,9 @@ public class CVRegistraCittadinoController extends Controller {
         generaIdVaccino();
     }
 
+    /**
+     *
+     */
     private void generaIdVaccino() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
         String stringID = sdf.format(new java.util.Date());
@@ -59,7 +62,10 @@ public class CVRegistraCittadinoController extends Controller {
         tf_idVaccino.setText(stringID);
     }
 
-
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         switch (result.getOpType()){
@@ -118,6 +124,10 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+    /**
+     *
+     * @param ke
+     */
     @FXML
     private void realtimeCheck(KeyEvent ke) {
         if (ke.getSource().equals(tf_selezionaProvincia)) {
@@ -136,7 +146,10 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
-
+    /**
+     *
+     * @param e
+     */
     @FXML
     private void cbChange(Event e) {
         if(e.getSource().equals(cb_selezionaComune)) {
@@ -153,17 +166,26 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void backTo() {
         CentriVaccinali.setRoot("CV_home");
         client.stopOperation();
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
     }
 
+    /**
+     *
+     */
     @FXML
     private void registraVaccinato() {
         if(cp.testoSempliceSenzaNumeri(tf_nomeCittadino,2, 50 ) & cp.testoSempliceSenzaNumeri(tf_cognomeCittadino, 2, 50) & cp.codiceFiscale(tf_cfCittadino) & cp.data(dp_dataVaccino) & statoSelezione()) {
@@ -179,6 +201,10 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private boolean statoSelezione() {
         if(selectedCV != null) {
             cssHelper.toValid(tf_selezionaProvincia);

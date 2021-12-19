@@ -19,6 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 
+/**
+ *
+ */
 public class CVRegistraCentroVaccinale extends Controller {
 
         @FXML private TextField tf_nome;

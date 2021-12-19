@@ -11,19 +11,51 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+/**
+ *
+ */
 public class CIItemListController extends Controller {
-
+    /**
+     *
+     */
     @FXML private HBox hb_aggiungi_e_visualizza;
+    /**
+     *
+     */
     @FXML private HBox hb_visualizza;
+    /**
+     *
+     */
     @FXML private FontIcon fi_iconaCentro;
+    /**
+     *
+     */
     @FXML private Label l_nomeCentro;
+    /**
+     *
+     */
     @FXML private Label l_indirizzoCentro;
+    /**
+     *
+     */
     @FXML private Label l_tipologiaCentro;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private CIDashboardController parent;
+    /**
+     *
+     */
     private CentroVaccinale item;
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {  }
 
@@ -40,16 +72,26 @@ public class CIItemListController extends Controller {
          }
     }
 
+    /**
+     *
+     */
     @FXML
     private void aggiungiEvento() {
         parent.aggiungiEvento();
     }
 
+    /**
+     *
+     */
     @FXML
     private void visualizzaInfo() {
         parent.visualizzaInfoCentro(item);
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }

@@ -17,25 +17,56 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AggiungiEventoAvverso extends Controller {
-
+    /**
+     *
+     */
     @FXML private ToggleGroup tg_eventiAvversi;
+    /**
+     *
+     */
     @FXML private TextField tf_altro;
+    /**
+     *
+     */
     @FXML private Slider s_severita;
+    /**
+     *
+     */
     @FXML private TextArea ta_note;
+    /**
+     *
+     */
     @FXML private Label l_caratteri;
+    /**
+     *
+     */
     @FXML private GridPane gp_root;
-
+    /**
+     *
+     */
     private final ClientCV client = CentriVaccinali.client;
+    /**
+     *
+     */
     private final CssHelper css = CssHelper.getInstance();
+    /**
+     *
+     */
     private CIDashboardController parent;
 
+    /**
+     *
+     */
     @FXML
     private void initialize() {
         // Imposto l'handler per la colorazione dello slider
         s_severita.valueProperty().addListener( e -> s_severita.lookup(".track").setStyle("-fx-background-color: hsb( " + Math.round((-15*s_severita.getValue())+75) + ", 75%, 100%);"));
     }
 
-
+    /**
+     *
+     * @param e
+     */
     @FXML
     private void selezioneEvento(Event e) {
         if(e.getSource().equals(tf_altro)) {
@@ -45,6 +76,9 @@ public class AggiungiEventoAvverso extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void controlloLunghezza() {
         if(ta_note.getText().trim().length() > 256) {
@@ -54,6 +88,9 @@ public class AggiungiEventoAvverso extends Controller {
         l_caratteri.setText(ta_note.getText().trim().length() + "/256");
     }
 
+    /**
+     *
+     */
     @FXML
     private void controlloTestoEvento() {
         Pattern pattern = Pattern.compile("[^a-zA-Z\\s]");
@@ -69,6 +106,9 @@ public class AggiungiEventoAvverso extends Controller {
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void salva() {
         String evento;
@@ -85,6 +125,10 @@ public class AggiungiEventoAvverso extends Controller {
         client.registraEventoAvverso(this, new EventoAvverso(client.getUtenteLoggato().getId_vaccinazione(), evento, severita, note));
     }
 
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {
         if (result.getResult()){
@@ -100,15 +144,21 @@ public class AggiungiEventoAvverso extends Controller {
         }
         else{
             Platform.runLater(() -> new DialogHelper("ATTENZIONE", "Registrazione fallita.\nQuesto evento avverso e' gia' stato inserito", DialogHelper.Type.ERROR).display());
-
         }
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiFragment() {
         parent.rimuoviFragment(gp_root);
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }

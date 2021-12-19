@@ -7,7 +7,9 @@ import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-
+/**
+ *
+ */
 public class CVChangeController extends Controller {
 
     /**
@@ -45,12 +47,18 @@ public class CVChangeController extends Controller {
 
     }
 
+    /**
+     *
+     */
     @FXML
     private void chiudiApp() {
         super.closeApp();
     }
 
-
+    /**
+     *
+     * @param result
+     */
     @Override
     public void notifyController(Result result) {  }
 }
