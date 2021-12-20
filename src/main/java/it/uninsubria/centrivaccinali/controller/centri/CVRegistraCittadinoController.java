@@ -88,7 +88,7 @@ public class CVRegistraCittadinoController extends Controller {
      */
     private List<CentroVaccinale> listaCentri = new ArrayList<>();
     /**
-     *
+     * Centro vaccinale selezionato.
      */
     private CentroVaccinale selectedCV;
     /**
@@ -105,7 +105,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Genera l'id della vaccinazione in base a varie informazioni.
      */
     private void generaIdVaccino() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
@@ -179,8 +179,9 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     /**
-     *
-     * @param ke
+     * Controllo real-time della compilazione dei campi per l'inserimento
+     * dinamico dei comuni da database
+     * @param ke evento sollevato al seguito dell'isnerimento da tastiera dei dati
      */
     @FXML
     private void realtimeCheck(KeyEvent ke) {
@@ -201,8 +202,8 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     /**
-     *
-     * @param e
+     * Effettua una chiamata al server per recuperare i centri in base al comune selezionato.
+     * @param e evento di selezione di un item della <code>ComboBox</code>.
      */
     @FXML
     private void cbChange(Event e) {
@@ -221,7 +222,7 @@ public class CVRegistraCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Metedo per ritornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {
