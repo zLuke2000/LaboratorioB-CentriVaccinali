@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 /**
- *
+ * Controller della prima interfaccia per gli operatori sanitari.
+ * Permette di selezionare tra la registrazione di un nuovo vaccinato o la registrazione di un nuovo centro vaccinale.
+ * @author ...
  */
 public class CVChangeController extends Controller {
 
@@ -32,7 +34,7 @@ public class CVChangeController extends Controller {
     }
 
     /**
-     * Metodo per tornare all'interfaccia precedente
+     * Metodo per tornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {
@@ -48,7 +50,8 @@ public class CVChangeController extends Controller {
     }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {

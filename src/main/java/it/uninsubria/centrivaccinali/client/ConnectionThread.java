@@ -31,7 +31,9 @@ public class ConnectionThread extends Thread{
     }
 
     /**
-     *
+     * Metodo <code>run</code> del thread.
+     * Provo ad ottenere la connessione al server recuperando il riferimento allo stub.
+     * Se non e' possibile ottenere la connessione al server viene mostrato un pop-up d'errore.
      */
     public void run(){
         boolean status = false;
@@ -43,7 +45,7 @@ public class ConnectionThread extends Thread{
                 System.out.println("[ConnectionThread] Connessione al server eseguita");
                 break;
             } else {
-                System.err.println("[ConnectionThread] Tentativo di connessione n." + (i+1));
+                System.err.println("[ConnectionThread] Tentativo di connessione n." + (i + 1));
             }
             try {
                 Thread.sleep(5000);
@@ -91,12 +93,5 @@ public class ConnectionThread extends Thread{
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
             return false;
         }
-    }
-
-    /**
-     *
-     */
-    public void stopThread() {
-        stop();
     }
 }

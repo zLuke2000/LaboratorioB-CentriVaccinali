@@ -6,11 +6,13 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.fxml.FXML;
 
 /**
- *
+ * Controller dell'interafaccia d'avvio dell'applicazione.
+ * @author ...
  */
 public class AvvioController extends Controller {
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
 
@@ -44,7 +46,8 @@ public class AvvioController extends Controller {
     public void notifyController(Result result) { }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {

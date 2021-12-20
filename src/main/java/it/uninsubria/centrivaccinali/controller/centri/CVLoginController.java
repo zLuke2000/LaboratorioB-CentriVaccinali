@@ -23,29 +23,31 @@ import javafx.scene.control.Tooltip;
  */
 public class CVLoginController extends Controller {
     /**
-     *
+     * Riferimento al <code>Button</code> per effettuare l'acceso
      */
     @FXML public Button b_accedi;
     /**
-     *
+     * Riferimento alla <code>TextField</code> in cui inserire l'username
      */
-    @FXML private TextField l_username;
+    @FXML private TextField tf_username;
     /**
-     *
+     * Riferimento alla <code>PasswordField</code> in cui inserire la password
      */
-    @FXML private PasswordField l_password;
+    @FXML private PasswordField pf_password;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
      */
     private final CssHelper cssHelper = CssHelper.getInstance();
 
     /**
-     *
-     * @param result
+     * Permette di notificare l'interfaccia quando una operazione di login &egrave stata completata.
+     * @param result rappresenta l'operazione completata.
      */
     @Override
     public void notifyController(Result result) {
@@ -60,25 +62,26 @@ public class CVLoginController extends Controller {
     }
 
     /**
-     *
+     * Metodo per effettuare il controllo delle credenziali secondo i requisiti richiesti.
+     * Se le credenziali sono conformi ai requisiti richiesti viene quindi effettuata una richiesta di login al server.
      */
     @FXML
     private void autenticazioneOperatore() {
-        String username = l_username.getText().trim();
-        String password = l_password.getText().trim();
+        String username = tf_username.getText().trim();
+        String password = pf_password.getText().trim();
         boolean check = true;
 
         if(username.length() == 0) {
-            cssHelper.toError(l_username, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(tf_username, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(l_username);
+            cssHelper.toDefault(tf_username);
         }
         if(password.length() == 0) {
-            cssHelper.toError(l_password, new Tooltip("Inserire almeno un carattere"));
+            cssHelper.toError(pf_password, new Tooltip("Inserire almeno un carattere"));
             check = false;
         } else {
-            cssHelper.toDefault(l_password);
+            cssHelper.toDefault(pf_password);
         }
 
         if(check) {
@@ -88,7 +91,7 @@ public class CVLoginController extends Controller {
     }
 
     /**
-     *
+     * Metodo per tornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {
@@ -97,7 +100,7 @@ public class CVLoginController extends Controller {
     }
 
     /**
-     *
+     * Mostra un pop-up informativo.
      */
     @FXML
     private void ShowInfo() {
@@ -105,7 +108,8 @@ public class CVLoginController extends Controller {
     }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {

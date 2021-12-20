@@ -6,17 +6,18 @@ import it.uninsubria.centrivaccinali.models.Result;
 import javafx.application.Platform;
 
 /**
- *
+ * Superclasse astratta per tutti i controller dell'applicazione.
+ * @author ...
  */
 public abstract class Controller {
     /**
-     *
-     * @param result
+     * Permette di notificare un dato controller, a seguito del completamento di una operazione da parte del server.
+     * @param result rappresenta l'operazione appena eseguita.
      */
     public abstract void notifyController(Result result);
 
     /**
-     *
+     * Permette la chiusura dell'applicazione.
      */
     public void closeApp() {
         new Thread(() -> {
