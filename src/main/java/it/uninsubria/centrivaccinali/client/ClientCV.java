@@ -361,6 +361,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      *
      * @param s
      */
+    @SuppressWarnings("unused")
     private void printout(String s) {
         System.out.println("[CLIENT_CV] " + s);
     }
