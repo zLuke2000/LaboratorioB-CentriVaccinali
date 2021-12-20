@@ -304,13 +304,4 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
             myThread.interrupt();
         }
     }
-
-    /**
-     *
-     * @throws RemoteException
-     */
-    @Override
-    public void disconnettiDB() throws RemoteException {
-        db.disconnettiDB();
-    }
 }

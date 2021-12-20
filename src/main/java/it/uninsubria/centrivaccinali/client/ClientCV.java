@@ -120,8 +120,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param ritorno
+     * Metodo che notifica al client il completamento di un operazione richiesta al server.
+     * @param ritorno oggetto che rappresenta il risultato dell'operazione.
      * @throws RemoteException
      */
     @Override
@@ -136,11 +136,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
+     * Metodo, per effettuare la richiesta al server, di registrazione del centro vaccinale.
      * @param controller
      * @param cv
      */
-    public void registraCentroVaccinale(CVRegistraCentroVaccinale controller, CentroVaccinale cv) {
+    public void registraCentroVaccinale(Controller controller, CentroVaccinale cv) {
         this.controller = controller;
         try {
             server.registraCentro(this, cv);
@@ -155,7 +155,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param cittadino
      */
-    public void registraCittadino(CIRegistrazioneController controller, Cittadino cittadino) {
+    public void registraCittadino(Controller controller, Cittadino cittadino) {
         this.controller = controller;
         if (connectionStatus()) {
             try {
@@ -190,7 +190,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param nome
      */
-    public void ricercaPerNome(CIRicercaResultController controller, String nome) {
+    public void ricercaPerNome(Controller controller, String nome) {
         this.controller = controller;
         if (connectionStatus()) {
             try {
@@ -208,7 +208,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param comune
      * @param tipologia
      */
-    public void ricercaPerComuneTipologia(CIRicercaResultController controller, String comune, TipologiaCentro tipologia) {
+    public void ricercaPerComuneTipologia(Controller controller, String comune, TipologiaCentro tipologia) {
         this.controller = controller;
         if (connectionStatus()) {
             try {
@@ -225,7 +225,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param vaccinato
      */
-    public void registraVaccinato(CVRegistraCittadinoController controller, Vaccinato vaccinato) {
+    public void registraVaccinato(Controller controller, Vaccinato vaccinato) {
         this.controller = controller;
         try {
             server.registraVaccinato(this, vaccinato);
@@ -240,7 +240,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param provincia
      */
-    public void getComuni(CVRegistraCittadinoController controller, String provincia) {
+    public void getComuni(Controller controller, String provincia) {
         this.controller = controller;
         try {
             server.getComuni(this, provincia);
@@ -255,7 +255,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param comune
      */
-    public void getCentri(CVRegistraCittadinoController controller, String comune) {
+    public void getCentri(Controller controller, String comune) {
         this.controller = controller;
         try {
             server.getCentri(this, comune);
@@ -270,7 +270,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param ea
      */
-    public void registraEventoAvverso(AggiungiEventoAvverso controller , EventoAvverso ea) {
+    public void registraEventoAvverso(Controller controller , EventoAvverso ea) {
         this.controller = controller;
         try {
             server.registraEventoAvverso(this, ea);
@@ -285,7 +285,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param controller
      * @param nomeCentro
      */
-    public void leggiEA(CIGraficiController controller, String nomeCentro) {
+    public void leggiEA(Controller controller, String nomeCentro) {
         this.controller = controller;
         try {
             server.leggiEA(this, nomeCentro);
@@ -302,7 +302,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param limit
      * @param offset
      */
-    public void leggiSegnalazioni(CISegnalazioniController controller, String nomeCentro, int limit, int offset) {
+    public void leggiSegnalazioni(Controller controller, String nomeCentro, int limit, int offset) {
         this.controller = controller;
         try {
             server.leggiSegnalazioni(this, nomeCentro, limit, offset);
@@ -337,11 +337,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         } catch (NoSuchObjectException e) {
             e.printStackTrace();
         }
-        Platform.runLater(() -> {
-            CentriVaccinali.stage.close();
-            Platform.exit();
-        });
-
+        Platform.runLater(Platform::exit);
     }
 
     /**
@@ -384,7 +380,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param vecchiaPassword
      * @param nuovaPassword
      */
-    public void aggiornaPassword(CIInfoCittadinoController controller, String userid, String vecchiaPassword, String nuovaPassword) {
+    public void aggiornaPassword(Controller controller, String userid, String vecchiaPassword, String nuovaPassword) {
         this.controller = controller;
         try {
             server.aggiornaPassword(this, userid, vecchiaPassword, nuovaPassword);

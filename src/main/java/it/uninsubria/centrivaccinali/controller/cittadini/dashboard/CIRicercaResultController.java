@@ -135,18 +135,17 @@ public class CIRicercaResultController extends Controller {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
                         itemController.setParent(parent);
-                        //itemController.initParameter(client);
                         switch (cv.getTipologia()){
                             case OSPEDALIERO:
-                                itemController.setData(cv, "mdi2h-hospital-building", "#3456e3");
+                                itemController.setData(cv, "mdi2h-hospital-building:32:#3456e3");
                                 countOspedaliero++;
                                 break;
                             case HUB:
-                                itemController.setData(cv, "mdi2h-hospital-marker", "#c148eb");
+                                itemController.setData(cv, "mdi2h-hospital-marker:32:#c148eb");
                                 countHub++;
                                 break;
                             case AZIENDALE:
-                                itemController.setData(cv, "mdi2f-factory", "#323232");
+                                itemController.setData(cv, "mdi2f-factory:32:#323232");
                                 countAziendale++;
                                 break;
 

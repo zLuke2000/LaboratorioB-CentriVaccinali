@@ -59,10 +59,9 @@ public class CIItemListController extends Controller {
     @Override
     public void notifyController(Result result) {  }
 
-    public void setData(CentroVaccinale cv, String iconLiteral, String color) {
+    public void setData(CentroVaccinale cv, String iconLiteral) {
         item = cv;
         fi_iconaCentro.setIconLiteral(iconLiteral);
-        fi_iconaCentro.setIconColor(Paint.valueOf(color));
         l_nomeCentro.setText(cv.getNome());
         l_indirizzoCentro.setText(String.valueOf(cv.getIndirizzo()));
         l_tipologiaCentro.setText(String.valueOf(cv.getTipologia()));

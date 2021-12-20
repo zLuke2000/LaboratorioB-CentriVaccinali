@@ -88,16 +88,13 @@ public class CIInfoCentroController extends Controller {
         this.cv = cv;
         switch(cv.getTipologia()) {
             case OSPEDALIERO:
-                fi_iconaCentro.setIconLiteral("mdi2h-hospital-building");
-                fi_iconaCentro.setIconColor(Paint.valueOf("#3456e3"));
+                fi_iconaCentro.setIconLiteral("mdi2h-hospital-building:128:#3456e3");
                 break;
             case HUB:
-                fi_iconaCentro.setIconLiteral("mdi2h-hospital-marker");
-                fi_iconaCentro.setIconColor(Paint.valueOf("#c148eb"));
+                fi_iconaCentro.setIconLiteral("mdi2h-hospital-marker:128:#c148eb");
                 break;
             case AZIENDALE:
-                fi_iconaCentro.setIconLiteral("mdi2f-factory");
-                fi_iconaCentro.setIconColor(Paint.valueOf("#323232"));
+                fi_iconaCentro.setIconLiteral("mdi2f-factory:128:#323232");
                 break;
         }
         l_tipologia.setText(cv.getTipologia().toString());
