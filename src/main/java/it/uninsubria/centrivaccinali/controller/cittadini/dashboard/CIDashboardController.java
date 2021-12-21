@@ -14,28 +14,32 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 /**
- *
+ * Controller per l'interfaccia della dashboard che gestisce l'aprtura delle varie interfacce
+ * @author ...
  */
 public class CIDashboardController extends Controller {
     /**
-     *
+     * <code>MenuButton</code> contenente l'username del cittadino connesso,
+     * con la possibilita di fare il logout e la visualizzazione delle sue informazioni
      */
     @FXML private MenuButton mb_utente;
     /**
-     *
+     * <code>Pane</code> container su cui andra popolato con le interfaccie
      */
     @FXML private Pane p_container;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Riferiemento al cittadino al momento connesso
+     * @see Cittadino
      */
     private Cittadino cittadinoConnesso = null;
 
     /**
-     *
+     * Metodo per inizializzare l'interfaccia.
      */
     @FXML
     private void initialize() {
@@ -66,8 +70,9 @@ public class CIDashboardController extends Controller {
     public void notifyController(Result result) {  }
 
     /**
-     *
-     * @param cv
+     * Metodo per la visualizzazione dell'inforrmazioni del centro vaccinale selezionato
+     * @param cv centro vaccinale selezinato
+     * @see CentroVaccinale
      */
     public void visualizzaInfoCentro(CentroVaccinale cv) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/InformazioniCentro.fxml"));
@@ -85,7 +90,8 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
+     * Metodo per l'apertura dell'interfaccia per l'inserimento degli eventi avversi, del centro vaccinale
+     * su cui è possibile inserirli
      */
     public void aggiungiEvento() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RegistraEventoAvverso.fxml"));
@@ -101,7 +107,7 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
+     * Metodo per l'apertura dell'interfaccia che mostra le insfromazioni del cittadino connesso
      */
     @FXML
     private void infoCittadino() {
@@ -119,8 +125,8 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
-     * @param p
+     * Metodo per la rimozione del fragment passato come paramentro, e la visualizzazione del fragment precedente
+     * @param p Pane da rimuovere
      */
     public void rimuoviFragment(Pane p) {
         p_container.getChildren().remove(p);
@@ -128,7 +134,7 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
+     * Metodo per fare il logout da parte del cittadino connesso
      */
     @FXML
     private void logout() {
@@ -138,7 +144,7 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
+     * Metodo per tornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {
@@ -151,7 +157,8 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {

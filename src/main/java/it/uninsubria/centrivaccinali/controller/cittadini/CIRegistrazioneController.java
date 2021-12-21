@@ -17,60 +17,61 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 
 /**
- *
+ * Controller dell'interfaccia di registrazione di un cittadino
  */
 public class CIRegistrazioneController extends Controller {
-    
-    // TextField per l'acquisizione dei dati
+
     /**
-     *
+     * <code>TextField</code> per il nome del cittadino
      */
     @FXML private TextField tf_nome;
     /**
-     *
+     * <code>TextField</code> per il cognome del cittadino
      */
     @FXML private TextField tf_cognome;
     /**
-     *
+     * <code>TextField</code> per il codice fiscale del cittadino
      */
     @FXML private TextField tf_codiceFiscale;
     /**
-     *
+     * <code>TextField</code> per l'username del cittadino
      */
     @FXML private TextField tf_username;
     /**
-     *
+     * <code>TextField</code> per l'e-mail del cittadino
      */
     @FXML private TextField tf_email;
     /**
-     *
+     * <code>TextField</code> per l'ID del cittadino
      */
     @FXML private TextField tf_idVaccinazione;
 
-    //PasswordField per l'acquisizione della password
     /**
-     *
+     * <code>PasswordField</code> per il primo inserimento della password del cittadino
      */
     @FXML private PasswordField pf_password1;
     /**
-     *
+     * <code>PasswordField</code> per il secondo inserimento della password del cittadino
      */
     @FXML private PasswordField pf_password2;
     /**
-     *
+     * Riferiomento al client su cui si sta eseguendo l'applicazione
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
+     * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
     /**
-     *
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
 
     /**
-     *
+     * Permette di notificare l'interfaccia quando un'operazione registrazione viene effettuata o meno, specificando l'errore
      * @param result
      */
     @Override
@@ -100,7 +101,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Metodo per la regitrazione cittadino controllando la correttezza dei paramentri inseriti
      */
     @FXML
     private void registraCittadino() {
@@ -127,7 +128,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Metodo per l'apertura del dialog che mostra i parametri che l'username deve rispettare
      */
     @FXML
     private void mostraInfoUsername() {
@@ -136,7 +137,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Metodo per l'apertura del dialog che mostra i parametri che la password deve rispettare
      */
     @FXML
     private void mostraInfoPassword() {
@@ -145,7 +146,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Metodo per l'apertura del dialog che mostra i l'nformazione dell'ID vaccinazione
      */
     @FXML
     private void mostraInfoVaccinazione() {
@@ -153,8 +154,8 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
-     * @param keyEvent
+     *  Metodo per il controllo real-time dei parametri che si stanno inserendo
+     * @param keyEvent l'evento sollevato inserendo da tastiera le credenziali.
      */
     @FXML
     private void realtimeCheck(KeyEvent keyEvent) {
@@ -189,7 +190,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Metodo per tornare all'interfaccia precedente
      */
     @FXML
     private void backTo() {
@@ -197,7 +198,8 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {

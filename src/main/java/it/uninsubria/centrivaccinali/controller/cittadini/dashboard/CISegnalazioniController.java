@@ -16,31 +16,34 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- *
+ * Controller per l'interfaccia delle segnalazioni dei cittadini.
+ * @author ...
  */
 public class CISegnalazioniController extends Controller {
     /**
-     *
+     * <code>VBox</code> in cui andra popolata con l'inserimento degli item di segnalazione.
      */
     @FXML private VBox vb_lista_segnalazioni;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     *  <code>Button</code> button che permette di caricare altri item.
      */
     private final Button btnCarica = new Button("Carica altro");
     /**
-     *
+     * Riferimento al centro vaccinale selezionato.
+     * @see CentroVaccinale
      */
     private CentroVaccinale centro;
     /**
-     *
+     * Indice di limit per la ricerca di item du database.
      */
     private int limit;
     /**
-     *
+     * Indice di offset per la ricerca di itme su database
      */
     private int offset;
 
