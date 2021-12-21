@@ -27,7 +27,7 @@ public class CIHomeController extends Controller {
      */
     @FXML private TextField tf_loginUsername;
     /**
-     * <code>PasswordField</code> per la password di autenticazione del cittadino
+     * <code>PasswordField</code> per la password di autenticazione del cittadino.
      */
     @FXML private PasswordField tf_loginPassword;
     /**
@@ -170,8 +170,8 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Permette di effettuare la login tramite il tasto invio
-     * @param keyEvent evento sollevato alla pressione di un tasto
+     * Permette di effettuare la login tramite il tasto invio.
+     * @param keyEvent evento sollevato alla pressione di un tasto.
      */
     @FXML
     private void checkEnter(KeyEvent keyEvent) {

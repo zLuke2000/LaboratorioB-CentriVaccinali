@@ -17,45 +17,45 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
 
 /**
- * Controller dell'interfaccia di registrazione di un cittadino
+ * Controller dell'interfaccia di registrazione di un cittadino.
  */
 public class CIRegistrazioneController extends Controller {
 
     /**
-     * <code>TextField</code> per il nome del cittadino
+     * <code>TextField</code> per il nome del cittadino.
      */
     @FXML private TextField tf_nome;
     /**
-     * <code>TextField</code> per il cognome del cittadino
+     * <code>TextField</code> per il cognome del cittadino.
      */
     @FXML private TextField tf_cognome;
     /**
-     * <code>TextField</code> per il codice fiscale del cittadino
+     * <code>TextField</code> per il codice fiscale del cittadino.
      */
     @FXML private TextField tf_codiceFiscale;
     /**
-     * <code>TextField</code> per l'username del cittadino
+     * <code>TextField</code> per l'username del cittadino.
      */
     @FXML private TextField tf_username;
     /**
-     * <code>TextField</code> per l'e-mail del cittadino
+     * <code>TextField</code> per l'e-mail del cittadino.
      */
     @FXML private TextField tf_email;
     /**
-     * <code>TextField</code> per l'ID del cittadino
+     * <code>TextField</code> per l'ID del cittadino.
      */
     @FXML private TextField tf_idVaccinazione;
 
     /**
-     * <code>PasswordField</code> per il primo inserimento della password del cittadino
+     * <code>PasswordField</code> per il primo inserimento della password del cittadino.
      */
     @FXML private PasswordField pf_password1;
     /**
-     * <code>PasswordField</code> per il secondo inserimento della password del cittadino
+     * <code>PasswordField</code> per il secondo inserimento della password del cittadino.
      */
     @FXML private PasswordField pf_password2;
     /**
-     * Riferiomento al client su cui si sta eseguendo l'applicazione
+     * Riferiomento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
@@ -101,7 +101,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     * Metodo per la regitrazione cittadino controllando la correttezza dei paramentri inseriti
+     * Metodo per la regitrazione cittadino controllando la correttezza dei paramentri inseriti.
      */
     @FXML
     private void registraCittadino() {
@@ -128,7 +128,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     * Metodo per l'apertura del dialog che mostra i parametri che l'username deve rispettare
+     * Metodo per l'apertura del dialog che mostra i parametri che l'username deve rispettare.
      */
     @FXML
     private void mostraInfoUsername() {
@@ -137,7 +137,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     * Metodo per l'apertura del dialog che mostra i parametri che la password deve rispettare
+     * Metodo per l'apertura del dialog che mostra i parametri che la password deve rispettare.
      */
     @FXML
     private void mostraInfoPassword() {
@@ -146,7 +146,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     * Metodo per l'apertura del dialog che mostra i l'nformazione dell'ID vaccinazione
+     * Metodo per l'apertura del dialog che mostra i l'nformazione dell'ID vaccinazione.
      */
     @FXML
     private void mostraInfoVaccinazione() {
@@ -154,7 +154,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     *  Metodo per il controllo real-time dei parametri che si stanno inserendo
+     * Metodo per il controllo real-time dei parametri che si stanno inserendo.
      * @param keyEvent l'evento sollevato inserendo da tastiera le credenziali.
      */
     @FXML
@@ -190,7 +190,7 @@ public class CIRegistrazioneController extends Controller {
     }
 
     /**
-     * Metodo per tornare all'interfaccia precedente
+     * Metodo per tornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {

@@ -94,8 +94,8 @@ public class CIGraficiController extends Controller {
     }
 
     /**
-     * Aggiunge uno specifico evento al grafico
-     * @param series
+     * Aggiunge uno specifico evento al grafico.
+     * @param series serie di dati in cui si vuole inserire l'evento.
      * @param evento la tipologia di evento.
      * @param media il valore associato al dato da inserire.
      */

@@ -233,9 +233,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param provincia
+     * Effettua una chiamata al server per ottenere la lista dei comuni in base alla provincia inserita nella ricerca.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param provincia provincia da cercare.
      */
     public void getComuni(Controller controller, String provincia) {
         this.controller = controller;
@@ -248,9 +248,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param comune
+     * Effettua una chiamata al server per ottenere la lista dei centriin base al comune inserito nella ricerca.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param comune comune inserito dall'utente.
      */
     public void getCentri(Controller controller, String comune) {
         this.controller = controller;
@@ -263,9 +263,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param ea
+     * Effettua una chiamata al server per registrare un nuovo evento avverso.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param ea evento avverso da registrare.
      */
     public void registraEventoAvverso(Controller controller , EventoAvverso ea) {
         this.controller = controller;
@@ -278,9 +278,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param nomeCentro
+     * Effettua una chiamata al server per ottenere la media della severità per ogni evento avverso.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param nomeCentro nome del centro per cui si vogliono ottenere i dati.
      */
     public void leggiEA(Controller controller, String nomeCentro) {
         this.controller = controller;
@@ -293,11 +293,11 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param nomeCentro
-     * @param limit
-     * @param offset
+     * Effettua una chiamata al server per leggere gli eventi avversi di un dato centro vaccinale.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param nomeCentro nome del centro vaccinale di cui si vogliono leggere gli eventi.
+     * @param limit numero di quanti eventi si vogliono leggere.
+     * @param offset indice da cui partire a leggere gli eventi da db.
      */
     public void leggiSegnalazioni(Controller controller, String nomeCentro, int limit, int offset) {
         this.controller = controller;
@@ -310,7 +310,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
+     * Effettua una chiamata al server per richiedere l'annullamento dell'operazione in corso.
      */
     public void stopOperation() {
         if (server != null) {
@@ -323,7 +323,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
+     * Effettua una chiamata al serever di eseguire la disconnessione, quindi la rimozione del riferiemto del client
+     * dal suo registro RMI ed effettuare in seguito la chiusura dell'applicazione.
      */
     public void disconnetti() {
         if (connThread.isAlive()){
@@ -338,7 +339,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
+     * Effettua una chiamata al server per creare un popup con messaggio di errore di connesione al serever.
+     * E&grave è possibile scegliere se ritentare la connessione premendo "SI", altrimenti "NO".
      */
     private void lanciaPopup() {
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
@@ -355,28 +357,19 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param s
-     */
-    @SuppressWarnings("unused")
-    private void printout(String s) {
-        System.out.println("[CLIENT_CV] " + s);
-    }
-
-    /**
-     *
-     * @param s
+     * Metodo per la stampa di una stringa di errore.
+     * @param s stringa da stampare.
      */
     private void printerr(String s) {
         System.err.println("[CLIENT_CV] " + s);
     }
 
     /**
-     *
-     * @param controller
-     * @param userid
-     * @param vecchiaPassword
-     * @param nuovaPassword
+     * Effettua una chiamata al server per effettuare l'aggiornamento della password del'utente loggato.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param userid parametro contenente lo user id dell'utente loggato.
+     * @param vecchiaPassword parametro contenente la password corrente dell'utente loggato.
+     * @param nuovaPassword parametro contenente la nuova password dell'utente loggato.
      */
     public void aggiornaPassword(Controller controller, String userid, String vecchiaPassword, String nuovaPassword) {
         this.controller = controller;

@@ -180,8 +180,8 @@ public class CVRegistraCittadinoController extends Controller {
 
     /**
      * Controllo real-time della compilazione dei campi per l'inserimento
-     * dinamico dei comuni da database
-     * @param ke evento sollevato al seguito dell'isnerimento da tastiera dei dati
+     * dinamico dei comuni da database.
+     * @param ke evento sollevato al seguito dell'isnerimento da tastiera dei dati.
      */
     @FXML
     private void realtimeCheck(KeyEvent ke) {

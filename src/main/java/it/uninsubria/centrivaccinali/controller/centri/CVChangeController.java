@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 public class CVChangeController extends Controller {
 
     /**
-     * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato
+     * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato.
      */
     @FXML
     private void RegistraVaccinato() {
@@ -24,8 +24,7 @@ public class CVChangeController extends Controller {
     }
 
     /**
-     * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale
-     *
+     * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale.
      */
     @FXML
     private void RegistraCentroVaccinale() {

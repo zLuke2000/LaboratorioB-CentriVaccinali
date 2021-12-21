@@ -23,7 +23,7 @@ public class AvvioController extends Controller {
 
     /**
      * Metodo usato per accedere come operatore cittadino,
-     * aprendo l'interfaccia di login
+     * aprendo l'interfaccia di login.
      */
     @FXML
     private void accediCittadino() {
@@ -36,7 +36,7 @@ public class AvvioController extends Controller {
 
     /**
      * Metodo usato per accedere come operatore sanitario,
-     * aprendo l'interfaccia di login
+     * aprendo l'interfaccia di login.
      */
     @FXML
     private void accediOperatore() {

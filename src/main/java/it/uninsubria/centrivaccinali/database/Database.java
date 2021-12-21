@@ -241,7 +241,8 @@ public class Database {
     }
 
     /**
-     *
+     * Effettua una query per verificare se l'utente è già registrato e in caso negativo viene effettuata la query di
+     * inserimento del cittadino nel database.
      * @param c
      * @return un oggetto di tipo <code>Result</code>
      */

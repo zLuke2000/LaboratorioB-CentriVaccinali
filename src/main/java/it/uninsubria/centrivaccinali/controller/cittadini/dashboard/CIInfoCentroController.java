@@ -155,7 +155,7 @@ public class CIInfoCentroController extends Controller {
     }
 
     /**
-     * Mostra l'interfaccia con il grafico
+     * Metodo per mostrarare l'interfaccia con il grafico.
      * @see CIGraficiController
      */
     @FXML

@@ -56,7 +56,7 @@ public class AggiungiEventoAvverso extends Controller {
      */
     private final CssHelper css = CssHelper.getInstance();
     /**
-     * Riferimento alla dashboard che contiene questa interfaccia
+     * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;

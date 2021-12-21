@@ -93,12 +93,12 @@ public class CIInfoCittadinoController extends Controller {
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
     /**
-     * Riferimento alla dashboard che contiene questa interfaccia
+     * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;
     /**
-     * Oggetto che permette la costruzione di un dialog
+     * Oggetto che permette la costruzione di un dialog.
      * @see DialogHelper
      */
     private DialogHelper dh;

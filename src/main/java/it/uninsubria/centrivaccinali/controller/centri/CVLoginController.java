@@ -23,15 +23,15 @@ import javafx.scene.control.Tooltip;
  */
 public class CVLoginController extends Controller {
     /**
-     * Riferimento al <code>Button</code> per effettuare l'acceso
+     * Riferimento al <code>Button</code> per effettuare l'acceso.
      */
     @FXML public Button b_accedi;
     /**
-     * Riferimento alla <code>TextField</code> in cui inserire l'username
+     * Riferimento alla <code>TextField</code> in cui inserire l'username.
      */
     @FXML private TextField tf_username;
     /**
-     * Riferimento alla <code>PasswordField</code> in cui inserire la password
+     * Riferimento alla <code>PasswordField</code> in cui inserire la password.
      */
     @FXML private PasswordField pf_password;
     /**

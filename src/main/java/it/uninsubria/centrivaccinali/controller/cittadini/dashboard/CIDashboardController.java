@@ -14,17 +14,17 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 /**
- * Controller per l'interfaccia della dashboard che gestisce l'aprtura delle varie interfacce
+ * Controller per l'interfaccia della dashboard che gestisce l'aprtura delle varie interfacce.
  * @author ...
  */
 public class CIDashboardController extends Controller {
     /**
      * <code>MenuButton</code> contenente l'username del cittadino connesso,
-     * con la possibilita di fare il logout e la visualizzazione delle sue informazioni
+     * con la possibilita di fare il logout e la visualizzazione delle sue informazioni.
      */
     @FXML private MenuButton mb_utente;
     /**
-     * <code>Pane</code> container su cui andra popolato con le interfaccie
+     * <code>Pane</code> container su cui andra popolato con le interfaccie.
      */
     @FXML private Pane p_container;
     /**
@@ -33,7 +33,7 @@ public class CIDashboardController extends Controller {
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     * Riferiemento al cittadino al momento connesso
+     * Riferiemento al cittadino al momento connesso.
      * @see Cittadino
      */
     private Cittadino cittadinoConnesso = null;
@@ -67,8 +67,8 @@ public class CIDashboardController extends Controller {
     public void notifyController(Result result) {  }
 
     /**
-     * Metodo per la visualizzazione dell'inforrmazioni del centro vaccinale selezionato
-     * @param cv centro vaccinale selezinato
+     * Metodo per la visualizzazione dell'inforrmazioni del centro vaccinale selezionato.
+     * @param cv centro vaccinale selezinato.
      * @see CentroVaccinale
      */
     public void visualizzaInfoCentro(CentroVaccinale cv) {
@@ -88,7 +88,7 @@ public class CIDashboardController extends Controller {
 
     /**
      * Metodo per l'apertura dell'interfaccia per l'inserimento degli eventi avversi, del centro vaccinale
-     * su cui è possibile inserirli
+     * su cui è possibile inserirli.
      */
     public void aggiungiEvento() {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/fragments/dashboard/RegistraEventoAvverso.fxml"));
@@ -104,7 +104,7 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     * Metodo per l'apertura dell'interfaccia che mostra le insfromazioni del cittadino connesso
+     * Metodo per l'apertura dell'interfaccia che mostra le insfromazioni del cittadino connesso.
      */
     @FXML
     private void infoCittadino() {
@@ -122,8 +122,8 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     * Metodo per la rimozione del fragment passato come paramentro, e la visualizzazione del fragment precedente
-     * @param p Pane da rimuovere
+     * Metodo per la rimozione del fragment passato come paramentro, e la visualizzazione del fragment precedente.
+     * @param p Pane da rimuovere.
      */
     public void rimuoviFragment(Pane p) {
         p_container.getChildren().remove(p);
@@ -131,7 +131,7 @@ public class CIDashboardController extends Controller {
     }
 
     /**
-     * Metodo per fare il logout da parte del cittadino connesso
+     * Metodo per fare il logout da parte del cittadino connesso.
      */
     @FXML
     private void logout() {

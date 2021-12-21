@@ -32,7 +32,7 @@ public class CIRicercaResultController extends Controller {
      */
     @FXML private VBox vb_risultati;
     /**
-     * <code>TextField</code> per inserire il nome del centro da cercare
+     * <code>TextField</code> per inserire il nome del centro da cercare.
      * @see TextField
      */
     @FXML private TextField tf_ricercaNomeCentro;
@@ -52,15 +52,15 @@ public class CIRicercaResultController extends Controller {
      */
     @FXML private TextField tf_ricercaComune;
     /**
-     * Contatore per il numero di risultati di tipo "ospedaliero"
+     * Contatore per il numero di risultati di tipo "ospedaliero".
      */
     @FXML private Label l_countOspedaliero;
     /**
-     * Contatore per il numero di risultati di tipo "hub"
+     * Contatore per il numero di risultati di tipo "hub".
      */
     @FXML private Label l_countHub;
     /**
-     * Contatore per il numero di risultati di tipo "aziendale"
+     * Contatore per il numero di risultati di tipo "aziendale".
      */
     @FXML private Label l_countAziendale;
     /**
@@ -69,7 +69,7 @@ public class CIRicercaResultController extends Controller {
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     * Riferimento alla dashboard che contiene questa interfaccia
+     * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;
