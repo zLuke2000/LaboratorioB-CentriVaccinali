@@ -62,10 +62,7 @@ public class CIDashboardController extends Controller {
         }
     }
 
-    /**
-     *
-     * @param result
-     */
+    //Metodo ereditato dalla superclasse
     @Override
     public void notifyController(Result result) {  }
 

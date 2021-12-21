@@ -9,6 +9,11 @@ import javafx.fxml.FXML;
  * Controller dell'interafaccia d'avvio dell'applicazione.
  * @author ...
  */
+
+/**
+ * * Controller dell'interafaccia d'avvio dell'applicazione.
+ * * @author ...
+ */
 public class AvvioController extends Controller {
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
@@ -38,10 +43,7 @@ public class AvvioController extends Controller {
         CentriVaccinali.setRoot("CV_login");
     }
 
-    /**
-     *
-     * @param result
-     */
+    //Metodo eridato dalla superclasse
     @Override
     public void notifyController(Result result) { }
 

@@ -58,10 +58,7 @@ public class CVChangeController extends Controller {
         super.closeApp();
     }
 
-    /**
-     *
-     * @param result
-     */
+    //Metodo ereditato dalla superclasse
     @Override
     public void notifyController(Result result) {  }
 }

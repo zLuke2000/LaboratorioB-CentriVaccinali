@@ -57,10 +57,7 @@ public class CIItemListController extends Controller {
      */
     private CentroVaccinale item;
 
-    /**
-     *
-     * @param result
-     */
+    //Metodo ereditato dalla superclasse
     @Override
     public void notifyController(Result result) {  }
 

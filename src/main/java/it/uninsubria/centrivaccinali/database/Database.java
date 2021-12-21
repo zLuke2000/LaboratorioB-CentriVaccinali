@@ -9,8 +9,10 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.sql.*;
 
+// TODO controllo sicurezza delle query
+
 /**
- *  TODO controllo sicurezza delle query
+ * Classe che permette di eseguire le query su database.
  */
 public class Database {
 
@@ -30,12 +32,13 @@ public class Database {
      */
     private ResultSet rs;
     /**
-     *
+     * Rappresenta l'operazione da eseguire.
+     * @see Result
      */
     private Result risultato;
 
     /**
-     *
+     * Costruttore vuoto per <code>Database</code>.
      */
     public Database() { }
 
@@ -178,10 +181,10 @@ public class Database {
     }
 
     /**
-     *
-     * @param username
-     * @param password
-     * @return
+     * Effuettua una query per effettuare la login del cittadino nell'applicazione.
+     * @param username nome utente inserita dal cittadino.
+     * @param password password inserita dal cittadino.
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result loginUtente(String username, String password) {
         risultato = new Result(false, Result.Operation.LOGIN_CITTADINO);

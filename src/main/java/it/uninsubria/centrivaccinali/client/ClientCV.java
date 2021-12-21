@@ -1,12 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.controller.*;
+import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
-import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCentroVaccinale;
-import it.uninsubria.centrivaccinali.controller.centri.CVRegistraCittadinoController;
-import it.uninsubria.centrivaccinali.controller.cittadini.dashboard.*;
-import it.uninsubria.centrivaccinali.controller.cittadini.CIRegistrazioneController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.centrivaccinali.server.ServerCVInterface;
@@ -18,7 +13,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- *
+ * Rappresenta il client dell'interfaccia utente.
+ * @author ...
  */
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     /**
@@ -27,23 +23,25 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private static final long serialVersionUID = 1L;
     /**
      * Riferimento all'oggetto remoto server.
+     * @see ServerCVInterface
      */
     private static ServerCVInterface server = null;
     /**
+     * Thread di gestione della connessione.
      * @see ConnectionThread
      */
     private ConnectionThread connThread;
     /**
-     * Riferimento classe astratta Controller.
+     * Riferimento alla classe astratta Controller.
      * @see Controller
      */
     private Controller controller;
     /**
-     * Oggetto cittadino connesso al server dopo la login con successol.
+     * Oggetto cittadino connesso al server dopo la login con successo.
      */
     private Cittadino cittadinoConnesso = null;
     /**
-     * Nome del centro vaccinale corrispondente a <code>cittadinoConnesso</code>.
+     * Nome del centro vaccinale corrispondente al cittadino connesso.
      */
     private String centroCittadino = "";
 
@@ -79,8 +77,8 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     * Imposta il server nella classe attuale, previa avvenuta successione
-     * @param server
+     * Imposta il riferimento al server a seguito dopo aver ottenuto la connessione.
+     * @param server riferimento all'oggetto remoto server
      */
     public static void setServer(ServerCVInterface server) {
         ClientCV.server = server;
@@ -88,8 +86,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     /**
      * Metodo per verificare la connessione con il server RMI.
-     * @return true se la connessione è presente,
-     * false se la connessione risulta assente.
+     * @return true se la connessione è presente, false se la connessione risulta assente.
      */
     private boolean connectionStatus() {
         if (server == null) {
@@ -98,6 +95,22 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Metodo che notifica al client il completamento di un operazione richiesta al server.
+     * @param ritorno oggetto che rappresenta il risultato dell'operazione.
+     * @throws RemoteException
+     */
+    @Override
+    public void notifyStatus(Result ritorno) throws RemoteException  {
+        if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
+            if (ritorno.getResult()) {
+                cittadinoConnesso = ritorno.getCittadino();
+                centroCittadino = ritorno.getCentroCittadino();
+            }
+        }
+        controller.notifyController(ritorno);
     }
 
     /**
@@ -120,25 +133,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     * Metodo che notifica al client il completamento di un operazione richiesta al server.
-     * @param ritorno oggetto che rappresenta il risultato dell'operazione.
-     * @throws RemoteException
-     */
-    @Override
-    public void notifyStatus(Result ritorno) throws RemoteException  {
-        if (ritorno.getOpType() == Result.Operation.LOGIN_CITTADINO || ritorno.getOpType() == Result.Operation.REGISTRAZIONE_CITTADINO) {
-            if (ritorno.getResult()) {
-                cittadinoConnesso = ritorno.getCittadino();
-                centroCittadino = ritorno.getCentroCittadino();
-            }
-        }
-        controller.notifyController(ritorno);
-    }
-
-    /**
-     * Metodo, per effettuare la richiesta al server, di registrazione del centro vaccinale.
-     * @param controller
-     * @param cv
+     * Metodo per effettuare la richiesta al server di registrazione del centro vaccinale.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param cv centro vaccianale da registrare.
      */
     public void registraCentroVaccinale(Controller controller, CentroVaccinale cv) {
         this.controller = controller;
@@ -151,9 +148,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param cittadino
+     * Effettua una chiamata al server per registrare un nuovo cittadino.
+     * @param controller il controller dell'interfaccia da notificare.
+     * @param cittadino il cittadino da registrare.
      */
     public void registraCittadino(Controller controller, Cittadino cittadino) {
         this.controller = controller;
@@ -168,10 +165,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param username
-     * @param password
+     * Effettua una chiamata al server per eseguire una operazione di login.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param username nome utente del cittadino.
+     * @param password password del cittadino.
      */
     public void loginUtente(Controller controller,String username, String password){
         this.controller = controller;
@@ -186,9 +183,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param nome
+     * Effettua una chiamata al server per eseguire una ricerca di centri vaccianali in base al nome.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param nome nome del centro vaccinale da cercare.
      */
     public void ricercaPerNome(Controller controller, String nome) {
         this.controller = controller;
@@ -203,10 +200,10 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param comune
-     * @param tipologia
+     * Effettua una chiamata al server per eseguire una ricerca di centri vaccianali in base al comune e alla tipologia.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param comune comune da cercare.
+     * @param tipologia tipologia di centro vaccinale da cercare.
      */
     public void ricercaPerComuneTipologia(Controller controller, String comune, TipologiaCentro tipologia) {
         this.controller = controller;
@@ -221,9 +218,9 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     }
 
     /**
-     *
-     * @param controller
-     * @param vaccinato
+     * Effettua una chiamata al server per registrare un nuovo cittadino vaccinato.
+     * @param controller controller dell'interfaccia da notificare.
+     * @param vaccinato riferimento al vaccianato da registrare.
      */
     public void registraVaccinato(Controller controller, Vaccinato vaccinato) {
         this.controller = controller;
