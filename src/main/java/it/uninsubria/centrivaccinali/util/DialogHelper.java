@@ -16,6 +16,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * Classe per la gestione e creazione di dialog.
+ * @author Luca Centore
+ */
 public class DialogHelper {
 
 
@@ -38,13 +42,13 @@ public class DialogHelper {
 
 
     /**
-     *
+     * Riferimento al controller del Dialog
      */
     private final GenericDialogController gdc;
 
 
     /**
-     *
+     * Riferimento al parent dell'applicazione
      */
     private Parent parent;
 
@@ -62,10 +66,10 @@ public class DialogHelper {
 
 
     /**
-     *
-     * @param titolo
-     * @param descrizione
-     * @param tipo
+     * Costruttore di <code>DialogHelper</code>, crea un dialog specificando il titolo, la descrizione ed il tipo.
+     * @param titolo titolo del dialog.
+     * @param descrizione descrizione da mostrare nel dialog.
+     * @param tipo tipologia del dialog.
      */
     public DialogHelper(String titolo, String descrizione, Type tipo) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/dialogs/D_generic.fxml"));
@@ -116,7 +120,7 @@ public class DialogHelper {
 
 
     /**
-     *
+     * Metodo per mostrare il dialog.
      */
     public void display() {
         ft.setNode(rootPane);
@@ -128,8 +132,8 @@ public class DialogHelper {
 
 
     /**
-     *
-     * @param b
+     * Permette l'aggiunta di un nuovo bottone.
+     * @param b bottone da aggiungere.
      */
     public void addButton(Button b) {
         gdc.addButton(b);
@@ -137,7 +141,7 @@ public class DialogHelper {
 
 
     /**
-     *
+     * Permette di chiudere il dialog.
      */
     public void close() {
         stage.close();
@@ -150,7 +154,7 @@ public class DialogHelper {
 
 
     /**
-     *
+     * Classe enumerativa per i vari tipi di dialog.
      */
     public enum Type {
         INFO, WARNING, ERROR

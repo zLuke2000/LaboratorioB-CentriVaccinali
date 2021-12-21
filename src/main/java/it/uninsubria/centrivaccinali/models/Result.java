@@ -11,7 +11,7 @@ public class Result implements Serializable {
 
 
     /**
-     *
+     * Varabile per identificare serial version RMI.
      */
     private static final long serialVersionUID = 1L;
 

@@ -9,11 +9,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * Classe che rappresenta il server remoto
+ * @author ...
+ */
 public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
+     * Varabile per identificare serial version RMI.
      */
     private static final long serialVersionUID = 1L;
 
@@ -31,26 +35,27 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
+     * Riferimento al database.
+     * @see Database
      */
     private static Database db;
 
 
     /**
-     *
+     * Thread che gestisce l'operazione richiesta dal client.
      */
     private Thread myThread;
 
 
     /**
-     *
+     * Costruttore vuoto per la classe <code>ServerCV</code>
      * @throws RemoteException
      */
     protected ServerCV() throws RemoteException { }
 
 
     /**
-     *
+     * Metodo main, crea l'oggetto server e lo mette in ascolto sul <code>Registry</code>
      * @param args
      */
     public static void main(String[] args) {
@@ -71,10 +76,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param username
-     * @param password
+     * Crea un thread che richiede al database di autenticare l'operatore sanitario.
+     * @param client riferimento al client da notificare.
+     * @param username nome utente inserito.
+     * @param password password inserita.
      * @throws RemoteException
      */
     @Override
@@ -93,9 +98,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param cv
+     * Crea un thread che richiede al database di registrare un nuovo centro vaccinale.
+     * @param client riferimento al client da notificare.
+     * @param cv centro vaccinale da registrare.
      * @throws RemoteException
      */
     @Override
@@ -112,9 +117,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param cittadino
+     * Crea un thread che richiede al database di registrare un nuovo cittadino.
+     * @param client riferimento al client da notificare.
+     * @param cittadino cittadino da registrare.
      */
     @Override
     public synchronized void registraCittadino(ClientCVInterface client, Cittadino cittadino) {
@@ -130,9 +135,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param vaccinato
+     * Crea un thread che richiede al database di registrare un nuovo vaccinato.
+     * @param client riferimento al client da notificare.
+     * @param vaccinato vaccinato da registrare.
      * @throws RemoteException
      */
     @Override
@@ -169,9 +174,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param nomeCentro
+     * Crea un thread che richiede al database cercare un centro vaccinale in base al nome inserito.
+     * @param client riferimento al client da notificare.
+     * @param nomeCentro nome del centro da cercare.
      * @throws RemoteException
      */
     @Override
@@ -188,10 +193,10 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param comune
-     * @param tipologia
+     * Crea un thread che richiede al database di cercare un centro vaccinale in base al comune inserito e alla tipologia scelta.
+     * @param client riferimento al client da notificare.
+     * @param comune comune del centro da cercare
+     * @param tipologia tipologia del centro da cercare.
      */
     @Override
     public synchronized void ricercaCentroPerComuneTipologia(ClientCVInterface client, String comune, TipologiaCentro tipologia) {
@@ -207,9 +212,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param ea
+     * Crea un thread che richiede al database di registrare un nuovo evento avverso.
+     * @param client riferimento al client da notificare.
+     * @param ea evento avverso da registrare.
      */
     @Override
     public synchronized void registraEventoAvverso(ClientCVInterface client, EventoAvverso ea) {
@@ -225,11 +230,11 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param userid
-     * @param vecchiaPassword
-     * @param nuovaPassword
+     * Crea un thread che richiede al database di aggiornare la password dell'utente.
+     * @param client riferimento al client da notificare.
+     * @param userid nome utente del cittadino che vuole aggiornare la propria password.
+     * @param vecchiaPassword vecchia password da aggiornare.
+     * @param nuovaPassword nuova password da salvare.
      */
     @Override
     public synchronized void aggiornaPassword(ClientCVInterface client, String userid, String vecchiaPassword, String nuovaPassword) {
@@ -245,9 +250,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param nomeCentro
+     * Crea un thread che richiede al database di ottenere il valore medio per ogni tipo di evento avverso, registrato in un dato centro.
+     * @param client riferimento al client da notificare.
+     * @param nomeCentro centro vaccinale da cui leggere i valori.
      * @throws RemoteException
      */
     @Override
@@ -264,11 +269,11 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param nomeCentro
-     * @param limit
-     * @param offset
+     * Crea un thread che richiede al database di leggere gli eventi avversi registrati in un dato centro.
+     * @param client riferimento al client da notificare.
+     * @param nomeCentro centro vaccinale da cui si vuole leggere gli eventi avversi.
+     * @param limit valore che indica quanti eventi si vogliono leggere.
+     * @param offset indice da cui iniziare a leggere gli eventi da database.
      * @throws RemoteException
      */
     @Override
@@ -285,15 +290,15 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param comuni
+     * Crea un thread che richiede al database di ottenere la lista dei centri in base al comune inserito.
+     * @param client riferimento al client da notificare.
+     * @param comune comune inserito dall'utente
      */
     @Override
-    public synchronized void getCentri(ClientCVInterface client, String comuni) {
+    public synchronized void getCentri(ClientCVInterface client, String comune) {
         myThread = new Thread(() -> {
             try {
-                client.notifyStatus(db.getCentriVaccinali(comuni));
+                client.notifyStatus(db.getCentriVaccinali(comune));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -303,9 +308,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
 
     /**
-     *
-     * @param client
-     * @param provincia
+     * Crea un thread che richiede al database di ottenere la lista dei comuni in base alla provincia inserit.
+     * @param client riferimento al client da notificare.
+     * @param provincia provincia inserita.
      */
     @Override
     public synchronized void getComuni(ClientCVInterface client, String provincia) {

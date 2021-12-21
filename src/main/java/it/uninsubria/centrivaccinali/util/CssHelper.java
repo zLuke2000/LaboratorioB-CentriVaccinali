@@ -3,13 +3,18 @@ package it.uninsubria.centrivaccinali.util;
 import javafx.scene.control.*;
 import javafx.util.Duration;
 
+/**
+ * Oggetto singleton che permette di gestire e modificare gli stili delle componenti grafiche dell'interfacce.
+ * @author ...
+ */
 public class CssHelper {
 
 
     /**
      * Instanza della classe stessa
      */
-    private static CssHelper instance=null;
+    private static CssHelper instance = null;
+
 
     /**
      * Costruttore primario della classe
@@ -30,9 +35,9 @@ public class CssHelper {
 
 
     /**
-     *
-     * @param c
-     * @param tooltip
+     * Modifica lo stile di un componente dell'interfaccia mostrando un contorno rosso.
+     * @param c componente grafico da modificare.
+     * @param tooltip messaggio da mostrare.
      */
     public void toError(Control c, Tooltip tooltip) {
         toDefault(c);
@@ -46,10 +51,8 @@ public class CssHelper {
 
 
     /**
-     * Imposta a "verde" il contorno della casella passata come parametro
-     * Resetta in automatico a default in caso fosse "rosso"
-     * Rimuove il tooltip di errore
-     * @param c parametro generico per molteplici <code>text input controls</code>
+     * Modifica lo stile di un componente dell'interfaccia mostrando un contorno verde.
+     * @param c componente grafico da modificare.
      */
     public void toValid(Control c) {
         toDefault(c);
@@ -58,8 +61,8 @@ public class CssHelper {
 
 
     /**
-     * Reimposta a default il contorno della casella passata come parametro
-     * @param c parametro generico per molteplici <code>text input controls</code>
+     * Rimuove gli stili aggiunti ad un dato componente dell'interfaccia
+     * @param c componente grafico da modificare.
      */
     public void toDefault(Control c) {
         c.getStyleClass().remove("field-error");
@@ -69,9 +72,9 @@ public class CssHelper {
 
 
     /**
-     *
-     * @param bSelected
-     * @param bNotSelected
+     * Modifica lo stile di due bottoni mostrandone uno selezionato e l'altro no.
+     * @param bSelected bottone da mostrare come selezionato.
+     * @param bNotSelected bottone da mostrare come non selezionato.
      */
     public void toggle(Button bSelected, Button bNotSelected) {
         // Rimuovo tutte le classi
