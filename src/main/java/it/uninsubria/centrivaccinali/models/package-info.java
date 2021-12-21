@@ -1,5 +1,5 @@
 /**
- * Scrivere cosa contiene questo package
+ *
  *
  * @since 1.0.0
  * @author Centore Luca 740951

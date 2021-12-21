@@ -17,46 +17,50 @@ import javafx.scene.input.KeyEvent;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
- *Controller per l'interfaccia di login del cittadino
+ * Controller per l'interfaccia di login del cittadino.
+ * @author ...
  */
 public class CIHomeController extends Controller {
 
     /**
-     * TextField per l'username del cittadino
+     * <code>TextField</code> per l'username del cittadino.
      */
     @FXML private TextField tf_loginUsername;
     /**
-     * PasswordField per la password di autenticazione del cittadino
+     * <code>PasswordField</code> per la password di autenticazione del cittadino
      */
     @FXML private PasswordField tf_loginPassword;
     /**
-     * TextField per mostrare la password del cittadino
+     * <code>TextField</code> per mostrare al cittadino la password attualmente inserita.
      */
     @FXML private TextField tf_loginPasswordVisible;
     /**
-     * FontIcon per nascondere la password
+     * <code>FontIcon</code> per nascondere la password.
      */
     @FXML private FontIcon fi_nascondiPassword;
     /**
-     * FontIcon per mostrare la password
+     * <code>FontIcon</code> per mostrare la password.
      */
     @FXML private FontIcon fi_mostraPassword;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
+     * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
     /**
-     *
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
 
     /**
-     *
-     * @param result
+     * Notifica l'interfaccia quando una operazione di login &egrave stata completata.
+     * @param result rappresenta l'operazione appena completata dal server.
      */
     @Override
     public void notifyController(Result result) {
@@ -81,7 +85,7 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Metodo per entrare con l'accesso libero dentro all'applicazione
+     * Metodo per entrare con l'accesso libero dentro all'applicazione.
      */
     @FXML
     private void toFreeAccess() {
@@ -89,7 +93,7 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Metodo per accedere con le credenziali del cittadino
+     * Metodo per accedere con le credenziali del cittadino.
      */
     @FXML
     private void loginCittadino() {
@@ -111,7 +115,8 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Metodo per passare all'interfaccia di registrazione
+     * Metodo per passare all'interfaccia di registrazione.
+     * @see CIRegistrazioneController
      */
     @FXML
     private void toRegistrazione() {
@@ -119,7 +124,7 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Metodo per nascondere la password
+     * Metodo per nascondere la password.
      */
     @FXML
     private void nascondiPassword() {
@@ -133,7 +138,7 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     * Metodo per mostrare la password
+     * Metodo per mostrare la password.
      */
     @FXML
     private void mostraPassword() {
@@ -147,7 +152,7 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     *
+     * Metodo per tornare all'interfaccia precedente.
      */
     @FXML
     private void backTo() {
@@ -156,7 +161,8 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     *
+     * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
+     * @see Controller
      */
     @FXML
     private void chiudiApp() {
@@ -164,8 +170,8 @@ public class CIHomeController extends Controller {
     }
 
     /**
-     *
-     * @param keyEvent
+     * Permette di effettuare la login tramite il tasto invio
+     * @param keyEvent evento sollevato alla pressione di un tasto
      */
     @FXML
     private void checkEnter(KeyEvent keyEvent) {

@@ -16,46 +16,53 @@ import javafx.scene.layout.GridPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Controller per l'interfaccia per inserire un nuovo evento avverso.
+ * @author ...
+ */
 public class AggiungiEventoAvverso extends Controller {
     /**
-     *
+     * <code>ToggleGroup</code> per selezionare il tipo di evento avverso.
      */
     @FXML private ToggleGroup tg_eventiAvversi;
     /**
-     *
+     * <code>TextField</code> per inserire un'altra tipologia di evento avverso.
      */
     @FXML private TextField tf_altro;
     /**
-     *
+     * <code>Slider</code> per selezionare la severit&agrave
      */
     @FXML private Slider s_severita;
     /**
-     *
+     * <code>TextArea</code> per inserire note opzionali.
      */
     @FXML private TextArea ta_note;
     /**
-     *
+     * <code>Label</code> che mostra a real-time il numero di caratteri attualmente inseriti nelle note opzionali.
      */
     @FXML private Label l_caratteri;
     /**
-     *
+     * <code>GridPane</code> contenitore dell'interfaccia.
      */
     @FXML private GridPane gp_root;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
     /**
-     *
+     * Riferimento alla dashboard che contiene questa interfaccia
+     * @see CIDashboardController
      */
     private CIDashboardController parent;
 
     /**
-     *
+     * Metodo per inizializzare l'interfaccia.
      */
     @FXML
     private void initialize() {
@@ -64,8 +71,8 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
-     * @param e
+     * Gestisce la selezione della tipologia di evento.
+     * @param e l'evento sollevato.
      */
     @FXML
     private void selezioneEvento(Event e) {
@@ -77,7 +84,7 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
+     * Controlla a real-time la lunghezza del testo inserito nelle note opzionali.
      */
     @FXML
     private void controlloLunghezza() {
@@ -89,7 +96,7 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
+     * Controlla a real-time il testo inserito nella <code>TextField</code> per inserire un'altro tipo di evento.
      */
     @FXML
     private void controlloTestoEvento() {
@@ -107,7 +114,7 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
+     * Controlla la correttezza dei dati inseriti ed effettua una chiama al server per registrare l'evento.
      */
     @FXML
     private void salva() {
@@ -126,8 +133,8 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
-     * @param result
+     * Notifica l'interfaccia quando viene completata una operazione di registrazione di evento avverso.
+     * @param result l'operazione appena completata.
      */
     @Override
     public void notifyController(Result result) {
@@ -148,7 +155,8 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
+     * Permette di rimuovere quest'interfaccia dalla dashboard.
+     * @see CIDashboardController
      */
     @FXML
     private void chiudiFragment() {
@@ -156,8 +164,9 @@ public class AggiungiEventoAvverso extends Controller {
     }
 
     /**
-     *
-     * @param c
+     * Setta il riferimento alla dashboard che contiene la seguente interfaccia.
+     * @see CIDashboardController
+     * @param c controller dell'interfaccia contenitore.
      */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;

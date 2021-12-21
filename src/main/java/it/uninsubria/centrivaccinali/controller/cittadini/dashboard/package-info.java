@@ -1,5 +1,6 @@
 /**
- * Contiene i controlle delle interfacce per i cittadini
+ * Contiene i controller delle varie interfacce della dashboard,
+ * ossia l'interfaccia principale per il lato cittadini
  *
  * @since 1.0.0
  * @author Centore Luca 740951

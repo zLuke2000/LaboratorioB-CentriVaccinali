@@ -48,7 +48,7 @@ public class CISegnalazioniController extends Controller {
     private int offset;
 
     /**
-     *
+     * Metodo per inizializzare l'interfaccia.
      */
     @FXML
     private void initialize() {
@@ -62,8 +62,8 @@ public class CISegnalazioniController extends Controller {
     }
 
     /**
-     *
-     * @param result
+     * Notifica l'interfaccia dopo aver completato la lettura degli eventi avversi registrati.
+     * @param result l'operazione appena completata.
      */
     @Override
     public void notifyController(Result result) {
@@ -96,8 +96,8 @@ public class CISegnalazioniController extends Controller {
     }
 
     /**
-     *
-     * @param cv
+     * Legge le segnalazioni per un dato centro vaccinale.
+     * @param cv il centro di cui si vogliono leggere le segnalazioni.
      */
     public void setData(CentroVaccinale cv) {
         client.leggiSegnalazioni(this, cv.getNome(), limit, offset);

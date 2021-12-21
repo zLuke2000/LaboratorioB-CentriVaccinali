@@ -1,5 +1,5 @@
 /**
- * Contiene i controlle delle interfacce per i cittadini
+ * Contiene i controller delle interfacce per i cittadini
  *
  * @since 1.0.0
  * @author Centore Luca 740951

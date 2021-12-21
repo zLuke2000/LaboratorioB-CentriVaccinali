@@ -12,36 +12,42 @@ import javafx.scene.chart.XYChart;
 import java.util.Map;
 
 /**
- *
+ * Controller del grafico che mostra un prospetto riassuntivo degli eventi registrati.
+ * @author ...
  */
 public class CIGraficiController extends Controller {
     /**
-     *
+     * Grafico a barre che mostra un riassunto degli eventi avversi registrati.
      */
     @FXML private BarChart<String, Double> barChart;
     /**
-     *
+     * La serie di dati per il vaccino "pfizer".
+     * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
     /**
-     *
+     * La serie di dati per il vaccino "j&j".
+     * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
     /**
-     *
+     * La serie di dati per il vaccino "astrazeneca".
+     * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
     /**
-     *
+     * La serie di dati per il vaccino "moderna".
+     * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
 
     /**
-     *
+     * Metodo per inizializzare l'interfaccia.
      */
     @FXML
     private void initialize() {
@@ -52,8 +58,8 @@ public class CIGraficiController extends Controller {
     }
 
     /**
-     *
-     * @param result
+     * Notifica l'interfaccia dopo aver ottenuto dal server i dati riguardanti gli eventi avversi.
+     * @param result l'operazione appena completata.
      */
     @Override
     public void notifyController(Result result) {
@@ -88,18 +94,18 @@ public class CIGraficiController extends Controller {
     }
 
     /**
-     *
+     * Aggiunge uno specifico evento al grafico
      * @param series
-     * @param evento
-     * @param media
+     * @param evento la tipologia di evento.
+     * @param media il valore associato al dato da inserire.
      */
     private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double media) {
         Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, media)));
     }
 
     /**
-     *
-     * @param cv
+     * Effettua una chiamata al server per leggere gli eventi avversi registrati per il dato centro vaccinale.
+     * @param cv centro vaccinale di cui si vogliono leggere gli eventi avversi.
      */
     public void setData(CentroVaccinale cv) {
         client.leggiEA(this, cv.getNome());

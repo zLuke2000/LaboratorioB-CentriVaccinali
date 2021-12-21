@@ -16,80 +16,95 @@ import javafx.scene.layout.HBox;
 import java.io.IOException;
 
 /**
- *
+ * Controller dell'interfaccia che mostra le info del cittadino che ha effettuato l'accesso.
+ * @author ...
  */
 public class CIInfoCittadinoController extends Controller {
     /**
-     *
+     * Contenitore della seguente interfaccia
      */
     @FXML private AnchorPane ap_root;
     /**
-     *
+     * <code>Label</code> che mostra la mail del cittadino.
+     * @see Label
      */
     @FXML private Label l_mail;
     /**
-     *
+     * <code>Label</code> che mostra l'username del cittadino.
+     * @see Label
      */
     @FXML private Label l_username;
     /**
-     *
+     * <code>Label</code> che mostra il nome del cittadino.
+     * @see Label
      */
     @FXML private Label l_nome;
     /**
-     *
+     * <code>Label</code> che mostra il cognome del cittadino.
+     * @see Label
      */
     @FXML private Label l_cognome;
     /**
-     *
+     * <code>Label</code> che mostra il codice fiscale del cittadino.
+     * @see Label
      */
     @FXML private Label l_codiceFiscale;
     /**
-     *
+     * <code>Label</code> che mostra l'id di vaccinazione del cittadino.
+     * @see Label
      */
     @FXML private Label l_idVaccinazione;
     /**
-     *
+     * <code>PasswordField</code> contenente la vecchia password.
+     * @see PasswordField
      */
     @FXML private PasswordField pf_vecchiaPassword;
     /**
-     *
+     * <code>TextField</code> che mostra in chiaro la vecchia password.
+     * @see TextField
      */
     @FXML private TextField tf_vecchiaPassword;
     /**
-     *
+     * <code>PasswordField</code> per inserire la nuova password.
+     * @see PasswordField
      */
     @FXML private PasswordField pf_nuovaPassword;
     /**
-     *
+     * <code>PasswordField</code> per inserire la nuova password e controllare che sia uguale a quella precedentemente inserita.
+     * @see PasswordField
      */
     @FXML private PasswordField pf_confNuovaPassword;
     /**
-     *
+     * Contenitore che permette di visualizzare in chiaro le password.
      */
     @FXML private HBox hb_textField;
     /**
-     *
+     * Contenitore che permette di nascondere le password.
      */
     @FXML private HBox hb_passwordField;
     /**
-     *
+     * Riferimento al client su cui si sta eseguendo l'applicazione.
+     * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
     /**
-     *
+     * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
+     * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
     /**
-     *
+     * Riferimento alla dashboard che contiene questa interfaccia
+     * @see CIDashboardController
      */
     private CIDashboardController parent;
     /**
-     *
+     * Oggetto che permette la costruzione di un dialog
+     * @see DialogHelper
      */
     private DialogHelper dh;
 
     /**
-     *
+     * Metodo per inizializzare l'interfaccia.
      */
     @FXML
     private void initialize() {
@@ -103,16 +118,17 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     /**
-     *
-     * @param c
+     * Setta il riferimento alla dashboard che contiene la seguente interfaccia.
+     * @see CIDashboardController
+     * @param c controller dell'interfaccia contenitore.
      */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }
 
     /**
-     *
-     * @param result
+     * Notifica il controller dopo che il server completa una operazione di aggiornamento della password.
+     * @param result l'operazione appena completata.
      */
     @Override
     public void notifyController(Result result) {
@@ -127,7 +143,8 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Permette di rimuovere quest'interfaccia dalla dashboard.
+     * @see CIDashboardController
      */
     @FXML
     private void chiudiFragment() {
@@ -135,7 +152,7 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Effettua una chiamata al server per effettuare l'aggiornamento della password.
      */
     @FXML
     private void aggiornaPassword() {
@@ -150,7 +167,7 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Mostra in chiaro le password inserite.
      */
     @FXML
     private void mostraPassword() {
@@ -160,7 +177,7 @@ public class CIInfoCittadinoController extends Controller {
     }
 
     /**
-     *
+     * Nasconde le password inserite.
      */
     @FXML
     private void nascondiPassword() {
