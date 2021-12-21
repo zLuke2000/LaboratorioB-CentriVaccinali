@@ -67,8 +67,8 @@ public class Database {
      *  - Registra l'indirizzo se esito negativo dell'azione precedente<br>
      *  - Registra il centro vaccinale passato come paramento<br>
      *  - Crea la tabella dedicata nel database (se inesistente)
-     * @param cv centro vaccinale da registrare
-     * @return un oggetto di tipo <code>Result</code>
+     * @param cv centro vaccinale da registrare.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result registraCentroVaccinale(CentroVaccinale cv) {
         UUID uuid = null;
@@ -182,10 +182,10 @@ public class Database {
 
 
     /**
-     * Effuettua una query per effettuare la login del cittadino nell'applicazione.
+     * Metodo per effettuare la login del cittadino nell'applicazione.
      * @param username nome utente inserita dal cittadino.
      * @param password password inserita dal cittadino.
-     * @return un oggetto di tipo <code>Result</code>
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result loginUtente(String username, String password) {
         risultato = new Result(false, Result.Operation.LOGIN_CITTADINO);
@@ -243,10 +243,11 @@ public class Database {
 
 
     /**
-     * Effettua una query per verificare se l'utente è già registrato e in caso negativo viene effettuata la query di
-     * inserimento del cittadino nel database.
-     * @param c
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua prima una query per verificare se l'utente è già registrato, in caso negativo viene effettuata la query di
+     * inserimento del cittadino nel database. In caso in cui l'utente risulti essere già registrato verrà restituito
+     * un messaggio di errore in base al campo/i già presenti.
+     * @param c riferimento al cittadino da registrare
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result registraCittadino(Cittadino c) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_CITTADINO);
@@ -328,9 +329,10 @@ public class Database {
 
 
     /**
-     *
-     * @param nuovoVaccinato
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua la registrazione di un cittadino vaccinato tramite una query di insert sul database. In caso di errori
+     * di inserimento per chiavi già presenti nel database, verrà lanciata un'eccezione.
+     * @param nuovoVaccinato oggetto contenente tutti i dati del cittadino da registrare.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_VACCINATO);
@@ -369,9 +371,9 @@ public class Database {
 
 
     /**
-     *
-     * @param provincia
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua una query sul database per richiedere la lista dei comuni sulla base della provincia passata come parametro.
+     * @param provincia provincia utilizzata ai fini della ricerca dei comuni.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result getComuni(String provincia){
         Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
@@ -397,9 +399,10 @@ public class Database {
 
 
     /**
-     *
-     * @param comune
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua una query sul database per richiedere la lista dei centri vaccinali sulla base del comune passato come
+     * parametro.
+     * @param comune comune utilizzato ai fini della ricerca dei centri vaccinali.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result getCentriVaccinali(String comune){
         Result risultato = new Result(false, Result.Operation.RISULTATO_CENTRI);
@@ -431,9 +434,10 @@ public class Database {
 
 
     /**
-     *
-     * @param nomeCentro
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua una query per ottenere la lista dei centri vaccinali che corrispondono interamente o in parte al nome del
+     * centro passato come parametro.
+     * @param nomeCentro utilizzato ai fini della ricerca dei centri vaccinali.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result ricercaCentroPerNome(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
@@ -465,10 +469,11 @@ public class Database {
 
 
     /**
-     *
-     * @param comune
-     * @param tipologia
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua una query per ottenere la lista dei centri vaccinali sulla base del comune e della tipologia passati come
+     * parametro.
+     * @param comune utilizzato ai fini della ricerca dei centri vaccinali.
+     * @param tipologia utilizzata ai fini della ricerca dei centri vaccinali.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
@@ -502,9 +507,9 @@ public class Database {
 
 
     /**
-     *
-     * @param ea
-     * @return un oggetto di tipo <code>Result</code>
+     * Effettua una query di inserimento sul database dell'evento evverso passato come parametro.
+     * @param ea oggetto contenente tutti i dati relativi all'evento avverso.
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result registraEA(EventoAvverso ea) {
         Result risultato = new Result(false, Result.Operation.REGISTRA_EVENTO_AVVERSO);
@@ -526,9 +531,10 @@ public class Database {
 
 
     /**
-     *
+     * Effettua una query a database per ottenere una lista contenente la media di severit&agrave per ogni tipo di evento
+     * avverso, sulla base del centro vaccinale passato come parametro.
      * @param nomeCentro nome del centro da cui recuperare le segnalazioni
-     * @return un oggetto di tipo <code>Result</code>
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result leggiMediaEventiAvversi(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
@@ -576,13 +582,12 @@ public class Database {
 
 
     /**
-     * Effettua la lettura delle segnalazioni di eventi avversi di un determinato centro e
-     * secondo due criteri passati come parametri
-     *
+     * Effettua la lettura delle segnalazioni di eventi avversi di un determinato centro secondo due criteri passati
+     * come parametri.
      * @param nomeCentro nome del centro da cui recuperare le segnalazioni
      * @param limit limite massimo di segnalazione acquisite dal database
      * @param offset offset di selezione delle tuple da database partendo dall'alto
-     * @return un oggetto di tipo <code>Result</code>
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result leggiSegnalazioni(String nomeCentro, int limit, int offset) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
@@ -613,12 +618,11 @@ public class Database {
 
 
     /**
-     *  Effettua l'aggiornamento della password dell'account di un cittadino
-     *
+     * Effettua l'aggiornamento della password dell'account di un cittadino tramite una query di update sul database.
      * @param userid nome utente del cittadino
      * @param vecchiaPassword password vecchia
      * @param nuovaPassword password nuova
-     * @return un oggetto di tipo <code>Result</code>
+     * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result aggiornaPSW(String userid, String vecchiaPassword, String nuovaPassword) {
         Result risultato = new Result(false, Result.Operation.AGGIORNA_PASSWORD_CITTADINO);

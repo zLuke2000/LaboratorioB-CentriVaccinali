@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
+ * Classe che fornisce la funzionalit&agrave di connessione e la disconessione al database...
  */
 public class DBHelper {
 
     /**
-     *
+     * path-protocol standard postgresql.
      */
     private final static String protocol = "jdbc:postgresql://";
 
