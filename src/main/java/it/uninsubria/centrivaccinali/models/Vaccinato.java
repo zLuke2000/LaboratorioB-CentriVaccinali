@@ -15,35 +15,43 @@ import java.sql.Date;
  */
 
 public class Vaccinato implements Serializable {
+
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
 
     /**
      * Rappresenta il nome del centro presso cui &egrave stato somministrato il vaccino
      */
     private String nomeCentro;
 
+
     /**
      * Rappresenta il nome del cittadino vaccinato
      */
     private String nome;
+
 
     /**
      * Rappresenta il cognome del cittadino vaccinato
      */
     private String cognome;
 
+
     /**
      * Rappresenta il codice fiscale del cittadino vaccinato
      */
     private String codiceFiscale;
 
+
     /**
      * Rappresenta la data di somministrazione del vaccino
      */
     private Date dataSomministrazione;
+
 
     /**
      * Rappresenta il tipo di vaccino somministrato
@@ -55,10 +63,12 @@ public class Vaccinato implements Serializable {
      */
     private long idVaccino;
 
+
     /**
      * Costruttore vuoto per la classe <code>Vaccinato</code>
      */
     public Vaccinato() {}
+
 
     /**
      * Costruttore principale per Vaccinato
@@ -80,6 +90,7 @@ public class Vaccinato implements Serializable {
         this.idVaccino = idVaccino;
     }
 
+
     /**
      * Metodo getter per il nome del centro vaccinale
      * @return il nome del centro vaccinale presso cui &egrave stata fatta la vaccinazione
@@ -87,6 +98,7 @@ public class Vaccinato implements Serializable {
     public String getNomeCentro() {
         return nomeCentro;
     }
+
 
     /**
      * Metodo setter per il nome del centro vaccinale
@@ -96,6 +108,7 @@ public class Vaccinato implements Serializable {
         this.nomeCentro = nomeCentro;
     }
 
+
     /**
      * Metodo getter per il nome del cittadino vaccinato
      * @return il nome del cittadino vaccinato
@@ -103,6 +116,7 @@ public class Vaccinato implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     /**
      * Metodo setter per il nome del cittadino vaccinato
@@ -112,6 +126,7 @@ public class Vaccinato implements Serializable {
         this.nome = nome;
     }
 
+
     /**
      * Metodo getter per il cognome del cittadino vaccinato
      * @return il cognome del cittadino vaccinato
@@ -119,6 +134,7 @@ public class Vaccinato implements Serializable {
     public String getCognome() {
         return cognome;
     }
+
 
     /**
      * Metodo setter per il cognome del cittadino vaccinato
@@ -128,6 +144,7 @@ public class Vaccinato implements Serializable {
         this.cognome = cognome;
     }
 
+
     /**
      * Metodo getter per il codice fiscale del cittadino vaccinato
      * @return il codice fiscale del cittadino vaccinato
@@ -135,6 +152,7 @@ public class Vaccinato implements Serializable {
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
+
 
     /**
      * Metodo setter per il codice fiscale del cittadino vaccinato
@@ -144,6 +162,7 @@ public class Vaccinato implements Serializable {
         this.codiceFiscale = codiceFiscale;
     }
 
+
     /**
      * Metodo getter per la data di vaccinazione
      * @return la data di vaccinazione
@@ -151,6 +170,7 @@ public class Vaccinato implements Serializable {
     public Date getDataSomministrazione() {
         return dataSomministrazione;
     }
+
 
     /**
      * Metodo setter per la data di vaccinazione
@@ -160,6 +180,7 @@ public class Vaccinato implements Serializable {
         this.dataSomministrazione = dataSomministrazione;
     }
 
+
     /**
      * Metodo getter per il tipo di vaccino somministrato
      * @return il tipo di vaccino somministrato
@@ -167,6 +188,7 @@ public class Vaccinato implements Serializable {
     public Vaccino getVaccinoSomministrato() {
         return vaccinoSomministrato;
     }
+
 
     /**
      * Metodo setter per il tipo di vaccino somministrato
@@ -176,6 +198,7 @@ public class Vaccinato implements Serializable {
         this.vaccinoSomministrato = vaccinoSomministrato;
     }
 
+
     /**
      * Metodo getter per l'id del vaccino associato al cittadino
      * @return l'id di vaccinazione associato al cittadino
@@ -184,6 +207,7 @@ public class Vaccinato implements Serializable {
         return idVaccino;
     }
 
+
     /**
      * Metodo setter per l'id del vaccino associato al cittadino
      * @param idVaccino il nuovo id di vaccinazione
@@ -191,6 +215,7 @@ public class Vaccinato implements Serializable {
     public void setIdVaccino(long idVaccino) {
         this.idVaccino = idVaccino;
     }
+
 
     /**
      * Ritorna la stringa corrispondente al cittadino vaccinato

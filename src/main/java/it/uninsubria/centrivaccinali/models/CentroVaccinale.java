@@ -19,25 +19,32 @@ public class CentroVaccinale implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+
     /**
      * Rappresenta il nome del centro
      */
     private String nome;
+
+
     /**
      * Rappresenta il modello <code>Indirizzo</code>
      * @see Indirizzo
      */
     private Indirizzo indirizzo;
+
+
     /**
      * Rappresenta la tipologia di centro vaccinale tramite la classe enumerativa <code>TipologiaCentro</code>
      * @see TipologiaCentro
      */
     private TipologiaCentro tipologia;
 
+
     /**
      * Costruttore vuoto dell'oggetto <code>CentroVaccinale</code>
      */
     public CentroVaccinale() {}
+
 
     /**
      * Costruttore dell'oggetto <code>CentroVaccinale</code>
@@ -52,6 +59,7 @@ public class CentroVaccinale implements Serializable {
         this.tipologia = tipologia;
     }
 
+
     /**
      * Metodo getter per il campo <code>nome</code>
      * @return ritorna il nome del centro
@@ -59,6 +67,7 @@ public class CentroVaccinale implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     /**
      * Metodo setter per il campo <code>nome</code>
@@ -68,6 +77,7 @@ public class CentroVaccinale implements Serializable {
         this.nome = nome;
     }
 
+
     /**
      * Metodo getter per il campo <code>Indirizzo</code>
      * @return ritorna il modello <code>Indirizzo</code> del centro
@@ -75,6 +85,7 @@ public class CentroVaccinale implements Serializable {
     public Indirizzo getIndirizzo() {
         return indirizzo;
     }
+
 
     /**
      * Metodo setter per il campo <code>Indirizzo</code>
@@ -85,6 +96,7 @@ public class CentroVaccinale implements Serializable {
         this.indirizzo = indirizzo;
     }
 
+
     /**
      * Metodo getter per il campo <code>Tipologia</code>
      * @return ritorna la tipologia del centro
@@ -93,6 +105,7 @@ public class CentroVaccinale implements Serializable {
         return tipologia;
     }
 
+
     /**
      * Metodo setter per il campo <code>Tipologia</code>
      * @param tipologia il nuova tipologia del centro
@@ -100,6 +113,7 @@ public class CentroVaccinale implements Serializable {
     public void setTipologia(TipologiaCentro tipologia) {
         this.tipologia = tipologia;
     }
+
 
     /**
      * Ritorna la stringa corrispondente al centro vaccinale

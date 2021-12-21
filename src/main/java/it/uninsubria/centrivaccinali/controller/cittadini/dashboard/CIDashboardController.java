@@ -18,25 +18,34 @@ import java.io.IOException;
  * @author ...
  */
 public class CIDashboardController extends Controller {
+
+
     /**
      * <code>MenuButton</code> contenente l'username del cittadino connesso,
      * con la possibilita di fare il logout e la visualizzazione delle sue informazioni.
      */
     @FXML private MenuButton mb_utente;
+
+
     /**
      * <code>Pane</code> container su cui andra popolato con le interfaccie.
      */
     @FXML private Pane p_container;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Riferiemento al cittadino al momento connesso.
      * @see Cittadino
      */
     private Cittadino cittadinoConnesso = null;
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -62,9 +71,11 @@ public class CIDashboardController extends Controller {
         }
     }
 
+
     //Metodo ereditato dalla superclasse
     @Override
     public void notifyController(Result result) {  }
+
 
     /**
      * Metodo per la visualizzazione dell'inforrmazioni del centro vaccinale selezionato.
@@ -86,6 +97,7 @@ public class CIDashboardController extends Controller {
 
     }
 
+
     /**
      * Metodo per l'apertura dell'interfaccia per l'inserimento degli eventi avversi, del centro vaccinale
      * su cui è possibile inserirli.
@@ -102,6 +114,7 @@ public class CIDashboardController extends Controller {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Metodo per l'apertura dell'interfaccia che mostra le insfromazioni del cittadino connesso.
@@ -121,6 +134,7 @@ public class CIDashboardController extends Controller {
         }
     }
 
+
     /**
      * Metodo per la rimozione del fragment passato come paramentro, e la visualizzazione del fragment precedente.
      * @param p Pane da rimuovere.
@@ -129,6 +143,7 @@ public class CIDashboardController extends Controller {
         p_container.getChildren().remove(p);
         p_container.getChildren().get(p_container.getChildren().size() - 1).setVisible(true);
     }
+
 
     /**
      * Metodo per fare il logout da parte del cittadino connesso.
@@ -139,6 +154,7 @@ public class CIDashboardController extends Controller {
         CentriVaccinali.setRoot("CI_home");
         client.LogoutUtente();
     }
+
 
     /**
      * Metodo per tornare all'interfaccia precedente.
@@ -152,6 +168,7 @@ public class CIDashboardController extends Controller {
         }
         client.stopOperation();
     }
+
 
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.

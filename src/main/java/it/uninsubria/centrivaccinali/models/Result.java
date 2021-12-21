@@ -8,38 +8,55 @@ import java.util.*;
  * @author ...
  */
 public class Result implements Serializable {
+
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
+
     /**
      * Lista contenente tutte le informazioni riguardanti l'esito delle operazioni
      */
     private final List<Error> extendedResult = new ArrayList<>();
+
+
     /**
      * Lista contenente gli oggetti da inviare al client
      */
     private List<Object> list;
+
+
     /**
      * Mappa da inviare al client che conterr&agrave gli eventi avversi e la loro severit&agrave
      */
     private Map<String, Double> map;
+
+
     /**
      * Rappresenta il tipo di operazione da effettuare
      */
     private Operation opType;
+
+
     /**
      * Rappresenta l'esito dell'operazione
      */
     private boolean result;
+
+
     /**
      * Rappresenta il cittadino che effettuer&agrave il login
      */
     private Cittadino cittadino;
+
+
     /**
      * Rappresenta il centro presso cui &egrave stato vaccinato il cittadino loggato
      */
     private String centroCittadino;
+
 
     /**
      * Costruttore per la classe <code>Result</code>
@@ -51,6 +68,7 @@ public class Result implements Serializable {
         this.opType = opType;
     }
 
+
     /**
      * Ritorna l'esito dell'operazione
      * @return un booleano che rappresenta l'esito dell'operazione
@@ -58,6 +76,7 @@ public class Result implements Serializable {
     public boolean getResult() {
         return result;
     }
+
 
     /**
      * Setta l'esito dell'operazione
@@ -67,6 +86,7 @@ public class Result implements Serializable {
         this.result = result;
     }
 
+
     /**
      * Ritorna la lista che contiene tutte le informazioni dell'operazione effettuata
      * @return la lista con tutte le informazioni riguardanti l'esito della operazione appena effattuata
@@ -74,6 +94,7 @@ public class Result implements Serializable {
     public List<Error> getExtendedResult() {
         return extendedResult;
     }
+
 
     /**
      * Setta nella lista una specifica informazione riguardante l'esito dell'operazione
@@ -83,6 +104,7 @@ public class Result implements Serializable {
         this.extendedResult.add(enumerator);
     }
 
+
     /**
      *
      * @return
@@ -90,6 +112,7 @@ public class Result implements Serializable {
     public Operation getOpType() {
         return opType;
     }
+
 
     /**
      *
@@ -100,6 +123,7 @@ public class Result implements Serializable {
         this.opType = opType;
     }
 
+
     /**
      *
      * @return
@@ -107,6 +131,7 @@ public class Result implements Serializable {
     public Cittadino getCittadino() {
         return cittadino;
     }
+
 
     /**
      *
@@ -116,6 +141,7 @@ public class Result implements Serializable {
         cittadino = c;
     }
 
+
     /**
      *
      * @return
@@ -124,6 +150,7 @@ public class Result implements Serializable {
         return centroCittadino;
     }
 
+
     /**
      *
      * @param centroCittadino
@@ -131,6 +158,7 @@ public class Result implements Serializable {
     public void setCentroCittadino(String centroCittadino) {
         this.centroCittadino = centroCittadino;
     }
+
 
     /**
      *

@@ -21,26 +21,34 @@ public class Database {
      * @see Connection
      */
     private static Connection conn;
+
+
     /**
      * Variabile contenente uno statement sql preparato prima di eseguire la query.
      * @see PreparedStatement
      */
     private static PreparedStatement pstmt;
+
+
     /**
      * Variabile contenete il risultato dopo una query a database.
      * @see ResultSet
      */
     private ResultSet rs;
+
+
     /**
      * Rappresenta l'operazione da eseguire.
      * @see Result
      */
     private Result risultato;
 
+
     /**
      * Costruttore vuoto per <code>Database</code>.
      */
     public Database() { }
+
 
     /**
      * Permette di ottenere la connessione al database.
@@ -51,6 +59,7 @@ public class Database {
         System.out.println("Connessione stabilita: " + conn);
         return conn != null;
     }
+
 
     /**
      * Effettua l'inserimento di un centro vaccinale su database seguendo determinati passaggi:<br>
@@ -149,15 +158,6 @@ public class Database {
                 }
                 return risultato;
 
-                /*
-                 * Dettaglio: Key (nome)=(CENTRO VACCINAZIONI VARESE SCHIRANNA) already exists. // PRIMO SPLIT
-                 *
-                 * ["Dettaglio: Key (nome", "=(CENTRO VACCINAZIONI VARESE SCHIRANNA)", " already exists."] // Prendo l'indice 0
-                 *
-                 * Dettaglio: Key (nome // Secondo SPLIT
-                 *
-                 * ["Dettaglio: Key (", "nome"] // Prendo l'indice 1
-                 */
             }
         }
 
@@ -179,6 +179,7 @@ public class Database {
             return risultato;
         }
     }
+
 
     /**
      * Effuettua una query per effettuare la login del cittadino nell'applicazione.
@@ -239,6 +240,7 @@ public class Database {
         }
         return risultato;
     }
+
 
     /**
      * Effettua una query per verificare se l'utente è già registrato e in caso negativo viene effettuata la query di
@@ -324,6 +326,7 @@ public class Database {
         return risultato;
     }
 
+
     /**
      *
      * @param nuovoVaccinato
@@ -364,6 +367,7 @@ public class Database {
         return risultato;
     }
 
+
     /**
      *
      * @param provincia
@@ -390,6 +394,7 @@ public class Database {
         }
         return risultato;
     }
+
 
     /**
      *
@@ -424,6 +429,7 @@ public class Database {
         return risultato;
     }
 
+
     /**
      *
      * @param nomeCentro
@@ -456,6 +462,7 @@ public class Database {
         }
         return risultato;
     }
+
 
     /**
      *
@@ -493,6 +500,7 @@ public class Database {
         return risultato;
     }
 
+
     /**
      *
      * @param ea
@@ -515,6 +523,7 @@ public class Database {
         }
         return risultato;
     }
+
 
     /**
      *
@@ -565,6 +574,7 @@ public class Database {
         return risultato;
     }
 
+
     /**
      * Effettua la lettura delle segnalazioni di eventi avversi di un determinato centro e
      * secondo due criteri passati come parametri
@@ -600,6 +610,7 @@ public class Database {
         }
         return risultato;
     }
+
 
     /**
      *  Effettua l'aggiornamento della password dell'account di un cittadino

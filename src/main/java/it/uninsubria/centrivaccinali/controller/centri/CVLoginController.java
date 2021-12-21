@@ -26,24 +26,33 @@ public class CVLoginController extends Controller {
      * Riferimento al <code>Button</code> per effettuare l'acceso.
      */
     @FXML public Button b_accedi;
+
+
     /**
      * Riferimento alla <code>TextField</code> in cui inserire l'username.
      */
     @FXML private TextField tf_username;
+
+
     /**
      * Riferimento alla <code>PasswordField</code> in cui inserire la password.
      */
     @FXML private PasswordField pf_password;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
      * @see CssHelper
      */
     private final CssHelper cssHelper = CssHelper.getInstance();
+
 
     /**
      * Permette di notificare l'interfaccia quando una operazione di login &egrave stata completata.
@@ -60,6 +69,7 @@ public class CVLoginController extends Controller {
             new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR).display();
         }
     }
+
 
     /**
      * Metodo per effettuare il controllo delle credenziali secondo i requisiti richiesti.
@@ -90,6 +100,7 @@ public class CVLoginController extends Controller {
         }
     }
 
+
     /**
      * Metodo per tornare all'interfaccia precedente.
      */
@@ -99,6 +110,7 @@ public class CVLoginController extends Controller {
         CentriVaccinali.setRoot("Avvio");
     }
 
+
     /**
      * Mostra un pop-up informativo.
      */
@@ -106,6 +118,7 @@ public class CVLoginController extends Controller {
     private void ShowInfo() {
         new DialogHelper("Aiuto password", "La password verrà fornita solo a operatori sanitari che possono:\n- registrare un centro vaccinale\n- registrare un cittadino vaccinato", DialogHelper.Type.INFO).display();
     }
+
 
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.

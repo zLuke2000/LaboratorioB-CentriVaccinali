@@ -24,31 +24,43 @@ public class CIInfoCittadinoController extends Controller {
      * Contenitore della seguente interfaccia
      */
     @FXML private AnchorPane ap_root;
+
+
     /**
      * <code>Label</code> che mostra la mail del cittadino.
      * @see Label
      */
     @FXML private Label l_mail;
+
+
     /**
      * <code>Label</code> che mostra l'username del cittadino.
      * @see Label
      */
     @FXML private Label l_username;
+
+
     /**
      * <code>Label</code> che mostra il nome del cittadino.
      * @see Label
      */
     @FXML private Label l_nome;
+
+
     /**
      * <code>Label</code> che mostra il cognome del cittadino.
      * @see Label
      */
     @FXML private Label l_cognome;
+
+
     /**
      * <code>Label</code> che mostra il codice fiscale del cittadino.
      * @see Label
      */
     @FXML private Label l_codiceFiscale;
+
+
     /**
      * <code>Label</code> che mostra l'id di vaccinazione del cittadino.
      * @see Label
@@ -59,49 +71,68 @@ public class CIInfoCittadinoController extends Controller {
      * @see PasswordField
      */
     @FXML private PasswordField pf_vecchiaPassword;
+
+
     /**
      * <code>TextField</code> che mostra in chiaro la vecchia password.
      * @see TextField
      */
     @FXML private TextField tf_vecchiaPassword;
+
+
     /**
      * <code>PasswordField</code> per inserire la nuova password.
      * @see PasswordField
      */
     @FXML private PasswordField pf_nuovaPassword;
+
+
     /**
      * <code>PasswordField</code> per inserire la nuova password e controllare che sia uguale a quella precedentemente inserita.
      * @see PasswordField
      */
     @FXML private PasswordField pf_confNuovaPassword;
+
+
     /**
      * Contenitore che permette di visualizzare in chiaro le password.
      */
     @FXML private HBox hb_textField;
+
+
     /**
      * Contenitore che permette di nascondere le password.
      */
     @FXML private HBox hb_passwordField;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
      * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+
+
     /**
      * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;
+
+
     /**
      * Oggetto che permette la costruzione di un dialog.
      * @see DialogHelper
      */
     private DialogHelper dh;
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -117,6 +148,7 @@ public class CIInfoCittadinoController extends Controller {
         l_idVaccinazione.setText(String.valueOf(c.getId_vaccinazione()));
     }
 
+
     /**
      * Setta il riferimento alla dashboard che contiene la seguente interfaccia.
      * @see CIDashboardController
@@ -125,6 +157,7 @@ public class CIInfoCittadinoController extends Controller {
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;
     }
+
 
     /**
      * Notifica il controller dopo che il server completa una operazione di aggiornamento della password.
@@ -142,6 +175,7 @@ public class CIInfoCittadinoController extends Controller {
         });
     }
 
+
     /**
      * Permette di rimuovere quest'interfaccia dalla dashboard.
      * @see CIDashboardController
@@ -150,6 +184,7 @@ public class CIInfoCittadinoController extends Controller {
     private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
+
 
     /**
      * Effettua una chiamata al server per effettuare l'aggiornamento della password.
@@ -166,6 +201,7 @@ public class CIInfoCittadinoController extends Controller {
         }
     }
 
+
     /**
      * Mostra in chiaro le password inserite.
      */
@@ -175,6 +211,7 @@ public class CIInfoCittadinoController extends Controller {
         hb_textField.setVisible(true);
         hb_passwordField.setVisible(false);
     }
+
 
     /**
      * Nasconde le password inserite.

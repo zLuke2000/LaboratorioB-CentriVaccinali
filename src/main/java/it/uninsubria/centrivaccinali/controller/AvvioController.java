@@ -15,11 +15,14 @@ import javafx.fxml.FXML;
  * * @author ...
  */
 public class AvvioController extends Controller {
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
 
     /**
      * Metodo usato per accedere come operatore cittadino,
@@ -34,6 +37,7 @@ public class AvvioController extends Controller {
         }
     }
 
+
     /**
      * Metodo usato per accedere come operatore sanitario,
      * aprendo l'interfaccia di login.
@@ -43,9 +47,11 @@ public class AvvioController extends Controller {
         CentriVaccinali.setRoot("CV_login");
     }
 
+
     //Metodo eridato dalla superclasse
     @Override
     public void notifyController(Result result) { }
+
 
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.

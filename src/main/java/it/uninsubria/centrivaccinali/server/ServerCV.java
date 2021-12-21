@@ -11,32 +11,43 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
+
     /**
      *
      */
     private final String usernameOperatore = "123";
+
+
     /**
      *
      */
     private final String passwordOperatore = "123";
+
+
     /**
      *
      */
     private static Database db;
+
+
     /**
      *
      */
     private Thread myThread;
+
 
     /**
      *
      * @throws RemoteException
      */
     protected ServerCV() throws RemoteException { }
+
 
     /**
      *
@@ -57,6 +68,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
             db.getCentriVaccinali("");
         }
     }
+
 
     /**
      *
@@ -79,6 +91,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -97,6 +110,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -113,6 +127,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         });
         myThread.start();
     }
+
 
     /**
      *
@@ -132,11 +147,12 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
-     *
-     * @param client
-     * @param username
-     * @param password
+     * Crea un thread che richiede al database di effettuare una operazione di login
+     * @param client riferimento al client da notificare.
+     * @param username nome utente inserito dall'utente.
+     * @param password password inserita dall'utente.
      * @throws RemoteException
      */
     @Override
@@ -150,6 +166,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         });
         myThread.start();
     }
+
 
     /**
      *
@@ -169,6 +186,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -187,6 +205,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -203,6 +222,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         });
         myThread.start();
     }
+
 
     /**
      *
@@ -223,6 +243,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -240,6 +261,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         });
         myThread.start();
     }
+
 
     /**
      *
@@ -261,6 +283,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
      *
      * @param client
@@ -277,6 +300,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         });
         myThread.start();
     }
+
 
     /**
      *
@@ -295,8 +319,9 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
         myThread.start();
     }
 
+
     /**
-     *
+     * Metodo per interrompere l'operazione in corso, se presente.
      */
     @Override
     public synchronized void stopThread() {

@@ -18,34 +18,48 @@ import java.io.IOException;
 
 public class DialogHelper {
 
+
     /**
-     *
+     * Riferimento allo stage dell'applicazione
      */
     private final Stage stage;
+
+
     /**
-     *
+     * Transizione per rendere trasparente l'interfaccia sottostante.
      */
     private final FadeTransition ft = new FadeTransition(Duration.millis(500));
+
+
     /**
-     *
+     * Root al momento attiva nell'applicazione
      */
     private final Pane rootPane = (Pane) CentriVaccinali.scene.getRoot();
+
+
     /**
      *
      */
     private final GenericDialogController gdc;
+
+
     /**
      *
      */
     private Parent parent;
+
+
     /**
-     *
+     *  Riferimento sull'asse delle ascisse della finestra
      */
     private Double xOffset;
+
+
     /**
-     *
+     * Riferimento sull'asse delle ordinate della finestra
      */
     private Double yOffset;
+
 
     /**
      *
@@ -100,6 +114,7 @@ public class DialogHelper {
         });
     }
 
+
     /**
      *
      */
@@ -111,6 +126,7 @@ public class DialogHelper {
         stage.showAndWait();
     }
 
+
     /**
      *
      * @param b
@@ -118,6 +134,7 @@ public class DialogHelper {
     public void addButton(Button b) {
         gdc.addButton(b);
     }
+
 
     /**
      *
@@ -130,6 +147,7 @@ public class DialogHelper {
         ft.setToValue(1.0);
         ft.play();
     }
+
 
     /**
      *

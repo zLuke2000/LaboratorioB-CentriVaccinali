@@ -21,6 +21,8 @@ import java.io.IOException;
  * @author ...
  */
 public class CIInfoCentroController extends Controller {
+
+
     /**
      * <code>AnchorPane</code> contenitore della seguente interfaccia.
      * @see AnchorPane
@@ -29,6 +31,8 @@ public class CIInfoCentroController extends Controller {
      * @s
      */
     @FXML private AnchorPane ap_root;
+
+
     /**
      * <code>FontIcon</code> che mostra una icona per il centro selezionato.
      * @see FontIcon
@@ -37,6 +41,8 @@ public class CIInfoCentroController extends Controller {
      *
      */
     @FXML private FontIcon fi_iconaCentro;
+
+
     /**
      * <code>Label</code> che mostra la tipologia del centro selezionato.
      * @see Label
@@ -45,55 +51,76 @@ public class CIInfoCentroController extends Controller {
      *
      */
     @FXML private Label l_tipologia;
+
+
     /**
      * <code>Label</code> che mostra il nome del centro selezionato.
      * @see Label
      */
     @FXML private Label l_nome;
+
+
     /**
      * <code>Label</code> che mostra l'indirizzo del centro selezionato.
      * @see Label
      */
     @FXML private Label l_indirizzo;
+
+
     /**
      * <code>AnchorPane</code> che contiene le sotto-interfacce.
      * @see AnchorPane
      */
     @FXML private AnchorPane ap_container;
+
+
     /**
      * <code>Button</code> per mostrare l'interfaccia con gli eventi avversi registrati.
      * @see CISegnalazioniController
      */
     @FXML private Button b_segnalazioni;
+
+
     /**
      * <code>Button</code> per mostrare l'interfaccia con il grafico.
      * @see CIGraficiController
      */
     @FXML private Button b_grafico;
+
+
     /**
      * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
      * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
+
+
     /**
      * Contenitore dell'interfaccia con gli eventi registrati.
      * @see CISegnalazioniController
      */
     private AnchorPane ap_segnalazioni;
+
+
     /**
      * Contenitore dell'interfaccia con il grafico.
      * @see CIGraficiController
      */
     private AnchorPane ap_grafico;
+
+
     /**
      * Centro vaccinale selezionato.
      */
     private CentroVaccinale cv;
+
+
     /**
      Contenitore dell'interfaccia con gli eventi registrati.
      * @see CISegnalazioniController
      */
     private CIDashboardController parent;
+
 
     //Metodo ereditato dalla superclasse
     @Override
@@ -122,6 +149,7 @@ public class CIInfoCentroController extends Controller {
 
         mostraGrafico();
     }
+
 
     /**
      * Mostra l'interfaccia delle segnalazioni.
@@ -154,6 +182,7 @@ public class CIInfoCentroController extends Controller {
         }
     }
 
+
     /**
      * Metodo per mostrarare l'interfaccia con il grafico.
      * @see CIGraficiController
@@ -184,6 +213,7 @@ public class CIInfoCentroController extends Controller {
         }
     }
 
+
     /**
      * Permette di rimuovere quest'interfaccia dalla dashboard.
      * @see CIDashboardController
@@ -192,6 +222,7 @@ public class CIInfoCentroController extends Controller {
     private void chiudiFragment() {
         parent.rimuoviFragment(ap_root);
     }
+
 
     /**
      * Setta il riferimento alla dashboard che contiene la seguente interfaccia.

@@ -13,10 +13,12 @@ import java.io.Serializable;
  */
 
 public class Indirizzo implements Serializable {
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
 
     /**
      * Rappresenta il qualificatore della via tramite la classe <code>Qualificatore</code>
@@ -24,35 +26,42 @@ public class Indirizzo implements Serializable {
      */
     private Qualificatore qualificatore;
 
+
     /**
      * Rappresenta il nome della "via" dell'indirizzo
      */
     private String nome;
+
 
     /**
      * Rappresenta il civico dell'indirizzo
      */
     private String civico;
 
+
     /**
      * Rappresenta il comune dell'indirizzo
      */
     private String comune;
+
 
     /**
      * Rappresenta la provincia dell'indirizzo
      */
     private String provincia;
 
+
     /**
      * Rappresenta il cap dell'indirizzo
      */
     private int cap;
 
+
     /**
      * Costruttore vuoto dell'oggetto <code>Indirizzo</code>
      */
     public Indirizzo() {}
+
 
     /**
      * Costruttore dell'oggetto <code>CentroVaccinale</code>
@@ -74,6 +83,7 @@ public class Indirizzo implements Serializable {
         this.cap = cap;
     }
 
+
     /**
      * Metodo getter per il campo <code>Qualificatore</code>
      * @return ritorna il qualificatore dell'indirizzo
@@ -81,6 +91,7 @@ public class Indirizzo implements Serializable {
     public Qualificatore getQualificatore() {
         return qualificatore;
     }
+
 
     /**
      * Metodo setter per il campo <code>Qualificatore</code>
@@ -90,6 +101,7 @@ public class Indirizzo implements Serializable {
         this.qualificatore = qualificatore;
     }
 
+
     /**
      * Metodo getter per il campo <code>nome</code>
      * @return ritorna il nome dell'indirizzo
@@ -97,6 +109,7 @@ public class Indirizzo implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     /**
      * Metodo setter per il campo <code>nome</code>
@@ -106,6 +119,7 @@ public class Indirizzo implements Serializable {
         this.nome = nome;
     }
 
+
     /**
      * Metodo getter per il campo <code>civico</code>
      * @return ritorna il numero civico dell'indirizzo
@@ -113,6 +127,7 @@ public class Indirizzo implements Serializable {
     public String getCivico() {
         return civico;
     }
+
 
     /**
      * Metodo setter per il campo <code>civico</code>
@@ -122,6 +137,7 @@ public class Indirizzo implements Serializable {
         this.civico = civico;
     }
 
+
     /**
      * Metodo getter per il campo <code>comune</code>
      * @return ritorna il comune dell'indirizzo
@@ -129,6 +145,7 @@ public class Indirizzo implements Serializable {
     public String getComune() {
         return comune;
     }
+
 
     /**
      * Metodo setter per il campo <code>comune</code>
@@ -138,6 +155,7 @@ public class Indirizzo implements Serializable {
         this.comune = comune;
     }
 
+
     /**
      * Metodo getter per il campo <code>provincia</code>
      * @return ritorna la provincia dell'indirizzo
@@ -145,6 +163,7 @@ public class Indirizzo implements Serializable {
     public String getProvincia() {
         return provincia;
     }
+
 
     /**
      * Metodo setter per il campo <code>provincia</code>
@@ -154,6 +173,7 @@ public class Indirizzo implements Serializable {
         this.provincia = provincia;
     }
 
+
     /**
      * Metodo getter per il campo <code>cap</code>
      * @return ritorna il cap dell'indirizzo
@@ -162,6 +182,7 @@ public class Indirizzo implements Serializable {
         return cap;
     }
 
+
     /**
      * Metodo setter per il campo <code>cap</code>
      * @param cap il nuovo cap dell'indirizzo
@@ -169,6 +190,7 @@ public class Indirizzo implements Serializable {
     public void setCap(Integer cap) {
         this.cap = cap;
     }
+
 
     /**
      * Ritorna la stringa che rappresenta l'indirizzo civico

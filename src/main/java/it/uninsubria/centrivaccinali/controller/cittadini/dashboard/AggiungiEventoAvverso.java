@@ -25,41 +25,58 @@ public class AggiungiEventoAvverso extends Controller {
      * <code>ToggleGroup</code> per selezionare il tipo di evento avverso.
      */
     @FXML private ToggleGroup tg_eventiAvversi;
+
+
     /**
      * <code>TextField</code> per inserire un'altra tipologia di evento avverso.
      */
     @FXML private TextField tf_altro;
+
+
     /**
      * <code>Slider</code> per selezionare la severit&agrave
      */
     @FXML private Slider s_severita;
+
+
     /**
      * <code>TextArea</code> per inserire note opzionali.
      */
     @FXML private TextArea ta_note;
+
+
     /**
      * <code>Label</code> che mostra a real-time il numero di caratteri attualmente inseriti nelle note opzionali.
      */
     @FXML private Label l_caratteri;
+
+
     /**
      * <code>GridPane</code> contenitore dell'interfaccia.
      */
     @FXML private GridPane gp_root;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
      * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
+
+
     /**
      * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -69,6 +86,7 @@ public class AggiungiEventoAvverso extends Controller {
         // Imposto l'handler per la colorazione dello slider
         s_severita.valueProperty().addListener( e -> s_severita.lookup(".track").setStyle("-fx-background-color: hsb( " + Math.round((-15*s_severita.getValue())+75) + ", 75%, 100%);"));
     }
+
 
     /**
      * Gestisce la selezione della tipologia di evento.
@@ -83,6 +101,7 @@ public class AggiungiEventoAvverso extends Controller {
         }
     }
 
+
     /**
      * Controlla a real-time la lunghezza del testo inserito nelle note opzionali.
      */
@@ -94,6 +113,7 @@ public class AggiungiEventoAvverso extends Controller {
         }
         l_caratteri.setText(ta_note.getText().trim().length() + "/256");
     }
+
 
     /**
      * Controlla a real-time il testo inserito nella <code>TextField</code> per inserire un'altro tipo di evento.
@@ -113,6 +133,7 @@ public class AggiungiEventoAvverso extends Controller {
         }
     }
 
+
     /**
      * Controlla la correttezza dei dati inseriti ed effettua una chiama al server per registrare l'evento.
      */
@@ -131,6 +152,7 @@ public class AggiungiEventoAvverso extends Controller {
         String note = ta_note.getText().trim();
         client.registraEventoAvverso(this, new EventoAvverso(client.getUtenteLoggato().getId_vaccinazione(), evento, severita, note));
     }
+
 
     /**
      * Notifica l'interfaccia quando viene completata una operazione di registrazione di evento avverso.
@@ -154,6 +176,7 @@ public class AggiungiEventoAvverso extends Controller {
         }
     }
 
+
     /**
      * Permette di rimuovere quest'interfaccia dalla dashboard.
      * @see CIDashboardController
@@ -162,6 +185,7 @@ public class AggiungiEventoAvverso extends Controller {
     private void chiudiFragment() {
         parent.rimuoviFragment(gp_root);
     }
+
 
     /**
      * Setta il riferimento alla dashboard che contiene la seguente interfaccia.

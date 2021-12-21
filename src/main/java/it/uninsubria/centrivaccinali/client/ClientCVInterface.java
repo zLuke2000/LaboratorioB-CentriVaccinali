@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
  * @see ClientCV
  */
 public interface ClientCVInterface extends Remote {
+
+
     /**
      * Permette di notificare l'interfaccia utente.
      * @param ritorno l'operazione appena completata dal server

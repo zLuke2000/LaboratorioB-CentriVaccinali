@@ -17,36 +17,55 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Classe utilizzata dall'applicazione per effettuare il controllo che il testo inserito in input rispetti i parametri
+ * impostida noi
+ */
 public class ControlloParametri {
 
+
     /**
-     *
+     * Lista contente tutte le province italiane.
      */
     private static final ArrayList<String> listaProvince = new ArrayList<>();
+
+
     /**
-     *
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
      */
     private final CssHelper cssHelper = CssHelper.getInstance();
+
+
     /**
-     *
+     * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
+     * @see ControlloParametri
      */
     private static ControlloParametri instance = null;
+
+
     /**
-     *
+     * Riferimento al pattern usato.
      */
     private Pattern rPattern;
+
+
     /**
-     *
+     * Riferimento al matcher usato.
      */
     private Matcher rMatcher;
+
+
     /**
-     *
+     * Costruttore della classe principale.
      */
     private ControlloParametri() {}
 
+
     /**
-     *
-     * @return
+     * Ritorna un'istanza della classe stessa, in caso di valore <code>null</code>, ne istanzia una altrimenti
+     *orna la stessa.
+     * @return Istanza della classe stessa
      */
     public static ControlloParametri getInstance(){
         if(instance == null){
@@ -67,12 +86,13 @@ public class ControlloParametri {
         return instance;
     }
 
+
     /**
-     *
-     * @param tic
-     * @param minChar
-     * @param maxChar
-     * @return
+     * Metodo per il controllo che il testo inserito in input corrisponda a soli numeri o lettere dell'alfabeto.
+     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia
+     * @param minChar valore minimo del numero di caratteri che deve contenere intesto inserito
+     * @param maxChar valore massimo del numero di caratteri che deve contenere intesto inserito
+     * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
@@ -86,12 +106,13 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param tic
-     * @param minChar
-     * @param maxChar
-     * @return
+     * Metodo per il controllo della non presenza di numeri del testo inserito in input.
+     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia.
+     * @param minChar valore minimo del numero di caratteri che deve contenere intesto inserito.
+     * @param maxChar valore massimo del numero di caratteri che deve contenere intesto inserito.
+     * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
         rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
@@ -105,12 +126,13 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param tic
-     * @param minChar
-     * @param maxChar
-     * @return
+     * Metodo per il controllo dell'occorrenza di numeri presenti del testo inserito in input.
+     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia.
+     * @param minChar valore minimo dell'occorenze di numeri presenti.
+     * @param maxChar valore massimo dell'occorenze di numeri presenti.
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean numeri(TextInputControl tic, int minChar, int maxChar) {
         if(minChar == maxChar) {
@@ -132,10 +154,11 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param tic
-     * @return
+     * Metodo per il controllo del numero civico inserito in input
+     * @param tic TextInputControl in cui si andr&agrave a scrivere il numero civico nell'interfaccia
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean numeroCivico(TextInputControl tic) {
         // Controllo numero civico (minimo UN numero ed eventualmente UNA lettera alla fine e massimo CINQUE caratteri)
@@ -163,10 +186,11 @@ public class ControlloParametri {
         return false;
     }
 
+
     /**
-     *
-     * @param tic
-     * @return
+     * Metodo per il controllo dell provincia inserita  in input
+     * @param tic TextInputControl in cui si andr&agrave a scrivere la provincia nell'interfaccia
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean provincia(TextInputControl tic) {
         rPattern = Pattern.compile("[A-Za-z]{2}");
@@ -187,16 +211,16 @@ public class ControlloParametri {
         return false;
     }
 
+
     /**
-     *
-     * @param tic
-     * @return
+     * Metodo per il controllo della password inserita in input
+     * @param tic TextInputControl in cui si andr&agrave a scrivere la password nell'interfaccia
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean password(TextInputControl tic) {
         String err ="";
         boolean res = true;
         if(tic.getText().trim().length() < 8) {
-            //cssHelper.toError(tic, new Tooltip("Password troppo corta"));
             res = false;
             //Stringhe errore password
             String err1 = "Password troppo corta (almeno 8 caratteri)";
@@ -232,10 +256,11 @@ public class ControlloParametri {
         return res;
     }
 
+
     /**
-     *
-     * @param tic
-     * @return
+     * Metodo per il controllo del codice fiscale inserita in input
+     * @param tic TextInputControl in cui si andr&agrave a scrivere il codice fiscale nell'interfaccia
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean codiceFiscale(TextInputControl tic) {
         tic.setText(tic.getText().toUpperCase());
@@ -256,10 +281,11 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param dp
-     * @return
+     * Metodo per il controllo dell'inserimento della data nel DataPicker
+     * @param dp DataPicker in cui si andra ad inserire la data
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean data(DatePicker dp) {
         if(dp.getEditor().getText().isBlank()) {
@@ -271,10 +297,11 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param tic
-     * @return
+     * Metodo per il controllo dell'e-mail inserita in input
+     * @param tic TextInputControl in cui si andr&agrave a scrivere l'e-mail nell'interfaccia
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean email(TextInputControl tic) {
         if(tic.getText().trim().length() <= 0) {
@@ -293,11 +320,12 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param tic1
-     * @param tic2
-     * @return
+     * Metodo per il controllo dell'uguaglianza tra le due password
+     * @param tic1 TextInputControl in cui si andr&agrave a scrivere la prima password
+     * @param tic2 TextInputControl in cui si andr&agrave a scrivere la seconda password
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean checkSamePassword(TextInputControl tic1, TextInputControl tic2) {
         if(tic1.getText().trim().equals(tic2.getText().trim())) {
@@ -309,10 +337,11 @@ public class ControlloParametri {
         }
     }
 
+
     /**
-     *
-     * @param pwdPlain
-     * @return
+     * Metodo per il criptaggio della password
+     * @param pwdPlain Stringa in cui compiere il criptaggio
+     * @return la stringa criptata
      */
     public String encryptPassword(String pwdPlain) {
         StringBuilder sB = new StringBuilder();

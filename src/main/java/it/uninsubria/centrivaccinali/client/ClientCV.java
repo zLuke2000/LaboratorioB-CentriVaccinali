@@ -17,33 +17,46 @@ import java.rmi.server.UnicastRemoteObject;
  * @author ...
  */
 public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
+
+
     /**
      * Varabile per identificare serial version RMI.
      */
     private static final long serialVersionUID = 1L;
+
+
     /**
      * Riferimento all'oggetto remoto server.
      * @see ServerCVInterface
      */
     private static ServerCVInterface server = null;
+
+
     /**
      * Thread di gestione della connessione.
      * @see ConnectionThread
      */
     private ConnectionThread connThread;
+
+
     /**
      * Riferimento alla classe astratta Controller.
      * @see Controller
      */
     private Controller controller;
+
+
     /**
      * Oggetto cittadino connesso al server dopo la login con successo.
      */
     private Cittadino cittadinoConnesso = null;
+
+
     /**
      * Nome del centro vaccinale corrispondente al cittadino connesso.
      */
     private String centroCittadino = "";
+
 
     /**
      * Costruttore oggetto ClientCV.
@@ -55,6 +68,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         connThread = new ConnectionThread();
     }
 
+
     /**
      * Metodo getter per dell'attributo <code>cittadinoConnesso</code>.
      * @return cittadino attualmente connesso.
@@ -63,11 +77,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         return cittadinoConnesso;
     }
 
+
     /**
      * Metodo getter per dell'attributo <code>centroCittadino</code>.
      * @return centro vaccinale di appartenenza del cittadino connesso.
      */
     public String getCentroCittadino() { return centroCittadino; }
+
 
     /**
      * Metodo per effettuare il logout dell'utente dall'applicazione
@@ -84,6 +100,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         ClientCV.server = server;
     }
 
+
     /**
      * Metodo per verificare la connessione con il server RMI.
      * @return true se la connessione è presente, false se la connessione risulta assente.
@@ -96,6 +113,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
         return true;
     }
+
 
     /**
      * Metodo che notifica al client il completamento di un operazione richiesta al server.
@@ -112,6 +130,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
         controller.notifyController(ritorno);
     }
+
 
     /**
      * Metodo che effettua l'autenticazione dell'operatore sanitario.
@@ -132,6 +151,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+
     /**
      * Metodo per effettuare la richiesta al server di registrazione del centro vaccinale.
      * @param controller controller dell'interfaccia da notificare.
@@ -146,6 +166,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             lanciaPopup();
         }
     }
+
 
     /**
      * Effettua una chiamata al server per registrare un nuovo cittadino.
@@ -163,6 +184,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             }
         }
     }
+
 
     /**
      * Effettua una chiamata al server per eseguire una operazione di login.
@@ -182,6 +204,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
         }
     }
 
+
     /**
      * Effettua una chiamata al server per eseguire una ricerca di centri vaccianali in base al nome.
      * @param controller controller dell'interfaccia da notificare.
@@ -198,6 +221,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             }
         }
     }
+
 
     /**
      * Effettua una chiamata al server per eseguire una ricerca di centri vaccianali in base al comune e alla tipologia.
@@ -216,6 +240,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
             }
         }
     }
+
 
     /**
      * Effettua una chiamata al server per registrare un nuovo cittadino vaccinato.

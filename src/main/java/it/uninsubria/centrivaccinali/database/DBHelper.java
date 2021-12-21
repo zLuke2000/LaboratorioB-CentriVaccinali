@@ -14,44 +14,52 @@ public class DBHelper {
      */
     private final static String protocol = "jdbc:postgresql://";
 
+
     /**
-     *
+     * host del database.
      */
     private final static String host = "localhost/";
 
+
     /**
-     *
+     * nome della resource di database.
      */
     private final static String resource = "laboratorioB";
 
+
     /**
-     *
+     * url generato dalla concatenazione del protcol, host e nome del database.
      */
     private final static String url = protocol + host + resource;
 
+
     /**
-     *
+     * username per gli admin del progetto su database.
      */
     private final static String username = "admin_laboratorioB";
 
+
     /**
-     *
+     * Password per poter accedere al progetto su database.
      */
     private final static String password = "&UsCk*s$#wUOkG4r";
 
+
     /**
-     *
+     * Riferiemento alla connection a database.
      */
     private static Connection connection = null;
 
+
     /**
-     *
+     * Costruttore primario della classe.
      */
     public DBHelper() {}
 
+
     /**
-     *
-     * @return
+     * Metodo che instaura la connesione a database.
+     * @return istanza della classe Connection.
      */
     public static Connection getConnection() {
         if(connection == null) {
@@ -64,8 +72,9 @@ public class DBHelper {
         return connection;
     }
 
+
     /**
-     * 
+     * Metodo per eseguire la chiusura della connessione a database.
      */
     public static void closeConnection() {
         try {

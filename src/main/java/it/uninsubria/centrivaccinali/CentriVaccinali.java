@@ -14,59 +14,85 @@ import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
+
     /**
      *
      */
     private final static Double w_avvio = 450.0;
+
+
     /**
      *
      */
     private final static Double h_avvio = 280.0;
+
+
     /**
      *
      */
     private final static Double w_cv_login = 390.0;
+
+
     /**
      *
      */
     private final static Double h_cv_login = 420.0;
+
+
     /**
      *
      */
     private final static Double w_ci_reg = 400.0;
+
+
     /**
      *
      */
     private final static Double h_ci_reg = 520.0;
+
+
     /**
      *
      */
     private final static Double w_dashboard = 800.0;
+
+
     /**
      *
      */
     private final static Double h_dashboard = 664.0;
+
+
     /**
      *
      */
     private final static Double w_standard = 390.0;
+
+
     /**
      *
      */
     private final static Double h_standard = 565.0;
 
+
     /**
      *
      */
     public static Scene scene;
+
+
     /**
      *
      */
     public static Stage stage;
+
+
     /**
      *
      */
     private static Double width;
+
+
     /**
      *
      */
@@ -76,14 +102,19 @@ public class CentriVaccinali extends Application {
      *
      */
     public static ClientCV client;
+
+
     /**
      *
      */
     private double xOffset;
+
+
     /**
      *
      */
     private double yOffset;
+
 
     /**
      *
@@ -108,6 +139,7 @@ public class CentriVaccinali extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 
     /**
      *
@@ -169,6 +201,7 @@ public class CentriVaccinali extends Application {
         stage.centerOnScreen();
     }
 
+
     /**
      * @param fxml path
      * @return fxml
@@ -182,6 +215,7 @@ public class CentriVaccinali extends Application {
             return null;
         }
     }
+
 
     /**
      * @param args baseArgs

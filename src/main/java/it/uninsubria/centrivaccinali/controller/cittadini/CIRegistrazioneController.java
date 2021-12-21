@@ -25,50 +25,70 @@ public class CIRegistrazioneController extends Controller {
      * <code>TextField</code> per il nome del cittadino.
      */
     @FXML private TextField tf_nome;
+
+
     /**
      * <code>TextField</code> per il cognome del cittadino.
      */
     @FXML private TextField tf_cognome;
+
+
     /**
      * <code>TextField</code> per il codice fiscale del cittadino.
      */
     @FXML private TextField tf_codiceFiscale;
+
+
     /**
      * <code>TextField</code> per l'username del cittadino.
      */
     @FXML private TextField tf_username;
+
+
     /**
      * <code>TextField</code> per l'e-mail del cittadino.
      */
     @FXML private TextField tf_email;
+
+
     /**
      * <code>TextField</code> per l'ID del cittadino.
      */
     @FXML private TextField tf_idVaccinazione;
 
+
     /**
      * <code>PasswordField</code> per il primo inserimento della password del cittadino.
      */
     @FXML private PasswordField pf_password1;
+
+
     /**
      * <code>PasswordField</code> per il secondo inserimento della password del cittadino.
      */
     @FXML private PasswordField pf_password2;
+
+
     /**
      * Riferiomento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
      * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+
+
     /**
      * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
      * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
+
 
     /**
      * Permette di notificare l'interfaccia quando un'operazione registrazione viene effettuata o meno, specificando l'errore
@@ -100,6 +120,7 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+
     /**
      * Metodo per la regitrazione cittadino controllando la correttezza dei paramentri inseriti.
      */
@@ -127,6 +148,7 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+
     /**
      * Metodo per l'apertura del dialog che mostra i parametri che l'username deve rispettare.
      */
@@ -135,6 +157,7 @@ public class CIRegistrazioneController extends Controller {
         new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
                 "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO).display();
     }
+
 
     /**
      * Metodo per l'apertura del dialog che mostra i parametri che la password deve rispettare.
@@ -145,6 +168,7 @@ public class CIRegistrazioneController extends Controller {
                 "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO).display();
     }
 
+
     /**
      * Metodo per l'apertura del dialog che mostra i l'nformazione dell'ID vaccinazione.
      */
@@ -152,6 +176,7 @@ public class CIRegistrazioneController extends Controller {
     private void mostraInfoVaccinazione() {
         new DialogHelper("INFO ID", "L'ID della vaccinazione è stato fornito al momento della somministrazione", DialogHelper.Type.INFO).display();
     }
+
 
     /**
      * Metodo per il controllo real-time dei parametri che si stanno inserendo.
@@ -189,6 +214,7 @@ public class CIRegistrazioneController extends Controller {
         }
     }
 
+
     /**
      * Metodo per tornare all'interfaccia precedente.
      */
@@ -196,6 +222,7 @@ public class CIRegistrazioneController extends Controller {
     private void backTo() {
         CentriVaccinali.setRoot("CI_home");
     }
+
 
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.

@@ -7,6 +7,7 @@ package it.uninsubria.centrivaccinali.enumerator;
 public enum TipologiaCentro {
     OSPEDALIERO, AZIENDALE, HUB;
 
+
     /**
      * Ritorna la stringa rappresentante la tipologia del centro vaccinale
      * @return la stringa che rappresenta la tipologia del centro
@@ -20,6 +21,7 @@ public enum TipologiaCentro {
             default: throw new IllegalArgumentException();
         }
     }
+
 
     /**
      * Ritorna la tipologia di centro corrispondete alla stringa fornita

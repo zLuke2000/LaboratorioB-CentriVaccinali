@@ -4,19 +4,22 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 
 public class CssHelper {
+
+
     /**
-     *
+     * Instanza della classe stessa
      */
     private static CssHelper instance=null;
 
     /**
-     *
+     * Costruttore primario della classe
      */
     private CssHelper(){ }
 
+
     /**
-     *
-     * @return
+     * Ritorna l'oggetto singleton di questa classe.
+     * @return Istanza della classe stessa
      */
     public static CssHelper getInstance(){
         if(instance == null){
@@ -24,6 +27,7 @@ public class CssHelper {
         }
         return instance;
     }
+
 
     /**
      *
@@ -40,6 +44,7 @@ public class CssHelper {
         }
     }
 
+
     /**
      * Imposta a "verde" il contorno della casella passata come parametro
      * Resetta in automatico a default in caso fosse "rosso"
@@ -51,6 +56,7 @@ public class CssHelper {
         c.getStyleClass().add("field-valid");
     }
 
+
     /**
      * Reimposta a default il contorno della casella passata come parametro
      * @param c parametro generico per molteplici <code>text input controls</code>
@@ -60,6 +66,7 @@ public class CssHelper {
         c.getStyleClass().remove("field-valid");
         c.setTooltip(null);
     }
+
 
     /**
      *

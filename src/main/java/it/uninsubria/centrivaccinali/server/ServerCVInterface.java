@@ -13,6 +13,8 @@ import java.rmi.RemoteException;
  *
  */
 public interface ServerCVInterface extends Remote{
+
+
     // Metodi operatore sanitario
 
     /**
@@ -24,6 +26,7 @@ public interface ServerCVInterface extends Remote{
      */
     void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException;
 
+
     /**
      *
      * @param client
@@ -31,6 +34,7 @@ public interface ServerCVInterface extends Remote{
      * @throws RemoteException
      */
     void registraCentro(ClientCVInterface client, CentroVaccinale cv) throws RemoteException;
+
 
     /**
      *
@@ -58,6 +62,7 @@ public interface ServerCVInterface extends Remote{
      */
     void loginUtente(ClientCVInterface client, String username, String password) throws RemoteException;
 
+
     /**
      *
      * @param client
@@ -65,6 +70,7 @@ public interface ServerCVInterface extends Remote{
      * @throws RemoteException
      */
     void ricercaCentroPerNome(ClientCVInterface client, String nomeCentro) throws RemoteException;
+
 
     /**
      *
@@ -101,6 +107,7 @@ public interface ServerCVInterface extends Remote{
      */
     void leggiEA(ClientCVInterface client, String nomeCentro) throws  RemoteException;
 
+
     /**
      *
      * @param client
@@ -120,6 +127,7 @@ public interface ServerCVInterface extends Remote{
      */
     void getComuni(ClientCVInterface client, String provincia) throws RemoteException;
 
+
     /**
      *
      * @param client
@@ -127,6 +135,7 @@ public interface ServerCVInterface extends Remote{
      * @throws RemoteException
      */
     void getCentri(ClientCVInterface client, String comune) throws RemoteException;
+
 
     /**
      *

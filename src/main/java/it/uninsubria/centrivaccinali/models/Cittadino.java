@@ -12,50 +12,60 @@ import java.io.Serializable;
  */
 public class Cittadino implements Serializable {
 
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
 
     /**
      * Rappresenta il nome del cittadino
      */
     private String nome;
 
+
     /**
      * Rappresenta il cognome del cittadino
      */
     private String cognome;
+
 
     /**
      * Rappresenta il codice fiscale del cittadino
      */
     private String codice_fiscale;
 
+
     /**
      * Rappresenta la mail del cittadino
      */
     private String email;
+
 
     /**
      * Rappresenta l'userid con cui si registra il cittadino
      */
     private String userid;
 
+
     /**
      * Rappresenta la password dell'account per il cittadino
      */
     private String password;
+
 
     /**
      * Rappresenta l'id ricevuto al momento della vaccinazione
      */
     private long id_vaccinazione;
 
+
     /**
      * Costruttore vuoto dell'oggetto <code>Cittadino</code>
      */
     public Cittadino() {}
+
 
     /**
      *Costruttore primario per Cittadino
@@ -77,6 +87,7 @@ public class Cittadino implements Serializable {
         this.id_vaccinazione = id_vaccino;
     }
 
+
     /**
      * Metodo getter per il nome del cittadino
      * @return il <code>nome<code/> del cittadino
@@ -84,6 +95,7 @@ public class Cittadino implements Serializable {
     public String getNome() {
         return nome;
     }
+
 
     /**
      * Metodo setter per il nome del cittadino
@@ -93,6 +105,7 @@ public class Cittadino implements Serializable {
         this.nome = nome;
     }
 
+
     /**
      * Metodo getter per il cognome del cittadino
      * @return il <code>cognome</code> del cittadino
@@ -100,6 +113,7 @@ public class Cittadino implements Serializable {
     public String getCognome() {
         return cognome;
     }
+
 
     /**
      *  Metodo setter per il cognome del cittadino
@@ -109,6 +123,7 @@ public class Cittadino implements Serializable {
         this.cognome = cognome;
     }
 
+
     /**
      * Metodo getter per il codice fiscale del cittadino
      * @return  il <code>codice fiscale</code> del cittadino
@@ -116,6 +131,7 @@ public class Cittadino implements Serializable {
     public String getCodice_fiscale() {
         return codice_fiscale;
     }
+
 
     /**
      * Metodo setter per il codice fiscale del cittadino
@@ -125,6 +141,7 @@ public class Cittadino implements Serializable {
         this.codice_fiscale = codice_fiscale;
     }
 
+
     /**
      * Metodo getter per la mail del cittadino
      * @return la <code>mail</code> del cittadino
@@ -132,6 +149,7 @@ public class Cittadino implements Serializable {
     public String getEmail() {
         return email;
     }
+
 
     /**
      * Metodo setter per la mail del cittadino
@@ -141,6 +159,7 @@ public class Cittadino implements Serializable {
         this.email = email;
     }
 
+
     /**
      * Metodo getter per l'userid del cittadino
      * @return l'<code>userid</code> del cittadino
@@ -148,6 +167,7 @@ public class Cittadino implements Serializable {
     public String getUserid() {
         return userid;
     }
+
 
     /**
      * Metodo setter per l'userid del cittadino
@@ -157,6 +177,7 @@ public class Cittadino implements Serializable {
         this.userid = userid;
     }
 
+
     /**
      * Metodo getter per la password del cittadino
      * @return la <code>password</code> del cittadino
@@ -164,6 +185,7 @@ public class Cittadino implements Serializable {
     public String getPassword() {
         return password;
     }
+
 
     /**
      * Metodo setter per la password del cittadino
@@ -173,6 +195,7 @@ public class Cittadino implements Serializable {
         this.password = password;
     }
 
+
     /**
      * Metodo getter per l'id del vaccino associato al cittadino
      * @return l'id del vaccino
@@ -181,6 +204,7 @@ public class Cittadino implements Serializable {
         return id_vaccinazione;
     }
 
+
     /**
      * Metodo setter per l'id del vaccino associato al cittadino
      * @param id_vaccinazione il nuovo id del vaccino
@@ -188,6 +212,7 @@ public class Cittadino implements Serializable {
     public void setId_vaccinazione(long id_vaccinazione) {
         this.id_vaccinazione = id_vaccinazione;
     }
+
 
     /**
      * Ritorna la stringa corrispondete al cittadino

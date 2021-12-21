@@ -12,34 +12,46 @@ import javafx.scene.control.Label;
  * @author ...
  */
 public class CIItemListProspettoController extends Controller {
+
+
     /**
      * <code>Label</code> contenente la tipologia di evento avverso registrato.
      * @see Label
      */
     @FXML private Label l_evento;
+
+
     /**
      * <code>Label</code> contenente la tipologia del vaccino somministrato.
      * @see Label
      */
     @FXML private Label l_tipologia;
+
+
     /**
      * <code>Label</code> contenente la severit&agrave dell'evento avverso registrato.
      * @see Label
      */
     @FXML private Label l_severita;
+
+
     /**
      * <code>Label</code> contenente le note opzionali dell'evento avverso registrato.
      * @see Label
      */
     @FXML private Label l_note;
+
+
     /**
      * L'evento avverso di questo item della lista.
      */
     private EventoAvverso evento;
 
+
     //Metodo ereditato dalla superclasse
     @Override
     public void notifyController(Result result) { }
+
 
     /**
      * Setta nell'item le informazioni di un dato evento avverso.
@@ -55,6 +67,7 @@ public class CIItemListProspettoController extends Controller {
             l_note.setText("Nessuna Nota ...");
         }
     }
+
 
     /**
      * Vengono mostrare le note opzionali, se presenti.

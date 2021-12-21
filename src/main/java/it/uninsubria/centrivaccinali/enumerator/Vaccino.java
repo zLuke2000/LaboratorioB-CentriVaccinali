@@ -1,11 +1,13 @@
 package it.uninsubria.centrivaccinali.enumerator;
 
+
 /**
  * Rappresenta le diverse tipologie di vaccino
  * @author ...
  */
 public enum Vaccino {
     PFIZER, ASTRAZENECA, MODERNA, JNJ;
+
 
     /**
      * Ritorna la stringa rappresentante la tipologia di vaccino
@@ -21,6 +23,7 @@ public enum Vaccino {
             default: throw new IllegalArgumentException();
         }
     }
+
 
     /**
      * Ritorna la tipologia di vaccino corrispondete alla stringa fornita

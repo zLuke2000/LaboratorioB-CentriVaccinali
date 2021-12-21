@@ -22,41 +22,57 @@ import org.kordamp.ikonli.javafx.FontIcon;
  */
 public class CIHomeController extends Controller {
 
+
     /**
      * <code>TextField</code> per l'username del cittadino.
      */
     @FXML private TextField tf_loginUsername;
+
+
     /**
      * <code>PasswordField</code> per la password di autenticazione del cittadino.
      */
     @FXML private PasswordField tf_loginPassword;
+
+
     /**
      * <code>TextField</code> per mostrare al cittadino la password attualmente inserita.
      */
     @FXML private TextField tf_loginPasswordVisible;
+
+
     /**
      * <code>FontIcon</code> per nascondere la password.
      */
     @FXML private FontIcon fi_nascondiPassword;
+
+
     /**
      * <code>FontIcon</code> per mostrare la password.
      */
     @FXML private FontIcon fi_mostraPassword;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
      * @see ControlloParametri
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+
+
     /**
      * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
      * @see CssHelper
      */
     private final CssHelper css = CssHelper.getInstance();
+
 
     /**
      * Notifica l'interfaccia quando una operazione di login &egrave stata completata.
@@ -84,6 +100,7 @@ public class CIHomeController extends Controller {
         }
     }
 
+
     /**
      * Metodo per entrare con l'accesso libero dentro all'applicazione.
      */
@@ -91,6 +108,7 @@ public class CIHomeController extends Controller {
     private void toFreeAccess() {
         CentriVaccinali.setRoot("CI_dashboard");
     }
+
 
     /**
      * Metodo per accedere con le credenziali del cittadino.
@@ -114,6 +132,7 @@ public class CIHomeController extends Controller {
         }
     }
 
+
     /**
      * Metodo per passare all'interfaccia di registrazione.
      * @see CIRegistrazioneController
@@ -122,6 +141,7 @@ public class CIHomeController extends Controller {
     private void toRegistrazione() {
         CentriVaccinali.setRoot("CI_registrazione");
     }
+
 
     /**
      * Metodo per nascondere la password.
@@ -137,6 +157,7 @@ public class CIHomeController extends Controller {
         fi_nascondiPassword.setVisible(false);
     }
 
+
     /**
      * Metodo per mostrare la password.
      */
@@ -151,6 +172,7 @@ public class CIHomeController extends Controller {
         fi_nascondiPassword.setVisible(true);
     }
 
+
     /**
      * Metodo per tornare all'interfaccia precedente.
      */
@@ -160,6 +182,7 @@ public class CIHomeController extends Controller {
         client.stopOperation();
     }
 
+
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
      * @see Controller
@@ -168,6 +191,7 @@ public class CIHomeController extends Controller {
     private void chiudiApp() {
         super.closeApp();
     }
+
 
     /**
      * Permette di effettuare la login tramite il tasto invio.

@@ -22,57 +22,80 @@ import java.util.List;
  * @author ...
  */
 public class CIRicercaResultController extends Controller {
+
+
     /**
      * <code>Label</code> per indicare che non ci sono risultati in base alla ricerca effettuata.
      * @see Label
      */
     @FXML private Label l_noResult;
+
+
     /**
      * Contenitore della lista dei risultati di ricerca.
      */
     @FXML private VBox vb_risultati;
+
+
     /**
      * <code>TextField</code> per inserire il nome del centro da cercare.
      * @see TextField
      */
     @FXML private TextField tf_ricercaNomeCentro;
+
+
     /**
      * <code>ComboBox</code> per selezionare la tipologia di ricerca che si vuole effettuare.
      * @see ComboBox
      */
     @FXML private ComboBox<String> cb_sceltaRicerca;
+
+
     /**
      * <code>ComboBox</code> per selezionare la tipologia di centro vaccinale che si vuole cercare.
      * @see ComboBox
      */
     @FXML private ComboBox<TipologiaCentro> cb_sceltaTipologia;
+
+
     /**
      * <code>TextField</code> per inserire il comune che si vuole cercare.
      * @see TextField
      */
     @FXML private TextField tf_ricercaComune;
+
+
     /**
      * Contatore per il numero di risultati di tipo "ospedaliero".
      */
     @FXML private Label l_countOspedaliero;
+
+
     /**
      * Contatore per il numero di risultati di tipo "hub".
      */
     @FXML private Label l_countHub;
+
+
     /**
      * Contatore per il numero di risultati di tipo "aziendale".
      */
     @FXML private Label l_countAziendale;
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Riferimento alla dashboard che contiene questa interfaccia.
      * @see CIDashboardController
      */
     private CIDashboardController parent;
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -84,6 +107,7 @@ public class CIRicercaResultController extends Controller {
         this.cb_sceltaTipologia.getItems().addAll(TipologiaCentro.values());
         this.cb_sceltaTipologia.getSelectionModel().selectFirst();
     }
+
 
     /**
      * Notifica l'interfaccia a seguito di una operazione di ricerca.
@@ -97,6 +121,7 @@ public class CIRicercaResultController extends Controller {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
     }
 
+
     /**
      * Setta il riferimento alla dashboard che contiene la seguente interfaccia.
      * @see CIDashboardController
@@ -105,6 +130,7 @@ public class CIRicercaResultController extends Controller {
     public void setParent(CIDashboardController parent) {
         this.parent = parent;
     }
+
 
     /**
      * Effettua una chiamata al server per fare la ricerca.

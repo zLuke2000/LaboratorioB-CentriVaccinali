@@ -28,73 +28,106 @@ public class CVRegistraCittadinoController extends Controller {
      * Riferimento alla <code>TextField</code> che permette di inserire la provincia del centro presso cui il cittadino &egrave stato vaccinato.
      */
     @FXML private TextField tf_selezionaProvincia;
+
+
     /**
      * Riferimento alla <code>ComboBox</code> che permette di selezionare il comune del centro presso cui il cittadino &egrave stato vaccianto.
      */
     @FXML private ComboBox<String> cb_selezionaComune;
+
+
     /**
      * Riferimento alla <code>ComboBox</code> che permette di selezionare il centro presso cui il cittadino &egrave stato vaccianto.
      */
     @FXML private ComboBox<String> cb_selezionaCentro;
+
+
     /**
      * Riferimento alla <code>Label</code> in cui sono presenti le informazioni principali del centro vaccianle selezionato.
      */
     @FXML private Label l_infoCentro;
+
+
     /**
      * Riferimento alla <code>TextField</code> in cui inserire il nome del cittadino vaccinato.
      */
     @FXML private TextField tf_nomeCittadino;
+
+
     /**
      * Riferimento alla <code>TextField</code> in cui inserire il cognome del cittadino vaccinato.
      */
     @FXML private TextField tf_cognomeCittadino;
+
+
     /**
      * Riferimento alla <code>TextField</code> in cui inserire il codice fiscale del cittadino vaccinato.
      */
     @FXML private TextField tf_cfCittadino;
+
+
     /**
      * Riferimento alla <code>TextField</code> in cui &egrave presente l'id di vaccinazione del cittadino vaccinato.
      */
     @FXML private TextField tf_idVaccino;
+
+
     /**
      * Riferimento al <code>RadioButton</code> per selezionare "pfizer".
      */
     @FXML private RadioButton rb_pfizer;
+
+
     /**
      * Riferimento al <code>ToggleGroup</code> per selezionare la tipologia di vaccino.
      */
     @FXML private ToggleGroup tg_vaccino;
+
+
     /**
      * Rifermimento al <code>DatePicker</code> per selezionare la data della vaccinazione.
      */
     @FXML private DatePicker dp_dataVaccino;
+
+
     /**
      * Singleton di <code>ControlloParametri</code> per controllare che i dati inseriti siano corretti.
      * @see Controller
      */
     private final ControlloParametri cp = ControlloParametri.getInstance();
+
+
     /**
      * Singleton di <code>CssHelper</code> per gestire gli stili delle varie componenti grafiche.
      * @see CssHelper
      */
     private final CssHelper cssHelper = CssHelper.getInstance();
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
+
     /**
      * Lista dei centri vaccinali presenti nel comune selezionato.
      */
     private List<CentroVaccinale> listaCentri = new ArrayList<>();
+
+
     /**
      * Centro vaccinale selezionato.
      */
     private CentroVaccinale selectedCV;
+
+
     /**
      * Id della vaccinazione che viene generato.
      */
     private long idVac = 0L;
+
 
     /**
      * Inizializza l'interfaccia.
@@ -103,6 +136,7 @@ public class CVRegistraCittadinoController extends Controller {
     private void initialize() {
         generaIdVaccino();
     }
+
 
     /**
      * Genera l'id della vaccinazione in base a varie informazioni.
@@ -114,6 +148,7 @@ public class CVRegistraCittadinoController extends Controller {
         idVac = Long.parseLong(stringID);
         tf_idVaccino.setText(stringID);
     }
+
 
     /**
      * Notifica l'interfaccia quando viene completata una operazione da parte del server.
@@ -178,6 +213,7 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+
     /**
      * Controllo real-time della compilazione dei campi per l'inserimento
      * dinamico dei comuni da database.
@@ -201,6 +237,7 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+
     /**
      * Effettua una chiamata al server per recuperare i centri in base al comune selezionato.
      * @param e evento di selezione di un item della <code>ComboBox</code>.
@@ -221,6 +258,7 @@ public class CVRegistraCittadinoController extends Controller {
         }
     }
 
+
     /**
      * Metedo per ritornare all'interfaccia precedente.
      */
@@ -230,6 +268,7 @@ public class CVRegistraCittadinoController extends Controller {
         client.stopOperation();
     }
 
+
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
      * @see Controller
@@ -238,6 +277,7 @@ public class CVRegistraCittadinoController extends Controller {
     private void chiudiApp() {
         super.closeApp();
     }
+
 
     /**
      * Effettua una chiamata al server per registrare un nuovo vaccinato.
@@ -256,6 +296,7 @@ public class CVRegistraCittadinoController extends Controller {
             client.registraVaccinato(this, nuovoVaccinato);
         }
     }
+
 
     /**
      * Controlla che sia stato selezionato correttamente un centro vaccinale.

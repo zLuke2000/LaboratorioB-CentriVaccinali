@@ -7,7 +7,6 @@ import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
-
 import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

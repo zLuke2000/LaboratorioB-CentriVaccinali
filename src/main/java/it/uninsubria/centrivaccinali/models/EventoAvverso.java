@@ -14,35 +14,42 @@ import java.io.Serializable;
  */
 public class EventoAvverso implements Serializable {
 
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+
 
     /**
      * Rappresenta l'id del vaccino associato all'evento avverso
      */
     private long idVaccino;
 
+
     /**
      * Descrive l'evento avverso avvenuto
      */
     private String evento;
+
 
     /**
      * Rappresenta il valore da 1 a 5 dell'intensit&agrave del valore avverso
      */
     private int severita;
 
+
     /**
      * Note opzionali per descrivere l'evento
      */
     private String note;
 
+
     /**
      *
      */
     private Vaccino tipoVac;
+
 
     /**
      * Costruttore primario per EventoAvverso (fase registrazione)
@@ -58,6 +65,7 @@ public class EventoAvverso implements Serializable {
         this.note = note;
     }
 
+
     /**
      * Costruttore primario per EventoAvverso (fase lettura)
      * @param evento la stringa che descrive l'evento
@@ -72,6 +80,7 @@ public class EventoAvverso implements Serializable {
         this.tipoVac=tipoVac;
     }
 
+
     /**
      *
      * @return
@@ -79,6 +88,7 @@ public class EventoAvverso implements Serializable {
     public long getIdVaccino() {
         return idVaccino;
     }
+
 
     /**
      *
@@ -89,6 +99,7 @@ public class EventoAvverso implements Serializable {
         this.idVaccino = idVaccino;
     }
 
+
     /**
      *  Metodo getter per il tipo di evento
      * @return la stringa che rappresenta l'evento
@@ -96,6 +107,7 @@ public class EventoAvverso implements Serializable {
     public String getEvento() {
         return evento;
     }
+
 
     /**
      * Metodo setter per il tipo di evento
@@ -106,6 +118,7 @@ public class EventoAvverso implements Serializable {
         this.evento = evento;
     }
 
+
     /**
      * Metodo getter per la severit&agrave dell'evento
      * @return l'intero che rappresenta la severit&agrave dell'evento
@@ -113,6 +126,7 @@ public class EventoAvverso implements Serializable {
     public int getSeverita() {
         return severita;
     }
+
 
     /**
      * Metodo setter per la severit&agrave dell'evento
@@ -123,6 +137,7 @@ public class EventoAvverso implements Serializable {
         this.severita = severita;
     }
 
+
     /**
      * Metodo getter per le note opzionali
      * @return le note inserite
@@ -130,6 +145,7 @@ public class EventoAvverso implements Serializable {
     public String getNote() {
         return note;
     }
+
 
     /**
      * Metodo setter per le note opzionali
@@ -140,6 +156,7 @@ public class EventoAvverso implements Serializable {
         this.note = note;
     }
 
+
     /**
      *
      * @return
@@ -147,6 +164,7 @@ public class EventoAvverso implements Serializable {
     public Vaccino getTipoVac() {
         return tipoVac;
     }
+
 
     /**
      *

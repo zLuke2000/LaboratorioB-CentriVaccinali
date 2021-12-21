@@ -15,20 +15,26 @@ import java.rmi.registry.Registry;
  */
 public class ConnectionThread extends Thread{
 
+
     /**
      * Riferimento al registry.
      */
     private Registry reg;
+
+
     /**
      * Riferimento all'oggetto remoto del server.
      */
     private ServerCVInterface server;
+
+
     /**
      * Costruttore primario per il thread.
      */
     public ConnectionThread(){
         start();
     }
+
 
     /**
      * Metodo <code>run</code> del thread.
@@ -67,6 +73,7 @@ public class ConnectionThread extends Thread{
         }
     }
 
+
     /**
      * Metodo per ottenere riferimento al registry.
      * @return booleano che rappresenta l'esito dell'operazione.
@@ -81,6 +88,7 @@ public class ConnectionThread extends Thread{
         }
     }
 
+
     /**
      * Metodo per ottenere il riferimento allo stub del server.
      * @return booleano che rappresenta l'esito dell'operazione.
@@ -94,6 +102,7 @@ public class ConnectionThread extends Thread{
             return false;
         }
     }
+
 
     /**
      * //TODO da sistemare con un metodo non deprecato

@@ -16,35 +16,48 @@ import java.util.Map;
  * @author ...
  */
 public class CIGraficiController extends Controller {
+
+
     /**
      * Grafico a barre che mostra un riassunto degli eventi avversi registrati.
      */
     @FXML private BarChart<String, Double> barChart;
+
+
     /**
      * La serie di dati per il vaccino "pfizer".
      * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> pfizer = new XYChart.Series<>();
+
+
     /**
      * La serie di dati per il vaccino "j&j".
      * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();
+
+
     /**
      * La serie di dati per il vaccino "astrazeneca".
      * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> astrazeneca = new XYChart.Series<>();
+
+
     /**
      * La serie di dati per il vaccino "moderna".
      * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> moderna = new XYChart.Series<>();
+
+
     /**
      * Riferimento al client su cui si sta eseguendo l'applicazione.
      * @see ClientCV
      */
     private final ClientCV client = CentriVaccinali.client;
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -56,6 +69,7 @@ public class CIGraficiController extends Controller {
         astrazeneca.setName("astrazeneca");
         moderna.setName("moderna");
     }
+
 
     /**
      * Notifica l'interfaccia dopo aver ottenuto dal server i dati riguardanti gli eventi avversi.
@@ -93,6 +107,7 @@ public class CIGraficiController extends Controller {
         }
     }
 
+
     /**
      * Aggiunge uno specifico evento al grafico.
      * @param series serie di dati in cui si vuole inserire l'evento.
@@ -102,6 +117,7 @@ public class CIGraficiController extends Controller {
     private void aggiungiEvento(XYChart.Series<String, Double> series, String evento, Double media) {
         Platform.runLater(() -> series.getData().add(new XYChart.Data<>(evento, media)));
     }
+
 
     /**
      * Effettua una chiamata al server per leggere gli eventi avversi registrati per il dato centro vaccinale.

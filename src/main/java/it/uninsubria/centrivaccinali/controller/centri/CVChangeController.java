@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
  */
 public class CVChangeController extends Controller {
 
+
     /**
      * Metodo per avviare l'interfaccia di registrazione di un cittadino vaccinato.
      */
@@ -23,6 +24,7 @@ public class CVChangeController extends Controller {
         CentriVaccinali.setRoot("CV_registraVaccinato");
     }
 
+
     /**
      * Metodo per avviare l'interfaccia di registrazione di un centro vaccinale.
      */
@@ -31,6 +33,7 @@ public class CVChangeController extends Controller {
         System.out.println("Interfaccia per registrazione di centro vaccinale");
         CentriVaccinali.setRoot("CV_registraCentroVaccinale");
     }
+
 
     /**
      * Metodo per tornare all'interfaccia precedente.
@@ -48,6 +51,7 @@ public class CVChangeController extends Controller {
 
     }
 
+
     /**
      * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
      * @see Controller
@@ -56,6 +60,7 @@ public class CVChangeController extends Controller {
     private void chiudiApp() {
         super.closeApp();
     }
+
 
     //Metodo ereditato dalla superclasse
     @Override

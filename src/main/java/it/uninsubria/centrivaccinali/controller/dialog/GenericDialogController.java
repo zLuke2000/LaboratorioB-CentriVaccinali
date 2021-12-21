@@ -17,26 +17,37 @@ public class GenericDialogController {
      *
      */
     @FXML public AnchorPane ap_root;
+
+
     /**
      *
      */
     @FXML public Label l_d_title;
+
+
     /**
      *
      */
     @FXML public Label l_d_description;
+
+
     /**
      *
      */
     @FXML public Button b_d_close;
+
+
     /**
      *
      */
     @FXML public FlowPane fp_buttons;
+
+
     /**
      *
      */
     private DialogHelper dh;
+
 
     /**
      *
@@ -46,6 +57,7 @@ public class GenericDialogController {
         CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
     }
 
+
     /**
      *
      * @param dh
@@ -53,6 +65,7 @@ public class GenericDialogController {
     public void setDH(DialogHelper dh) {
         this.dh = dh;
     }
+
 
     /**
      *

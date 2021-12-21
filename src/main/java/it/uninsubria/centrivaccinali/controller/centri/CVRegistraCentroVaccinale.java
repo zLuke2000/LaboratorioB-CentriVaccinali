@@ -28,45 +28,64 @@ public class CVRegistraCentroVaccinale extends Controller {
          * Riferimento alla <code>TextField</code> in cui inserire il nome del nuovo centro.
          */
         @FXML private TextField tf_nome;
+
+
         /**
          * Riferimeto al <code>ComboBox</code> che permette di selezionare il qualificatore per l'indirizzo del nuovo centro.
          * @see Qualificatore
          */
         @FXML private ComboBox<Qualificatore> cb_qualificatore;
+
+
         /**
          * Riferimento alla <code>TextField</code> in cui inserire l'indirizzo del nuovo centro.
          */
         @FXML private TextField tf_indirizzo;
+
+
         /**
          * Riferimento alla <code>TextField</code> in cui inserire il civico del nuovo centro.
          */
         @FXML private TextField tf_civico;
+
+
         /**
          * Riferimento alla <code>TextField</code> in cui inserire il comune del nuovo centro.
          */
         @FXML private TextField tf_comune;
+
+
         /**
          * Riferimento alla <code>TextField</code> in cui inserire la provincia del nuovo centro.
          */
         @FXML private TextField tf_provincia;
+
+
         /**
          * Riferimento alla <code>TextField</code> in cui inserire il CAP del nuovo centro.
          */
         @FXML private TextField tf_cap;
+
+
         /**
          * Riferimento al <code>ToggleGroup</code> che permette di selezionare la tipologia del nuovo centro.
          */
         @FXML private ToggleGroup tg_tipologia;
+
+
         /**
          * Singleton di <code>ControlloParametri</code> che permette di controllare che le credenziali inserite rispettino i requisiti richiesti.
          * @see ControlloParametri
          */
         private final ControlloParametri cp = ControlloParametri.getInstance();
+
+
         /**
          * Riferimento al client su cui si sta eseguendo l'applicazione.
          * @see ClientCV
          */
         private final ClientCV client = CentriVaccinali.client;
+
 
         /**
          * Permette di inizializzare l'interfaccia.
@@ -76,6 +95,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 cb_qualificatore.getItems().addAll(Qualificatore.values());
                 cb_qualificatore.setValue(Qualificatore.VIA);
         }
+
 
         /**
          * Permette di notificare l'interfaccia quando una operazione di registrazione di un nuovo centro e' stata completata.
@@ -101,6 +121,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+
         /**
          * Permette di controllare a real-time la correttezza delle credenziali attualmente inserite.
          * @param ke l'evento sollevato inserendo da tastiera le credenziali.
@@ -124,6 +145,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+
         /**
          * Effettua una chiamata al server per registrare un nuovo centro vaccinale.
          */
@@ -146,6 +168,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 }
         }
 
+
         /**
          * Metodo per tornare all'interfaccia precedente.
          */
@@ -154,6 +177,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 CentriVaccinali.setRoot("CV_home");
                 client.stopOperation();
         }
+
 
         /**
          * Permette la chiusura dell'applicazione tramite la chiamata alla superclasse.
