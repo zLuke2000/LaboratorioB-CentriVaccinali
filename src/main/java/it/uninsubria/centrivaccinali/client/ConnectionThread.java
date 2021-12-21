@@ -94,4 +94,12 @@ public class ConnectionThread extends Thread{
             return false;
         }
     }
+
+    /**
+     * //TODO da sistemare con un metodo non deprecato
+     * Ferma l'esecuzione del Thread corrente
+     */
+    public void stopThread() {
+        stop();
+    }
 }

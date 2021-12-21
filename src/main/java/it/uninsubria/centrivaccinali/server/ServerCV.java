@@ -36,8 +36,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
      *
      * @throws RemoteException
      */
-    protected ServerCV() throws RemoteException {
-    }
+    protected ServerCV() throws RemoteException { }
 
     /**
      *
@@ -45,17 +44,18 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
      */
     public static void main(String[] args) {
         db = new Database();
-        try {
-            ServerCV obj = new ServerCV();
-            Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-            reg.rebind("server", obj);
-            System.out.println("Server pronto: " + reg);
-        } catch (RemoteException e) {
-            System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
-            e.printStackTrace();
-            System.exit(-1);
+        if(db.connettiDB()) {
+            try {
+                ServerCV obj = new ServerCV();
+                Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+                reg.rebind("server", obj);
+                System.out.println("Server pronto: " + reg);
+            } catch (RemoteException e) {
+                System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
+                System.exit(-1);
+            }
+            db.getCentriVaccinali("");
         }
-        db.getCentriVaccinali("");
     }
 
     /**

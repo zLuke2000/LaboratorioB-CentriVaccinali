@@ -58,7 +58,7 @@ public class DBHelper {
             try {
                 connection = DriverManager.getConnection(url, username, password);
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println("[DBHelper] credenziali database errate o database non corretto");
             }
         }
         return connection;

@@ -13,16 +13,20 @@ import java.sql.*;
  *  TODO controllo sicurezza delle query
  */
 public class Database {
+
     /**
-     *
+     * Riferimento alla connessione tra il programma java e il database.
+     * @see Connection
      */
     private static Connection conn;
     /**
-     *
+     * Variabile contenente uno statement sql preparato prima di eseguire la query.
+     * @see PreparedStatement
      */
     private static PreparedStatement pstmt;
     /**
-     *
+     * Variabile contenete il risultato dopo una query a database.
+     * @see ResultSet
      */
     private ResultSet rs;
     /**
@@ -33,21 +37,26 @@ public class Database {
     /**
      *
      */
-    public Database() {
+    public Database() { }
+
+    /**
+     * Permette di ottenere la connessione al database.
+     * @see DBHelper
+     */
+    public boolean connettiDB() {
         conn = DBHelper.getConnection();
         System.out.println("Connessione stabilita: " + conn);
+        return conn != null;
     }
 
     /**
-     *
-     */
-    public void disconnettiDB() {
-        DBHelper.closeConnection();
-    }
-
-    /**
-     * FUNZIONANTE
-     * extendedResult ritorna 1 se l'userID esiste - 0 se l'userID non esiste
+     * Effettua l'inserimento di un centro vaccinale su database seguendo determinati passaggi:<br>
+     *  - Controlla che l'indirizzo del centro sia gi&agrave nella tabella dedicata<br>
+     *  - Registra l'indirizzo se esito negativo dell'azione precedente<br>
+     *  - Registra il centro vaccinale passato come paramento<br>
+     *  - Crea la tabella dedicata nel database (se inesistente)
+     * @param cv centro vaccinale da registrare
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result registraCentroVaccinale(CentroVaccinale cv) {
         UUID uuid = null;
@@ -231,7 +240,7 @@ public class Database {
     /**
      *
      * @param c
-     * @return
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result registraCittadino(Cittadino c) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_CITTADINO);
@@ -314,7 +323,7 @@ public class Database {
     /**
      *
      * @param nuovoVaccinato
-     * @return
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result registraVaccinato(Vaccinato nuovoVaccinato) {
         Result risultato = new Result(false, Result.Operation.REGISTRAZIONE_VACCINATO);
@@ -352,7 +361,9 @@ public class Database {
     }
 
     /**
-     * FUNZIONANTE
+     *
+     * @param provincia
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result getComuni(String provincia){
         Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
@@ -377,7 +388,9 @@ public class Database {
     }
 
     /**
-     * FUNZIONANTE
+     *
+     * @param comune
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result getCentriVaccinali(String comune){
         Result risultato = new Result(false, Result.Operation.RISULTATO_CENTRI);
@@ -410,7 +423,7 @@ public class Database {
     /**
      *
      * @param nomeCentro
-     * @return
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result ricercaCentroPerNome(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
@@ -444,7 +457,7 @@ public class Database {
      *
      * @param comune
      * @param tipologia
-     * @return
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result ricercaCentroPerComuneTipologia(String comune, TipologiaCentro tipologia) {
         Result risultato = new Result(false, Result.Operation.RICERCA_CENTRO);
@@ -479,7 +492,7 @@ public class Database {
     /**
      *
      * @param ea
-     * @return
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result registraEA(EventoAvverso ea) {
         Result risultato = new Result(false, Result.Operation.REGISTRA_EVENTO_AVVERSO);
@@ -501,8 +514,8 @@ public class Database {
 
     /**
      *
-     * @param nomeCentro
-     * @return
+     * @param nomeCentro nome del centro da cui recuperare le segnalazioni
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result leggiMediaEventiAvversi(String nomeCentro) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
@@ -549,11 +562,13 @@ public class Database {
     }
 
     /**
+     * Effettua la lettura delle segnalazioni di eventi avversi di un determinato centro e
+     * secondo due criteri passati come parametri
      *
-     * @param nomeCentro
-     * @param limit
-     * @param offset
-     * @return
+     * @param nomeCentro nome del centro da cui recuperare le segnalazioni
+     * @param limit limite massimo di segnalazione acquisite dal database
+     * @param offset offset di selezione delle tuple da database partendo dall'alto
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result leggiSegnalazioni(String nomeCentro, int limit, int offset) {
         Result risultato = new Result(false, Result.Operation.LEGGI_EVENTI_AVVERSI);
@@ -583,11 +598,12 @@ public class Database {
     }
 
     /**
+     *  Effettua l'aggiornamento della password dell'account di un cittadino
      *
-     * @param userid
-     * @param vecchiaPassword
-     * @param nuovaPassword
-     * @return
+     * @param userid nome utente del cittadino
+     * @param vecchiaPassword password vecchia
+     * @param nuovaPassword password nuova
+     * @return un oggetto di tipo <code>Result</code>
      */
     public Result aggiornaPSW(String userid, String vecchiaPassword, String nuovaPassword) {
         Result risultato = new Result(false, Result.Operation.AGGIORNA_PASSWORD_CITTADINO);
