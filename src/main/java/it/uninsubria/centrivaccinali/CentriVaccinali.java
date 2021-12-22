@@ -38,22 +38,26 @@ public class CentriVaccinali extends Application {
      */
     private final static Double h_cv_login = 420.0;
 
+    /** Valore altezza stage della finestra registra centro vaccinale. */
+    private final static Double w_cv_regc = 800.0;
 
-    /**
-     *
-     */
+    /** Valore altezza stage della finestra registra centro vaccinale. */
+    private final static Double h_cv_regc = 350.0;
+
+    /** Valore altezza stage della finestra registra vaccinato. */
+    private final static Double w_cv_recv = 500.0;
+
+    /** Valore altezza stage della finestra registra vaccinato. */
+    private final static Double h_cv_recv = 600.0;
+
+    /** Valore larghezza stage della finestra registrazione cittadino. */
     private final static Double w_ci_reg = 400.0;
 
-
-    /**
-     *
-     */
+    /** Valore altezza stage della finestra registrazione cittadino. */
     private final static Double h_ci_reg = 520.0;
 
 
-    /**
-     *
-     */
+    /** Valore larghezza stage della finestra dashoboard cittadino. */
     private final static Double w_dashboard = 800.0;
 
 
@@ -140,10 +144,9 @@ public class CentriVaccinali extends Application {
         stage.show();
     }
 
-
     /**
-     *
-     * @param fxml
+     * Metodo per selezionare l'interfaccia desiderata
+     * @param fxml oggetto che identifica il file FXML dell'interfaccia.
      */
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
