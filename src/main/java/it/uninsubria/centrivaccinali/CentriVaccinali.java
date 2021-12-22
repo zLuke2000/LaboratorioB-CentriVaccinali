@@ -14,28 +14,16 @@ import java.util.Objects;
 
 public class CentriVaccinali extends Application {
 
-
-    /**
-     *
-     */
+    /** Valore larghezza stage della finestra di avvio. */
     private final static Double w_avvio = 450.0;
 
-
-    /**
-     *
-     */
+    /** Valore altezza stage della finestra di avvio. */
     private final static Double h_avvio = 280.0;
 
-
-    /**
-     *
-     */
+    /** Valore larghezza stage della finestra login operatore sanitario. */
     private final static Double w_cv_login = 390.0;
 
-
-    /**
-     *
-     */
+    /** Valore altezza stage della finestra login operatore sanitario. */
     private final static Double h_cv_login = 420.0;
 
     /** Valore altezza stage della finestra registra centro vaccinale. */
@@ -56,73 +44,52 @@ public class CentriVaccinali extends Application {
     /** Valore altezza stage della finestra registrazione cittadino. */
     private final static Double h_ci_reg = 520.0;
 
-
     /** Valore larghezza stage della finestra dashoboard cittadino. */
     private final static Double w_dashboard = 800.0;
 
-
-    /**
-     *
-     */
+    /** Valore altezza stage della finestra dashoboard cittadino. */
     private final static Double h_dashboard = 664.0;
 
-
-    /**
-     *
-     */
+    /** Valore larghezza stage standard. */
     private final static Double w_standard = 390.0;
 
-
-    /**
-     *
-     */
+    /** Valore altezza stage standard. */
     private final static Double h_standard = 565.0;
 
-
     /**
-     *
+     * Scene dell'applicazione.
+     * @see Scene
      */
     public static Scene scene;
 
-
     /**
-     *
+     * Stage dell'applicazione.
+     * @see Stage
      */
     public static Stage stage;
 
-
-    /**
-     *
-     */
+    /** Variabile larghezza per adattare la dimensione della finestra al contenuto. */
     private static Double width;
 
-
-    /**
-     *
-     */
+    /** Variabile ltezza per adattare la dimensione della finestra al contenuto. */
     private static Double height;
 
     /**
-     *
+     * Riferimento al client per essere inviato ai controller.
+     * @see ClientCV
      */
     public static ClientCV client;
 
-
-    /**
-     *
-     */
+    /** Posizione x del mouse durante operazione di trascinamento della finestra. */
     private double xOffset;
 
-
-    /**
-     *
-     */
+    /** Posizione y del mouse durante operazione di trascinamento della finestra. */
     private double yOffset;
 
 
     /**
-     *
-     * @param s
+     * Metodo di avvio dell'interfaccia grafica con prima schermata Avvio.fxml.
+     * @param s stage principale.
      */
     @Override
     public void start(Stage s) {
@@ -176,13 +143,13 @@ public class CentriVaccinali extends Application {
                 case "CV_registraCentroVaccinale":
                     System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
                     stage.setTitle("Registra nuovo centro vaccinale");
-                    width = 800.0;
-                    height = 350.0;
+                    width = w_cv_regc;
+                    height = h_cv_regc;
                     break;
                 case "CV_registraVaccinato":
                     stage.setTitle("Registra un nuovo vaccinato");
-                    width = 500.0;
-                    height = 600.0;
+                    width = w_cv_recv;
+                    height = h_cv_recv;
                     break;
                 case "CI_registrazione":
                     stage.setTitle("Registrazione cittadino");
@@ -198,7 +165,6 @@ public class CentriVaccinali extends Application {
                     System.err.println("[ATTENZIONE] NOME FXML ERRATO");
                     break;
             }
-        System.out.println("PROVA STAMPA CLIENTE " + client);
         stage.setWidth(width);
         stage.setHeight(height);
         stage.centerOnScreen();
@@ -206,8 +172,9 @@ public class CentriVaccinali extends Application {
 
 
     /**
-     * @param fxml path
-     * @return fxml
+     * Metodo per caricare il file fxml selezionato durante il metodo setRoot
+     * @param fxml percorso al file fxml desiderato
+     * @return ritorna fxmlLoader caricato
      */
     public static Parent loadFXML(String fxml) {
         FXMLLoader fxmlLoader = new FXMLLoader(CentriVaccinali.class.getResource("fxml/" + fxml + ".fxml"));
@@ -221,6 +188,7 @@ public class CentriVaccinali extends Application {
 
 
     /**
+     * Metodo main per avvio ClientCV su Thread separato per non bloccare l'interfaccia durante le operazioni
      * @param args baseArgs
      */
     public static void main(String[] args) {
