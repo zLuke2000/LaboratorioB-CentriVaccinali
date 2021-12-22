@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.Objects;
 
+/**
+ * Main per l'applicazione lato client, crea l'oggetto <code>ClientCV</code> e crea l'interfaccia grafica.
+ * @see ClientCV
+ * @author ...
+ */
 public class CentriVaccinali extends Application {
 
     /** Valore larghezza stage della finestra di avvio. */

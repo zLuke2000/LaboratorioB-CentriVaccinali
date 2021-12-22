@@ -1,5 +1,5 @@
 /**
- * Contiene tutte le classi di utilit&Agrave per l'applicazione.
+ * Contiene tutte le classi di utilit&amp;agrave per l'applicazione.
  * @see it.uninsubria.centrivaccinali.util.CssHelper gestisce gli stili per le componenti grafiche.
  * @see it.uninsubria.centrivaccinali.util.ControlloParametri classe contenente tutti i metodi per il controllo degli input delle interfacce.
  * @see it.uninsubria.centrivaccinali.util.DialogHelper classe generica per la creaizone di dialog

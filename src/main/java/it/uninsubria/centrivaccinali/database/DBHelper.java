@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Classe che fornisce la funzionalit&agrave di connessione e la disconessione al database...
+ * Classe che fornisce la funzionalit&amp;amp;agrave di connessione e la disconessione al database...
  */
 public class DBHelper {
 

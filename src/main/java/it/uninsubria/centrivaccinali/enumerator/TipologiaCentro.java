@@ -5,7 +5,18 @@ package it.uninsubria.centrivaccinali.enumerator;
  * @author ...
  */
 public enum TipologiaCentro {
-    OSPEDALIERO, AZIENDALE, HUB;
+    /**
+     * Tipologia ospedaliero.
+     */
+    OSPEDALIERO,
+    /**
+     * Tipologia aziendale
+     */
+    AZIENDALE,
+    /**
+     * Tipologia hub
+     */
+    HUB;
 
 
     /**

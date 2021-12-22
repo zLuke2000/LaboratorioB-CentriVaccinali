@@ -29,7 +29,7 @@ public class Result implements Serializable {
 
 
     /**
-     * Mappa da inviare al client che conterr&agrave gli eventi avversi e la loro severit&agrave
+     * Mappa da inviare al client che conterr&amp;agrave gli eventi avversi e la loro severit&amp;agrave
      */
     private Map<String, Double> map;
 
@@ -47,13 +47,13 @@ public class Result implements Serializable {
 
 
     /**
-     * Rappresenta il cittadino che effettuer&agrave il login
+     * Rappresenta il cittadino che effettuer&amp;agrave il login
      */
     private Cittadino cittadino;
 
 
     /**
-     * Rappresenta il centro presso cui &egrave stato vaccinato il cittadino loggato
+     * Rappresenta il centro presso cui &amp;egrave stato vaccinato il cittadino loggato
      */
     private String centroCittadino;
 
@@ -88,8 +88,9 @@ public class Result implements Serializable {
 
 
     /**
-     * Ritorna la lista che contiene tutte le informazioni dell'operazione effettuata
-     * @return la lista con tutte le informazioni riguardanti l'esito della operazione appena effattuata
+     * Ritorna la lista che contiene tutte le informazioni dell'operazione effettuata.
+     * @return la lista con tutte le informazioni riguardanti l'esito della operazione appena effattuata.
+     * @see Error
      */
     public List<Error> getExtendedResult() {
         return extendedResult;
@@ -97,8 +98,9 @@ public class Result implements Serializable {
 
 
     /**
-     * Setta nella lista una specifica informazione riguardante l'esito dell'operazione
-     * @param enumerator
+     * Setta nella lista una specifica informazione riguardante l'esito dell'operazione.
+     * @param enumerator l'errore sollevato durante l'esecuzione dell'operazione.
+     * @see Error
      */
     public void setExtendedResult(Error enumerator) {
         this.extendedResult.add(enumerator);
@@ -106,8 +108,9 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Restiusce il tipo dell'operazione.
+     * @return tipologia di operazione.
+     * @see Operation
      */
     public Operation getOpType() {
         return opType;
@@ -115,8 +118,9 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @param opType
+     * Imposta il tipo di operazione.
+     * @param opType tipologia di operazione da settare.
+     * @see Operation
      */
     @SuppressWarnings("unused")
     public void setOpType(Operation opType) {
@@ -125,8 +129,9 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Ritorna il cittadino che ha effettuato il login.
+     * @return cittadino loggato.
+     * @see Cittadino
      */
     public Cittadino getCittadino() {
         return cittadino;
@@ -134,8 +139,9 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @param c
+     * Imposta il cittadino che ha eseguito il login.
+     * @param c cittadino loggato da settare.
+     * @see Cittadino
      */
     public void setCittadino(Cittadino c) {
         cittadino = c;
@@ -143,8 +149,8 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Ritorna il nome del centro in cui &amp;egrave stato vaccinato il cittadino.
+     * @return nome del centro vaccinale.
      */
     public String getCentroCittadino() {
         return centroCittadino;
@@ -152,8 +158,8 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @param centroCittadino
+     * Imposta il nome del centro in cui &amp;egrave stato vaccinato il cittadino.
+     * @param centroCittadino nome del centro da settare.
      */
     public void setCentroCittadino(String centroCittadino) {
         this.centroCittadino = centroCittadino;

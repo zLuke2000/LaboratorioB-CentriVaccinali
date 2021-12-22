@@ -34,7 +34,7 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     * Rappresenta il valore da 1 a 5 dell'intensit&agrave del valore avverso
+     * Rappresenta il valore da 1 a 5 dell'intensit&amp;agrave del valore avverso
      */
     private int severita;
 
@@ -55,7 +55,7 @@ public class EventoAvverso implements Serializable {
      * Costruttore primario per EventoAvverso (fase registrazione)
      * @param idVaccino id univoco vaccinazione
      * @param evento la stringa che descrive l'evento
-     * @param severita l'intero che rappresent&agrave l'intensita dell'evento
+     * @param severita l'intero che rappresent&amp;agrave l'intensita dell'evento
      * @param note note opzionali per descrivere l'evento
      */
     public EventoAvverso(long idVaccino, String evento, int severita, String note) {
@@ -69,7 +69,7 @@ public class EventoAvverso implements Serializable {
     /**
      * Costruttore primario per EventoAvverso (fase lettura)
      * @param evento la stringa che descrive l'evento
-     * @param severita l'intero che rappresent&agrave l'intensita dell'evento
+     * @param severita l'intero che rappresent&amp;agrave l'intensita dell'evento
      * @param note note opzionali per descrivere l'evento
      * @param tipoVac tipologia di vaccino utilizzato
      */
@@ -82,8 +82,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Getter per l'id di vaccinazione.
+     * @return id di vaccinazione.
      */
     public long getIdVaccino() {
         return idVaccino;
@@ -91,8 +91,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     *
-     * @param idVaccino
+     * Setter per l'id di vaccinazione.
+     * @param idVaccino id di vaccinazione da settare.
      */
     @SuppressWarnings("unused")
     public void setIdVaccino(long idVaccino) {
@@ -120,8 +120,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     * Metodo getter per la severit&agrave dell'evento
-     * @return l'intero che rappresenta la severit&agrave dell'evento
+     * Metodo getter per la severit&amp;agrave dell'evento
+     * @return l'intero che rappresenta la severit&amp;agrave dell'evento
      */
     public int getSeverita() {
         return severita;
@@ -129,8 +129,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     * Metodo setter per la severit&agrave dell'evento
-     * @param severita l'intero che rappresenta la severit&agrave dell'evento
+     * Metodo setter per la severit&amp;agrave dell'evento
+     * @param severita l'intero che rappresenta la severit&amp;agrave dell'evento
      */
     @SuppressWarnings("unused")
     public void setSeverita(int severita) {
@@ -158,8 +158,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Getter per il tipo di vaccino.
+     * @return tipologia del vaccino.
      */
     public Vaccino getTipoVac() {
         return tipoVac;
@@ -167,8 +167,8 @@ public class EventoAvverso implements Serializable {
 
 
     /**
-     *
-     * @return
+     * Restituisce la stringa che rappresenta l'evento avverso.
+     * @return stringa di questo oggetto.
      */
     @Override
     public String toString() {

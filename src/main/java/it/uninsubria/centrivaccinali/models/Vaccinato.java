@@ -24,7 +24,7 @@ public class Vaccinato implements Serializable {
 
 
     /**
-     * Rappresenta il nome del centro presso cui &egrave stato somministrato il vaccino
+     * Rappresenta il nome del centro presso cui &amp;egrave stato somministrato il vaccino
      */
     private String nomeCentro;
 
@@ -93,7 +93,7 @@ public class Vaccinato implements Serializable {
 
     /**
      * Metodo getter per il nome del centro vaccinale
-     * @return il nome del centro vaccinale presso cui &egrave stata fatta la vaccinazione
+     * @return il nome del centro vaccinale presso cui &amp;egrave stata fatta la vaccinazione
      */
     public String getNomeCentro() {
         return nomeCentro;

@@ -55,7 +55,7 @@ public class CVLoginController extends Controller {
 
 
     /**
-     * Permette di notificare l'interfaccia quando una operazione di login &egrave stata completata.
+     * Permette di notificare l'interfaccia quando una operazione di login &amp;egrave stata completata.
      * @param result rappresenta l'operazione completata.
      */
     @Override

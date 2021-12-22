@@ -25,19 +25,19 @@ import java.util.*;
  */
 public class CVRegistraCittadinoController extends Controller {
     /**
-     * Riferimento alla <code>TextField</code> che permette di inserire la provincia del centro presso cui il cittadino &egrave stato vaccinato.
+     * Riferimento alla <code>TextField</code> che permette di inserire la provincia del centro presso cui il cittadino &amp;egrave stato vaccinato.
      */
     @FXML private TextField tf_selezionaProvincia;
 
 
     /**
-     * Riferimento alla <code>ComboBox</code> che permette di selezionare il comune del centro presso cui il cittadino &egrave stato vaccianto.
+     * Riferimento alla <code>ComboBox</code> che permette di selezionare il comune del centro presso cui il cittadino &amp;egrave stato vaccianto.
      */
     @FXML private ComboBox<String> cb_selezionaComune;
 
 
     /**
-     * Riferimento alla <code>ComboBox</code> che permette di selezionare il centro presso cui il cittadino &egrave stato vaccianto.
+     * Riferimento alla <code>ComboBox</code> che permette di selezionare il centro presso cui il cittadino &amp;egrave stato vaccianto.
      */
     @FXML private ComboBox<String> cb_selezionaCentro;
 
@@ -67,7 +67,7 @@ public class CVRegistraCittadinoController extends Controller {
 
 
     /**
-     * Riferimento alla <code>TextField</code> in cui &egrave presente l'id di vaccinazione del cittadino vaccinato.
+     * Riferimento alla <code>TextField</code> in cui &amp;egrave presente l'id di vaccinazione del cittadino vaccinato.
      */
     @FXML private TextField tf_idVaccino;
 
@@ -300,7 +300,7 @@ public class CVRegistraCittadinoController extends Controller {
 
     /**
      * Controlla che sia stato selezionato correttamente un centro vaccinale.
-     * @return un booleano che rappresenta se &egrave stato selezionato o meno un centro.
+     * @return un booleano che rappresenta se &amp;egrave stato selezionato o meno un centro.
      */
     private boolean statoSelezione() {
         if(selectedCV != null) {

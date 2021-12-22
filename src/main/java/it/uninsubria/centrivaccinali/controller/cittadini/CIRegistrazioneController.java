@@ -92,7 +92,7 @@ public class CIRegistrazioneController extends Controller {
 
     /**
      * Permette di notificare l'interfaccia quando un'operazione registrazione viene effettuata o meno, specificando l'errore
-     * @param result
+     * @param result l'operazione appena completata.
      */
     @Override
     public void notifyController(Result result) {

@@ -2,9 +2,28 @@ package it.uninsubria.centrivaccinali.enumerator;
 
 
 /**
- * Rappresenta i diversi tipi di qualificatori per la via
+ * Rappresenta i diversi tipi di qualificatori per l'indirizzo.
  * @author ...
  */
 public enum Qualificatore {
-    VIA, VIALE, PIAZZA, PIAZZALE, CORSO
+    /**
+     * Qualificatore via.
+     */
+    VIA,
+    /**
+     * Qualificatore viale.
+     */
+    VIALE,
+    /**
+     * Qualificatore piazza.
+     */
+    PIAZZA,
+    /**
+     * Qualificatore piazzale.
+     */
+    PIAZZALE,
+    /**
+     * Qualificatore corso.
+     */
+    CORSO
 }

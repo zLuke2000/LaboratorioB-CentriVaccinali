@@ -29,7 +29,7 @@ public class CIItemListProspettoController extends Controller {
 
 
     /**
-     * <code>Label</code> contenente la severit&agrave dell'evento avverso registrato.
+     * <code>Label</code> contenente la severit&amp;agrave dell'evento avverso registrato.
      * @see Label
      */
     @FXML private Label l_severita;

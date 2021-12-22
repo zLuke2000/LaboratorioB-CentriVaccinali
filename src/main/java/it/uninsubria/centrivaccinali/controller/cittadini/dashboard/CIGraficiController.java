@@ -32,7 +32,7 @@ public class CIGraficiController extends Controller {
 
 
     /**
-     * La serie di dati per il vaccino "j&j".
+     * La serie di dati per il vaccino "j&amp;j".
      * @see javafx.scene.chart.XYChart.Series
      */
     private final XYChart.Series<String, Double> jnj = new XYChart.Series<>();

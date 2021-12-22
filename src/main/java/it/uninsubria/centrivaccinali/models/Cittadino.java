@@ -90,7 +90,7 @@ public class Cittadino implements Serializable {
 
     /**
      * Metodo getter per il nome del cittadino
-     * @return il <code>nome<code/> del cittadino
+     * @return il <code>nome</code> del cittadino
      */
     public String getNome() {
         return nome;

@@ -89,7 +89,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo che il testo inserito in input corrisponda a soli numeri o lettere dell'alfabeto.
-     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere nell'interfaccia
      * @param minChar valore minimo del numero di caratteri che deve contenere intesto inserito
      * @param maxChar valore massimo del numero di caratteri che deve contenere intesto inserito
      * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
@@ -109,7 +109,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo della non presenza di numeri del testo inserito in input.
-     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia.
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere nell'interfaccia.
      * @param minChar valore minimo del numero di caratteri che deve contenere intesto inserito.
      * @param maxChar valore massimo del numero di caratteri che deve contenere intesto inserito.
      * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
@@ -129,7 +129,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo dell'occorrenza di numeri presenti del testo inserito in input.
-     * @param tic TextInputControl in cui si andr&agrave a scrivere nell'interfaccia.
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere nell'interfaccia.
      * @param minChar valore minimo dell'occorenze di numeri presenti.
      * @param maxChar valore massimo dell'occorenze di numeri presenti.
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
@@ -157,7 +157,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo del numero civico inserito in input
-     * @param tic TextInputControl in cui si andr&agrave a scrivere il numero civico nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere il numero civico nell'interfaccia
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean numeroCivico(TextInputControl tic) {
@@ -189,7 +189,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo dell provincia inserita  in input
-     * @param tic TextInputControl in cui si andr&agrave a scrivere la provincia nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere la provincia nell'interfaccia
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean provincia(TextInputControl tic) {
@@ -214,7 +214,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo della password inserita in input
-     * @param tic TextInputControl in cui si andr&agrave a scrivere la password nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere la password nell'interfaccia
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean password(TextInputControl tic) {
@@ -259,7 +259,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo del codice fiscale inserita in input
-     * @param tic TextInputControl in cui si andr&agrave a scrivere il codice fiscale nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere il codice fiscale nell'interfaccia
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean codiceFiscale(TextInputControl tic) {
@@ -300,7 +300,7 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo dell'e-mail inserita in input
-     * @param tic TextInputControl in cui si andr&agrave a scrivere l'e-mail nell'interfaccia
+     * @param tic TextInputControl in cui si andr&amp;agrave a scrivere l'e-mail nell'interfaccia
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean email(TextInputControl tic) {
@@ -323,8 +323,8 @@ public class ControlloParametri {
 
     /**
      * Metodo per il controllo dell'uguaglianza tra le due password
-     * @param tic1 TextInputControl in cui si andr&agrave a scrivere la prima password
-     * @param tic2 TextInputControl in cui si andr&agrave a scrivere la seconda password
+     * @param tic1 TextInputControl in cui si andr&amp;agrave a scrivere la prima password
+     * @param tic2 TextInputControl in cui si andr&amp;agrave a scrivere la seconda password
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean checkSamePassword(TextInputControl tic1, TextInputControl tic2) {

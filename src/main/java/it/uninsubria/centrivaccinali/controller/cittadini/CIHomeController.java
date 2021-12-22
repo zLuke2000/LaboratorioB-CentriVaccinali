@@ -75,7 +75,7 @@ public class CIHomeController extends Controller {
 
 
     /**
-     * Notifica l'interfaccia quando una operazione di login &egrave stata completata.
+     * Notifica l'interfaccia quando una operazione di login &amp;egrave stata completata.
      * @param result rappresenta l'operazione appena completata dal server.
      */
     @Override

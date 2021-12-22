@@ -6,7 +6,22 @@ package it.uninsubria.centrivaccinali.enumerator;
  * @author ...
  */
 public enum Vaccino {
-    PFIZER, ASTRAZENECA, MODERNA, JNJ;
+    /**
+     * Vaccino pfizer.
+     */
+    PFIZER,
+    /**
+     * Vaccino astrazeneca.
+     */
+    ASTRAZENECA,
+    /**
+     * Vaccino moderna.
+     */
+    MODERNA,
+    /**
+     * Vaccino j&amp;j.
+     */
+    JNJ;
 
 
     /**

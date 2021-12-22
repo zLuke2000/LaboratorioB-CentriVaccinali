@@ -27,9 +27,6 @@ public class CIInfoCentroController extends Controller {
      * <code>AnchorPane</code> contenitore della seguente interfaccia.
      * @see AnchorPane
      */
-    /**
-     * @s
-     */
     @FXML private AnchorPane ap_root;
 
 

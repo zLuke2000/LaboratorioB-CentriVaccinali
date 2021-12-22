@@ -18,13 +18,13 @@ public class CIItemListController extends Controller {
 
 
     /**
-     * <code>HBox</code> visualizzato quando l'utente ha la possibilit&agrave di inserire gli eventi avversi
+     * <code>HBox</code> visualizzato quando l'utente ha la possibilit&amp;agrave di inserire gli eventi avversi
      * per il centro vaccinale oltre alla visualizzazione delle informaione di esso.
      */
     @FXML private HBox hb_aggiungi_e_visualizza;
 
     /**
-     * <code>HBox</code> visualizzato quando l'utente ha la sola possibilit&agrave di visualizzare le informaizone del
+     * <code>HBox</code> visualizzato quando l'utente ha la sola possibilit&amp;agrave di visualizzare le informaizone del
      * centro vaccinale.
      */
     @FXML private HBox hb_visualizza;
@@ -62,7 +62,7 @@ public class CIItemListController extends Controller {
 
 
     /**
-     * Riferimento al controller della dashboard per la possibilt&agrave di chiamare i suoi metodi
+     * Riferimento al controller della dashboard per la possibilt&amp;agrave di chiamare i suoi metodi
      * @see CIDashboardController
      */
     private CIDashboardController parent;
@@ -122,7 +122,7 @@ public class CIItemListController extends Controller {
 
     /**
      * Mettodo per settare la variabile <code>parent</code>.
-     * @param c controller che setter&agrave la variabile.
+     * @param c controller che setter&amp;agrave la variabile.
      */
     public void setParent(Controller c) {
         parent = (CIDashboardController) c;

@@ -14,7 +14,7 @@ public interface ClientCVInterface extends Remote {
     /**
      * Permette di notificare l'interfaccia utente.
      * @param ritorno l'operazione appena completata dal server
-     * @throws RemoteException
+     * @throws RemoteException eccezione rmi.
      */
     void notifyStatus(Result ritorno) throws RemoteException;
 }

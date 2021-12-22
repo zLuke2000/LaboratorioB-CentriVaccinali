@@ -34,7 +34,7 @@ public class AggiungiEventoAvverso extends Controller {
 
 
     /**
-     * <code>Slider</code> per selezionare la severit&agrave
+     * <code>Slider</code> per selezionare la severit&amp;agrave
      */
     @FXML private Slider s_severita;
 

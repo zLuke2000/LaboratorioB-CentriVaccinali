@@ -198,7 +198,7 @@ public class CIRicercaResultController extends Controller {
     }
 
     /**
-     * Permette di cambiare la modalit&agrave di ricerca.
+     * Permette di cambiare la modalit&amp;agrave di ricerca.
      */
     @FXML
     private void cambiaRicerca() {

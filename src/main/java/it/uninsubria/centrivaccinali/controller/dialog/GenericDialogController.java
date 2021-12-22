@@ -59,8 +59,8 @@ public class GenericDialogController {
 
 
     /**
-     *
-     * @param dh
+     * Associa il controller preso da fxmlLoader al campo dh.
+     * @param dh dialog preso da fxmlLoader.
      */
     public void setDH(DialogHelper dh) {
         this.dh = dh;
@@ -68,8 +68,8 @@ public class GenericDialogController {
 
 
     /**
-     *
-     * @param b
+     * Permette di aggiungere un bottone al dialog.
+     * @param b bottone da aggiungere.
      */
     public void addButton(Button b){
         fp_buttons.getChildren().add(b);

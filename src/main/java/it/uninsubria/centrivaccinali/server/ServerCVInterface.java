@@ -104,7 +104,7 @@ public interface ServerCVInterface extends Remote{
 
 
     /**
-     * Recupera la media della severit&agrave per ogni tipo di evento avverso registrato.
+     * Recupera la media della severit&amp;agrave per ogni tipo di evento avverso registrato.
      * @param client riferimento al client da notificare.
      * @param nomeCentro centro da cui leggere i valori.
      * @throws RemoteException

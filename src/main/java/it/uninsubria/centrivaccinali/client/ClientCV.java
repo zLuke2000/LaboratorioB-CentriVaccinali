@@ -62,7 +62,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * Costruttore oggetto ClientCV.
      * Crea un'istanza di un oggetto <code>ConnectionThread</code>.
      * @see ConnectionThread
-     * @throws RemoteException
+     * @throws RemoteException eccezione rmi.
      */
     public ClientCV() throws RemoteException {
         connThread = new ConnectionThread();
@@ -118,7 +118,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     /**
      * Metodo che notifica al client il completamento di un operazione richiesta al server.
      * @param ritorno oggetto che rappresenta il risultato dell'operazione.
-     * @throws RemoteException
+     * @throws RemoteException eccezione rmi.
      */
     @Override
     public void notifyStatus(Result ritorno) throws RemoteException  {
@@ -365,7 +365,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
 
     /**
      * Effettua una chiamata al server per creare un popup con messaggio di errore di connesione al serever.
-     * E&grave è possibile scegliere se ritentare la connessione premendo "SI", altrimenti "NO".
+     * &amp;Egrave possibile scegliere se ritentare la connessione premendo "SI", altrimenti "NO".
      */
     private void lanciaPopup() {
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);

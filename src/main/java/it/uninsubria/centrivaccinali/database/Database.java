@@ -52,6 +52,7 @@ public class Database {
 
     /**
      * Permette di ottenere la connessione al database.
+     * @return un booleano che rappresenta lo stato della connessione.
      * @see DBHelper
      */
     public boolean connettiDB() {
@@ -63,7 +64,7 @@ public class Database {
 
     /**
      * Effettua l'inserimento di un centro vaccinale su database seguendo determinati passaggi:<br>
-     *  - Controlla che l'indirizzo del centro sia gi&agrave nella tabella dedicata<br>
+     *  - Controlla che l'indirizzo del centro sia gi&amp;agrave nella tabella dedicata<br>
      *  - Registra l'indirizzo se esito negativo dell'azione precedente<br>
      *  - Registra il centro vaccinale passato come paramento<br>
      *  - Crea la tabella dedicata nel database (se inesistente)
@@ -531,7 +532,7 @@ public class Database {
 
 
     /**
-     * Effettua una query a database per ottenere una lista contenente la media di severit&agrave per ogni tipo di evento
+     * Effettua una query a database per ottenere una lista contenente la media di severit&amp;agrave per ogni tipo di evento
      * avverso, sulla base del centro vaccinale passato come parametro.
      * @param nomeCentro nome del centro da cui recuperare le segnalazioni
      * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
