@@ -4,7 +4,6 @@
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
  * @author Pintonello Christian 741112
- * @version 1.5.0
  */
 module it.uninsubria.centrivaccinali {
     requires javafx.controls;

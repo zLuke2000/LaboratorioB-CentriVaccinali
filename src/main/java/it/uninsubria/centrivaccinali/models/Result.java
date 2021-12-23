@@ -167,10 +167,10 @@ public class Result implements Serializable {
 
 
     /**
-     *
-     * @param customClass
-     * @param <T>
-     * @return
+     * Ritorna una lista di oggetti T partendo da una lista di oggetti Object.
+     * @param customClass classe per la conversione.
+     * @param <T> tipo di classe per la conversione.
+     * @return una lista di oggetti T in base al parametro fornito.
      */
     @SuppressWarnings({"unused", "unchecked"})
     public <T> List<T> getList(Class<T> customClass) {
@@ -182,24 +182,24 @@ public class Result implements Serializable {
     }
 
     /**
-     * 
-     * @return
+     * Ritorna la mappa
+     * @return mappa contenete dati a seguito di un'operazione
      */
     public Map<String, Double> getMap() {
         return map;
     }
 
     /**
-     * 
-     * @param map
+     * Imposta la mappa
+     * @param map mappa risultante a seguito di un'operazione
      */
     public void setMap(Map<String, Double> map) {
         this.map = map;
     }
 
     /**
-     * 
-     * @param list
+     * Imposta la lista generica di oggetti.
+     * @param list lista risultante a seguito di un'operazione
      */
     public void setList(List<Object> list) {
         this.list = list;
@@ -210,14 +210,49 @@ public class Result implements Serializable {
      */
     public enum Error {
         // Login utente
-        USERNAME_NON_TROVATO, PASSWORD_ERRATA,
+        /**
+         * Errore username non trovato
+         */
+        USERNAME_NON_TROVATO,
+        /**
+         * Errore password errata
+         */
+        PASSWORD_ERRATA,
         //Registrazione eventi avversi
+        /**
+         * Errore evento avverso gi&amp;agrave registrato
+         */
         EVENTO_GIA_INSERITO,
         //Registrazione utente
-        CF_ID_NON_VALIDI, CITTADINO_GIA_REGISTRATO, EMAIL_GIA_IN_USO, USERID_GIA_IN_USO,
+        /**
+         * Errore codice fiscale o id vaccinazione non validi
+         */
+        CF_ID_NON_VALIDI,
+        /**
+         * Errore cittadino gi&amp;agrave registrato
+         */
+        CITTADINO_GIA_REGISTRATO,
+        /**
+         * Errore email gi&amp;agrave registrata
+         */
+        EMAIL_GIA_IN_USO,
+        /**
+         * Errore userID gi&amp;agrave registrato
+         */
+        USERID_GIA_IN_USO,
         //Registrazione vaccinato
-        CF_GIA_IN_USO, IDVAC_GIA_IN_USO,
+        /**
+         * Errore codice fiscale gi&amp;agrave registrato
+         */
+        CF_GIA_IN_USO,
+        /**
+         * Errore ID vaccinazione gi&amp;agrave registrato
+         */
+        IDVAC_GIA_IN_USO,
         // Generico
+        /**
+         * Errore nome gi&amp;agrave registrato
+         */
         NOME_IN_USO,
     }
 
@@ -226,8 +261,50 @@ public class Result implements Serializable {
      */
     public enum Operation {
         // Sezione operatore
-        LOGIN_OPERATORE, REGISTRAZIONE_VACCINATO, RISULTATO_COMUNI, RISULTATO_CENTRI, REGISTRAZIONE_CENTRO,
+        /**
+         * Operazione login operatore
+         */
+        LOGIN_OPERATORE,
+        /**
+         * Operazione registra cittadino a seguito di una vaccinazione
+         */
+        REGISTRAZIONE_VACCINATO,
+        /**
+         * Operazione ricerca comuni
+         */
+        RICERCA_COMUNI,
+        /**
+         * Operazione ricerca centri vaccinali
+         */
+        RICERCA_CENTRI,
+        /**
+         * Operazione registrazione centro vaccinale
+         */
+        REGISTRAZIONE_CENTRO,
         // Sezione cittadino
-        LOGIN_CITTADINO, REGISTRAZIONE_CITTADINO, RICERCA_CENTRO, REGISTRA_EVENTO_AVVERSO, AGGIORNA_PASSWORD_CITTADINO, LEGGI_EVENTI_AVVERSI
+        /**
+         * Operazione login cittadino
+         */
+        LOGIN_CITTADINO,
+        /**
+         * Operazione registrazione nuovo cittadino
+         */
+        REGISTRAZIONE_CITTADINO,
+        /**
+         * Operazione ricerca centro singolo
+         */
+        RICERCA_CENTRO,
+        /**
+         * Operazione registra evento avverso
+         */
+        REGISTRA_EVENTO_AVVERSO,
+        /**
+         * Operazione aggiorna password del cittadino
+         */
+        AGGIORNA_PASSWORD_CITTADINO,
+        /**
+         * Operazione leggi eventi avversi
+         */
+        LEGGI_EVENTI_AVVERSI
     }
 }

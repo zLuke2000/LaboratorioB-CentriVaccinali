@@ -377,7 +377,7 @@ public class Database {
      * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result getComuni(String provincia){
-        Result risultato = new Result(false, Result.Operation.RISULTATO_COMUNI);
+        Result risultato = new Result(false, Result.Operation.RICERCA_COMUNI);
         List<Object> arrayComuni = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT DISTINCT comune " +
@@ -406,7 +406,7 @@ public class Database {
      * @return un oggetto di tipo <code>Result</code> contenete l'esito dell'operazione.
      */
     public Result getCentriVaccinali(String comune){
-        Result risultato = new Result(false, Result.Operation.RISULTATO_CENTRI);
+        Result risultato = new Result(false, Result.Operation.RICERCA_CENTRI);
         List<Object> listaCentri = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement("SELECT * " +

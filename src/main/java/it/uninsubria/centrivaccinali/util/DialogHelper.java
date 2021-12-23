@@ -157,6 +157,17 @@ public class DialogHelper {
      * Classe enumerativa per i vari tipi di dialog.
      */
     public enum Type {
-        INFO, WARNING, ERROR
+        /**
+         * Dialog di tipo informazione
+         */
+        INFO,
+        /**
+         * Dialog di tipo attenzione
+         */
+        WARNING,
+        /**
+         * Dialog di tipo errore
+         */
+        ERROR
     }
 }

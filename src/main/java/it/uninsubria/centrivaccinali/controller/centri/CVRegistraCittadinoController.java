@@ -158,7 +158,7 @@ public class CVRegistraCittadinoController extends Controller {
     @Override
     public void notifyController(Result result) {
         switch (result.getOpType()){
-            case RISULTATO_COMUNI:
+            case RICERCA_COMUNI:
                 if (result.getList(String.class) != null) {
                     Platform.runLater(() -> {
                         cb_selezionaComune.getItems().clear();
@@ -167,7 +167,7 @@ public class CVRegistraCittadinoController extends Controller {
                     });
                 }
                 break;
-            case RISULTATO_CENTRI:
+            case RICERCA_CENTRI:
                 if (result.getList(CentroVaccinale.class) != null){
                     Platform.runLater(() -> {
                         listaCentri.clear();

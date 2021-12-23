@@ -1,6 +1,5 @@
-package it.uninsubria.centrivaccinali.server;
+package it.uninsubria.centrivaccinali;
 
-import it.uninsubria.centrivaccinali.CentriVaccinali;
 import it.uninsubria.centrivaccinali.database.DBHelper;
 import it.uninsubria.centrivaccinali.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
@@ -16,19 +15,34 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Classe che permette il caricamento di:<br>
+ *  - Nuovi centri vaccinali<br>
+ *  - Nuovi cittadini vaccinati<br>
+ *  - Nuovi cittadini registrati<br>
+ *  - Eventi avversi
+ */
 @SuppressWarnings("all")
 public class Uploader {
-
+    /** Riferimento a database */
     private static Database db;
+    /** Connessione a database */
     private static Connection conn;
-
+    /** Codice operazione registra centri vaccinali */
     private static final int REGISTRA_CENTRI = 1;
+    /** Codice operazione registra vaccinati */
     private static final int REGISTRA_VACCINATI = 2;
+    /** Codice operazione registra cittadini */
     private static final int REGISTRA_CITTADINI = 3;
+    /** Codice operazione registra eventi avversi */
     private static final int REGISTRA_EVENTI = 4;
-
+    /** Operazione da eseguire in base alle quattro sopra riportate */
     private static final int operation = 4;
 
+    /**
+     * Metodo main per l'esecuzione dell'uploader
+     * @param args args param
+     */
     public static void main(String[] args) {
         conn = DBHelper.getConnection();
         db = new Database();
@@ -56,6 +70,10 @@ public class Uploader {
         }
     }
 
+    /**
+     * Metodo che consente di registare centri vaccinali automaticamente (conformi ai vincoli del progetto)
+     * @throws IOException eccezione input/output file.
+     */
     private static void registraCentri() throws IOException {
         BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("UML/centri_lombardia.csv")).getFile()));
 
@@ -84,6 +102,11 @@ public class Uploader {
         }
     }
 
+    /**
+     * Metodo che consente di registare vaccinati automaticamente (conformi ai vincoli del progetto)
+     * @param max numero di vaccinati da registare
+     * @throws IOException eccezione input/output file.
+     */
     private static void registraVaccinatiRandom(int max) throws IOException {
 
         BufferedReader brNome = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/nomi.txt").getFile()));
@@ -660,6 +683,11 @@ public class Uploader {
         brComune.close();
     }
 
+    /**
+     * Metodo che consente di registare cittadini automaticamente (conformi ai vincoli del progetto)
+     * @throws SQLException eccezione sql database.
+     * @throws IOException eccezione input/output file.
+     */
     private static void registraCittadini() throws SQLException, IOException {
 
         BufferedReader brTab = new BufferedReader(new FileReader((CentriVaccinali.class.getResource("UML/tabelleCentri.txt").getFile())));
@@ -705,6 +733,10 @@ public class Uploader {
         brPwd.close();
     }
 
+    /**
+     * Metodo che consente di registare eventi avversi automaticamente (conformi ai vincoli del progetto)
+     * @throws SQLException eccezione sql database.
+     */
     private static void registraEventi() throws SQLException {
         List<String> eventi = new ArrayList<>();
         eventi.add("mal di testa");
