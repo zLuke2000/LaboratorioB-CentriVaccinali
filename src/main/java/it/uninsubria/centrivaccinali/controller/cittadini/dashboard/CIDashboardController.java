@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.*;
@@ -151,7 +152,7 @@ public class CIDashboardController extends Controller {
     @FXML
     private void logout() {
         mb_utente.hide();
-        CentriVaccinali.setRoot("CI_home");
+        Window.setRoot("CI_home");
         client.LogoutUtente();
     }
 
@@ -162,9 +163,9 @@ public class CIDashboardController extends Controller {
     @FXML
     private void backTo() {
         if (cittadinoConnesso != null) {
-            CentriVaccinali.setRoot("Avvio");
+            Window.setRoot("Avvio");
         } else {
-            CentriVaccinali.setRoot("CI_home");
+            Window.setRoot("CI_home");
         }
         client.stopOperation();
     }

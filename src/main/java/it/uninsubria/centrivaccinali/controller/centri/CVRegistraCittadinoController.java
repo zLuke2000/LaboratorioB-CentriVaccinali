@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
@@ -183,7 +184,7 @@ public class CVRegistraCittadinoController extends Controller {
                 }
                 break;
             case REGISTRAZIONE_VACCINATO:
-                CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+                Window.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                     System.out.println("Registrazione effettuata");
                     Platform.runLater(() -> {
@@ -264,7 +265,7 @@ public class CVRegistraCittadinoController extends Controller {
      */
     @FXML
     private void backTo() {
-        CentriVaccinali.setRoot("CV_home");
+        Window.setRoot("CV_home");
         client.stopOperation();
     }
 
@@ -292,7 +293,7 @@ public class CVRegistraCittadinoController extends Controller {
             java.sql.Date data=java.sql.Date.valueOf(dp_dataVaccino.getValue());
             Vaccino tipoVaccino = Vaccino.getValue(((RadioButton) tg_vaccino.getSelectedToggle()).getText());
             Vaccinato nuovoVaccinato=new Vaccinato(nomeCentro, nome, cognome, cf, data, tipoVaccino, idVac);
-            CentriVaccinali.scene.setCursor(Cursor.WAIT);
+            Window.scene.setCursor(Cursor.WAIT);
             client.registraVaccinato(this, nuovoVaccinato);
         }
     }

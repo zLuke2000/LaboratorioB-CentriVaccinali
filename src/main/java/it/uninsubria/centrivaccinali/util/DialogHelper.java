@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class DialogHelper {
     /**
      * Root al momento attiva nell'applicazione
      */
-    private final Pane rootPane = (Pane) CentriVaccinali.scene.getRoot();
+    private final Pane rootPane = (Pane) Window.scene.getRoot();
 
 
     /**

@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.server;
+package it.uninsubria.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;

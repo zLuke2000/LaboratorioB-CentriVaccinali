@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
@@ -103,12 +104,12 @@ public class CVRegistraCentroVaccinale extends Controller {
          */
         @Override
         public void notifyController(Result result) {
-                CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+                Window.scene.setCursor(Cursor.DEFAULT);
                 if (result.getResult()) {
                         System.out.println("Registrazione effettuata");
                         Platform.runLater(() -> {
                                 new DialogHelper("REGISTRAZIONE EFFETTUATA", "Centro vaccinale registrato con successo", DialogHelper.Type.INFO).display();
-                                CentriVaccinali.setRoot("CV_registraCentroVaccinale");
+                                Window.setRoot("CV_registraCentroVaccinale");
                         });
                 } else {
                         if(result.getExtendedResult().contains(Result.Error.NOME_IN_USO)) {
@@ -163,7 +164,7 @@ public class CVRegistraCentroVaccinale extends Controller {
                 if(cp.testoSempliceConNumeri(tf_nome, 6, 50) & cp.testoSempliceSenzaNumeri(tf_indirizzo, 3, 50) & cp.numeroCivico(tf_civico) & cp.testoSempliceSenzaNumeri(tf_comune, 3, 50) & cp.provincia(tf_provincia) & cp.numeri(tf_cap, 5, 5)) {
                         TipologiaCentro tipologiaSelezionata = TipologiaCentro.getValue(((RadioButton) tg_tipologia.getSelectedToggle()).getText());
                         centroVaccinale = new CentroVaccinale(nomeCentro, new Indirizzo(cb_qualificatore.getValue(), nomeIndirizzo, civico, comune, provincia, Integer.parseInt(cap)), tipologiaSelezionata);
-                        CentriVaccinali.scene.setCursor(Cursor.WAIT);
+                        Window.scene.setCursor(Cursor.WAIT);
                         client.registraCentroVaccinale(this, centroVaccinale);
                 }
         }
@@ -174,7 +175,7 @@ public class CVRegistraCentroVaccinale extends Controller {
          */
         @FXML
         private void backTo() {
-                CentriVaccinali.setRoot("CV_home");
+                Window.setRoot("CV_home");
                 client.stopOperation();
         }
 

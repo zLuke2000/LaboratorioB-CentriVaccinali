@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
@@ -118,7 +119,7 @@ public class CIRicercaResultController extends Controller {
         if (result != null && result.getResult() && result.getOpType() == Result.Operation.RICERCA_CENTRO) {
             setData(result.getList(CentroVaccinale.class));
         }
-        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+        Window.scene.setCursor(Cursor.DEFAULT);
     }
 
 
@@ -137,7 +138,7 @@ public class CIRicercaResultController extends Controller {
      */
     @FXML
     private void cercaCentroVaccinale() {
-        CentriVaccinali.scene.setCursor(Cursor.WAIT);
+        Window.scene.setCursor(Cursor.WAIT);
         if (cb_sceltaRicerca.getValue().equals("Per nome") && !tf_ricercaNomeCentro.getText().isBlank()) {
             client.ricercaPerNome(this, tf_ricercaNomeCentro.getText());
         }

@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
@@ -21,7 +22,7 @@ public class CVChangeController extends Controller {
     @FXML
     private void RegistraVaccinato() {
         System.out.println("Interfaccia per registrazione di un vaccinato");
-        CentriVaccinali.setRoot("CV_registraVaccinato");
+        Window.setRoot("CV_registraVaccinato");
     }
 
 
@@ -31,7 +32,7 @@ public class CVChangeController extends Controller {
     @FXML
     private void RegistraCentroVaccinale() {
         System.out.println("Interfaccia per registrazione di centro vaccinale");
-        CentriVaccinali.setRoot("CV_registraCentroVaccinale");
+        Window.setRoot("CV_registraCentroVaccinale");
     }
 
 
@@ -43,7 +44,7 @@ public class CVChangeController extends Controller {
         DialogHelper dh = new DialogHelper("ATTENZIONE","Vuoi eseguire il logout?", DialogHelper.Type.WARNING);
         Button bs = new Button("SI");
         bs.setOnAction(actionEvent -> {
-            CentriVaccinali.setRoot("Avvio");
+            Window.setRoot("Avvio");
             dh.close();
         });
         dh.addButton(bs);

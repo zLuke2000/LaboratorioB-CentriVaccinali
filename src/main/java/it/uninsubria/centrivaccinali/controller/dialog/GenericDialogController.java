@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.dialog;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -54,7 +55,7 @@ public class GenericDialogController {
      */
     @FXML public void indietro() {
         dh.close();
-        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+        Window.scene.setCursor(Cursor.DEFAULT);
     }
 
 

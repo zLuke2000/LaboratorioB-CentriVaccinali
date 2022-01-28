@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.cittadini;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
@@ -80,9 +81,9 @@ public class CIHomeController extends Controller {
      */
     @Override
     public void notifyController(Result result) {
-        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+        Window.scene.setCursor(Cursor.DEFAULT);
         if (result.getResult()) {
-            Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
+            Platform.runLater(() -> Window.setRoot("CI_dashboard"));
         }
         else {
             System.out.println("Login fallito");
@@ -106,7 +107,7 @@ public class CIHomeController extends Controller {
      */
     @FXML
     private void toFreeAccess() {
-        CentriVaccinali.setRoot("CI_dashboard");
+        Window.setRoot("CI_dashboard");
     }
 
 
@@ -126,7 +127,7 @@ public class CIHomeController extends Controller {
                 password= tf_loginPassword.getText();
             }
             if (!username.isBlank() && !password.isBlank()){
-                CentriVaccinali.scene.setCursor(Cursor.WAIT);
+                Window.scene.setCursor(Cursor.WAIT);
                 client.loginUtente(this, username, cp.encryptPassword(password));
             }
         }
@@ -139,7 +140,7 @@ public class CIHomeController extends Controller {
      */
     @FXML
     private void toRegistrazione() {
-        CentriVaccinali.setRoot("CI_registrazione");
+        Window.setRoot("CI_registrazione");
     }
 
 
@@ -178,7 +179,7 @@ public class CIHomeController extends Controller {
      */
     @FXML
     private void backTo() {
-        CentriVaccinali.setRoot("Avvio");
+        Window.setRoot("Avvio");
         client.stopOperation();
     }
 

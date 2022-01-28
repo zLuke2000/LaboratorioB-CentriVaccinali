@@ -8,4 +8,4 @@
  * @author Pintonello Christian 741112
  * @version 1.5.0
  */
-package it.uninsubria.centrivaccinali.server;
+package it.uninsubria.server;

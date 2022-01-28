@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.cittadini;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Cittadino;
@@ -96,10 +97,10 @@ public class CIRegistrazioneController extends Controller {
      */
     @Override
     public void notifyController(Result result) {
-        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+        Window.scene.setCursor(Cursor.DEFAULT);
         if (result.getResult()) {
             System.out.println("Registrazione effettuato");
-            Platform.runLater(() -> CentriVaccinali.setRoot("CI_dashboard"));
+            Platform.runLater(() -> Window.setRoot("CI_dashboard"));
         } else {
             System.err.println("Registrazione fallita");
 
@@ -143,7 +144,7 @@ public class CIRegistrazioneController extends Controller {
                 long idVac = Long.parseLong(tf_idVaccinazione.getText());
                 Cittadino cittadino = new Cittadino(nome, cognome, cf, email, user, cp.encryptPassword(password), idVac);
                 System.out.println("Registro cittadino");
-                CentriVaccinali.scene.setCursor(Cursor.WAIT);
+                Window.scene.setCursor(Cursor.WAIT);
                 client.registraCittadino(this, cittadino);
         }
     }
@@ -220,7 +221,7 @@ public class CIRegistrazioneController extends Controller {
      */
     @FXML
     private void backTo() {
-        CentriVaccinali.setRoot("CI_home");
+        Window.setRoot("CI_home");
     }
 
 

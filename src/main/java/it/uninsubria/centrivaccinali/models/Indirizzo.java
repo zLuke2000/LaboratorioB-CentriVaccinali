@@ -200,4 +200,5 @@ public class Indirizzo implements Serializable {
     public String toString() {
         return (String.join(" ", qualificatore.toString(), nome, civico) + ", " + String.join(" ", comune, String.valueOf(cap), ("(" + provincia + ")")));
     }
+
 }

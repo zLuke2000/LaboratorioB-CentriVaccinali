@@ -1,6 +1,7 @@
 package it.uninsubria.centrivaccinali.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
+import it.uninsubria.centrivaccinali.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
 import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
@@ -60,10 +61,10 @@ public class CVLoginController extends Controller {
      */
     @Override
     public void notifyController(Result result) {
-        CentriVaccinali.scene.setCursor(Cursor.DEFAULT);
+        Window.scene.setCursor(Cursor.DEFAULT);
         b_accedi.setDisable(false);
         if(result.getResult()) {
-            Platform.runLater(() -> CentriVaccinali.setRoot("CV_home"));
+            Platform.runLater(() -> Window.setRoot("CV_home"));
         } else {
             System.err.println("[CVLogin] AUTH ERROR");
             new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR).display();
@@ -95,7 +96,7 @@ public class CVLoginController extends Controller {
         }
 
         if(check) {
-            CentriVaccinali.scene.setCursor(Cursor.WAIT);
+            Window.scene.setCursor(Cursor.WAIT);
             client.autenticaOperatore(this, username, password);
         }
     }
@@ -107,7 +108,7 @@ public class CVLoginController extends Controller {
     @FXML
     private void backTo() {
         client.stopOperation();
-        CentriVaccinali.setRoot("Avvio");
+        Window.setRoot("Avvio");
     }
 
 

@@ -4,7 +4,7 @@ import it.uninsubria.centrivaccinali.controller.Controller;
 import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
-import it.uninsubria.centrivaccinali.server.ServerCVInterface;
+import it.uninsubria.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.scene.control.Button;

@@ -1,4 +1,4 @@
-package it.uninsubria.centrivaccinali.server;
+package it.uninsubria.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.centrivaccinali.database.Database;
@@ -80,10 +80,8 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
     public synchronized void authOperatore(ClientCVInterface client, String username, String password) throws RemoteException {
         myThread = new Thread(() -> {
             try {
-                // simulazione attesa
-                Thread.sleep(1000);
                 client.notifyStatus(new Result(usernameOperatore.equals(username) && passwordOperatore.equals(password), Result.Operation.LOGIN_OPERATORE));
-            } catch (InterruptedException | RemoteException e) {
+            } catch (RemoteException e) {
                 e.printStackTrace();
             }
         });
@@ -138,7 +136,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
     public synchronized void registraVaccinato(ClientCVInterface client, Vaccinato vaccinato) throws RemoteException {
         myThread = new Thread(() -> {
             try {
-                client.notifyStatus(db.registraVaccinato( vaccinato));
+                client.notifyStatus(db.registraVaccinato(vaccinato));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
