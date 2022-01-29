@@ -7,6 +7,7 @@ import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.enumerator.Vaccino;
 import it.uninsubria.centrivaccinali.models.*;
 import java.io.*;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class Uploader {
     /** Codice operazione registra eventi avversi */
     private static final int REGISTRA_EVENTI = 4;
     /** Operazione da eseguire in base alle quattro sopra riportate */
-    private static final int operation = 4;
+    private static final int operation = 0;
 
     /**
      * Metodo main per l'esecuzione dell'uploader
@@ -46,6 +47,7 @@ public class Uploader {
     public static void main(String[] args) {
         conn = DBHelper.getConnection();
         db = new Database();
+        db.connettiDB();
 
         try {
             switch (operation) {
@@ -53,7 +55,7 @@ public class Uploader {
                     registraCentri();
                     break;
                 case REGISTRA_VACCINATI:
-                    registraVaccinatiRandom(100);
+                    registraVaccinatiRandom(10000);
                     break;
                 case REGISTRA_CITTADINI:
                     registraCittadini();
@@ -75,7 +77,7 @@ public class Uploader {
      * @throws IOException eccezione input/output file.
      */
     private static void registraCentri() throws IOException {
-        BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("UML/centri_lombardia.csv")).getFile()));
+        BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(new URL(CentriVaccinali.class.getResource("UML/centri_lombardia.csv").toString().replaceAll("%20", " "))).getFile()));
 
         String currentLine;
         List<CentroVaccinale> listCV = new ArrayList<>();
@@ -95,10 +97,9 @@ public class Uploader {
         }
         br.close();
 
-        Database db = new Database();
         for(CentroVaccinale cv: listCV) {
             System.out.println(cv);
-            //db.registraCentroVaccinale(cv);
+            db.registraCentroVaccinale(cv);
         }
     }
 
@@ -109,10 +110,10 @@ public class Uploader {
      */
     private static void registraVaccinatiRandom(int max) throws IOException {
 
-        BufferedReader brNome = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/nomi.txt").getFile()));
-        BufferedReader brCognome = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/cognomi.txt").getFile()));
-        BufferedReader brComune = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/soloCC.txt").getFile()));
-        BufferedReader brCentri = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/centri.txt").getFile()));
+        BufferedReader brNome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/nomi.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brCognome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/cognomi.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brComune = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/soloCC.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brCentri = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/centri.txt").toString().replaceAll("%20", " ")).getFile()));
         String currentLine;
 
         HashMap<String, String> nomi_e_genere = new HashMap<>();
@@ -673,9 +674,7 @@ public class Uploader {
 
             vac.setNomeCentro(centri.get(ThreadLocalRandom.current().nextInt(0,centri.size())));
 
-
-
-            //db.registraVaccinato(vac);
+            db.registraVaccinato(vac);
         }
         brNome.close();
         brCentri.close();
@@ -690,8 +689,8 @@ public class Uploader {
      */
     private static void registraCittadini() throws SQLException, IOException {
 
-        BufferedReader brTab = new BufferedReader(new FileReader((CentriVaccinali.class.getResource("UML/tabelleCentri.txt").getFile())));
-        BufferedReader brPwd = new BufferedReader(new FileReader(CentriVaccinali.class.getResource("UML/passwords.txt").getFile()));
+        BufferedReader brTab = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/tabelleCentri.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brPwd = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/passwords.txt").toString().replaceAll("%20", " ")).getFile()));
         String currentTab;
         String currentPwd;
 
@@ -725,7 +724,7 @@ public class Uploader {
                 c.setUserid(c.getNome().substring(0,1).toLowerCase() + c.getCognome().toLowerCase() + ThreadLocalRandom.current().nextInt(10,100));
                 c.setPassword(listPwd.get(count++));
                 System.out.println(c);
-                //db.registraCittadino(c);
+                db.registraCittadino(c);
             }
         }
 
@@ -745,7 +744,7 @@ public class Uploader {
         eventi.add("linfoadenopatia");
         eventi.add("tachicardia");
         eventi.add("crisi chipertensiva");
-        PreparedStatement pstmt = conn.prepareStatement("SELECT id_vaccino " +
+        PreparedStatement pstmt = conn.prepareStatement("SELECT id_vaccinazione " +
                                                             "FROM public.\"Cittadini_Registrati\"");
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
@@ -778,21 +777,15 @@ public class Uploader {
                     }
                     String nota = "";
                     if(ThreadLocalRandom.current().nextInt(100) > 70) {
-                        switch (ThreadLocalRandom.current().nextInt(5)) {
+                        switch (ThreadLocalRandom.current().nextInt(3)) {
                             case 0:
-                                nota = "Tutto apposto";
+                                nota = "Questo evento ha severita: " + severita;
                                 break;
                             case 1:
-                                nota = "Me la sono vista brutta";
+                                nota = "Evento di tipo: " + eventiRandom.get(eventoacaso);
                                 break;
                             case 2:
-                                nota = "Tapposto Fra";
-                                break;
-                            case 3:
-                                nota = "Mi è salito un sonno pazzesco";
-                                break;
-                            case 4:
-                                nota = "Ora si che posso fare il colpo su GTAV";
+                                nota = "Evento: " + eventiRandom.get(eventoacaso) + " ha una severita di: " + severita;
                                 break;
                         }
                     }
