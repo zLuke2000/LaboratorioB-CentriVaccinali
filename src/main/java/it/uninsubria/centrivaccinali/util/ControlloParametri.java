@@ -4,11 +4,8 @@ import it.uninsubria.centrivaccinali.CentriVaccinali;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.control.Tooltip;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -70,16 +67,15 @@ public class ControlloParametri {
     public static ControlloParametri getInstance(){
         if(instance == null){
             instance = new ControlloParametri();
-            //salva le province sulla lista dal file .json
+            InputStream file = CentriVaccinali.class.getResourceAsStream("province.txt");
             try {
-                JSONParser parser = new JSONParser();
-                FileReader fr = new FileReader(Objects.requireNonNull(CentriVaccinali.class.getResource("province.json")).getPath());
-                JSONArray a = (JSONArray)parser.parse(fr);
-                for (Object o: a) {
-                   listaProvince.add(o.toString());
+                BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(file)));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    listaProvince.add(line);
                 }
-                fr.close();
-            } catch (IOException | ParseException e) {
+                br.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

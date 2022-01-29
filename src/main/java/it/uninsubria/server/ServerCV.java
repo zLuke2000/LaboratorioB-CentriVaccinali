@@ -1,7 +1,7 @@
 package it.uninsubria.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
-import it.uninsubria.centrivaccinali.database.Database;
+import it.uninsubria.server.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import java.rmi.RemoteException;

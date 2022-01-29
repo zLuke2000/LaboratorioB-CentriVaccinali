@@ -1,7 +1,7 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.centrivaccinali.controller.Controller;
-import it.uninsubria.centrivaccinali.controller.centri.CVLoginController;
+import it.uninsubria.centrivaccinali.client.controller.Controller;
+import it.uninsubria.centrivaccinali.client.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 import it.uninsubria.server.ServerCVInterface;

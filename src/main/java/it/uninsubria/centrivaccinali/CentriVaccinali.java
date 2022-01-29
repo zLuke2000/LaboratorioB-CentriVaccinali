@@ -1,6 +1,8 @@
 package it.uninsubria.centrivaccinali;
 
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.Window;
+
 import java.rmi.RemoteException;
 
 public class CentriVaccinali  {
@@ -13,7 +15,7 @@ public class CentriVaccinali  {
 
     /**
      * Metodo main per avvio ClientCV su Thread separato per non bloccare l'interfaccia durante le operazioni
-     * @param args
+     * @param args Argomenti da linea di comando.
      */
     public static void main(String[] args) {
         // Avvio Thread separato per ClientCV
