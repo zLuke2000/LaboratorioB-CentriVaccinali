@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dashboard.CIGraficiController">
+<AnchorPane prefHeight="528.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard.CIGraficiController">
     <BarChart fx:id="barChart" alternativeColumnFillVisible="true" animated="false" layoutX="6.0" layoutY="5.0" title="Prospetto Riassuntivo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <xAxis>
           <CategoryAxis label="Eventi Avversi" side="BOTTOM" tickLength="5.0" />

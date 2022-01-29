@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.controller.cittadini.dashboard.CIRicercaResultController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard.CIRicercaResultController">
    <AnchorPane minWidth="550.0" styleClass="transparent" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <Label layoutX="16.0" layoutY="36.0" text="Tipologia ricerca:" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0" />
       <ComboBox fx:id="cb_sceltaTipologia" layoutX="218.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="158.0" styleClass="comboBoxTipologia" visible="false" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="39.0" />

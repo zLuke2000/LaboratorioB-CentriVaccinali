@@ -1,8 +1,8 @@
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.Window;
-import it.uninsubria.centrivaccinali.controller.dialog.GenericDialogController;
+import it.uninsubria.centrivaccinali.client.Window;
+import it.uninsubria.centrivaccinali.client.controller.dialog.GenericDialogController;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
