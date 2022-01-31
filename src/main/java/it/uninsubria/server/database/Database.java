@@ -596,8 +596,10 @@ public class Database {
 
             pstmt = conn.prepareStatement("SELECT vaccino, evento, severita, note " +
                     "FROM public.\"EventiAvversi\" NATURAL JOIN tabelle_cv.\"vaccinati_" + centro + "\" " +
-                    "limit " + limit + " " +
-                    "offset " + offset);
+                    "limit ? " +
+                    "offset ?");
+            pstmt.setInt(1, limit);
+            pstmt.setInt(2, offset);
             rs = pstmt.executeQuery();
             List<Object> listEventi = new ArrayList<>();
             while(rs.next()) {
