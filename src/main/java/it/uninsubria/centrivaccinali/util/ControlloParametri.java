@@ -60,8 +60,7 @@ public class ControlloParametri {
 
 
     /**
-     * Ritorna un'istanza della classe stessa, in caso di valore <code>null</code>, ne istanzia una altrimenti
-     *orna la stessa.
+     * Ritorna l'istanza di questa classe. In caso di valore <code>null</code>, crea il singleton.
      * @return Istanza della classe stessa
      */
     public static ControlloParametri getInstance(){

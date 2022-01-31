@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="centrivaccinali" target="13" />
+      <module name="centrivaccinali" target="15" />
       <module name="CentriVaccinali" target="13" />
       <module name="laboratoriob" target="13" />
     </bytecodeTargetLevel>
