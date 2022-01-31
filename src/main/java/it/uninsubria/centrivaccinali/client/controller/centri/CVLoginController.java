@@ -1,8 +1,8 @@
 package it.uninsubria.centrivaccinali.client.controller.centri;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
-import it.uninsubria.centrivaccinali.client.Window;
 import it.uninsubria.centrivaccinali.client.ClientCV;
+import it.uninsubria.centrivaccinali.client.Window;
 import it.uninsubria.centrivaccinali.client.controller.Controller;
 import it.uninsubria.centrivaccinali.models.Result;
 import it.uninsubria.centrivaccinali.util.CssHelper;
@@ -65,9 +65,9 @@ public class CVLoginController extends Controller {
         b_accedi.setDisable(false);
         if(result.getResult()) {
             Platform.runLater(() -> Window.setRoot("CV_home"));
-        } else {
+        } else if (result.getOpType() == Result.Operation.LOGIN_OPERATORE) {
             System.err.println("[CVLogin] AUTH ERROR");
-            new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR).display();
+            Platform.runLater(() -> new DialogHelper("ERRORE", "Credenziali d'accesso non corrette", DialogHelper.Type.ERROR).display());
         }
     }
 

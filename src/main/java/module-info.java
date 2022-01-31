@@ -11,7 +11,6 @@ module it.uninsubria.centrivaccinali {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
-//    requires json.simple;
     requires java.sql;
     requires java.rmi;
     requires javafx.base;

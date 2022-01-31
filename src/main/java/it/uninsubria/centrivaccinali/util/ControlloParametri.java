@@ -60,8 +60,7 @@ public class ControlloParametri {
 
 
     /**
-     * Ritorna un'istanza della classe stessa, in caso di valore <code>null</code>, ne istanzia una altrimenti
-     *orna la stessa.
+     * Ritorna l'istanza di questa classe. In caso di valore <code>null</code>, crea il singleton.
      * @return Istanza della classe stessa
      */
     public static ControlloParametri getInstance(){
@@ -91,7 +90,7 @@ public class ControlloParametri {
      * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
+        rPattern = Pattern.compile("[\\w\\d\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -189,7 +188,7 @@ public class ControlloParametri {
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean provincia(TextInputControl tic) {
-        rPattern = Pattern.compile("[A-Za-z]{2}");
+        rPattern = Pattern.compile("[a-zA-z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         tic.setText(tic.getText().toUpperCase(Locale.ROOT));
         tic.positionCaret(tic.getText().length());

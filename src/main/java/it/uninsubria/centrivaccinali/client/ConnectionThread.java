@@ -1,9 +1,10 @@
 package it.uninsubria.centrivaccinali.client;
 
-import it.uninsubria.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
+import it.uninsubria.server.ServerCVInterface;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -43,33 +44,31 @@ public class ConnectionThread extends Thread{
      */
     public void run(){
         boolean status = false;
-        for (int i = 0; i < 12; i++) {
-            status = getRegistry() && getServerStub();
-            if (status) {
-                //setta nel client il registry e il server
-                ClientCV.setServer(server);
-                System.out.println("[ConnectionThread] Connessione al server eseguita");
-                break;
-            } else {
-                System.err.println("[ConnectionThread] Tentativo di connessione n." + (i + 1));
-            }
-            try {
+        try {
+            for (int i = 0; i < 12; i++) {
+                status = getRegistry() && getServerStub();
+                if (status) {
+                    //setta nel client il registry e il server
+                    ClientCV.setServer(server);
+                    System.out.println("[ConnectionThread] Connessione al server eseguita");
+                    break;
+                } else {
+                    System.err.println("[ConnectionThread] Tentativo di connessione n." + (i + 1));
+                }
                 Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                break;
             }
-        }
-        if (!status) {
-            System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
-            Platform.runLater(() -> {
-                DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE dentro al thread", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
-                Button b = new Button("SI");
-                b.setOnAction( eh -> {
-                    this.start();
+            if (!status) {
+                System.err.println("[ConnectionThread] Non e' stato possibile effettuare la connessione con il server");
+                Platform.runLater(() -> {
+                    DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE dentro al thread", "L'applicazione non e' riuscita a connettersi al server \n Vuoi riprovare a connetterti?", DialogHelper.Type.ERROR);
+                    Button b = new Button("SI");
+                    b.setOnAction( eh -> this.start());
+                    dh.addButton(b);
+                    dh.display();
                 });
-                dh.addButton(b);
-                dh.display();
-            });
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -101,14 +100,5 @@ public class ConnectionThread extends Thread{
             System.err.println("[ConnectionThread] non e' stato possibile trovare la chiave nel registro RMI");
             return false;
         }
-    }
-
-
-    /**
-     * //TODO da sistemare con un metodo non deprecato
-     * Ferma l'esecuzione del Thread corrente
-     */
-    public void stopThread() {
-        stop();
     }
 }

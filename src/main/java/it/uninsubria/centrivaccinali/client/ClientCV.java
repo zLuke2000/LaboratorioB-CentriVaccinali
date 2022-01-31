@@ -1,13 +1,13 @@
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.client.controller.Controller;
-import it.uninsubria.centrivaccinali.client.controller.centri.CVLoginController;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
-import it.uninsubria.server.ServerCVInterface;
 import it.uninsubria.centrivaccinali.util.DialogHelper;
+import it.uninsubria.server.ServerCVInterface;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -108,6 +108,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     private boolean connectionStatus() {
         if (server == null) {
             printerr("connessione al server assente");
+            controller.notifyController(new Result(false, null));
             lanciaPopup();
             return false;
         }
@@ -138,7 +139,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * @param username input dell'utente per effettuare autenticazione.
      * @param password input dell'utente per effettuare autenticazione.
      */
-    public void autenticaOperatore(CVLoginController controller, String username, String password) {
+    public void autenticaOperatore(Controller controller, String username, String password) {
         this.controller = controller;
         if(connectionStatus()) {
             try {
@@ -368,12 +369,13 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
      * &amp;Egrave possibile scegliere se ritentare la connessione premendo "SI", altrimenti "NO".
      */
     private void lanciaPopup() {
+        if (connThread.isAlive()){
+            //connThread.stopThread();
+            connThread.interrupt();
+        }
         DialogHelper dh = new DialogHelper("ERRORE DI CONNESSIONE", "L'applicazione non e' attualmente connessa al server \n Vuoi provare a connetterti?", DialogHelper.Type.ERROR);
         Button b = new Button("SI");
         b.setOnAction( eh -> {
-            if (connThread.isAlive()){
-                connThread.stopThread();
-            }
             connThread = new ConnectionThread();
             dh.close();
         });
