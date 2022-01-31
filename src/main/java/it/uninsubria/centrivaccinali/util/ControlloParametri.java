@@ -91,7 +91,7 @@ public class ControlloParametri {
      * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean testoSempliceConNumeri(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[A-Za-z\\d\\s]{" + minChar + "," + maxChar + "}");
+        rPattern = Pattern.compile("[\\w\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -108,10 +108,10 @@ public class ControlloParametri {
      * @param tic TextInputControl in cui si andr&amp;agrave a scrivere nell'interfaccia.
      * @param minChar valore minimo del numero di caratteri che deve contenere intesto inserito.
      * @param maxChar valore massimo del numero di caratteri che deve contenere intesto inserito.
-     * @return valore  booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
+     * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean testoSempliceSenzaNumeri(TextInputControl tic, int minChar, int maxChar) {
-        rPattern = Pattern.compile("[\\D]{" + minChar + "," + maxChar + "}");
+        rPattern = Pattern.compile("[a-zA-Z\\s]{" + minChar + "," + maxChar + "}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         if(rMatcher.matches()) {
             cssHelper.toValid(tic);
@@ -189,7 +189,7 @@ public class ControlloParametri {
      * @return valore booleano <code>true</code> nel caso rispetti i requisiti, altrimenti <code>false</code>
      */
     public boolean provincia(TextInputControl tic) {
-        rPattern = Pattern.compile("[A-Za-z]{2}");
+        rPattern = Pattern.compile("[a-zA-Z]{2}");
         rMatcher = rPattern.matcher(tic.getText().trim());
         tic.setText(tic.getText().toUpperCase(Locale.ROOT));
         tic.positionCaret(tic.getText().length());
