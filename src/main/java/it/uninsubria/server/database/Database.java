@@ -517,7 +517,7 @@ public class Database {
             pstmt = conn.prepareStatement("INSERT INTO public.\"EventiAvversi\" " +
                                               "VALUES (?, ?, ?, ?)");
             pstmt.setLong(1, ea.getIdVaccino());
-            pstmt.setString(2, ea.getEvento());
+            pstmt.setString(2, ea.getTipologiaEvento());
             pstmt.setInt(3, ea.getSeverita());
             pstmt.setString(4, ea.getNote());
             pstmt.executeUpdate();

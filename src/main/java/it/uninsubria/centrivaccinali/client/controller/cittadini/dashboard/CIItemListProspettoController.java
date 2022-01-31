@@ -60,7 +60,7 @@ public class CIItemListProspettoController extends Controller {
     public void setData(EventoAvverso ea) {
         this.evento = ea;
         l_tipologia.setText(ea.getTipoVac().toString());
-        l_evento.setText(ea.getEvento());
+        l_evento.setText(ea.getTipologiaEvento());
         l_severita.setText(String.valueOf(ea.getSeverita()));
         if (ea.getNote().length() == 0) {
             l_note.setDisable(true);
