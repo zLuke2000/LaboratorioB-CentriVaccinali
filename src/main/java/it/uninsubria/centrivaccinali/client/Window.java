@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -105,6 +106,7 @@ public class Window extends Application {
         stage.setTitle("Progetto LaboratorioB");
         stage.setResizable(false);
         stage.setScene(scene);
+        stage.getIcons().add(new Image(Objects.requireNonNull(CentriVaccinali.class.getResourceAsStream("icon.png"))));
         stage.show();
     }
 
