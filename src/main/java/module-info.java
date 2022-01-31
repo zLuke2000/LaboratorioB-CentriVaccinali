@@ -5,13 +5,12 @@
  * @author Marelli Samuele
  * @author Pintonello Christian 741112
  */
-module it.uninsubria.centrivaccinali {
+module centrivaccinali {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
-//    requires json.simple;
     requires java.sql;
     requires java.rmi;
     requires javafx.base;

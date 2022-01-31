@@ -70,7 +70,6 @@ public class CISegnalazioniController extends Controller {
         offset = 0;
         btnCarica.getStyleClass().add("button-preset-1");
         btnCarica.setOnAction(e -> {
-            System.out.println("on action");
             client.leggiSegnalazioni(this, centro.getNome(), limit, offset);
         });
     }

@@ -46,12 +46,6 @@
             <artifactId>ikonli-materialdesign2-pack</artifactId>
             <version>12.2.0</version>
         </dependency>
-<!--        &lt;!&ndash;JSON&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.googlecode.json-simple</groupId>-->
-<!--            <artifactId>json-simple</artifactId>-->
-<!--            <version>1.1.1</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -74,7 +68,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.uninsubria.centrivaccinali/it.uninsubria.centrivaccinali.CentriVaccinali</mainClass>
+                            <mainClass>centrivaccinali/it.uninsubria.centrivaccinali.CentriVaccinali</mainClass>
                             <options>
                                 <option>--add-exports</option>
                                 <option>javafx.base/com.sun.javafx.event=org.controlsfx.controls</option>
@@ -100,21 +94,17 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <artifactSet>
-                                <excludes>
-                                </excludes>
-                            </artifactSet>
+                            <finalName>CLIENT</finalName>
                             <filters>
-                            <filter>
-                                <artifact>*:*</artifact>
-                                <excludes>
-                                    <exclude>module-info.class</exclude>
-                                    <exclude>META-INF/*.MF</exclude>
-                                    <exclude>META-INF/LICENSE</exclude>
-                                </excludes>
-                            </filter>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.MF</exclude>
+                                        <exclude>META-INF/LICENSE</exclude>
+                                    </excludes>
+                                </filter>
                             </filters>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
                             <shadedClassifierName>shaded</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
