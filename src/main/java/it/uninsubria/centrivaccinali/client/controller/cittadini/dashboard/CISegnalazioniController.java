@@ -69,9 +69,7 @@ public class CISegnalazioniController extends Controller {
         limit = 50;
         offset = 0;
         btnCarica.getStyleClass().add("button-preset-1");
-        btnCarica.setOnAction(e -> {
-            client.leggiSegnalazioni(this, centro.getNome(), limit, offset);
-        });
+        btnCarica.setOnAction(e -> client.leggiSegnalazioni(this, centro.getNome(), limit, offset));
     }
 
 

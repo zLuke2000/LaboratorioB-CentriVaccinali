@@ -68,7 +68,7 @@ public class ConnectionThread extends Thread{
                 });
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.err.println("Il thread e' stato interrotto");
         }
     }
 

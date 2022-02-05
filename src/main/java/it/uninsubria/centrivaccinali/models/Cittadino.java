@@ -3,7 +3,7 @@ package it.uninsubria.centrivaccinali.models;
 import java.io.Serializable;
 
 /**
- * Classe per salvare le informazioni del cittadino registrato
+ * Classe per salvare le informazioni del cittadino registrato.
  *
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
