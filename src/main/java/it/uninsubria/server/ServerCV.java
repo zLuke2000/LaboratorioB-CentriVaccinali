@@ -30,12 +30,12 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
     /**
      * Campo username operatore sanitario.
      */
-    private final String usernameOperatore = "123";
+    private final String usernameOperatore = "admin";
 
     /**
      * Campo password operatore sanitario.
      */
-    private final String passwordOperatore = "123";
+    private final String passwordOperatore = "admin";
 
     /**
      * Riferimento al database.
