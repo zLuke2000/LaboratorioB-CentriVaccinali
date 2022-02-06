@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 /**
  * Contiene tutti i controller delle varie interfacce
  * @see it.uninsubria.centrivaccinali.client.controller.centri contiene i controller delle interfacce per i cittadini

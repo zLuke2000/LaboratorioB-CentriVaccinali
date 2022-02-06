@@ -1,9 +1,15 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.server;
 
 import it.uninsubria.centrivaccinali.client.ClientCVInterface;
 import it.uninsubria.server.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
+
+import java.io.Serial;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -18,6 +24,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
     /**
      * Varabile per identificare serial version RMI.
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -269,7 +276,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
      * @throws RemoteException eccezione rmi.
      */
     @Override
-    public void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException {
+    public synchronized void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.leggiSegnalazioni(nomeCentro, limit, offset));
