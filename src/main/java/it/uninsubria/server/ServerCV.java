@@ -269,7 +269,7 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
      * @throws RemoteException eccezione rmi.
      */
     @Override
-    public void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException {
+    public synchronized void leggiSegnalazioni(ClientCVInterface client, String nomeCentro, int limit, int offset) throws RemoteException {
         myThread = new Thread(() -> {
             try {
                 client.notifyStatus(db.leggiSegnalazioni(nomeCentro, limit, offset));
