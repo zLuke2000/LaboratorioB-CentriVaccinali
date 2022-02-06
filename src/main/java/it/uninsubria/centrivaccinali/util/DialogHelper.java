@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.util;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -91,15 +95,9 @@ public class DialogHelper {
 
         // Imposto lo stile della finestra
         switch (tipo) {
-            case INFO:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/InfoStyle.css")));
-                break;
-            case WARNING:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/WarningStyle.css")));
-                break;
-            case ERROR:
-                gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/ErrorStyle.css")));
-                break;
+            case INFO -> gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/InfoStyle.css")));
+            case WARNING -> gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/WarningStyle.css")));
+            case ERROR -> gdc.ap_root.getStylesheets().add(String.valueOf(CentriVaccinali.class.getResource("style/dialog/ErrorStyle.css")));
         }
         // Imposto titolo della finestra
         gdc.l_d_title.setText(titolo);

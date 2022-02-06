@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.client.controller.Controller;
@@ -8,6 +12,7 @@ import it.uninsubria.server.ServerCVInterface;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 
+import java.io.Serial;
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -22,6 +27,7 @@ public class ClientCV extends UnicastRemoteObject implements ClientCVInterface {
     /**
      * Varabile per identificare serial version RMI.
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
 

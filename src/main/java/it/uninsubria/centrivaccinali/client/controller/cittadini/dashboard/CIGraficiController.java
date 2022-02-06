@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -84,18 +88,10 @@ public class CIGraficiController extends Controller {
                 String evento = parts[1];
                 Double value = entry.getValue();
                 switch (vaccino) {
-                    case "pfizer":
-                        aggiungiEvento(pfizer, evento.replace(" ", "\n"), value);
-                        break;
-                    case "j&j":
-                        aggiungiEvento(jnj, evento.replace(" ", "\n"), value);
-                        break;
-                    case "moderna":
-                        aggiungiEvento(moderna, evento.replace(" ", "\n"), value);
-                        break;
-                    case "astrazeneca":
-                        aggiungiEvento(astrazeneca, evento.replace(" ", "\n"), value);
-                        break;
+                    case "pfizer" -> aggiungiEvento(pfizer, evento.replace(" ", "\n"), value);
+                    case "j&j" -> aggiungiEvento(jnj, evento.replace(" ", "\n"), value);
+                    case "moderna" -> aggiungiEvento(moderna, evento.replace(" ", "\n"), value);
+                    case "astrazeneca" -> aggiungiEvento(astrazeneca, evento.replace(" ", "\n"), value);
                 }
             }
             Platform.runLater(() -> {

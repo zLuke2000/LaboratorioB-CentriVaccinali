@@ -1,10 +1,13 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.util.DialogHelper;
 import it.uninsubria.server.ServerCVInterface;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
-
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

@@ -1,6 +1,12 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.models;
 
 import it.uninsubria.centrivaccinali.enumerator.Qualificatore;
+
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -15,8 +21,9 @@ import java.io.Serializable;
 public class Indirizzo implements Serializable {
 
     /**
-     *
+     * Varabile per identificare serial version RMI.
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
 

@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -171,20 +175,19 @@ public class CIRicercaResultController extends Controller {
                         GridPane item = fxmlLoader.load();
                         CIItemListController itemController = fxmlLoader.getController();
                         itemController.setParent(parent);
-                        switch (cv.getTipologia()){
-                            case OSPEDALIERO:
+                        switch (cv.getTipologia()) {
+                            case OSPEDALIERO -> {
                                 itemController.setData(cv, "mdi2h-hospital-building:32:#3456e3");
                                 countOspedaliero++;
-                                break;
-                            case HUB:
+                            }
+                            case HUB -> {
                                 itemController.setData(cv, "mdi2h-hospital-marker:32:#c148eb");
                                 countHub++;
-                                break;
-                            case AZIENDALE:
+                            }
+                            case AZIENDALE -> {
                                 itemController.setData(cv, "mdi2f-factory:32:#323232");
                                 countAziendale++;
-                                break;
-
+                            }
                         }
                         vb_risultati.getChildren().add(item);
                     } catch (IOException e) {

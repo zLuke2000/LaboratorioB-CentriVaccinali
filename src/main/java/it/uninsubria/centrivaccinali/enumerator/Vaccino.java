@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.enumerator;
 
 
@@ -30,13 +34,12 @@ public enum Vaccino {
      */
     @Override
     public String toString() {
-        switch (this) {
-            case ASTRAZENECA: return "astrazeneca";
-            case JNJ: return "j&j";
-            case MODERNA: return "moderna";
-            case PFIZER: return "pfizer";
-            default: throw new IllegalArgumentException();
-        }
+        return switch (this) {
+            case ASTRAZENECA -> "astrazeneca";
+            case JNJ -> "j&j";
+            case MODERNA -> "moderna";
+            case PFIZER -> "pfizer";
+        };
     }
 
 

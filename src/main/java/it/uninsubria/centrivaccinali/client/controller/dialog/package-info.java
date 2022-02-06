@@ -1,5 +1,9 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 /**
- * Contiene i controller delle interfacce per i cittadini
+ * Contiene un controller generico per diversi dialog
  *
  * @since 1.0.0
  * @author Centore Luca 740951
