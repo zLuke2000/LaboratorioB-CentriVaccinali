@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.enumerator;
 
 /**
@@ -25,12 +29,11 @@ public enum TipologiaCentro {
      */
     @Override
     public String toString() {
-        switch (this) {
-            case OSPEDALIERO: return "ospedaliero";
-            case AZIENDALE: return "aziendale";
-            case HUB: return "hub";
-            default: throw new IllegalArgumentException();
-        }
+        return switch (this) {
+            case OSPEDALIERO -> "ospedaliero";
+            case AZIENDALE -> "aziendale";
+            case HUB -> "hub";
+        };
     }
 
 

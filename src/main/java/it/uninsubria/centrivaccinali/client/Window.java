@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -117,52 +121,50 @@ public class Window extends Application {
     public static void setRoot(String fxml) {
         scene.setRoot(loadFXML(fxml));
         switch (fxml) {
-            case "Avvio":
+            case "Avvio" -> {
                 stage.setTitle("Progetto LaboratorioB");
                 height = h_avvio;
                 width = w_avvio;
-                break;
-            case "CI_home":
+            }
+            case "CI_home" -> {
                 stage.setTitle("Progetto LaboratorioB");
                 width = w_standard;
                 height = h_standard;
-                break;
-            case "CV_login":
+            }
+            case "CV_login" -> {
                 System.out.println("[CV_MAIN] selezionato: CV_login");
                 stage.setTitle("Login operatore");
                 height = h_cv_login;
                 width = w_cv_login;
-                break;
-            case "CV_home":
+            }
+            case "CV_home" -> {
                 System.out.println("[CV_MAIN] selezionato: CV_home");
                 stage.setTitle("Seleziona azione");
                 width = w_avvio;
                 height = h_avvio;
-                break;
-            case "CV_registraCentroVaccinale":
+            }
+            case "CV_registraCentroVaccinale" -> {
                 System.out.println("[CV_MAIN] selezionato: CV_registraCentroVaccinale");
                 stage.setTitle("Registra nuovo centro vaccinale");
                 width = w_cv_regc;
                 height = h_cv_regc;
-                break;
-            case "CV_registraVaccinato":
+            }
+            case "CV_registraVaccinato" -> {
                 stage.setTitle("Registra un nuovo vaccinato");
                 width = w_cv_recv;
                 height = h_cv_recv;
-                break;
-            case "CI_registrazione":
+            }
+            case "CI_registrazione" -> {
                 stage.setTitle("Registrazione cittadino");
                 width = w_ci_reg;
                 height = h_ci_reg;
-                break;
-            case "CI_dashboard":
+            }
+            case "CI_dashboard" -> {
                 stage.setTitle("Area Cittadino");
                 height = h_dashboard;
                 width = w_dashboard;
-                break;
-            default:
-                System.err.println("[ATTENZIONE] NOME FXML ERRATO");
-                break;
+            }
+            default -> System.err.println("[ATTENZIONE] NOME FXML ERRATO");
         }
         stage.setWidth(width);
         stage.setHeight(height);

@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -69,9 +73,7 @@ public class CISegnalazioniController extends Controller {
         limit = 50;
         offset = 0;
         btnCarica.getStyleClass().add("button-preset-1");
-        btnCarica.setOnAction(e -> {
-            client.leggiSegnalazioni(this, centro.getNome(), limit, offset);
-        });
+        btnCarica.setOnAction(e -> client.leggiSegnalazioni(this, centro.getNome(), limit, offset));
     }
 
 

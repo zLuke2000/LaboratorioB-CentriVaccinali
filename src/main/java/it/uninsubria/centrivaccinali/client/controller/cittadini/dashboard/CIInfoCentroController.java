@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -122,16 +126,10 @@ public class CIInfoCentroController extends Controller {
      */
     public void setData(CentroVaccinale cv) {
         this.cv = cv;
-        switch(cv.getTipologia()) {
-            case OSPEDALIERO:
-                fi_iconaCentro.setIconLiteral("mdi2h-hospital-building:128:#3456e3");
-                break;
-            case HUB:
-                fi_iconaCentro.setIconLiteral("mdi2h-hospital-marker:128:#c148eb");
-                break;
-            case AZIENDALE:
-                fi_iconaCentro.setIconLiteral("mdi2f-factory:128:#323232");
-                break;
+        switch (cv.getTipologia()) {
+            case OSPEDALIERO -> fi_iconaCentro.setIconLiteral("mdi2h-hospital-building:128:#3456e3");
+            case HUB -> fi_iconaCentro.setIconLiteral("mdi2h-hospital-marker:128:#c148eb");
+            case AZIENDALE -> fi_iconaCentro.setIconLiteral("mdi2f-factory:128:#323232");
         }
         l_tipologia.setText(cv.getTipologia().toString());
         l_nome.setText(cv.getNome());

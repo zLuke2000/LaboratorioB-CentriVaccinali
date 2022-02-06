@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.centrivaccinali.client.controller.cittadini;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -155,8 +159,11 @@ public class CIRegistrazioneController extends Controller {
      */
     @FXML
     private void mostraInfoUsername() {
-        new DialogHelper("INFO USERNAME", "La password deve avere almeno: " +
-                "\n- tra 4 e 16 caratteri \n- non può contenere caratteri speciali \n- può contenere maiuscole e numeri", DialogHelper.Type.INFO).display();
+        new DialogHelper("INFO USERNAME", """
+                La password deve avere almeno:\s
+                - tra 4 e 16 caratteri\s
+                - non può contenere caratteri speciali\s
+                - può contenere maiuscole e numeri""", DialogHelper.Type.INFO).display();
     }
 
 
@@ -165,8 +172,12 @@ public class CIRegistrazioneController extends Controller {
      */
     @FXML
     private void mostraInfoPassword() {
-        new DialogHelper("INFO PASSWORD", "La password deve avere almeno: " +
-                "\n- 8 caratteri \n- 1 lettera maiuscola \n- 1 lettera minuscola \n- 1 numero", DialogHelper.Type.INFO).display();
+        new DialogHelper("INFO PASSWORD", """
+                La password deve avere almeno:\s
+                - 8 caratteri\s
+                - 1 lettera maiuscola\s
+                - 1 lettera minuscola\s
+                - 1 numero""", DialogHelper.Type.INFO).display();
     }
 
 

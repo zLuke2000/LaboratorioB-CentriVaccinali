@@ -1,3 +1,7 @@
+//Centore Luca 740951 VA
+//Lattarulo Luca 742597 VA
+//Marelli Samuele 742495 VA
+//Pintonello Christian 741112 VA
 package it.uninsubria.server;
 
 import it.uninsubria.centrivaccinali.CentriVaccinali;
@@ -78,7 +82,7 @@ public class Uploader {
      * @throws IOException eccezione input/output file.
      */
     private static void registraCentri() throws IOException {
-        BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(new URL(CentriVaccinali.class.getResource("UML/centri_lombardia.csv").toString().replaceAll("%20", " "))).getFile()));
+        BufferedReader br = new BufferedReader( new FileReader(Objects.requireNonNull(new URL(CentriVaccinali.class.getResource("other/centri_lombardia.csv").toString().replaceAll("%20", " "))).getFile()));
 
         String currentLine;
         List<CentroVaccinale> listCV = new ArrayList<>();
@@ -111,10 +115,10 @@ public class Uploader {
      */
     private static void registraVaccinatiRandom(int max) throws IOException {
 
-        BufferedReader brNome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/nomi.txt").toString().replaceAll("%20", " ")).getFile()));
-        BufferedReader brCognome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/cognomi.txt").toString().replaceAll("%20", " ")).getFile()));
-        BufferedReader brComune = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/soloCC.txt").toString().replaceAll("%20", " ")).getFile()));
-        BufferedReader brCentri = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/centri.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brNome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/nomi.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brCognome = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/cognomi.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brComune = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/soloCC.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brCentri = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/centri.txt").toString().replaceAll("%20", " ")).getFile()));
         String currentLine;
 
         HashMap<String, String> nomi_e_genere = new HashMap<>();
@@ -690,8 +694,8 @@ public class Uploader {
      */
     private static void registraCittadini() throws SQLException, IOException {
 
-        BufferedReader brTab = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/tabelleCentri.txt").toString().replaceAll("%20", " ")).getFile()));
-        BufferedReader brPwd = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("UML/passwords.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brTab = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/tabelleCentri.txt").toString().replaceAll("%20", " ")).getFile()));
+        BufferedReader brPwd = new BufferedReader(new FileReader(new URL(CentriVaccinali.class.getResource("other/passwords.txt").toString().replaceAll("%20", " ")).getFile()));
         String currentTab;
         String currentPwd;
 
