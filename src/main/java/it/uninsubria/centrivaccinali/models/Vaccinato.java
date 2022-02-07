@@ -14,7 +14,7 @@ import java.sql.Date;
  * Rappresenta il cittadino vaccinato registrato dall'operatore sanitario.
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
- * @author Marelli Samuele
+ * @author Marelli Samuele 742495
  * @author Pintonello Christian 741112
  */
 

@@ -13,7 +13,7 @@ import java.io.Serializable;
  * Rappresenta i centri vaccinali in base al loro nome, indirizzo e tipologia
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
- * @author Marelli Samuele
+ * @author Marelli Samuele 742495
  * @author Pintonello Christian 741112
  */
 public class CentroVaccinale implements Serializable {

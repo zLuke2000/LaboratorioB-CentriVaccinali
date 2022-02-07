@@ -25,7 +25,7 @@ import java.io.IOException;
  * Classe per la gestione e creazione di dialog.
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
- * @author Marelli Samuele
+ * @author Marelli Samuele 742495
  * @author Pintonello Christian 741112
  */
 public class DialogHelper {

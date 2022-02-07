@@ -29,7 +29,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *  - Eventi avversi
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
- * @author Marelli Samuele
+ * @author Marelli Samuele 742495
  * @author Pintonello Christian 741112
  */
 @SuppressWarnings("all")

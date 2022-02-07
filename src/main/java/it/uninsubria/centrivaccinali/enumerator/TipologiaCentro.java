@@ -6,7 +6,10 @@ package it.uninsubria.centrivaccinali.enumerator;
 
 /**
  * Rappresenta i diversi tipi di centri vaccinali
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public enum TipologiaCentro {
     /**
