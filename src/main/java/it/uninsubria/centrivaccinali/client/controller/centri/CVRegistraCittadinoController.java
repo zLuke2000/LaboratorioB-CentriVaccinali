@@ -27,6 +27,10 @@ import java.util.*;
 
 /**
  * Controller dell'interfaccia di registrazione di un nuovo cittadino vaccinato
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CVRegistraCittadinoController extends Controller {
     /**

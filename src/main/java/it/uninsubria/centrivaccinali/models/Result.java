@@ -10,7 +10,10 @@ import java.util.*;
 
 /**
  * Rappresenta l'esito delle operazioni effettuate sul database
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public class Result implements Serializable {
 

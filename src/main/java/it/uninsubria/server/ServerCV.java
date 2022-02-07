@@ -16,8 +16,11 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * Classe che rappresenta il server remoto
- * @author ...
+ * Classe che rappresenta il server remoto.
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
 

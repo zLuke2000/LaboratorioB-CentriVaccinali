@@ -20,11 +20,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 
 /**
- * Controller per l'interfaccia di autenticazione degli operatori vaccinali
+ * Controller per l'interfaccia di autenticazione degli operatori vaccinali.
  *
  * Le credenziali vengono fornite solo se la persona è un operatore sanitario e ha il diritto di esercitare queste azioni:
- * - Registrare un hub vaccinale
- * - Registrare un cittadino che si è vaccinato nel proprio sito
+ * - Registrare un hub vaccinale.
+ * - Registrare un cittadino che si è vaccinato nel proprio sito.
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CVLoginController extends Controller {
     /**

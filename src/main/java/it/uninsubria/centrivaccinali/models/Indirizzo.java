@@ -10,8 +10,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
- * Rappresenta un indirizzo civico
- *
+ * Rappresenta un indirizzo civico.
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele

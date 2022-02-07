@@ -24,7 +24,10 @@ import java.util.List;
 
 /**
  * Controller della interfaccia di ricerca dei centri vaccinali.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIRicercaResultController extends Controller {
 

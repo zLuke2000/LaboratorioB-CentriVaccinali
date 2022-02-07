@@ -27,6 +27,10 @@ import java.util.concurrent.ThreadLocalRandom;
  *  - Nuovi cittadini vaccinati<br>
  *  - Nuovi cittadini registrati<br>
  *  - Eventi avversi
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 @SuppressWarnings("all")
 public class Uploader {

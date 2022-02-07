@@ -15,8 +15,11 @@ import javafx.scene.layout.HBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
- * Item della lista della ricerca di un centro vaccinale
- * @author ...
+ * Item della lista della ricerca di un centro vaccinale.
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIItemListController extends Controller {
 

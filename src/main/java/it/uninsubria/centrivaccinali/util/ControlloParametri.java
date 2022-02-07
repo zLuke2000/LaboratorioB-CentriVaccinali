@@ -20,7 +20,11 @@ import java.util.regex.Pattern;
 
 /**
  * Classe utilizzata dall'applicazione per effettuare il controllo che il testo inserito in input rispetti i parametri
- * impostida noi
+ * imposti secondo delle regole di default per un applicativo.
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public class ControlloParametri {
 

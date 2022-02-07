@@ -17,7 +17,10 @@ import java.util.Map;
 
 /**
  * Controller del grafico che mostra un prospetto riassuntivo degli eventi registrati.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIGraficiController extends Controller {
 

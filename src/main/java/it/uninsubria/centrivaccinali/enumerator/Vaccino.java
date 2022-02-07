@@ -7,7 +7,10 @@ package it.uninsubria.centrivaccinali.enumerator;
 
 /**
  * Rappresenta le diverse tipologie di vaccino
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public enum Vaccino {
     /**

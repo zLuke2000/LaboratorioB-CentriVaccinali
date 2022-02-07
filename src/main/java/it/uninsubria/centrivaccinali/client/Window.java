@@ -21,6 +21,10 @@ import java.util.Objects;
  * dell'interfaccia grafica
  *
  * @see Application
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class Window extends Application {
 
@@ -90,12 +94,10 @@ public class Window extends Application {
     /** Posizione y del mouse durante operazione di trascinamento della finestra. */
     private double yOffset;
 
-    /**
-     * Metodo di avvio dell'interfaccia grafica
-     */
     public static void open() {
         launch( );
     }
+
 
     /**
      * Metodo di avvio dell'interfaccia grafica con prima schermata Avvio.fxml.

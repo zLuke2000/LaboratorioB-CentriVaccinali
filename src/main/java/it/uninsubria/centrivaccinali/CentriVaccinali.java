@@ -15,6 +15,10 @@ import java.rmi.RemoteException;
  *
  * @see Window
  * @see ClientCV
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public class CentriVaccinali  {
 

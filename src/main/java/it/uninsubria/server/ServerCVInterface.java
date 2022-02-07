@@ -16,6 +16,10 @@ import java.rmi.RemoteException;
 /**
  * Interfaccia dell'oggetto remoto <code>ServerCV</code>.
  * @see ServerCV
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public interface ServerCVInterface extends Remote{
 

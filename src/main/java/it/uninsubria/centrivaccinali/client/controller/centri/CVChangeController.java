@@ -14,7 +14,10 @@ import javafx.scene.control.Button;
 /**
  * Controller della prima interfaccia per gli operatori sanitari.
  * Permette di selezionare tra la registrazione di un nuovo vaccinato o la registrazione di un nuovo centro vaccinale.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CVChangeController extends Controller {
 

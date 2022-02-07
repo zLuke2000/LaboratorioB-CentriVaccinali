@@ -26,7 +26,10 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * Controller per l'interfaccia di registrazione di nuovi centri vaccinali.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CVRegistraCentroVaccinale extends Controller {
         /**

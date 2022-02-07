@@ -23,7 +23,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 /**
  * Controller per l'interfaccia di login del cittadino.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIHomeController extends Controller {
 

@@ -10,13 +10,12 @@ import java.io.Serial;
 import java.io.Serializable;
 
 /**
+ * Classe per descrivere eventuali eventi avversi verificatisi
+ * a seguito della vaccinazione.
  * @author Centore Luca 740951
  * @author Lattarulo Luca 742597
  * @author Marelli Samuele
  * @author Pintonello Christian 741112
- *
- * Classe per descrivere eventuali eventi avversi verificatisi
- * a seguito della vaccinazione.
  */
 public class EventoAvverso implements Serializable {
 

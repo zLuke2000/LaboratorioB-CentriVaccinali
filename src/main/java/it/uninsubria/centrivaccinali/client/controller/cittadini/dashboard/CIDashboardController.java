@@ -20,7 +20,10 @@ import java.io.IOException;
 
 /**
  * Controller per l'interfaccia della dashboard che gestisce l'aprtura delle varie interfacce.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIDashboardController extends Controller {
 

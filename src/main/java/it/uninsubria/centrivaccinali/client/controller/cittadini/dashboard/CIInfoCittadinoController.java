@@ -19,7 +19,10 @@ import javafx.scene.layout.HBox;
 
 /**
  * Controller dell'interfaccia che mostra le info del cittadino che ha effettuato l'accesso.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CIInfoCittadinoController extends Controller {
     /**

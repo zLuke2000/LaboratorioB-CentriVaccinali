@@ -22,7 +22,10 @@ import java.util.List;
 
 /**
  * Controller per l'interfaccia delle segnalazioni dei cittadini.
- * @author ...
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele 742495
+ * @author Pintonello Christian 741112
  */
 public class CISegnalazioniController extends Controller {
 
