@@ -59,7 +59,7 @@ public class Uploader {
         String pass = "&UsCk*s$#wUOkG4r";
         conn = DBHelper.getConnection(host, user, pass);
         db = new Database();
-        db.connettiDB();
+        db.connettiDB(host, user, pass);
 
         try {
             switch (operation) {

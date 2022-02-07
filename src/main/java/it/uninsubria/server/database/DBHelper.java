@@ -17,21 +17,10 @@ import java.sql.SQLException;
  */
 public class DBHelper {
 
-    /**
-     * path-protocol standard postgresql.
-     */
+    /** path-protocol standard postgresql. */
     private final static String protocol = "jdbc:postgresql://";
 
-
-    /**
-     * host del database.
-     */
-    private final static String host = "localhost/";
-
-
-    /**
-     * nome della resource di database.
-     */
+    /** nome della resource di database. */
     private final static String resource = "laboratorioB";
 
     /** Riferiemento alla connection a database. */
@@ -39,7 +28,6 @@ public class DBHelper {
 
     /** Costruttore primario della classe. */
     public DBHelper() {}
-
 
     /**
      * Metodo che instaura la connesione a database.
@@ -51,7 +39,7 @@ public class DBHelper {
     public static Connection getConnection(String host, String user, String password) {
         if(connection == null) {
             try {
-                connection = DriverManager.getConnection(url, username, password);
+                connection = DriverManager.getConnection(protocol + host + resource, user, password);
             } catch (SQLException e) {
                 System.err.println("[DBHelper] credenziali database errate o database non corretto");
             }

@@ -9,6 +9,9 @@ import it.uninsubria.server.database.Database;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serial;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -63,8 +66,27 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
      * @param args args param
      */
     public static void main(String[] args) {
+        // richiesta host database
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        String host = "";
+        String username = "";
+        String password = "";
+        try {
+            System.out.print("Inserire host del database: ");
+            host = reader.readLine();
+            System.out.print("Inserire nome utente del database: ");
+            username = reader.readLine();
+            System.out.print("Inserire password utente del database: ");
+            password = reader.readLine();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        System.out.println(host + username + password);
+
         db = new Database();
-        if(db.connettiDB()) {
+        if(db.connettiDB(host + "/", username, password)) {
             try {
                 ServerCV obj = new ServerCV();
                 Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
