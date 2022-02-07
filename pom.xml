@@ -53,6 +53,7 @@
 
     <build>
         <plugins>
+            <!-- Maven compile -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -62,6 +63,34 @@
                     <target>15</target>
                 </configuration>
             </plugin>
+            <!-- Maven exec -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>server</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>it.uninsubria.server.ServerCV</mainClass>
+                            <keepAlive>true</keepAlive>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>centrivaccinali</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>it.uninsubria.centrivaccinali.CentriVaccinali</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven javafx -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -80,7 +109,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Esportazione jar -->
+            <!-- Maven shade -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -154,6 +183,18 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- Maven javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <reportOutputDirectory>${project.basedir}/doc/javadoc</reportOutputDirectory>
+                    <jarOutputDirectory>${project.basedir}/doc/javadoc</jarOutputDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

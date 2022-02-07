@@ -14,47 +14,56 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 /**
- *
+ * Controller per dialog generici
  */
 public class GenericDialogController {
+
+
     /**
-     *
+     * <code>AnchorPane</code> contenitore della seguente interfaccia.
+     * @see AnchorPane
      */
     @FXML public AnchorPane ap_root;
 
 
     /**
-     *
+     * <code>Label</code> che mostra il titolo del dialog.
+     * @see Label
      */
     @FXML public Label l_d_title;
 
 
     /**
-     *
+     * <code>Label</code> che mostra la descrizione del dialog.
+     * @see Label
      */
     @FXML public Label l_d_description;
 
 
     /**
-     *
+     * <code>Button</code> per chiudere l'interfaccia, valore di default "OK".
+     * @see Button
      */
     @FXML public Button b_d_close;
 
 
     /**
-     *
+     * <code>FlowPane</code> contenitore dei pulsanti, utilizzato
+     * per aggiungere ulteriori pulsanti
+     * @see FlowPane
      */
     @FXML public FlowPane fp_buttons;
 
 
     /**
-     *
+     * Riferimento all'oggetto DialogHelper associato al seguente Dialog
+     * @see DialogHelper
      */
     private DialogHelper dh;
 
 
     /**
-     *
+     * Metodo associato al pulsante OK per chiudere il dialog
      */
     @FXML public void indietro() {
         dh.close();

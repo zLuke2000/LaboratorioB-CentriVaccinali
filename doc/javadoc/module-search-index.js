@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"it.uninsubria.centrivaccinali"}];updateSearchResults();

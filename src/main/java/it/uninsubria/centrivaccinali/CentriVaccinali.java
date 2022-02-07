@@ -9,6 +9,13 @@ import it.uninsubria.centrivaccinali.client.Window;
 
 import java.rmi.RemoteException;
 
+/**
+ * Classe principale dell'applicazione. Consente l'avvio di quest'ultima tramite
+ * l'avvio di Window e la creazione della classe ClientCV
+ *
+ * @see Window
+ * @see ClientCV
+ */
 public class CentriVaccinali  {
 
     /**

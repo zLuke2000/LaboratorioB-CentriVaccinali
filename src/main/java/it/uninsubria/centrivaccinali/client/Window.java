@@ -16,6 +16,12 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Classe che estende Application e permette la creazione e la gestione
+ * dell'interfaccia grafica
+ *
+ * @see Application
+ */
 public class Window extends Application {
 
     /** Valore larghezza stage della finestra di avvio. */
@@ -84,10 +90,12 @@ public class Window extends Application {
     /** Posizione y del mouse durante operazione di trascinamento della finestra. */
     private double yOffset;
 
+    /**
+     * Metodo di avvio dell'interfaccia grafica
+     */
     public static void open() {
         launch( );
     }
-
 
     /**
      * Metodo di avvio dell'interfaccia grafica con prima schermata Avvio.fxml.

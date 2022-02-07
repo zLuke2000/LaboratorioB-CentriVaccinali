@@ -1,0 +1,12 @@
+module:centrivaccinali
+it.uninsubria.centrivaccinali
+it.uninsubria.centrivaccinali.client
+it.uninsubria.centrivaccinali.client.controller
+it.uninsubria.centrivaccinali.client.controller.centri
+it.uninsubria.centrivaccinali.client.controller.cittadini
+it.uninsubria.centrivaccinali.client.controller.cittadini.dashboard
+it.uninsubria.centrivaccinali.client.controller.dialog
+it.uninsubria.centrivaccinali.enumerator
+it.uninsubria.centrivaccinali.models
+it.uninsubria.centrivaccinali.util
+it.uninsubria.server
