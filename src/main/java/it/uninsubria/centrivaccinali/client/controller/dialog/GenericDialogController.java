@@ -15,6 +15,10 @@ import javafx.scene.layout.FlowPane;
 
 /**
  * Controller per dialog generici
+ * @author Centore Luca 740951
+ * @author Lattarulo Luca 742597
+ * @author Marelli Samuele
+ * @author Pintonello Christian 741112
  */
 public class GenericDialogController {
 
