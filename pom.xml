@@ -9,22 +9,23 @@
     <name>CentriVaccinali</name>
 
     <properties>
+        <db.user>postgres</db.user>
+        <db.password>123456789</db.password>
+        <db.host>jdbc:postgresql://localhost:5432/</db.host>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- JAVA FX WIN-->
+        <!-- JAVA FX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>16</version>
-            <classifier>win</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>16</version>
-            <classifier>win</classifier>
         </dependency>
         <!-- JAVA FX Controls-->
         <dependency>
@@ -180,6 +181,78 @@
                                     <resource>it.uninsubria.centrivaccinali</resource>
                                 </transformer>
                             </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- DB -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.3.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>${db.host}laboratorioB</url>
+                    <username>${db.user}</username>
+                    <password>${db.password}</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>drop-db-if-any</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>${db.host}</url>
+                            <autocommit>true</autocommit>
+                            <sqlCommand>DROP DATABASE IF EXISTS "laboratorioB"</sqlCommand>
+                            <onError>continue</onError>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-db</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <url>${db.host}</url>
+                            <autocommit>true</autocommit>
+                            <sqlCommand>CREATE DATABASE "laboratorioB"</sqlCommand>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>create-schema</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>src/sql/query.sql</srcFile>
+                                <srcFile>src/sql/tabelle.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>insert-data</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <srcFiles>
+                                <srcFile>src/sql/insertQuery.sql</srcFile>
+                            </srcFiles>
                         </configuration>
                     </execution>
                 </executions>

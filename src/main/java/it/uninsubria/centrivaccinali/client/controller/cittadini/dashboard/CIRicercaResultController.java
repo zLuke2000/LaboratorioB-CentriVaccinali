@@ -11,6 +11,8 @@ import it.uninsubria.centrivaccinali.client.controller.Controller;
 import it.uninsubria.centrivaccinali.enumerator.TipologiaCentro;
 import it.uninsubria.centrivaccinali.models.CentroVaccinale;
 import it.uninsubria.centrivaccinali.models.Result;
+import it.uninsubria.centrivaccinali.util.CssHelper;
+import it.uninsubria.centrivaccinali.util.DialogHelper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.*;
 import java.io.IOException;
 import java.util.List;
@@ -104,6 +107,12 @@ public class CIRicercaResultController extends Controller {
      */
     private CIDashboardController parent;
 
+    /**
+     * Rifermento al singleton <code>CssHelper</code> che permette la gestione degli stili per i vari componenti grafici.
+     * @see CssHelper
+     */
+    private final CssHelper css = CssHelper.getInstance();
+
 
     /**
      * Metodo per inizializzare l'interfaccia.
@@ -145,12 +154,22 @@ public class CIRicercaResultController extends Controller {
      */
     @FXML
     private void cercaCentroVaccinale() {
+        css.toDefault(tf_ricercaNomeCentro);
+        css.toDefault(tf_ricercaComune);
         Window.scene.setCursor(Cursor.WAIT);
         if (cb_sceltaRicerca.getValue().equals("Per nome") && !tf_ricercaNomeCentro.getText().isBlank()) {
             client.ricercaPerNome(this, tf_ricercaNomeCentro.getText());
         }
         else if (cb_sceltaRicerca.getValue().equals("Per comune e tipologia") && !tf_ricercaComune.getText().isBlank()) {
             client.ricercaPerComuneTipologia(this, tf_ricercaComune.getText(), cb_sceltaTipologia.getValue());
+        } else {
+            Window.scene.setCursor(Cursor.DEFAULT);
+            if (cb_sceltaRicerca.getValue().equals("Per nome")) {
+                css.toError(tf_ricercaNomeCentro, new Tooltip("Il campo non può essere vuoto"));
+            }
+            else {
+                css.toError(tf_ricercaComune, new Tooltip("Il campo non può essere vuoto"));
+            }
         }
     }
 

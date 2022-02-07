@@ -59,10 +59,13 @@ public class Database {
     /**
      * Permette di ottenere la connessione al database.
      * @return un booleano che rappresenta lo stato della connessione.
+     * @param host indirizzo del database
+     * @param user nome del profilo del database
+     * @param password password del profilo del database
      * @see DBHelper
      */
-    public boolean connettiDB() {
-        conn = DBHelper.getConnection();
+    public boolean connettiDB(String host, String user, String password) {
+        conn = DBHelper.getConnection(host, user, password);
         System.out.println("Connessione stabilita: " + conn);
         return conn != null;
     }

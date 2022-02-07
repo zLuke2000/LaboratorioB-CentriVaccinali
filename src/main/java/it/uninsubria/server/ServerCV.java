@@ -74,7 +74,6 @@ public class ServerCV extends UnicastRemoteObject implements ServerCVInterface {
                 System.err.println("[SERVER_CV] Errore durante la pubblicazione del server sul registro RMI");
                 System.exit(-1);
             }
-            db.getCentriVaccinali("");
         }
     }
 

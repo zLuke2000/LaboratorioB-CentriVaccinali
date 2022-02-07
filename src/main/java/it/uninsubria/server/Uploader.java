@@ -54,7 +54,10 @@ public class Uploader {
      * @param args args param
      */
     public static void main(String[] args) {
-        conn = DBHelper.getConnection();
+        String host = "localhost";
+        String user = "admin_laboratorioB";
+        String pass = "&UsCk*s$#wUOkG4r";
+        conn = DBHelper.getConnection(host, user, pass);
         db = new Database();
         db.connettiDB();
 

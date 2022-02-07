@@ -34,42 +34,21 @@ public class DBHelper {
      */
     private final static String resource = "laboratorioB";
 
-
-    /**
-     * url generato dalla concatenazione del protcol, host e nome del database.
-     */
-    private final static String url = protocol + host + resource;
-
-
-    /**
-     * username per gli admin del progetto su database.
-     */
-    private final static String username = "admin_laboratorioB";
-
-
-    /**
-     * Password per poter accedere al progetto su database.
-     */
-    private final static String password = "&UsCk*s$#wUOkG4r";
-
-
-    /**
-     * Riferiemento alla connection a database.
-     */
+    /** Riferiemento alla connection a database. */
     private static Connection connection = null;
 
-
-    /**
-     * Costruttore primario della classe.
-     */
+    /** Costruttore primario della classe. */
     public DBHelper() {}
 
 
     /**
      * Metodo che instaura la connesione a database.
+     * @param host indirizzo del database
+     * @param user nome del profilo del database
+     * @param password password del profilo del database
      * @return istanza della classe Connection.
      */
-    public static Connection getConnection() {
+    public static Connection getConnection(String host, String user, String password) {
         if(connection == null) {
             try {
                 connection = DriverManager.getConnection(url, username, password);
@@ -78,18 +57,5 @@ public class DBHelper {
             }
         }
         return connection;
-    }
-
-
-    /**
-     * Metodo per eseguire la chiusura della connessione a database.
-     */
-    public static void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        connection = null;
     }
 }
